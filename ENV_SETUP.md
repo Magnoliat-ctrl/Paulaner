@@ -6,19 +6,21 @@ Fügen Sie diese Variablen im Vercel Dashboard hinzu:
 
 **Vercel Dashboard → Projekt auswählen → Settings → Environment Variables**
 
-### Diffbot API (Primary)
-
-```
-Name: VITE_DIFFBOT_API_KEY
-Value: [Ihr Diffbot API Key - siehe .env Datei]
-Environments: Production, Preview, Development (alle auswählen ✓)
-```
-
-### OpenAI API (Fallback)
+### OpenAI API (Primary - GPT-4o)
 
 ```
 Name: VITE_OPENAI_API_KEY
-Value: [Ihr OpenAI API Key - siehe .env Datei]
+Value: [Ihr OpenAI API Key - siehe lokale .env Datei]
+Environments: Production, Preview, Development (alle auswählen ✓)
+```
+
+**Aktueller Key:** Verwenden Sie den Key aus Ihrer lokalen `.env` Datei (beginnt mit `sk-proj-`)
+
+### Diffbot API (Alternative)
+
+```
+Name: VITE_DIFFBOT_API_KEY
+Value: [Ihr Diffbot API Key - siehe lokale .env Datei]
 Environments: Production, Preview, Development (alle auswählen ✓)
 ```
 
@@ -32,7 +34,7 @@ Environments: Production, Preview, Development (alle auswählen ✓)
 
 ```
 Name: VITE_AI_PROVIDER
-Value: diffbot
+Value: openai
 Environments: Production, Preview, Development (alle auswählen ✓)
 ```
 
@@ -47,10 +49,10 @@ Environments: Production, Preview, Development (alle auswählen ✓)
 Nach dem Deployment öffnen Sie die Browser-Konsole (F12) und suchen Sie nach:
 
 ```
-🤖 Searching with Diffbot: [Ihre Suche]
+🤖 Searching with OpenAI: [Ihre Suche]
 ```
 
-Wenn Sie `Searching with OpenAI` sehen, sind die Environment-Variablen nicht richtig gesetzt.
+Dies bestätigt, dass GPT-4o für die Datenextraktion verwendet wird.
 
 ## Lokale Entwicklung
 
