@@ -1,0 +1,18 @@
+/**
+ * Dashboard Page Styles
+ */
+
+.dashboard-page {
+  animation: fadeIn var(--transition-base);
+}
+
+.dashboard-section {
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: var(--spacing-md);
+  }
+}

@@ -1,0 +1,50 @@
+/**
+ * Supplier Discovery Page Styles
+ */
+
+.supplier-discovery-page {
+  animation: fadeIn var(--transition-base);
+}
+
+.ai-suggestions {
+  margin: var(--spacing-lg) 0;
+}
+
+.ai-suggestions-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.ai-icon {
+  font-size: var(--font-size-xl);
+}
+
+.ai-reasoning {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-left: var(--spacing-sm);
+}
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+  flex-wrap: wrap;
+}
+
+.results-count {
+  margin-left: auto;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .results-count {
+    margin-left: 0;
+    width: 100%;
+  }
+}

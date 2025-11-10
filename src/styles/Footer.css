@@ -1,0 +1,124 @@
+/**
+ * Footer Component Styles
+ * Legal information and compliance notices
+ */
+
+.footer {
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--spacing-xl) 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-section {
+  text-align: center;
+}
+
+.copyright {
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* Footer Links */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-link {
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: all var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--color-secondary);
+  opacity: 1;
+}
+
+.footer-link:focus {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.footer-separator {
+  color: var(--color-white);
+  opacity: 0.5;
+}
+
+/* Compliance Notice */
+.compliance-notice {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-white);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.compliance-icon {
+  font-size: var(--font-size-lg);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  padding-top: var(--spacing-lg);
+  text-align: center;
+}
+
+.footer-note {
+  font-size: var(--font-size-xs);
+  color: var(--color-white);
+  opacity: 0.7;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .footer-content {
+    gap: var(--spacing-md);
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  .footer-separator {
+    display: none;
+  }
+
+  .compliance-notice {
+    flex-direction: column;
+    text-align: center;
+  }
+}
