@@ -59,7 +59,12 @@ function SupplierCard({ supplier, onClick }) {
         <div className="supplier-card-info">
           <div className="info-item">
             <span className="info-icon" aria-hidden="true">📍</span>
-            <span className="info-text">{supplier.location.city}, {supplier.location.region}</span>
+            <span className="info-text">
+              {supplier.locations && supplier.locations.length > 0
+                ? `${supplier.locations.length} Standort${supplier.locations.length > 1 ? 'e' : ''}: ${supplier.locations.map(loc => loc.city).filter((v, i, a) => a.indexOf(v) === i).join(', ')}`
+                : `${supplier.location.city}, ${supplier.location.region}`
+              }
+            </span>
           </div>
 
           <div className="info-item">

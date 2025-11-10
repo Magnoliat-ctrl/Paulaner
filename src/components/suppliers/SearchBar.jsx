@@ -15,21 +15,13 @@ function SearchBar({ query, onQueryChange, onSearch, placeholder }) {
   }, [query])
 
   /**
-   * Handle input change with debouncing
+   * Handle input change (no automatic search, only on Enter)
    */
   const handleChange = (e) => {
     const value = e.target.value
     setInputValue(value)
-
-    // Clear previous timeout
-    if (debounceTimer.current) {
-      clearTimeout(debounceTimer.current)
-    }
-
-    // Debounce search
-    debounceTimer.current = setTimeout(() => {
-      onQueryChange(value)
-    }, 300)
+    // Update query state immediately but don't trigger search
+    onQueryChange(value)
   }
 
   /**

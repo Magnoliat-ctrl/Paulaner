@@ -38,10 +38,12 @@ class DataService {
 
   /**
    * Normalize company name for duplicate detection
-   * Removes common legal forms and special characters
+   * Extracts core company name (first significant word)
+   * Example: "Weyermann Spezialmalze GmbH" -> "weyermann"
+   * Example: "Weyermann Malzfabrik GmbH" -> "weyermann"
    */
   normalizeCompanyName(name) {
-    return name
+    const normalized = name
       .toLowerCase()
       .trim()
       .replace(/\s+gmbh.*$/i, '') // Remove GmbH and everything after
@@ -52,6 +54,14 @@ class DataService {
       .replace(/[^a-zäöüß0-9\s]/g, '') // Remove special chars
       .replace(/\s+/g, ' ') // Normalize spaces
       .trim()
+
+    // Extract first significant word (core name)
+    // This catches "Weyermann Spezialmalze" and "Weyermann Malzfabrik" as both "weyermann"
+    const words = normalized.split(' ')
+    const coreWord = words[0] || normalized
+
+    console.log(`📝 Normalized "${name}" -> "${coreWord}"`)
+    return coreWord
   }
 
   /**

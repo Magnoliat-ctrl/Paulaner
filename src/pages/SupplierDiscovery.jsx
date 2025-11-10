@@ -34,9 +34,13 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
     loadInitialData()
   }, [])
 
+  // Removed automatic search on query change - now only searches on Enter
   useEffect(() => {
-    performSearch()
-  }, [searchQuery, filters])
+    // Only apply filters, not full search
+    if (!searchQuery) {
+      performSearch()
+    }
+  }, [filters])
 
   /**
    * Load initial data and user preferences
@@ -112,11 +116,18 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
   }
 
   /**
-   * Handle search query change
+   * Handle search query change (just update state, don't search yet)
    * @param {string} query - Search query
    */
   const handleSearchChange = (query) => {
     setSearchQuery(query)
+  }
+
+  /**
+   * Handle search execution (on Enter press)
+   */
+  const handleSearch = () => {
+    performSearch()
   }
 
   /**
@@ -181,8 +192,8 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
       <SearchBar
         query={searchQuery}
         onQueryChange={handleSearchChange}
-        onSearch={performSearch}
-        placeholder="Suche nach Lieferanten, Produkten, Standorten..."
+        onSearch={handleSearch}
+        placeholder="Suche nach Lieferanten, Produkten, Standorten... (Enter zum Suchen)"
       />
 
       {/* Search Progress Indicator */}
