@@ -7,7 +7,7 @@ class OpenAIService {
   constructor() {
     this.apiKey = import.meta.env.VITE_OPENAI_API_KEY
     this.apiEndpoint = 'https://api.openai.com/v1/chat/completions'
-    this.model = 'gpt-4o-mini' // Cost-effective model
+    this.model = 'gpt-4o' // High-performance model for data extraction
     this.isEnabled = !!this.apiKey
 
     if (!this.isEnabled) {
