@@ -309,22 +309,30 @@ class DataService {
    */
   async getCategories() {
     await this.delay(50)
-    const categories = [...new Set(this.cachedSuppliers.map(s => s.category))]
 
-    // Add common categories if cache is empty
-    if (categories.length === 0) {
-      return [
-        'Rohstoffe - Hopfen',
-        'Rohstoffe - Malz',
-        'Verpackung',
-        'Logistik',
-        'IT & Technologie',
-        'Energie',
-        'Wartung & Instandhaltung'
-      ]
+    // ONLY these 6 categories are allowed
+    const allowedCategories = [
+      'Malz',
+      'Wellpappe',
+      'Aluminium-Dosen',
+      'Arbeitskleidung',
+      'Frachten',
+      'Euro-Paletten'
+    ]
+
+    const cachedCategories = [...new Set(this.cachedSuppliers.map(s => s.category))]
+
+    // Filter to only allowed categories from cache
+    const filteredCategories = cachedCategories.filter(cat =>
+      allowedCategories.includes(cat)
+    )
+
+    // If cache is empty or has no valid categories, return all allowed
+    if (filteredCategories.length === 0) {
+      return allowedCategories
     }
 
-    return categories
+    return filteredCategories
   }
 
   /**

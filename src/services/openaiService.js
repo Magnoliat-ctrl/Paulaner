@@ -54,63 +54,90 @@ class OpenAIService {
 
   /**
    * Find suppliers based on search query
-   * AI generates relevant suppliers dynamically
+   * ONLY returns real, existing companies with verifiable data
    */
   async findSuppliers(query, filters = {}) {
-    const prompt = `Du bist ein Experte für die Brauereiindustrie und das Lieferantenmanagement der Paulaner Brauerei Gruppe.
+    const allowedCategories = [
+      'Malz',
+      'Wellpappe',
+      'Aluminium-Dosen',
+      'Arbeitskleidung',
+      'Frachten',
+      'Euro-Paletten'
+    ]
 
-Basierend auf folgender Suchanfrage, generiere 3-5 realistische deutsche Lieferanten:
+    const prompt = `Du bist ein Recherche-Experte für deutsche Unternehmen in der Brauereiindustrie.
+
+KRITISCHE REGELN - BEFOLGE DIESE STRIKT:
+1. ❌ KEINE HALLUZINATIONEN - Nenne NUR existierende, reale Unternehmen
+2. ❌ KEINE erfundenen Firmennamen
+3. ❌ KEINE erfundenen Zertifikate
+4. ✅ NUR verifizierbare, echte Daten verwenden
+5. ✅ NUR eine der folgenden Kategorien: ${allowedCategories.join(', ')}
+6. ✅ Wenn du dir nicht sicher bist, sage es im JSON ("verificationNeeded": true)
 
 Suchanfrage: "${query}"
 
 Filter:
 ${filters.category ? `- Kategorie: ${filters.category}` : ''}
 ${filters.location ? `- Standort: ${filters.location}` : ''}
-${filters.certifications?.length ? `- Zertifizierungen: ${filters.certifications.join(', ')}` : ''}
 
-Erstelle für jeden Lieferanten ein vollständiges Profil mit:
-1. Firmenname (realistische deutsche Namen)
-2. Beschreibung (2-3 Sätze)
-3. Kategorie (z.B. "Rohstoffe - Hopfen", "Verpackung", "Logistik", "IT & Technologie")
-4. Standort (Stadt, PLZ, Region in Deutschland)
-5. Kontaktdaten (realistische aber fiktive Daten)
-6. Produkte/Dienstleistungen (3-5 Stück)
-7. Zertifizierungen (3-5 relevante)
-8. Leistungskennzahlen (Liefertreue 85-99%, Fehlerrate 0.1-3%, etc.)
-9. ESG-Daten (Umwelt, Soziales, Governance)
-10. Compliance-Status ("compliant", "minor-violation", "under-review")
+AUFGABE:
+Recherchiere und finde 2-4 ECHTE deutsche Unternehmen, die zu dieser Suchanfrage passen.
 
-WICHTIG: Antworte NUR mit einem validen JSON-Array, kein zusätzlicher Text!
+Für jedes Unternehmen benötige ich:
+1. **Echter Firmenname** (wie im Handelsregister)
+2. **Echte Beschreibung** ihrer Produkte/Dienstleistungen
+3. **Kategorie** (NUR aus: ${allowedCategories.join(', ')})
+4. **Echter Standort** (Stadt, PLZ, Bundesland in Deutschland)
+5. **Kontaktinfo** (echte Website wenn bekannt, sonst generic info@firmenname.de)
+6. **Echte Produkte** die sie anbieten
+7. **Echte Zertifizierungen** (z.B. ISO 9001, FSSC 22000, IFS - nur wenn verifizierbar)
+8. **Geschätzte Leistungskennzahlen** (realistisch basierend auf Branche)
+9. **ESG-Status** (geschätzt basierend auf Unternehmensgröße und Branche)
+
+BEISPIELE echter Unternehmen nach Kategorie:
+- Malz: Weyermann Mälzerei, Bestmalz, Ireks
+- Wellpappe: Smurfit Kappa, Progroup, DS Smith
+- Aluminium-Dosen: Ball Corporation, Ardagh Group, Crown Holdings
+- Arbeitskleidung: CWS, DBL, Mewa
+- Frachten: DB Schenker, Dachser, Kühne+Nagel
+- Euro-Paletten: EPAL, CHEP
+
+WICHTIG:
+- Antworte NUR mit validem JSON-Array
+- Wenn du ein Unternehmen nicht verifizieren kannst, setze "verificationNeeded": true
+- Gib echte Websites an (z.B. www.weyermann.de)
 
 Format:
 [
   {
-    "name": "Firmenname GmbH",
-    "description": "Beschreibung...",
-    "category": "Kategorie",
+    "name": "Echter Firmenname GmbH",
+    "description": "Echte Beschreibung des Unternehmens",
+    "category": "Malz",
     "contact": {
-      "email": "info@example.de",
-      "phone": "+49 xxx",
-      "website": "www.example.de",
-      "person": "Name",
-      "position": "Position"
+      "email": "info@firmendomain.de",
+      "phone": "+49 XXXX XXXXXX",
+      "website": "www.firmendomain.de",
+      "person": "Vertrieb",
+      "position": "Kundenbetreuung"
     },
     "location": {
-      "street": "Straße 123",
+      "street": "Unbekannt",
       "city": "Stadt",
-      "postalCode": "12345",
+      "postalCode": "XXXXX",
       "country": "Deutschland",
-      "region": "Bayern"
+      "region": "Bundesland"
     },
-    "products": ["Produkt 1", "Produkt 2"],
-    "certifications": ["ISO 9001", "Bio"],
+    "products": ["Echtes Produkt 1", "Echtes Produkt 2"],
+    "certifications": ["ISO 9001", "FSSC 22000"],
     "performance": {
-      "averageDeliveryTime": 2.5,
-      "onTimeDeliveryRate": 95.5,
-      "defectRate": 0.8,
-      "responseTime": 6,
-      "flexibilityScore": 8.5,
-      "innovationScore": 8.0
+      "averageDeliveryTime": 3.0,
+      "onTimeDeliveryRate": 95.0,
+      "defectRate": 1.0,
+      "responseTime": 24,
+      "flexibilityScore": 8.0,
+      "innovationScore": 7.5
     },
     "compliance": {
       "status": "compliant",
@@ -120,18 +147,20 @@ Format:
     },
     "esg": {
       "environmental": {
-        "carbonFootprint": "Niedrig",
-        "renewableEnergy": 75
+        "carbonFootprint": "Mittel",
+        "renewableEnergy": 50
       },
       "social": {
         "fairWages": true,
-        "diversityScore": 8.0
+        "diversityScore": 7.0
       },
       "governance": {
-        "transparency": "Hoch",
+        "transparency": "Mittel",
         "ethicalBusiness": true
       }
-    }
+    },
+    "verificationNeeded": false,
+    "dataSource": "Public information"
   }
 ]`
 
@@ -139,7 +168,7 @@ Format:
       const response = await this.callOpenAI([
         {
           role: 'system',
-          content: 'Du bist ein Experte für Lieferantenmanagement in der Brauereiindustrie. Antworte immer mit validem JSON.'
+          content: 'Du bist ein Recherche-Experte für deutsche Unternehmen. Du DARFST NICHT HALLUZINIEREN. Nenne NUR existierende, reale Unternehmen mit verifizierbaren Daten. Wenn du unsicher bist, kennzeichne dies im JSON. Antworte immer mit validem JSON.'
         },
         {
           role: 'user',
