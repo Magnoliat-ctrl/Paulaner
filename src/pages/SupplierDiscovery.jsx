@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { dataService } from '../services/dataService'
-import { aiService } from '../services/aiService'
+import { openaiService } from '../services/openaiService'
 import { memoryService } from '../services/memoryService'
 import SearchBar from '../components/suppliers/SearchBar'
 import FilterPanel from '../components/suppliers/FilterPanel'
@@ -87,7 +87,7 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
       // Get AI suggestions if query is not empty
       // AI INTEGRATION POINT: This calls the AI service to enhance search results
       if (searchQuery) {
-        const suggestions = await aiService.analyzeQuery(searchQuery, userMemory)
+        const suggestions = await openaiService.analyzeQuery(searchQuery, userMemory)
         setAiSuggestions(suggestions)
 
         // Optionally apply AI-suggested filters

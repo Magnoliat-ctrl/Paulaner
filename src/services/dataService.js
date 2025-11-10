@@ -1,25 +1,12 @@
 /**
  * Data Service
- * Manages supplier data, ratings, and analytics
- * Currently uses mock data; should be replaced with API calls
- *
- * FUTURE ENHANCEMENT:
- * Replace with REST API calls to backend:
- * - GET /api/suppliers
- * - GET /api/suppliers/:id
- * - POST /api/suppliers/:id/ratings
- * - GET /api/analytics
- * - etc.
+ * Manages supplier data with AI-powered discovery
+ * Uses OpenAI to dynamically find and generate suppliers
  */
 
-import {
-  getAllSuppliers,
-  getSupplierById,
-  getSuppliersByCategory,
-  getAllCategories,
-  getAllRegions
-} from '../data/supplierData'
+import { openaiService } from './openaiService'
 
+const SUPPLIERS_KEY = 'paulaner_suppliers_cache'
 const RATINGS_KEY = 'paulaner_supplier_ratings'
 const ANALYTICS_KEY = 'paulaner_analytics_data'
 
@@ -28,9 +15,44 @@ const ANALYTICS_KEY = 'paulaner_analytics_data'
  */
 class DataService {
   constructor() {
-    this.suppliers = getAllSuppliers()
+    this.loadCachedSuppliers()
     this.loadRatings()
     this.initializeAnalytics()
+  }
+
+  /**
+   * Load cached suppliers from localStorage
+   */
+  loadCachedSuppliers() {
+    try {
+      const stored = localStorage.getItem(SUPPLIERS_KEY)
+      this.cachedSuppliers = stored ? JSON.parse(stored) : []
+    } catch (error) {
+      console.error('Error loading cached suppliers:', error)
+      this.cachedSuppliers = []
+    }
+  }
+
+  /**
+   * Save suppliers to cache
+   */
+  saveSuppliers(suppliers) {
+    try {
+      // Merge with existing cached suppliers, avoid duplicates
+      const existingIds = new Set(this.cachedSuppliers.map(s => s.id))
+      const newSuppliers = suppliers.filter(s => !existingIds.has(s.id))
+
+      this.cachedSuppliers = [...this.cachedSuppliers, ...newSuppliers]
+
+      // Keep only last 100 suppliers
+      if (this.cachedSuppliers.length > 100) {
+        this.cachedSuppliers = this.cachedSuppliers.slice(-100)
+      }
+
+      localStorage.setItem(SUPPLIERS_KEY, JSON.stringify(this.cachedSuppliers))
+    } catch (error) {
+      console.error('Error saving suppliers:', error)
+    }
   }
 
   /**
@@ -75,7 +97,7 @@ class DataService {
    */
   generateInitialAnalytics() {
     return {
-      totalSuppliers: this.suppliers.length,
+      totalSuppliers: this.cachedSuppliers.length,
       totalRatings: 0,
       averageRating: 0,
       complianceViolations: 0,
@@ -84,18 +106,17 @@ class DataService {
   }
 
   /**
-   * Get all suppliers
+   * Get all suppliers (from cache)
    * @returns {Promise<Array>} Array of suppliers
    */
   async getSuppliers() {
-    // Simulate API call delay
     await this.delay(100)
 
-    // Merge mock data with custom ratings
-    return this.suppliers.map(supplier => ({
+    // Return cached suppliers with their ratings
+    return this.cachedSuppliers.map(supplier => ({
       ...supplier,
       ratings: [
-        ...supplier.ratings,
+        ...(supplier.ratings || []),
         ...this.customRatings.filter(r => r.supplierId === supplier.id)
       ]
     }))
@@ -109,27 +130,26 @@ class DataService {
   async getSupplier(id) {
     await this.delay(100)
 
-    const supplier = getSupplierById(id)
+    const supplier = this.cachedSuppliers.find(s => s.id === id)
     if (!supplier) return null
 
     // Add custom ratings
     return {
       ...supplier,
       ratings: [
-        ...supplier.ratings,
+        ...(supplier.ratings || []),
         ...this.customRatings.filter(r => r.supplierId === id)
       ]
     }
   }
 
   /**
-   * Search suppliers
+   * Search suppliers with AI
+   * Uses OpenAI to find and generate relevant suppliers
    * @param {Object} params - Search parameters
    * @returns {Promise<Array>} Filtered suppliers
    */
   async searchSuppliers(params) {
-    await this.delay(150)
-
     const {
       query = '',
       category = '',
@@ -139,7 +159,73 @@ class DataService {
       complianceStatus = 'all'
     } = params
 
-    let results = await this.getSuppliers()
+    // If no query, return cached suppliers with filters
+    if (!query && !category && !location) {
+      return this.filterCachedSuppliers(params)
+    }
+
+    try {
+      // Use AI to find suppliers
+      console.log('🤖 Searching with AI:', query)
+
+      const aiSuppliers = await openaiService.findSuppliers(query, {
+        category,
+        location,
+        certifications
+      })
+
+      console.log(`✅ Found ${aiSuppliers.length} suppliers via AI`)
+
+      // Save to cache
+      this.saveSuppliers(aiSuppliers)
+
+      // Apply additional filters
+      let results = aiSuppliers
+
+      // Filter by minimum rating
+      if (minRating > 0) {
+        results = results.filter(s => {
+          const avgRating = this.calculateAverageRating(s.ratings || [])
+          return avgRating >= minRating
+        })
+      }
+
+      // Filter by compliance status
+      if (complianceStatus !== 'all') {
+        results = results.filter(s => s.compliance.status === complianceStatus)
+      }
+
+      // Also search cached suppliers
+      const cachedResults = this.filterCachedSuppliers(params)
+
+      // Merge and deduplicate
+      const allResults = [...results, ...cachedResults]
+      const uniqueResults = Array.from(
+        new Map(allResults.map(s => [s.id, s])).values()
+      )
+
+      return uniqueResults
+    } catch (error) {
+      console.error('AI search failed, using cached suppliers:', error)
+      // Fallback to cached suppliers
+      return this.filterCachedSuppliers(params)
+    }
+  }
+
+  /**
+   * Filter cached suppliers
+   */
+  filterCachedSuppliers(params) {
+    const {
+      query = '',
+      category = '',
+      location = '',
+      minRating = 0,
+      certifications = [],
+      complianceStatus = 'all'
+    } = params
+
+    let results = this.cachedSuppliers
 
     // Filter by query (name, description, products)
     if (query) {
@@ -147,7 +233,7 @@ class DataService {
       results = results.filter(supplier =>
         supplier.name.toLowerCase().includes(lowerQuery) ||
         supplier.description.toLowerCase().includes(lowerQuery) ||
-        supplier.products.some(p => p.toLowerCase().includes(lowerQuery))
+        supplier.products?.some(p => p.toLowerCase().includes(lowerQuery))
       )
     }
 
@@ -167,7 +253,7 @@ class DataService {
     // Filter by minimum rating
     if (minRating > 0) {
       results = results.filter(s => {
-        const avgRating = this.calculateAverageRating(s.ratings)
+        const avgRating = this.calculateAverageRating(s.ratings || [])
         return avgRating >= minRating
       })
     }
@@ -176,7 +262,7 @@ class DataService {
     if (certifications.length > 0) {
       results = results.filter(s =>
         certifications.every(cert =>
-          s.certifications.some(c => c.includes(cert))
+          s.certifications?.some(c => c.includes(cert))
         )
       )
     }
@@ -194,10 +280,6 @@ class DataService {
    * @param {string} supplierId - Supplier ID
    * @param {Object} rating - Rating data
    * @returns {Promise<boolean>} Success status
-   *
-   * API PLACEHOLDER:
-   * POST /api/suppliers/:supplierId/ratings
-   * Body: { categories, weights, comment, userId }
    */
   async addRating(supplierId, rating) {
     await this.delay(200)
@@ -210,7 +292,7 @@ class DataService {
       categories: rating.categories,
       weights: rating.weights,
       comment: rating.comment,
-      userId: 'current-user', // Should come from auth service
+      userId: 'current-user',
       timestamp: new Date().toISOString()
     }
 
@@ -222,21 +304,43 @@ class DataService {
   }
 
   /**
-   * Get categories
+   * Get categories from cached suppliers
    * @returns {Promise<Array>} Array of categories
    */
   async getCategories() {
     await this.delay(50)
-    return getAllCategories()
+    const categories = [...new Set(this.cachedSuppliers.map(s => s.category))]
+
+    // Add common categories if cache is empty
+    if (categories.length === 0) {
+      return [
+        'Rohstoffe - Hopfen',
+        'Rohstoffe - Malz',
+        'Verpackung',
+        'Logistik',
+        'IT & Technologie',
+        'Energie',
+        'Wartung & Instandhaltung'
+      ]
+    }
+
+    return categories
   }
 
   /**
-   * Get regions
+   * Get regions from cached suppliers
    * @returns {Promise<Array>} Array of regions
    */
   async getRegions() {
     await this.delay(50)
-    return getAllRegions()
+    const regions = [...new Set(this.cachedSuppliers.map(s => s.location.region))]
+
+    // Add common regions if cache is empty
+    if (regions.length === 0) {
+      return ['Bayern', 'Baden-Württemberg', 'Nordrhein-Westfalen', 'Hessen', 'Niedersachsen']
+    }
+
+    return regions
   }
 
   /**
@@ -246,17 +350,24 @@ class DataService {
   async getDashboardMetrics() {
     await this.delay(100)
 
-    const suppliers = await this.getSuppliers()
+    const suppliers = this.cachedSuppliers
     const totalSuppliers = suppliers.length
 
     // Calculate total ratings
     let totalRatings = 0
     let sumRatings = 0
     suppliers.forEach(s => {
-      totalRatings += s.ratings.length
-      s.ratings.forEach(r => {
+      const ratings = s.ratings || []
+      totalRatings += ratings.length
+      ratings.forEach(r => {
         sumRatings += r.overallScore
       })
+    })
+
+    // Add custom ratings
+    totalRatings += this.customRatings.length
+    this.customRatings.forEach(r => {
+      sumRatings += r.overallScore
     })
 
     const averageRating = totalRatings > 0 ? (sumRatings / totalRatings).toFixed(1) : 0
@@ -270,8 +381,9 @@ class DataService {
     const thirtyDaysAgo = new Date()
     thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30)
     const pendingRatings = suppliers.filter(s => {
-      if (s.ratings.length === 0) return true
-      const lastRating = new Date(s.ratings[0].date)
+      const ratings = s.ratings || []
+      if (ratings.length === 0) return true
+      const lastRating = new Date(ratings[0].date)
       return lastRating < thirtyDaysAgo
     }).length
 
@@ -300,7 +412,7 @@ class DataService {
       .slice(0, 5)
 
     recentRatings.forEach(rating => {
-      const supplier = this.suppliers.find(s => s.id === rating.supplierId)
+      const supplier = this.cachedSuppliers.find(s => s.id === rating.supplierId)
       if (supplier) {
         activities.push({
           type: 'rating',
@@ -313,7 +425,7 @@ class DataService {
     })
 
     // Add compliance warnings
-    const violations = this.suppliers.filter(s =>
+    const violations = this.cachedSuppliers.filter(s =>
       s.compliance.violations && s.compliance.violations.length > 0
     )
 
@@ -343,7 +455,7 @@ class DataService {
   async getAnalytics(params = {}) {
     await this.delay(200)
 
-    const suppliers = await this.getSuppliers()
+    const suppliers = this.cachedSuppliers
 
     // Rating trends over time
     const ratingTrends = this.calculateRatingTrends(suppliers)
@@ -385,7 +497,8 @@ class DataService {
     const trends = {}
 
     suppliers.forEach(supplier => {
-      supplier.ratings.forEach(rating => {
+      const ratings = supplier.ratings || []
+      ratings.forEach(rating => {
         const month = rating.date.substring(0, 7) // YYYY-MM
         if (!trends[month]) {
           trends[month] = { sum: 0, count: 0 }
@@ -397,6 +510,7 @@ class DataService {
 
     return Object.keys(trends)
       .sort()
+      .slice(-6) // Last 6 months
       .map(month => ({
         month,
         averageRating: (trends[month].sum / trends[month].count).toFixed(1)
@@ -458,8 +572,9 @@ class DataService {
     return suppliers
       .map(s => ({
         ...s,
-        avgRating: this.calculateAverageRating(s.ratings)
+        avgRating: this.calculateAverageRating(s.ratings || [])
       }))
+      .filter(s => s.avgRating > 0) // Only suppliers with ratings
       .sort((a, b) => b.avgRating - a.avgRating)
       .slice(0, limit)
   }
@@ -482,6 +597,18 @@ class DataService {
    */
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
+  }
+
+  /**
+   * Clear all cached data (for testing)
+   */
+  clearCache() {
+    this.cachedSuppliers = []
+    localStorage.removeItem(SUPPLIERS_KEY)
+    localStorage.removeItem(RATINGS_KEY)
+    localStorage.removeItem(ANALYTICS_KEY)
+    this.customRatings = []
+    this.analyticsData = this.generateInitialAnalytics()
   }
 }
 
