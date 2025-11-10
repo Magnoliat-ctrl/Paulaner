@@ -83,7 +83,8 @@ ${filters.category ? `- Kategorie: ${filters.category}` : ''}
 ${filters.location ? `- Standort: ${filters.location}` : ''}
 
 AUFGABE:
-Recherchiere und finde 2-4 ECHTE deutsche Unternehmen, die zu dieser Suchanfrage passen.
+Recherchiere und finde 5-10 ECHTE deutsche Unternehmen, die zu dieser Suchanfrage passen.
+Wenn mehrere Standorte eines Unternehmens existieren, liste sie ALLE im "locations" Array auf.
 
 Für jedes Unternehmen benötige ich:
 1. **Echter Firmenname** (wie im Handelsregister)
@@ -115,6 +116,12 @@ WICHTIG FÜR PRODUKTLISTEN:
 
 MINIMUM: 15-30 spezifische Produkte pro Lieferant!
 
+WICHTIG FÜR STANDORTE:
+- Recherchiere ALLE Standorte eines Unternehmens in Deutschland
+- Füge sie im "locations" Array ein (auch wenn es nur einer ist)
+- Das "location" Feld ist der Hauptstandort, muss aber auch in "locations" sein
+- Beispiel: Weyermann hat Standorte in Bamberg (Hauptsitz), könnte aber Lager in anderen Städten haben
+
 WICHTIG:
 - Antworte NUR mit validem JSON-Array
 - Wenn du ein Unternehmen nicht verifizieren kannst, setze "verificationNeeded": true
@@ -134,12 +141,28 @@ Format:
       "position": "Kundenbetreuung"
     },
     "location": {
-      "street": "Unbekannt",
-      "city": "Stadt",
-      "postalCode": "XXXXX",
+      "street": "Brennerstraße 17-19",
+      "city": "Bamberg",
+      "postalCode": "96052",
       "country": "Deutschland",
-      "region": "Bundesland"
+      "region": "Bayern"
     },
+    "locations": [
+      {
+        "street": "Brennerstraße 17-19",
+        "city": "Bamberg",
+        "postalCode": "96052",
+        "country": "Deutschland",
+        "region": "Bayern"
+      },
+      {
+        "street": "Zweigwerk Straße 1",
+        "city": "München",
+        "postalCode": "80331",
+        "country": "Deutschland",
+        "region": "Bayern"
+      }
+    ],
     "products": [
       "Pilsner Malz",
       "Münchner Malz I",

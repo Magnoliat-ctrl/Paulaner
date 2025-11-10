@@ -91,6 +91,15 @@ class DataService {
             existing.description = newSupplier.description
           }
 
+          // Merge products (avoid duplicates)
+          if (newSupplier.products && newSupplier.products.length > 0) {
+            const productSet = new Set([
+              ...(existing.products || []),
+              ...newSupplier.products
+            ])
+            existing.products = Array.from(productSet)
+          }
+
           // Merge certifications
           if (newSupplier.certifications && newSupplier.certifications.length > 0) {
             const certSet = new Set([...existing.certifications, ...newSupplier.certifications])
@@ -262,8 +271,12 @@ class DataService {
 
       if (onProgress) onProgress('Wende Filter an...')
 
+      // WICHTIG: Nach dem Speichern die gemergten Daten aus dem Cache holen
+      // statt die originalen aiSuppliers zu verwenden
+      const mergedResults = this.filterCachedSuppliers(params)
+
       // Apply additional filters
-      let results = aiSuppliers
+      let results = mergedResults
 
       // Filter by minimum rating
       if (minRating > 0) {
@@ -278,13 +291,9 @@ class DataService {
         results = results.filter(s => s.compliance.status === complianceStatus)
       }
 
-      // Also search cached suppliers
-      const cachedResults = this.filterCachedSuppliers(params)
-
-      // Merge and deduplicate by company name (not ID)
-      const allResults = [...results, ...cachedResults]
+      // Deduplicate final results by company name
       const uniqueResults = Array.from(
-        new Map(allResults.map(s => [s.name.toLowerCase().trim(), s])).values()
+        new Map(results.map(s => [s.name.toLowerCase().trim(), s])).values()
       )
 
       if (onProgress) onProgress(null) // Clear progress
