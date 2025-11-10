@@ -1,10 +1,13 @@
 /**
  * Data Service
  * Manages supplier data with AI-powered discovery
- * Uses OpenAI to dynamically find and generate suppliers
+ * Uses Diffbot or OpenAI to dynamically find and generate suppliers
  */
 
 import { openaiService } from './openaiService'
+import { diffbotService } from './diffbotService'
+
+const AI_PROVIDER = import.meta.env.VITE_AI_PROVIDER || 'openai'
 
 const SUPPLIERS_KEY = 'paulaner_suppliers_cache'
 const RATINGS_KEY = 'paulaner_supplier_ratings'
@@ -35,14 +38,86 @@ class DataService {
 
   /**
    * Save suppliers to cache
+   * Merges locations if company with same name already exists
    */
   saveSuppliers(suppliers) {
     try {
-      // Merge with existing cached suppliers, avoid duplicates by name
-      const existingNames = new Set(this.cachedSuppliers.map(s => s.name.toLowerCase().trim()))
-      const newSuppliers = suppliers.filter(s => !existingNames.has(s.name.toLowerCase().trim()))
+      // Build a map of existing suppliers by normalized name
+      const existingMap = new Map()
+      this.cachedSuppliers.forEach(s => {
+        existingMap.set(s.name.toLowerCase().trim(), s)
+      })
 
-      this.cachedSuppliers = [...this.cachedSuppliers, ...newSuppliers]
+      suppliers.forEach(newSupplier => {
+        const normalizedName = newSupplier.name.toLowerCase().trim()
+        const existing = existingMap.get(normalizedName)
+
+        if (existing) {
+          // Company exists - merge locations
+          console.log(`🔄 Merging locations for: ${newSupplier.name}`)
+
+          // Merge locations arrays, avoiding duplicates
+          const existingLocations = existing.locations || [existing.location]
+          const newLocations = newSupplier.locations || [newSupplier.location]
+
+          // Create set of location keys (city+postalCode) to check for duplicates
+          const locationKeys = new Set(
+            existingLocations.map(loc => `${loc.city}-${loc.postalCode}`.toLowerCase())
+          )
+
+          // Add only new locations
+          newLocations.forEach(newLoc => {
+            const locKey = `${newLoc.city}-${newLoc.postalCode}`.toLowerCase()
+            if (!locationKeys.has(locKey)) {
+              existingLocations.push(newLoc)
+              locationKeys.add(locKey)
+            }
+          })
+
+          // Update existing supplier with merged data
+          existing.locations = existingLocations
+
+          // Update other fields if new data is better (has more info)
+          if (newSupplier.contact.website && !existing.contact.website) {
+            existing.contact.website = newSupplier.contact.website
+          }
+          if (newSupplier.contact.email && !existing.contact.email.includes('example')) {
+            existing.contact.email = newSupplier.contact.email
+          }
+          if (newSupplier.contact.phone && !existing.contact.phone.includes('XXX')) {
+            existing.contact.phone = newSupplier.contact.phone
+          }
+          if (newSupplier.description && newSupplier.description.length > existing.description.length) {
+            existing.description = newSupplier.description
+          }
+
+          // Merge certifications
+          if (newSupplier.certifications && newSupplier.certifications.length > 0) {
+            const certSet = new Set([...existing.certifications, ...newSupplier.certifications])
+            existing.certifications = Array.from(certSet)
+          }
+
+          // Merge ratings (avoid duplicates)
+          if (newSupplier.ratings && newSupplier.ratings.length > 0) {
+            const existingRatingIds = new Set(existing.ratings.map(r => r.id))
+            const newRatings = newSupplier.ratings.filter(r => !existingRatingIds.has(r.id))
+            existing.ratings = [...existing.ratings, ...newRatings]
+          }
+
+          existing.lastUpdated = new Date().toISOString()
+        } else {
+          // New company - add to cache
+          console.log(`✨ Adding new supplier: ${newSupplier.name}`)
+
+          // Ensure locations array exists
+          if (!newSupplier.locations) {
+            newSupplier.locations = [newSupplier.location]
+          }
+
+          this.cachedSuppliers.push(newSupplier)
+          existingMap.set(normalizedName, newSupplier)
+        }
+      })
 
       // Keep only last 100 suppliers
       if (this.cachedSuppliers.length > 100) {
@@ -145,11 +220,12 @@ class DataService {
 
   /**
    * Search suppliers with AI
-   * Uses OpenAI to find and generate relevant suppliers
+   * Uses Diffbot or OpenAI to find and generate relevant suppliers
    * @param {Object} params - Search parameters
+   * @param {Function} onProgress - Progress callback
    * @returns {Promise<Array>} Filtered suppliers
    */
-  async searchSuppliers(params) {
+  async searchSuppliers(params, onProgress = null) {
     const {
       query = '',
       category = '',
@@ -166,18 +242,25 @@ class DataService {
 
     try {
       // Use AI to find suppliers
-      console.log('🤖 Searching with AI:', query)
+      const aiService = AI_PROVIDER === 'diffbot' ? diffbotService : openaiService
+      const providerName = AI_PROVIDER === 'diffbot' ? 'Diffbot' : 'OpenAI'
 
-      const aiSuppliers = await openaiService.findSuppliers(query, {
+      console.log(`🤖 Searching with ${providerName}:`, query)
+      if (onProgress) onProgress(`Suche nach Lieferanten mit ${providerName}...`)
+
+      const aiSuppliers = await aiService.findSuppliers(query, {
         category,
         location,
         certifications
       })
 
-      console.log(`✅ Found ${aiSuppliers.length} suppliers via AI`)
+      console.log(`✅ Found ${aiSuppliers.length} suppliers via ${providerName}`)
+      if (onProgress) onProgress(`${aiSuppliers.length} Lieferanten gefunden, speichere Daten...`)
 
-      // Save to cache
+      // Save to cache (merges locations for duplicates)
       this.saveSuppliers(aiSuppliers)
+
+      if (onProgress) onProgress('Wende Filter an...')
 
       // Apply additional filters
       let results = aiSuppliers
@@ -204,10 +287,18 @@ class DataService {
         new Map(allResults.map(s => [s.name.toLowerCase().trim(), s])).values()
       )
 
+      if (onProgress) onProgress(null) // Clear progress
+
       return uniqueResults
     } catch (error) {
       console.error('AI search failed, using cached suppliers:', error)
+      if (onProgress) onProgress('Fehler bei der Suche, verwende gecachte Daten...')
+
       // Fallback to cached suppliers
+      setTimeout(() => {
+        if (onProgress) onProgress(null)
+      }, 1000)
+
       return this.filterCachedSuppliers(params)
     }
   }

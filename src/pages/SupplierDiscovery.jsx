@@ -28,6 +28,7 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
   const [regions, setRegions] = useState([])
   const [showFilters, setShowFilters] = useState(false)
   const [aiSuggestions, setAiSuggestions] = useState(null)
+  const [searchProgress, setSearchProgress] = useState(null)
 
   useEffect(() => {
     loadInitialData()
@@ -71,10 +72,14 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
    */
   const performSearch = async () => {
     try {
-      // Search with dataService
+      setSearchProgress('Starte Suche...')
+
+      // Search with dataService and progress callback
       const results = await dataService.searchSuppliers({
         query: searchQuery,
         ...filters
+      }, (progress) => {
+        setSearchProgress(progress)
       })
 
       setFilteredSuppliers(results)
@@ -87,6 +92,7 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
       // Get AI suggestions if query is not empty
       // AI INTEGRATION POINT: This calls the AI service to enhance search results
       if (searchQuery) {
+        setSearchProgress('Lade KI-Vorschläge...')
         const suggestions = await openaiService.analyzeQuery(searchQuery, userMemory)
         setAiSuggestions(suggestions)
 
@@ -97,8 +103,11 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
           // setFilters(prev => ({ ...prev, ...suggestions.suggestedFilters }))
         }
       }
+
+      setSearchProgress(null)
     } catch (error) {
       console.error('Error performing search:', error)
+      setSearchProgress(null)
     }
   }
 
@@ -175,6 +184,16 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
         onSearch={performSearch}
         placeholder="Suche nach Lieferanten, Produkten, Standorten..."
       />
+
+      {/* Search Progress Indicator */}
+      {searchProgress && (
+        <div className="search-progress" role="status" aria-live="polite">
+          <div className="progress-content">
+            <div className="spinner-small" aria-hidden="true"></div>
+            <span className="progress-text">{searchProgress}</span>
+          </div>
+        </div>
+      )}
 
       {/* AI Suggestions */}
       {aiSuggestions && !aiSuggestions.isAIGenerated && aiSuggestions.suggestedFilters && (
