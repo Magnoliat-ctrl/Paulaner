@@ -83,8 +83,13 @@ ${filters.category ? `- Kategorie: ${filters.category}` : ''}
 ${filters.location ? `- Standort: ${filters.location}` : ''}
 
 AUFGABE:
-Recherchiere und finde 5-10 ECHTE deutsche Unternehmen, die zu dieser Suchanfrage passen.
-Wenn mehrere Standorte eines Unternehmens existieren, liste sie ALLE im "locations" Array auf.
+Recherchiere und finde MINDESTENS 7-10 ECHTE deutsche Unternehmen, die zu dieser Suchanfrage passen.
+WICHTIG: Liste verschiedene Unternehmen auf, KEINE Varianten desselben Unternehmens!
+
+NAMENSKONVENTION:
+- Verwende den offiziellen Handelsnamen (z.B. "Weyermann Malzfabrik GmbH")
+- NICHT mehrere Varianten desselben Unternehmens (z.B. NICHT "Weyermann Spezialmalze" UND "Weyermann Malzfabrik")
+- Bei Unsicherheit: Verwende den bekanntesten/offiziellen Namen
 
 Für jedes Unternehmen benötige ich:
 1. **Echter Firmenname** (wie im Handelsregister)
@@ -286,8 +291,25 @@ WICHTIG für die automatische Bewertung:
 
       const suppliers = JSON.parse(jsonMatch[0])
 
+      // Für jeden Lieferanten alle Standorte abrufen
+      console.log('🔍 Rufe alle Standorte für gefundene Lieferanten ab...')
+      const suppliersWithLocations = await Promise.all(
+        suppliers.map(async (supplier) => {
+          try {
+            const locations = await this.getAllLocations(supplier.name)
+            return {
+              ...supplier,
+              locations: locations.length > 0 ? locations : (supplier.locations || [supplier.location])
+            }
+          } catch (error) {
+            console.warn(`Fehler beim Abrufen von Standorten für ${supplier.name}:`, error)
+            return supplier
+          }
+        })
+      )
+
       // Add IDs and additional fields, preserve AI-generated ratings
-      return suppliers.map((supplier, index) => ({
+      return suppliersWithLocations.map((supplier, index) => ({
         id: `AI-${Date.now()}-${index}`,
         ...supplier,
         ratings: supplier.ratings || [], // Keep AI ratings if provided
@@ -299,6 +321,78 @@ WICHTIG für die automatische Bewertung:
     } catch (error) {
       console.error('Error finding suppliers with AI:', error)
       throw error
+    }
+  }
+
+  /**
+   * Get all locations for a specific company
+   * @param {string} companyName - Company name
+   * @returns {Promise<Array>} Array of location objects
+   */
+  async getAllLocations(companyName) {
+    const prompt = `Recherchiere ALLE Standorte von "${companyName}" in Deutschland.
+
+AUFGABE:
+Gib mir eine vollständige Liste aller Produktionsstandorte, Niederlassungen, Vertriebsbüros, Lager und anderen Standorte dieses Unternehmens in Deutschland.
+
+WICHTIG:
+- Recherchiere gründlich nach ALLEN Standorten
+- Inkludiere: Hauptsitz, Produktionswerke, Vertriebsbüros, Lager, Logistikzentren
+- Gib vollständige Adressen an (Straße, PLZ, Stadt, Bundesland)
+- Wenn keine genaue Straße bekannt: Verwende "Unbekannt"
+- Antworte NUR mit validem JSON-Array
+- Wenn nur ein Standort bekannt: Gib trotzdem ein Array zurück
+
+Format:
+[
+  {
+    "street": "Brennerstraße 17-19",
+    "city": "Bamberg",
+    "postalCode": "96052",
+    "country": "Deutschland",
+    "region": "Bayern",
+    "type": "Hauptsitz"
+  },
+  {
+    "street": "Industriestraße 5",
+    "city": "München",
+    "postalCode": "80331",
+    "country": "Deutschland",
+    "region": "Bayern",
+    "type": "Produktionswerk"
+  }
+]
+
+type kann sein: "Hauptsitz", "Produktionswerk", "Vertriebsbüro", "Lager", "Logistikzentrum", "Niederlassung"`
+
+    try {
+      const response = await this.callOpenAI([
+        {
+          role: 'system',
+          content: 'Du bist ein Recherche-Experte für deutsche Unternehmen. Recherchiere ALLE Standorte des angegebenen Unternehmens. Du DARFST NICHT HALLUZINIEREN. Nenne NUR echte, verifizierbare Standorte. Wenn du nur einen Standort findest, ist das okay. Antworte immer mit validem JSON-Array.'
+        },
+        {
+          role: 'user',
+          content: prompt
+        }
+      ], {
+        temperature: 0.3,
+        max_tokens: 2000
+      })
+
+      // Parse JSON response
+      const jsonMatch = response.match(/\[[\s\S]*?\]/)
+      if (!jsonMatch) {
+        console.warn(`Keine Standorte für ${companyName} gefunden`)
+        return []
+      }
+
+      const locations = JSON.parse(jsonMatch[0])
+      console.log(`✅ ${locations.length} Standorte für ${companyName} gefunden`)
+      return locations
+    } catch (error) {
+      console.error(`Fehler beim Abrufen von Standorten für ${companyName}:`, error)
+      return []
     }
   }
 

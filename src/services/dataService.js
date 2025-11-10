@@ -37,6 +37,24 @@ class DataService {
   }
 
   /**
+   * Normalize company name for duplicate detection
+   * Removes common legal forms and special characters
+   */
+  normalizeCompanyName(name) {
+    return name
+      .toLowerCase()
+      .trim()
+      .replace(/\s+gmbh.*$/i, '') // Remove GmbH and everything after
+      .replace(/\s+ag.*$/i, '') // Remove AG and everything after
+      .replace(/\s+kg.*$/i, '') // Remove KG and everything after
+      .replace(/\s+ohg.*$/i, '') // Remove OHG and everything after
+      .replace(/\s+&\s+co\.?/gi, '') // Remove & Co
+      .replace(/[^a-zäöüß0-9\s]/g, '') // Remove special chars
+      .replace(/\s+/g, ' ') // Normalize spaces
+      .trim()
+  }
+
+  /**
    * Save suppliers to cache
    * Merges locations if company with same name already exists
    */
@@ -45,11 +63,12 @@ class DataService {
       // Build a map of existing suppliers by normalized name
       const existingMap = new Map()
       this.cachedSuppliers.forEach(s => {
-        existingMap.set(s.name.toLowerCase().trim(), s)
+        const normalizedName = this.normalizeCompanyName(s.name)
+        existingMap.set(normalizedName, s)
       })
 
       suppliers.forEach(newSupplier => {
-        const normalizedName = newSupplier.name.toLowerCase().trim()
+        const normalizedName = this.normalizeCompanyName(newSupplier.name)
         const existing = existingMap.get(normalizedName)
 
         if (existing) {
@@ -291,9 +310,9 @@ class DataService {
         results = results.filter(s => s.compliance.status === complianceStatus)
       }
 
-      // Deduplicate final results by company name
+      // Deduplicate final results by normalized company name
       const uniqueResults = Array.from(
-        new Map(results.map(s => [s.name.toLowerCase().trim(), s])).values()
+        new Map(results.map(s => [this.normalizeCompanyName(s.name), s])).values()
       )
 
       if (onProgress) onProgress(null) // Clear progress
