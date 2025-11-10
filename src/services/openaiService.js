@@ -91,7 +91,7 @@ Für jedes Unternehmen benötige ich:
 3. **Kategorie** (NUR aus: ${allowedCategories.join(', ')})
 4. **Echter Standort** (Stadt, PLZ, Bundesland in Deutschland)
 5. **Kontaktinfo** (echte Website wenn bekannt, sonst generic info@firmenname.de)
-6. **Echte Produkte** die sie anbieten
+6. **DETAILLIERTE Produktliste** - Liste ALLE spezifischen Einzelprodukte auf (z.B. für Malz: "Pilsner Malz", "Münchner Malz", "Wiener Malz", "Caramalz", etc.)
 7. **Echte Zertifizierungen** (z.B. ISO 9001, FSSC 22000, IFS - nur wenn verifizierbar)
 8. **Geschätzte Leistungskennzahlen** (realistisch basierend auf Branche)
 9. **ESG-Status** (geschätzt basierend auf Unternehmensgröße und Branche)
@@ -104,6 +104,16 @@ BEISPIELE echter Unternehmen nach Kategorie:
 - Arbeitskleidung: CWS, DBL, Mewa
 - Frachten: DB Schenker, Dachser, Kühne+Nagel
 - Euro-Paletten: EPAL, CHEP
+
+WICHTIG FÜR PRODUKTLISTEN:
+- Bei MALZ: Liste alle spezifischen Malzsorten auf (z.B. Weyermann: Pilsner Malz, Münchner Malz I & II, Wiener Malz, Pale Ale Malz, Wiener Malz, Carapils, Caramünch I-III, Caraaroma, Röstmalz, etc.)
+- Bei WELLPAPPE: Liste alle Wellpappen-Typen (einwellig, zweiwellig, B-Welle, C-Welle, E-Welle, etc.)
+- Bei DOSEN: Liste alle Dosenformate (0,25l, 0,33l, 0,5l, verschiedene Deckelvarianten)
+- Bei ARBEITSKLEIDUNG: Liste alle Kleidungsstücke (Arbeitshosen, Jacken, Sicherheitsschuhe, Warnwesten, etc.)
+- Bei FRACHTEN: Liste alle Transportarten (LKW, Bahn, Container, Express, Kühllogistik, etc.)
+- Bei PALETTEN: Liste alle Palettentypen (EUR 1, EUR 2, EUR 3, EUR 6, Sonderformate, etc.)
+
+MINIMUM: 15-30 spezifische Produkte pro Lieferant!
 
 WICHTIG:
 - Antworte NUR mit validem JSON-Array
@@ -130,7 +140,33 @@ Format:
       "country": "Deutschland",
       "region": "Bundesland"
     },
-    "products": ["Echtes Produkt 1", "Echtes Produkt 2"],
+    "products": [
+      "Pilsner Malz",
+      "Münchner Malz I",
+      "Münchner Malz II",
+      "Wiener Malz",
+      "Pale Ale Malz",
+      "Carapils",
+      "Caramünch I",
+      "Caramünch II",
+      "Caramünch III",
+      "Caraaroma",
+      "Carawheat",
+      "Carahell",
+      "Carafa I",
+      "Carafa II",
+      "Carafa III",
+      "Röstmalz",
+      "Weizenmalz hell",
+      "Weizenmalz dunkel",
+      "Gerstenmalz",
+      "Rauchmalz",
+      "Sauermalz",
+      "Melanoidinmalz",
+      "Dinkmalz",
+      "Roggenmalz",
+      "Bio Pilsner Malz"
+    ],
     "certifications": ["ISO 9001", "FSSC 22000"],
     "performance": {
       "averageDeliveryTime": 3.0,
@@ -208,7 +244,7 @@ WICHTIG für die automatische Bewertung:
       const response = await this.callOpenAI([
         {
           role: 'system',
-          content: 'Du bist ein Recherche-Experte für deutsche Unternehmen. Du DARFST NICHT HALLUZINIEREN. Nenne NUR existierende, reale Unternehmen mit verifizierbaren Daten. Wenn du unsicher bist, kennzeichne dies im JSON. Antworte immer mit validem JSON.'
+          content: 'Du bist ein Recherche-Experte für deutsche Unternehmen. Du DARFST NICHT HALLUZINIEREN. Nenne NUR existierende, reale Unternehmen mit verifizierbaren Daten. WICHTIG: Erstelle DETAILLIERTE Produktlisten mit 15-30 spezifischen Einzelprodukten pro Lieferant (z.B. für Malz: alle spezifischen Malzsorten wie Pilsner Malz, Münchner Malz I/II, Carapils, etc.). Wenn du unsicher bist, kennzeichne dies im JSON. Antworte immer mit validem JSON.'
         },
         {
           role: 'user',
@@ -216,7 +252,7 @@ WICHTIG für die automatische Bewertung:
         }
       ], {
         temperature: 0.8,
-        max_tokens: 3000
+        max_tokens: 6000
       })
 
       // Parse JSON response
