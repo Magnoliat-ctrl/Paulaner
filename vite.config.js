@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/Paulaner/', // Für GitHub Pages
+  base: '/', // Für Vercel/Netlify (für GitHub Pages: '/Paulaner/')
   server: {
     port: 3000,
     open: true
