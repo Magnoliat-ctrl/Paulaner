@@ -38,9 +38,9 @@ class DataService {
    */
   saveSuppliers(suppliers) {
     try {
-      // Merge with existing cached suppliers, avoid duplicates
-      const existingIds = new Set(this.cachedSuppliers.map(s => s.id))
-      const newSuppliers = suppliers.filter(s => !existingIds.has(s.id))
+      // Merge with existing cached suppliers, avoid duplicates by name
+      const existingNames = new Set(this.cachedSuppliers.map(s => s.name.toLowerCase().trim()))
+      const newSuppliers = suppliers.filter(s => !existingNames.has(s.name.toLowerCase().trim()))
 
       this.cachedSuppliers = [...this.cachedSuppliers, ...newSuppliers]
 
@@ -198,10 +198,10 @@ class DataService {
       // Also search cached suppliers
       const cachedResults = this.filterCachedSuppliers(params)
 
-      // Merge and deduplicate
+      // Merge and deduplicate by company name (not ID)
       const allResults = [...results, ...cachedResults]
       const uniqueResults = Array.from(
-        new Map(allResults.map(s => [s.id, s])).values()
+        new Map(allResults.map(s => [s.name.toLowerCase().trim(), s])).values()
       )
 
       return uniqueResults

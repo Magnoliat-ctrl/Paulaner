@@ -95,6 +95,7 @@ Für jedes Unternehmen benötige ich:
 7. **Echte Zertifizierungen** (z.B. ISO 9001, FSSC 22000, IFS - nur wenn verifizierbar)
 8. **Geschätzte Leistungskennzahlen** (realistisch basierend auf Branche)
 9. **ESG-Status** (geschätzt basierend auf Unternehmensgröße und Branche)
+10. **Automatische Bewertung** basierend auf öffentlichen Informationen (Reputation, Zertifikate, Größe, Marktposition)
 
 BEISPIELE echter Unternehmen nach Kategorie:
 - Malz: Weyermann Mälzerei, Bestmalz, Ireks
@@ -159,10 +160,49 @@ Format:
         "ethicalBusiness": true
       }
     },
+    "ratings": [
+      {
+        "id": "AI-AUTO-001",
+        "date": "2025-11-01",
+        "overallScore": 8.5,
+        "categories": {
+          "Qualität": 9.0,
+          "Lieferleistung": 8.5,
+          "Kosten": 7.5,
+          "Zuverlässigkeit": 9.0,
+          "Innovation": 8.0,
+          "Kommunikation": 8.0,
+          "ESG-Compliance": 9.0
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Automatische KI-Bewertung basierend auf Zertifikaten, Marktposition und öffentlichen Informationen. [Füge hier spezifische Begründung für die Bewertung ein]",
+        "userId": "AI-System"
+      }
+    ],
     "verificationNeeded": false,
     "dataSource": "Public information"
   }
-]`
+]
+
+WICHTIG für die automatische Bewertung:
+- Bewerte auf Skala 1-10 basierend auf echten Faktoren:
+  * Qualität: Basierend auf Zertifikaten (ISO 9001 = höher)
+  * Lieferleistung: Basierend auf Unternehmensgröße und Logistik
+  * Kosten: Geschätzt nach Marktposition (große Unternehmen = günstiger)
+  * Zuverlässigkeit: Basierend auf Reputation und Alter
+  * Innovation: Basierend auf Produktvielfalt und Modernität
+  * Kommunikation: Standard 7-8 für etablierte Unternehmen
+  * ESG-Compliance: Basierend auf Zertifikaten und bekannten Nachhaltigkeitsinitiativen
+- Berechne overallScore als gewichteten Durchschnitt
+- Schreibe konkreten Kommentar mit Begründung der Bewertung`
 
     try {
       const response = await this.callOpenAI([
@@ -187,11 +227,11 @@ Format:
 
       const suppliers = JSON.parse(jsonMatch[0])
 
-      // Add IDs and additional fields
+      // Add IDs and additional fields, preserve AI-generated ratings
       return suppliers.map((supplier, index) => ({
         id: `AI-${Date.now()}-${index}`,
         ...supplier,
-        ratings: [],
+        ratings: supplier.ratings || [], // Keep AI ratings if provided
         documents: [],
         addedDate: new Date().toISOString().split('T')[0],
         lastUpdated: new Date().toISOString(),

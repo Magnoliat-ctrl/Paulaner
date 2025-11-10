@@ -3,11 +3,12 @@
  * Search input with autocomplete functionality
  */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import '../../styles/SearchBar.css'
 
 function SearchBar({ query, onQueryChange, onSearch, placeholder }) {
   const [inputValue, setInputValue] = useState(query)
+  const debounceTimer = useRef(null)
 
   useEffect(() => {
     setInputValue(query)
@@ -20,12 +21,15 @@ function SearchBar({ query, onQueryChange, onSearch, placeholder }) {
     const value = e.target.value
     setInputValue(value)
 
+    // Clear previous timeout
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current)
+    }
+
     // Debounce search
-    const timeoutId = setTimeout(() => {
+    debounceTimer.current = setTimeout(() => {
       onQueryChange(value)
     }, 300)
-
-    return () => clearTimeout(timeoutId)
   }
 
   /**
