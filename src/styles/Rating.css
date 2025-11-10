@@ -1,0 +1,210 @@
+/**
+ * Rating Page Styles
+ */
+
+.rating-page {
+  animation: fadeIn var(--transition-base);
+}
+
+.rating-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.selected-supplier-card {
+  margin-bottom: var(--spacing-lg);
+}
+
+.selected-supplier-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.supplier-name {
+  font-size: var(--font-size-2xl);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.supplier-category {
+  color: var(--color-text-secondary);
+  margin: var(--spacing-xs) 0 0 0;
+}
+
+.overall-score-card {
+  background: linear-gradient(135deg, var(--color-primary), #004080);
+  color: var(--color-white);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.score-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.score-label {
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
+}
+
+.score-value {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.score-max {
+  font-size: var(--font-size-2xl);
+  opacity: 0.8;
+}
+
+.weight-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: rgba(255, 193, 7, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.rating-categories {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.rating-category {
+  padding: var(--spacing-lg);
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-secondary);
+}
+
+.category-header {
+  margin-bottom: var(--spacing-md);
+}
+
+.category-title {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.category-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.rating-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.rating-slider-group,
+.weight-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.slider-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.rating-slider,
+.weight-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--radius-full);
+  appearance: none;
+  background: linear-gradient(to right, #DC3545 0%, #FFC107 50%, #28A745 100%);
+  outline: none;
+  cursor: pointer;
+}
+
+.weight-slider {
+  background: linear-gradient(to right, var(--color-border), var(--color-secondary));
+}
+
+.rating-slider::-webkit-slider-thumb,
+.weight-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 3px solid var(--color-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.rating-slider::-moz-range-thumb,
+.weight-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 3px solid var(--color-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.category-contribution {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: 2px solid var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .rating-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .score-value {
+    font-size: 3rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}

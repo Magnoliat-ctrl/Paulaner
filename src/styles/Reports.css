@@ -1,0 +1,130 @@
+/**
+ * Reports Page Styles
+ */
+
+.reports-page {
+  animation: fadeIn var(--transition-base);
+}
+
+.report-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+}
+
+.supplier-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.supplier-checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.supplier-checkbox:hover {
+  background: var(--color-border-light);
+}
+
+.supplier-checkbox input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.comparison-table {
+  margin-top: var(--spacing-xl);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table th {
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.table tbody tr:hover {
+  background: var(--color-background);
+}
+
+.top-performers-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.performer-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-background);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.performer-item:hover {
+  background: var(--color-border-light);
+  transform: translateX(4px);
+}
+
+.performer-item .rank {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-secondary);
+  min-width: 40px;
+}
+
+.performer-item .name {
+  flex: 1;
+  font-weight: 600;
+}
+
+.performer-item .score {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .report-actions {
+    flex-direction: column;
+  }
+
+  .report-actions .btn {
+    width: 100%;
+  }
+
+  .supplier-selection {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-table {
+    font-size: var(--font-size-sm);
+  }
+
+  .table th,
+  .table td {
+    padding: var(--spacing-sm);
+  }
+}
