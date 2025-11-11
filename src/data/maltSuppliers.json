@@ -572,5 +572,142 @@
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
+  },
+  {
+    "name": "Bamberger Mälzerei GmbH",
+    "description": "Traditionsreiche deutsche Mälzerei mit mehreren Standorten in Deutschland. Spezialisiert auf hochwertige Basis- und Spezialmalze für Brauereien aller Größen.",
+    "category": "Malz",
+    "contact": {
+      "email": "info@bamberger-maelzerei.de",
+      "phone": "+49 (0) 951 91 232-0",
+      "website": "www.bamberger-maelzerei.de",
+      "person": "Unbekannt",
+      "position": "Ansprechpartner"
+    },
+    "location": {
+      "street": "Postfach 10 69",
+      "city": "Bamberg",
+      "postalCode": "96001",
+      "country": "Deutschland",
+      "region": "Bayern"
+    },
+    "locations": [
+      {
+        "street": "Postfach 10 69",
+        "city": "Bamberg",
+        "postalCode": "96001",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Hauptsitz"
+      },
+      {
+        "street": "Standort",
+        "city": "Mülheim an der Ruhr",
+        "postalCode": "45468",
+        "country": "Deutschland",
+        "region": "Nordrhein-Westfalen",
+        "type": "Produktionswerk"
+      },
+      {
+        "street": "Standort",
+        "city": "Worms",
+        "postalCode": "67547",
+        "country": "Deutschland",
+        "region": "Rheinland-Pfalz",
+        "type": "Produktionswerk"
+      },
+      {
+        "street": "Standort",
+        "city": "Neuburg an der Donau",
+        "postalCode": "86633",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Produktionswerk"
+      }
+    ],
+    "products": [
+      "Standard Pils Malz",
+      "Pilsner Malz",
+      "Wiener Malz",
+      "Münchner Malz",
+      "Diastase Malz (Gerste)",
+      "Helles Weizenmalz",
+      "Dunkles Weizenmalz",
+      "Diastase Malz (Weizen)"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "HACCP",
+      "QS",
+      "GMP"
+    ],
+    "performance": {
+      "averageDeliveryTime": 2.5,
+      "onTimeDeliveryRate": 95.0,
+      "defectRate": 0.8,
+      "responseTime": 20,
+      "flexibilityScore": 8.0,
+      "innovationScore": 7.0
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Mittel",
+        "waterUsage": "Gut",
+        "wasteManagement": "Recycling",
+        "renewableEnergy": 45
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Gut",
+        "employeeTraining": true,
+        "diversityScore": 7.0
+      },
+      "governance": {
+        "transparency": "Mittel",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-BAMBERGER-001",
+        "date": "2025-11-10",
+        "overallScore": 8.3,
+        "categories": {
+          "Qualität": 8.5,
+          "Lieferleistung": 8.5,
+          "Kosten": 8.5,
+          "Zuverlässigkeit": 8.5,
+          "Innovation": 7.0,
+          "Kommunikation": 8.0,
+          "ESG-Compliance": 8.0
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Zuverlässiger deutscher Mälzer mit mehreren Produktionsstandorten. Gutes Preis-Leistungs-Verhältnis und solide Basismalze für alle Brauereigrößen.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-11",
+    "lastUpdated": "2025-11-11T12:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
   }
 ]
