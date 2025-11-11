@@ -87,9 +87,10 @@ Recherchiere und finde MINDESTENS 7-10 ECHTE deutsche Unternehmen, die zu dieser
 WICHTIG: Liste verschiedene Unternehmen auf, KEINE Varianten desselben Unternehmens!
 
 NAMENSKONVENTION:
-- Verwende den offiziellen Handelsnamen (z.B. "Weyermann Malzfabrik GmbH")
+- Verwende den offiziellen Handelsnamen (z.B. "Weyermann Malzfabrik GmbH & Co. KG", "Bestmalz GmbH", "Ireks GmbH")
 - NICHT mehrere Varianten desselben Unternehmens (z.B. NICHT "Weyermann Spezialmalze" UND "Weyermann Malzfabrik")
 - Bei Unsicherheit: Verwende den bekanntesten/offiziellen Namen
+- Für Malz: Verwende NUR diese verifizierten Unternehmen: Weyermann Malzfabrik GmbH & Co. KG, Bestmalz GmbH, Ireks GmbH, Avangard Malz AG
 
 Für jedes Unternehmen benötige ich:
 1. **Echter Firmenname** (wie im Handelsregister)
@@ -104,7 +105,7 @@ Für jedes Unternehmen benötige ich:
 10. **Automatische Bewertung** basierend auf öffentlichen Informationen (Reputation, Zertifikate, Größe, Marktposition)
 
 BEISPIELE echter Unternehmen nach Kategorie:
-- Malz: Weyermann Mälzerei, Bestmalz, Ireks
+- Malz: Weyermann Malzfabrik GmbH (Bamberg), Bestmalz GmbH (Ladenburg), Ireks GmbH (Kulmbach), Avangard Malz AG (München)
 - Wellpappe: Smurfit Kappa, Progroup, DS Smith
 - Aluminium-Dosen: Ball Corporation, Ardagh Group, Crown Holdings
 - Arbeitskleidung: CWS, DBL, Mewa

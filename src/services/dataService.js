@@ -6,6 +6,7 @@
 
 import { openaiService } from './openaiService'
 import { diffbotService } from './diffbotService'
+import verifiedMaltSuppliers from '../data/maltSuppliers.json'
 
 const AI_PROVIDER = import.meta.env.VITE_AI_PROVIDER || 'openai'
 
@@ -279,24 +280,48 @@ class DataService {
     }
 
     try {
-      // Use AI to find suppliers
-      const aiService = AI_PROVIDER === 'diffbot' ? diffbotService : openaiService
-      const providerName = AI_PROVIDER === 'diffbot' ? 'Diffbot' : 'OpenAI'
+      // Check if this is a Malz (malt) search
+      const isMaltSearch = category === 'Malz' || query.toLowerCase().includes('malz')
 
-      console.log(`🤖 Searching with ${providerName}:`, query)
-      if (onProgress) onProgress(`Suche nach Lieferanten mit ${providerName}...`)
+      let aiSuppliers = []
 
-      const aiSuppliers = await aiService.findSuppliers(query, {
-        category,
-        location,
-        certifications
-      })
+      // If searching for Malz, prioritize verified data
+      if (isMaltSearch) {
+        console.log('🔍 Malz-Suche erkannt - lade verifizierte Daten...')
+        if (onProgress) onProgress('Lade verifizierte Malz-Lieferanten...')
 
-      console.log(`✅ Found ${aiSuppliers.length} suppliers via ${providerName}`)
-      if (onProgress) onProgress(`${aiSuppliers.length} Lieferanten gefunden, speichere Daten...`)
+        // Add IDs to verified suppliers if they don't have them
+        const verifiedWithIds = verifiedMaltSuppliers.map((supplier, index) => ({
+          ...supplier,
+          id: supplier.id || `VERIFIED-MALT-${index + 1}`
+        }))
 
-      // Save to cache (merges locations for duplicates)
-      this.saveSuppliers(aiSuppliers)
+        // Save verified suppliers first
+        this.saveSuppliers(verifiedWithIds)
+        aiSuppliers = verifiedWithIds
+
+        console.log(`✅ ${verifiedWithIds.length} verifizierte Malz-Lieferanten geladen`)
+        if (onProgress) onProgress(`${verifiedWithIds.length} verifizierte Lieferanten geladen`)
+      } else {
+        // Use AI to find suppliers for other categories
+        const aiService = AI_PROVIDER === 'diffbot' ? diffbotService : openaiService
+        const providerName = AI_PROVIDER === 'diffbot' ? 'Diffbot' : 'OpenAI'
+
+        console.log(`🤖 Searching with ${providerName}:`, query)
+        if (onProgress) onProgress(`Suche nach Lieferanten mit ${providerName}...`)
+
+        aiSuppliers = await aiService.findSuppliers(query, {
+          category,
+          location,
+          certifications
+        })
+
+        console.log(`✅ Found ${aiSuppliers.length} suppliers via ${providerName}`)
+        if (onProgress) onProgress(`${aiSuppliers.length} Lieferanten gefunden, speichere Daten...`)
+
+        // Save to cache (merges locations for duplicates)
+        this.saveSuppliers(aiSuppliers)
+      }
 
       if (onProgress) onProgress('Wende Filter an...')
 
