@@ -86,7 +86,7 @@
 
 .results-count {
   margin-left: auto;
-  color: var(--color-text-secondary);
+  color: #212529 !important;
   font-weight: 600;
 }
 
