@@ -8,10 +8,10 @@
 
 /* Search Progress Indicator */
 .search-progress {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-  color: white;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #002347 100%);
+  color: white !important;
   padding: var(--spacing-md) var(--spacing-lg);
-  border-radius: var(--border-radius);
+  border-radius: var(--radius-lg);
   margin: var(--spacing-md) 0;
   box-shadow: var(--shadow-sm);
   animation: slideDown 0.3s ease-out;
@@ -21,6 +21,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-md);
+  color: white !important;
 }
 
 .spinner-small {
@@ -35,6 +36,7 @@
 .progress-text {
   font-weight: 500;
   font-size: var(--font-size-base);
+  color: white !important;
 }
 
 @keyframes slideDown {

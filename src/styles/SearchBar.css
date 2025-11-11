@@ -36,6 +36,7 @@
   font-size: var(--font-size-lg);
   padding: var(--spacing-sm);
   background: transparent;
+  color: #212529 !important;
 }
 
 .search-input::placeholder {

@@ -56,7 +56,7 @@
 
 .page-description {
   font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
+  color: #6C757D !important;
   margin: 0;
 }
 
