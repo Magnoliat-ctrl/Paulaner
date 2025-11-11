@@ -209,12 +209,44 @@ function SupplierProfile({ supplierId, navigateTo }) {
               {supplier.contact.website}
             </a>
           </div>
-          <div className="contact-item">
-            <span className="contact-label">Adresse:</span>
-            <span className="contact-value">
-              {supplier.location.street}, {supplier.location.postalCode} {supplier.location.city}, {supplier.location.country}
-            </span>
-          </div>
+        </div>
+      </div>
+
+      {/* All Locations */}
+      <div className="card">
+        <div className="card-header">
+          <h2 className="card-title">Standorte</h2>
+        </div>
+        <div className="card-body">
+          {supplier.locations && supplier.locations.length > 0 ? (
+            <div className="locations-list">
+              {supplier.locations.map((location, index) => (
+                <div key={index} className="location-item">
+                  <div className="location-header">
+                    <span className="location-icon">📍</span>
+                    <span className="location-type">{location.type || 'Standort'}</span>
+                  </div>
+                  <div className="location-address">
+                    <div>{location.street}</div>
+                    <div>{location.postalCode} {location.city}</div>
+                    <div>{location.region}, {location.country}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="location-item">
+              <div className="location-header">
+                <span className="location-icon">📍</span>
+                <span className="location-type">Hauptstandort</span>
+              </div>
+              <div className="location-address">
+                <div>{supplier.location.street}</div>
+                <div>{supplier.location.postalCode} {supplier.location.city}</div>
+                <div>{supplier.location.region}, {supplier.location.country}</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
