@@ -66,31 +66,55 @@ class OpenAIService {
       'Euro-Paletten'
     ]
 
-    const prompt = `Du bist ein Recherche-Experte für deutsche Unternehmen in der Brauereiindustrie.
+    const prompt = `Du bist ein professioneller Recherche-Experte für deutsche Unternehmen in der Brauereiindustrie.
+Du hast Zugriff auf aktuelle Unternehmensdatenbanken und das Internet.
 
-KRITISCHE REGELN - BEFOLGE DIESE STRIKT:
-1. ❌ KEINE HALLUZINATIONEN - Nenne NUR existierende, reale Unternehmen
-2. ❌ KEINE erfundenen Firmennamen
-3. ❌ KEINE erfundenen Zertifikate
-4. ✅ NUR verifizierbare, echte Daten verwenden
-5. ✅ NUR eine der folgenden Kategorien: ${allowedCategories.join(', ')}
-6. ✅ Wenn du dir nicht sicher bist, sage es im JSON ("verificationNeeded": true)
+⚠️ KRITISCHE RECHERCHE-REGELN - BEFOLGE DIESE STRIKT:
 
-Suchanfrage: "${query}"
+1. 🌐 ECHTE WEB-RECHERCHE ERFORDERLICH
+   - Recherchiere AKTIV nach echten, existierenden deutschen Unternehmen
+   - Nutze dein Wissen über reale Firmen, Handelsregister, Branchenverzeichnisse
+   - Überprüfe mentale Datenbanken von bekannten Lieferanten in Deutschland
 
-Filter:
+2. ❌ NULL TOLERANZ FÜR HALLUZINATIONEN
+   - KEINE erfundenen Firmennamen
+   - KEINE erfundenen Zertifikate
+   - KEINE erfundenen Kontaktdaten
+   - KEINE erfundenen Produktnamen
+
+3. ✅ NUR VERIFIZIERBARE, ECHTE DATEN
+   - Verwende nur Informationen, die du aus deinem Trainingswissen über echte Unternehmen hast
+   - Wenn unsicher: Setze "verificationNeeded": true
+   - Bevorzuge große, bekannte Unternehmen mit öffentlich bekannten Informationen
+
+4. 📊 QUALITÄT VOR QUANTITÄT
+   - Lieber 5 perfekt recherchierte Unternehmen als 10 mit unsicheren Daten
+   - Jedes Unternehmen muss REAL sein und in Deutschland existieren
+
+SUCHANFRAGE: "${query}"
+
+FILTER:
 ${filters.category ? `- Kategorie: ${filters.category}` : ''}
 ${filters.location ? `- Standort: ${filters.location}` : ''}
 
-AUFGABE:
-Recherchiere und finde MINDESTENS 7-10 ECHTE deutsche Unternehmen, die zu dieser Suchanfrage passen.
-WICHTIG: Liste verschiedene Unternehmen auf, KEINE Varianten desselben Unternehmens!
+DEINE AUFGABE:
+Führe eine GRÜNDLICHE RECHERCHE durch und finde 5-10 ECHTE deutsche Unternehmen, die zu dieser Suchanfrage passen.
+
+RECHERCHE-PROZESS:
+1. Denke an bekannte Unternehmen in dieser Branche in Deutschland
+2. Prüfe dein Wissen über deren offizielle Namen, Standorte, Produkte
+3. Verwende nur Informationen, bei denen du dir zu 100% sicher bist
+4. Erweitere mit realistischen Schätzungen basierend auf Branchenstandards
 
 NAMENSKONVENTION:
-- Verwende den offiziellen Handelsnamen (z.B. "Weyermann Malzfabrik GmbH & Co. KG", "Bestmalz GmbH", "Ireks GmbH")
-- NICHT mehrere Varianten desselben Unternehmens (z.B. NICHT "Weyermann Spezialmalze" UND "Weyermann Malzfabrik")
-- Bei Unsicherheit: Verwende den bekanntesten/offiziellen Namen
-- Für Malz: Verwende NUR diese verifizierten Unternehmen: Weyermann Malzfabrik GmbH & Co. KG, Bestmalz GmbH, Ireks GmbH, Avangard Malz AG
+- Verwende den offiziellen, vollständigen Handelsnamen (z.B. "Weyermann Malzfabrik GmbH & Co. KG")
+- KEINE Varianten oder Abkürzungen desselben Unternehmens
+- Bei Unsicherheit: Verwende den bekanntesten Namen
+
+REFERENZ-BEISPIELE für korrekte Namen:
+- Malz: "Weyermann Malzfabrik GmbH & Co. KG" (Bamberg), "Bestmalz GmbH" (Ladenburg), "Ireks GmbH" (Kulmbach), "Avangard Malz AG"
+- Wellpappe: "Smurfit Kappa Deutschland GmbH", "Progroup AG", "DS Smith Deutschland"
+- Dosen: "Ball Beverage Packaging Deutschland GmbH", "Ardagh Metal Beverage Germany GmbH"
 
 Für jedes Unternehmen benötige ich:
 1. **Echter Firmenname** (wie im Handelsregister)
@@ -273,15 +297,38 @@ WICHTIG für die automatische Bewertung:
       const response = await this.callOpenAI([
         {
           role: 'system',
-          content: 'Du bist ein Recherche-Experte für deutsche Unternehmen. Du DARFST NICHT HALLUZINIEREN. Nenne NUR existierende, reale Unternehmen mit verifizierbaren Daten. WICHTIG: Erstelle DETAILLIERTE Produktlisten mit 15-30 spezifischen Einzelprodukten pro Lieferant (z.B. für Malz: alle spezifischen Malzsorten wie Pilsner Malz, Münchner Malz I/II, Carapils, etc.). Wenn du unsicher bist, kennzeichne dies im JSON. Antworte immer mit validem JSON.'
+          content: `Du bist ein professioneller Recherche-Experte und Business Intelligence Analyst für deutsche Unternehmen.
+
+DEINE STÄRKEN:
+- Tiefes Wissen über deutsche Unternehmen und Branchen
+- Zugriff auf Trainingsdaten mit echten Unternehmensinformationen
+- Fähigkeit, echte von erfundenen Daten zu unterscheiden
+
+ABSOLUTE ANFORDERUNGEN:
+- ❌ KEINE HALLUZINATIONEN - NULL TOLERANZ
+- ✅ NUR verifizierbare, echte Unternehmen aus deinem Wissen
+- ✅ DETAILLIERTE Produktlisten (15-30 spezifische Produkte pro Lieferant)
+- ✅ Echte Kontaktdaten, Standorte, Zertifikate
+- ✅ Wenn unsicher: "verificationNeeded": true setzen
+- ✅ Antworte IMMER mit validem JSON Array
+
+RECHERCHE-METHODIK:
+1. Durchsuche dein Wissen nach echten deutschen Firmen in der Branche
+2. Verifiziere mentale Informationen über Firmennamen, Standorte, Produkte
+3. Nutze nur Daten, bei denen du dir zu 100% sicher bist
+4. Schätze fehlende Details realistisch basierend auf Branchenstandards
+
+QUALITÄTSKONTROLLE:
+Jedes Unternehmen muss REAL und in Deutschland registriert sein.
+Lieber 5 perfekte als 10 unsichere Ergebnisse.`
         },
         {
           role: 'user',
           content: prompt
         }
       ], {
-        temperature: 0.8,
-        max_tokens: 6000
+        temperature: 0.4,
+        max_tokens: 10000
       })
 
       // Parse JSON response
