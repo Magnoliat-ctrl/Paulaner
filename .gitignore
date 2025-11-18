@@ -38,3 +38,6 @@ lerna-debug.log*
 # Vite
 *.local
 .vite
+
+# Vercel
+.vercel
