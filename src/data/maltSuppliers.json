@@ -495,48 +495,74 @@
   },
   {
     "name": "Avangard Malz AG",
-    "description": "Modernste Großmälzerei Europas mit Fokus auf hochwertige Basismalze für industrielle Brauereien. Teil der Mälzerei Gruppe Soufflet.",
+    "description": "Modernste Großmälzerei Europas mit vier Standorten in Deutschland. Spezialisiert auf hochwertige Basismalze für industrielle Brauereien. Teil der Mälzerei Gruppe Soufflet.",
     "category": "Malz",
     "contact": {
-      "email": "info@avangard-malz.com",
-      "phone": "+49 89 3889989-0",
-      "website": "www.avangard-malz.com",
-      "person": "Sales Team",
-      "position": "Kundenbetreuung"
+      "email": "lechfeld@avangard-malz.de",
+      "phone": "+49 (0)8203 9602-0",
+      "website": "www.avangard-malz.de",
+      "person": "Henning Stoll",
+      "position": "Ansprechpartner"
     },
     "location": {
-      "street": "Münchener Straße 17",
-      "city": "München",
-      "postalCode": "80335",
+      "street": "Mälzereistrasse 9",
+      "city": "Grossaitingen",
+      "postalCode": "86845",
       "country": "Deutschland",
       "region": "Bayern"
     },
     "locations": [
       {
-        "street": "Münchener Straße 17",
-        "city": "München",
-        "postalCode": "80335",
+        "street": "Mälzereistrasse 9",
+        "city": "Grossaitingen",
+        "postalCode": "86845",
         "country": "Deutschland",
         "region": "Bayern",
-        "type": "Hauptsitz"
+        "type": "Betrieb Lechfeld"
+      },
+      {
+        "street": "Fritz Ludwig Strasse 7-9",
+        "city": "Koblenz",
+        "postalCode": "56070",
+        "country": "Deutschland",
+        "region": "Rheinland-Pfalz",
+        "type": "Betrieb Koblenz"
+      },
+      {
+        "street": "Hafenstrasse 14",
+        "city": "Gelsenkirchen",
+        "postalCode": "45881",
+        "country": "Deutschland",
+        "region": "Nordrhein-Westfalen",
+        "type": "Betrieb Gelsenkirchen"
+      },
+      {
+        "street": "Kap-Horn-Strasse 12",
+        "city": "Bremen",
+        "postalCode": "28237",
+        "country": "Deutschland",
+        "region": "Bremen",
+        "type": "Betrieb Bremen"
       }
     ],
     "products": [
-      "Pilsner Malz",
-      "Münchner Malz",
+      "Pilsener Malz",
+      "Wintergerstenmalz 6-zeilig",
+      "Wintergerstenmalz 2-zeilig",
       "Pale Ale Malz",
-      "Lager Malz",
       "Wiener Malz",
-      "Weizenmalz",
-      "Caramalt",
-      "Basismalze für Großbrauereien",
-      "Bio-Malze",
-      "Spezialmalze"
+      "Münchener Malz",
+      "Helles Karamelmalz",
+      "Dunkles Karamelmalz",
+      "Weizenmalz"
     ],
     "certifications": [
       "ISO 9001",
-      "FSSC 22000",
-      "Bio-Zertifizierung"
+      "ISO 22000",
+      "ISO 14001",
+      "ISO 50001",
+      "Koscher",
+      "QS"
     ],
     "performance": {
       "averageDeliveryTime": 2.0,
