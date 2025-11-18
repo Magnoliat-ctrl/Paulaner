@@ -888,5 +888,164 @@
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
+  },
+  {
+    "name": "SCHUEMA",
+    "description": "Innovative Mälzerei mit zwei Standorten in Bayern. Spezialisiert auf hochwertige Spezialmalze, Rauchmalze und Bio-Malze für Craft-Brauereien und traditionelle Brauereien.",
+    "category": "Malz",
+    "contact": {
+      "email": "info@schuema.net",
+      "phone": "+49 (0)9203 202",
+      "website": "www.schuema.net",
+      "person": "Jürgen Popp",
+      "position": "Ansprechpartner"
+    },
+    "location": {
+      "street": "Zettmeiseler Straße 2",
+      "city": "Harsdorf",
+      "postalCode": "95499",
+      "country": "Deutschland",
+      "region": "Bayern"
+    },
+    "locations": [
+      {
+        "street": "Zettmeiseler Straße 2",
+        "city": "Harsdorf",
+        "postalCode": "95499",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Harsdorfer Malzfabrik"
+      },
+      {
+        "street": "Hutschdorf 48",
+        "city": "Thurnau",
+        "postalCode": "95349",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Thurnau Malzfabrik"
+      }
+    ],
+    "products": [
+      "Pils",
+      "Pale Ale",
+      "Vienna",
+      "Munich",
+      "Melanoidin",
+      "Wheatmalt",
+      "Ryemalt",
+      "Speltmalt",
+      "Diastatic malt",
+      "Oatmalt",
+      "Ca 10",
+      "Ca 20",
+      "Ca 60",
+      "Ca 100",
+      "Ca 120",
+      "Ca 200",
+      "Ca Spezial",
+      "Ca Wheat",
+      "Ca Rye",
+      "Ca Spelt",
+      "Fa 1000",
+      "Fa 1400",
+      "Fa verano 1000",
+      "Fa verano 1400",
+      "Fa Ryemalt",
+      "Fa Wheatmalt",
+      "Smoked beechwood barleymalt",
+      "Smoked beechwood wheatmalt",
+      "Smoked beechwood ryemalt",
+      "Smoked beechwood speltmalt",
+      "Smoked oakwood barleymalt",
+      "Smoked oakwood wheatmalt",
+      "Smoked oakwood ryemalt",
+      "Smoked oakwood speltmalt",
+      "Smoked cherrywood barleymalt",
+      "Smoked cherrywood wheatmalt",
+      "Smoked cherrywood ryemalt",
+      "Smoked cherrywood speltmalt",
+      "Smoked peat barleymalt",
+      "Smoked peat wheatmalt",
+      "Smoked peat ryemalt",
+      "Smoked peat speltmalt",
+      "Smoked hickory barleymalt"
+    ],
+    "certifications": [
+      "BIOSUISSE ORGANIC",
+      "DE-ÖKO",
+      "Bioland",
+      "QS",
+      "ISO 9001",
+      "Braugetreidemonitoring",
+      "ISO 50001"
+    ],
+    "performance": {
+      "averageDeliveryTime": 3.0,
+      "onTimeDeliveryRate": 95.0,
+      "defectRate": 0.7,
+      "responseTime": 20,
+      "flexibilityScore": 9.0,
+      "innovationScore": 9.5
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Niedrig",
+        "waterUsage": "Optimiert",
+        "wasteManagement": "Kreislaufwirtschaft",
+        "renewableEnergy": 75
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Sehr gut",
+        "employeeTraining": true,
+        "diversityScore": 8.0
+      },
+      "governance": {
+        "transparency": "Hoch",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-SCHUEMA-001",
+        "date": "2025-11-18",
+        "overallScore": 9.0,
+        "categories": {
+          "Qualität": 9.5,
+          "Lieferleistung": 8.5,
+          "Kosten": 8.5,
+          "Zuverlässigkeit": 9.0,
+          "Innovation": 9.5,
+          "Kommunikation": 9.0,
+          "ESG-Compliance": 9.5
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Innovative Spezialmälzerei mit herausragender Produktvielfalt, besonders stark bei Rauchmalzen und Bio-Malzen. Exzellente Qualität für Craft-Beer-Segment.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-18",
+    "lastUpdated": "2025-11-18T13:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
   }
 ]
