@@ -720,5 +720,476 @@
         }
       ]
     }
+  },
+  "Bestmalz GmbH": {
+    "categories": {
+      "Basismalze": [
+        {
+          "id": 1,
+          "name": "Heidelberger",
+          "color": {
+            "ebc": "0,0–2,9",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Getreide, Zitronengras",
+          "beerTypes": "sehr helles Basismalz für alle Bierstile, besonders für helle Lager",
+          "rating": "Sehr helles Basismalz"
+        },
+        {
+          "id": 2,
+          "name": "Pilsener Malz",
+          "color": {
+            "ebc": "3,0–4,9",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Getreide",
+          "beerTypes": "Basismalz für alle Biere, Premium-Pilsener und Pilsener Biere, Export, Kölsch, Lager, Helles, Leichtbiere",
+          "rating": "Basismalz für alle Biere"
+        },
+        {
+          "id": 3,
+          "name": "Pale Ale",
+          "color": {
+            "ebc": "5,0–7,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Getreide, Malz",
+          "beerTypes": "Pale Ale, Kölsch, Pilsener Biere sowie alle anderen Bierspezialitäten",
+          "rating": "Für Pale Ale und viele weitere"
+        },
+        {
+          "id": 4,
+          "name": "Wiener",
+          "color": {
+            "ebc": "8,0–10,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Malz, Honig",
+          "beerTypes": "Export, Märzen, Porter sowie alle anderen Bierspezialitäten",
+          "rating": "Für Export, Märzen, Porter"
+        },
+        {
+          "id": 5,
+          "name": "Münchner",
+          "color": {
+            "ebc": "11,0–20,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Malz, Brot",
+          "beerTypes": "Basismalz für alle dunklen Biere, Export, Märzen, Alt, Weizenbiere, Bock und Starkbiere",
+          "rating": "Für dunkle Biere, Export, Märzen"
+        },
+        {
+          "id": 6,
+          "name": "Münchner Dunkel",
+          "color": {
+            "ebc": "21,0–35,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Malz, Honig",
+          "beerTypes": "dunkle Bierstile wie Altbier, Märzen, Bock, kräftige und dunkle Bierspezialitäten",
+          "rating": "Für Altbier, Märzen, Bock"
+        },
+        {
+          "id": 7,
+          "name": "Weizenmalz",
+          "color": {
+            "ebc": "2,5–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 60%",
+          "enzymes": "hoch",
+          "aroma": "Zitrone, Nelke",
+          "beerTypes": "Weizenbiere",
+          "rating": "Für Weizenbiere"
+        },
+        {
+          "id": 8,
+          "name": "Weizenmalz Dunkel",
+          "color": {
+            "ebc": "16,0–20,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 60%",
+          "enzymes": "hoch",
+          "aroma": "Maracuja, Nelke",
+          "beerTypes": "Dunkelweizen, dunkle Biere, alkoholarme Biere",
+          "rating": "Für dunkle Weizenbiere"
+        },
+        {
+          "id": 9,
+          "name": "Heidelberger Weizenmalz",
+          "color": {
+            "ebc": "2,0–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 50%",
+          "enzymes": "hoch",
+          "aroma": "Zitrone, Nelke",
+          "beerTypes": "helle Weizenbiere, obergärige Biere, alkoholarme Biere",
+          "rating": "Für helle Weizenbiere"
+        },
+        {
+          "id": 10,
+          "name": "Dinkelmalz",
+          "color": {
+            "ebc": "3,5–6,0",
+            "category": "hell"
+          },
+          "usage": "bis 60%",
+          "enzymes": "hoch",
+          "aroma": "Stachelbeere, Zitrone",
+          "beerTypes": "obergärige Biere, helle Weizenbiere, blonde Ales",
+          "rating": "Für helle Weizenbiere und Ales"
+        },
+        {
+          "id": 11,
+          "name": "Roggenmalz",
+          "color": {
+            "ebc": "3,0–8,0",
+            "category": "hell"
+          },
+          "usage": "bis 60%",
+          "enzymes": "hoch",
+          "aroma": "Brottaromen",
+          "beerTypes": "Weizenbier, Roggenbier",
+          "rating": "Für Roggenbier"
+        },
+        {
+          "id": 12,
+          "name": "Hafermalz",
+          "color": {
+            "ebc": "3,0–20,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 50%",
+          "enzymes": "hoch",
+          "aroma": "Nuss, Hafer",
+          "beerTypes": "Haferbier, Porter, IPA, Oatmeal Stout",
+          "rating": "Für Haferbier und Oatmeal Stout"
+        }
+      ],
+      "Spezialmalze": [
+        {
+          "id": 13,
+          "name": "Melanoidin",
+          "color": {
+            "ebc": "40,0–80,0",
+            "category": "rot"
+          },
+          "usage": "bis 50%",
+          "enzymes": "keine",
+          "aroma": "Brombeere, Kirsche",
+          "beerTypes": "Alt, Märzen, Bock, Weizenbiere sowie alle anderen Bierspezialitäten",
+          "rating": "Für dunkle und rote Biere"
+        },
+        {
+          "id": 14,
+          "name": "Melanoidin Light",
+          "color": {
+            "ebc": "40,0–60,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 70%",
+          "enzymes": "keine",
+          "aroma": "Brombeere, Malz, Pflaume",
+          "beerTypes": "Helles, Märzen, Kölsch, Export, Weizenbiere",
+          "rating": "Für helle und leichte Biere"
+        },
+        {
+          "id": 15,
+          "name": "A-XL",
+          "color": {
+            "ebc": "20,0–40,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "Biscuit",
+          "beerTypes": "alle Bierstile",
+          "rating": "Für alle Bierstile"
+        },
+        {
+          "id": 16,
+          "name": "Biscuit",
+          "color": {
+            "ebc": "45,0–55,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 15%",
+          "enzymes": "keine",
+          "aroma": "Brot",
+          "beerTypes": "Belgische Abbey, Porter, Englisch, Dunkle Ales",
+          "rating": "Für belgische und dunkle Ales"
+        },
+        {
+          "id": 17,
+          "name": "Red X®",
+          "color": {
+            "ebc": "12,0–15,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Erdbeere, Honig",
+          "beerTypes": "obergärige Biere, Rotbier, Altbier, Dunkel und Winterbiere",
+          "rating": "Für Rotbier und obergärige Biere"
+        },
+        {
+          "id": 18,
+          "name": "Special X®",
+          "color": {
+            "ebc": "300–350",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 15%",
+          "enzymes": "keine",
+          "aroma": "Dörrobst, Schokolade",
+          "beerTypes": "Altbier, Dunkle Ales",
+          "rating": "Für Spezialbiere und dunkle Ales"
+        }
+      ],
+      "Karamellmalze": [
+        {
+          "id": 19,
+          "name": "Caramel® Pils",
+          "color": {
+            "ebc": "2,0–7,0",
+            "category": "hell"
+          },
+          "usage": "bis 40%",
+          "enzymes": "keine",
+          "aroma": "Honig, Feige",
+          "beerTypes": "Helles, Lager, Kölsch, Export, Weizenbiere",
+          "rating": "Für viele helle Bierspezialitäten"
+        },
+        {
+          "id": 20,
+          "name": "Caramel® Amber",
+          "color": {
+            "ebc": "60,0–80,0",
+            "category": "rot"
+          },
+          "usage": "bis 30%",
+          "enzymes": "keine",
+          "aroma": "Datteln, Biskuit",
+          "beerTypes": "Weizenbiere, Bock, Amber Ale, Amber Lager",
+          "rating": "Für Amber- und dunkle Biere"
+        },
+        {
+          "id": 21,
+          "name": "Caramel® Munich I",
+          "color": {
+            "ebc": "80,0–100,0",
+            "category": "rotbraun"
+          },
+          "usage": "bis 40%",
+          "enzymes": "keine",
+          "aroma": "Datteln, Mandel",
+          "beerTypes": "Märzen, Weizenbiere, Bock",
+          "rating": "Für Märzen und Bock"
+        },
+        {
+          "id": 22,
+          "name": "Caramel® Munich II",
+          "color": {
+            "ebc": "110,0–130,0",
+            "category": "rotbraun"
+          },
+          "usage": "bis 40%",
+          "enzymes": "keine",
+          "aroma": "Gebrannte Mandeln, Brot",
+          "beerTypes": "Märzen, Weizenbiere, Bock",
+          "rating": "Für Märzen und Bock"
+        },
+        {
+          "id": 23,
+          "name": "Caramel® Munich III",
+          "color": {
+            "ebc": "130,0–150,0",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 30%",
+          "enzymes": "keine",
+          "aroma": "Gebrannte Mandeln, Geröstetes Brot",
+          "beerTypes": "Altbier, Märzen, Weizenbiere, Bock",
+          "rating": "Für Altbier und Bock"
+        },
+        {
+          "id": 24,
+          "name": "Caramel® Aroma",
+          "color": {
+            "ebc": "110,0–160,0",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Honig",
+          "beerTypes": "Weizenbiere, Bock, Alt, Porter, Bernsteinbiere",
+          "rating": "Für bernsteinfarbene und dunkle Biere"
+        },
+        {
+          "id": 25,
+          "name": "Caramel® Weizenmalz",
+          "color": {
+            "ebc": "40,0–60,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 30%",
+          "enzymes": "keine",
+          "aroma": "Mandel, Biskuit",
+          "beerTypes": "Weizenbiere und dunkle Spezialbiere",
+          "rating": "Für dunkle Weizenbiere"
+        },
+        {
+          "id": 26,
+          "name": "Caramel® Roggenmalz",
+          "color": {
+            "ebc": "45,0–80,0",
+            "category": "rot"
+          },
+          "usage": "bis 15%",
+          "enzymes": "keine",
+          "aroma": "Brot, Biskuit",
+          "beerTypes": "Roggenbier, Belgische Biere, Roggen-IPA",
+          "rating": "Für obergärige Biere und Roggen-IPA"
+        }
+      ],
+      "Röstmalze": [
+        {
+          "id": 27,
+          "name": "Chocolate",
+          "color": {
+            "ebc": "800–1000",
+            "category": "schwarz"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "Schokolade",
+          "beerTypes": "Schwarzbier, Bock, Alt, Porter",
+          "rating": "Für Schwarzbier und Porter"
+        },
+        {
+          "id": 28,
+          "name": "Röstgerste",
+          "color": {
+            "ebc": "1200–1400",
+            "category": "schwarz"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "Kaffee, Espresso",
+          "beerTypes": "Stout, Porter",
+          "rating": "Für Stout und Porter"
+        },
+        {
+          "id": 29,
+          "name": "Röstmalz Extra",
+          "color": {
+            "ebc": "1200–1400",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Kaffee, Kakao",
+          "beerTypes": "Schwarzbier, Porter",
+          "rating": "Für intensives Röstaroma"
+        },
+        {
+          "id": 30,
+          "name": "Röstweizen Dunkel",
+          "color": {
+            "ebc": "800–1300",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Röstaroma, Kaffee",
+          "beerTypes": "Schwarzbier, Weizenbiere",
+          "rating": "Für dunkle Biere mit Röstaromen"
+        },
+        {
+          "id": 31,
+          "name": "Röstweizen Hell",
+          "color": {
+            "ebc": "5,0–8,0",
+            "category": "hell"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Röstaroma",
+          "beerTypes": "Weizenbiere",
+          "rating": "Für Weizenbiere"
+        },
+        {
+          "id": 32,
+          "name": "Röstweizen Medium",
+          "color": {
+            "ebc": "15,0–20,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Stachelbeere, Zitrone",
+          "beerTypes": "obergärige Biere, Weizenbiere",
+          "rating": "Für obergärige Biere"
+        }
+      ],
+      "Rauchmalze": [
+        {
+          "id": 33,
+          "name": "Rauchmalz",
+          "color": {
+            "ebc": "3,0–8,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Rauch, Schinken",
+          "beerTypes": "Rauchbier",
+          "rating": "Basismalz für Rauchbiere"
+        }
+      ],
+      "Funktionale Malze": [
+        {
+          "id": 34,
+          "name": "Sauermalz",
+          "color": {
+            "ebc": "3,0–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 25%",
+          "enzymes": "keine",
+          "aroma": "Stachelbeere, Zitrone",
+          "beerTypes": "helle Biere, alkoholarme Biere",
+          "rating": "Für pH-Regulierung"
+        },
+        {
+          "id": 35,
+          "name": "Spitzmalz",
+          "color": {
+            "ebc": "2,0–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 50%",
+          "enzymes": "hoch",
+          "aroma": "Spritzigkeit",
+          "beerTypes": "Schaumstabilisierung",
+          "rating": "Für bessere Schaumqualität"
+        }
+      ]
+    }
   }
 }
