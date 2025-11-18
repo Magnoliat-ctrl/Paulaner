@@ -671,9 +671,12 @@
     ],
     "certifications": [
       "ISO 9001",
+      "ISO 50001",
       "HACCP",
       "QS",
-      "GMP"
+      "GMP",
+      "Braugetreidemonitoring",
+      "NDMA"
     ],
     "performance": {
       "averageDeliveryTime": 2.5,
