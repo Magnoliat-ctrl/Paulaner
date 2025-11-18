@@ -3,29 +3,25 @@
  * Search input with autocomplete functionality
  */
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import '../../styles/SearchBar.css'
 
 function SearchBar({ query, onQueryChange, onSearch, placeholder }) {
   const [inputValue, setInputValue] = useState(query)
+  const debounceTimer = useRef(null)
 
   useEffect(() => {
     setInputValue(query)
   }, [query])
 
   /**
-   * Handle input change with debouncing
+   * Handle input change (no automatic search, only on Enter)
    */
   const handleChange = (e) => {
     const value = e.target.value
     setInputValue(value)
-
-    // Debounce search
-    const timeoutId = setTimeout(() => {
-      onQueryChange(value)
-    }, 300)
-
-    return () => clearTimeout(timeoutId)
+    // Update query state immediately but don't trigger search
+    onQueryChange(value)
   }
 
   /**

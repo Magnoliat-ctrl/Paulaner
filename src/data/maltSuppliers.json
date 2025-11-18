@@ -1,0 +1,747 @@
+[
+  {
+    "name": "Weyermann Malzfabrik GmbH & Co. KG",
+    "description": "Weltweit führender Spezialmälzer mit über 140 Jahren Erfahrung. Produziert über 80 verschiedene Malzsorten für Brauereien, Brennereien und die Lebensmittelindustrie.",
+    "category": "Malz",
+    "contact": {
+      "email": "info@weyermann.de",
+      "phone": "+49 (0) 951 93 220-0",
+      "website": "www.weyermann.de",
+      "person": "Unbekannt",
+      "position": "Ansprechpartner"
+    },
+    "location": {
+      "street": "Brennerstraße 17-19",
+      "city": "Bamberg",
+      "postalCode": "96052",
+      "country": "Deutschland",
+      "region": "Bayern"
+    },
+    "locations": [
+      {
+        "street": "Brennerstraße 17-19",
+        "city": "Bamberg",
+        "postalCode": "96052",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Hauptsitz & Produktion"
+      },
+      {
+        "street": "Am Hafen 1",
+        "city": "Hassfurt",
+        "postalCode": "97437",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Produktionswerk"
+      },
+      {
+        "street": "Flattig 36",
+        "city": "Clingen",
+        "postalCode": "99718",
+        "country": "Deutschland",
+        "region": "Thüringen",
+        "type": "Produktionswerk"
+      },
+      {
+        "street": "Leesau 22",
+        "city": "Thurnau",
+        "postalCode": "95349",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Produktionswerk"
+      }
+    ],
+    "products": [
+      "Premium Pilsner Malz Extra Hell",
+      "Pilsner Malz",
+      "Pale Ale Malz",
+      "Wiener Malz",
+      "Münchner Malz Typ 1",
+      "Münchner Malz Typ 2",
+      "Eichenrauch-Weizenmalz",
+      "Buchenrauch-Gerstenmalz",
+      "Sauermalz",
+      "Melanoidinmalz",
+      "Weizenbraumalz hell",
+      "Weizenbraumalz dunkel",
+      "CARAWHEAT",
+      "Weizenröstmalz",
+      "CARAPILS",
+      "CARAHELL",
+      "CARABELGE",
+      "CARARED",
+      "CARAAMBER",
+      "CARAMÜNCH Typ 1",
+      "CARAMÜNCH Typ 2",
+      "CARAMÜNCH Typ 3",
+      "CARARYE",
+      "CARABOHEMIAN",
+      "CARAAROMA",
+      "Eraclea Pilsner Malz",
+      "Barke Pilsner Malz",
+      "Barke Wiener Malz",
+      "Barke Münchner Malz",
+      "Isaria 1924",
+      "Bohemian Pilsner Malz",
+      "Böhmisches Tennenmalz Pilsner Art",
+      "Dunkles Böhmisches Tennenmalz",
+      "Abbey Malt",
+      "SPECIAL W",
+      "CARAFA Typ 1",
+      "CARAFA Typ 2",
+      "CARAFA Typ 3",
+      "CARAFA SPEZIAL Typ 1",
+      "CARAFA SPEZIAL Typ 2",
+      "CARAFA SPEZIAL Typ 3",
+      "Roggenröstmalz",
+      "Röstgerste",
+      "Gerstendiastasemalz",
+      "Roggenmalz hell",
+      "Dinkelmalz",
+      "SINAMAR",
+      "Sauergut",
+      "Bavarian Pilsner",
+      "Bavarian Hefeweizen",
+      "Bavaria Maibock",
+      "Munich Amber",
+      "Bamberg Rauch",
+      "Munich October Beer",
+      "Vienna Red",
+      "Bavarian Dunkel",
+      "Trockenhefen"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "FSSC 22000",
+      "HACCP",
+      "QS Futtermittel",
+      "Kiwa BCS",
+      "Bioland",
+      "Demeter",
+      "Bio Suisse",
+      "Naturland",
+      "Kosher"
+    ],
+    "performance": {
+      "averageDeliveryTime": 3.0,
+      "onTimeDeliveryRate": 98.0,
+      "defectRate": 0.5,
+      "responseTime": 12,
+      "flexibilityScore": 9.5,
+      "innovationScore": 9.5
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Niedrig",
+        "waterUsage": "Optimiert",
+        "wasteManagement": "Kreislaufwirtschaft",
+        "renewableEnergy": 65
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Sehr gut",
+        "employeeTraining": true,
+        "diversityScore": 8.0
+      },
+      "governance": {
+        "transparency": "Hoch",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-WEYERMANN-001",
+        "date": "2025-11-10",
+        "overallScore": 9.3,
+        "categories": {
+          "Qualität": 10.0,
+          "Lieferleistung": 9.5,
+          "Kosten": 8.5,
+          "Zuverlässigkeit": 9.5,
+          "Innovation": 10.0,
+          "Kommunikation": 9.0,
+          "ESG-Compliance": 9.5
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Weltmarktführer bei Spezialmalzen mit herausragender Qualität und umfassendem Sortiment. Sehr hohe Innovationskraft und Beratungskompetenz. Familienunternehmen mit starker Nachhaltigkeitsorientierung.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-10",
+    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
+  },
+  {
+    "name": "Bestmalz GmbH",
+    "description": "Traditionsreiche Mälzerei mit drei Standorten in Deutschland - spezialisiert auf Premium-Braumalze für Brauereien aller Größen mit über 40 verschiedenen Malzsorten.",
+    "category": "Malz",
+    "contact": {
+      "email": "info@bestmalz.de",
+      "phone": "+49 (0)6221 6466-0",
+      "website": "www.bestmalz.de",
+      "person": "Unbekannt",
+      "position": "Kundenbetreuung"
+    },
+    "location": {
+      "street": "Am Betriebswerk 5",
+      "city": "Heidelberg",
+      "postalCode": "69115",
+      "country": "Deutschland",
+      "region": "Baden-Württemberg"
+    },
+    "locations": [
+      {
+        "street": "Am Betriebswerk 5",
+        "city": "Heidelberg",
+        "postalCode": "69115",
+        "country": "Deutschland",
+        "region": "Baden-Württemberg",
+        "type": "Geschäftsstelle"
+      },
+      {
+        "street": "Schmeißbacher Mühle",
+        "city": "Kreimbach-Kaulbach",
+        "postalCode": "67757",
+        "country": "Deutschland",
+        "region": "Rheinland-Pfalz",
+        "type": "Mälzerei Kreimbach"
+      },
+      {
+        "street": "Industriestraße 1",
+        "city": "Wallertheim",
+        "postalCode": "55578",
+        "country": "Deutschland",
+        "region": "Rheinland-Pfalz",
+        "type": "Mälzerei Wallertheim"
+      }
+    ],
+    "products": [
+      "Heidelberger",
+      "Pilsener Malz",
+      "Pale Ale",
+      "Wiener",
+      "Münchner",
+      "Münchner Dunkel",
+      "Melanoidin",
+      "Melanoidin Light",
+      "Caramel® Pils",
+      "Caramel® Hell",
+      "Caramel® Aroma",
+      "Caramel® Amber",
+      "Caramel® Munich I",
+      "Caramel® Munich II",
+      "Caramel® Munich III",
+      "Caramel® Weizenmalz",
+      "Caramel® Roggenmalz",
+      "A-XL",
+      "Biscuit",
+      "Chocolate",
+      "Hafermalz",
+      "Dinkelmalz",
+      "Heidelberger Weizenmalz",
+      "Rauchmalz",
+      "Red X®",
+      "Roggenmalz",
+      "Röstgerste",
+      "Röstmalz",
+      "Röstmalz eXtra",
+      "Röstweizen Dunkel",
+      "Röstweizen Hell",
+      "Röstweizen Medium",
+      "Sauermalz",
+      "Special X®",
+      "Spitzmalz",
+      "Weizenmalz",
+      "Weizenmalz Dunkel",
+      "Diastase Malz",
+      "Diastase Weizenmalz",
+      "Cherry Ember Smoked",
+      "Beechwood Smoked"
+    ],
+    "certifications": [
+      "DE-ÖKO-005",
+      "HACCP",
+      "CCF",
+      "NDMA",
+      "EnMS",
+      "SGS",
+      "Kosher",
+      "QS",
+      "QM"
+    ],
+    "performance": {
+      "averageDeliveryTime": 2.5,
+      "onTimeDeliveryRate": 96.0,
+      "defectRate": 0.8,
+      "responseTime": 18,
+      "flexibilityScore": 8.5,
+      "innovationScore": 8.0
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Mittel",
+        "waterUsage": "Optimiert",
+        "wasteManagement": "Recycling",
+        "renewableEnergy": 55
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Gut",
+        "employeeTraining": true,
+        "diversityScore": 7.5
+      },
+      "governance": {
+        "transparency": "Hoch",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-BESTMALZ-001",
+        "date": "2025-11-10",
+        "overallScore": 8.8,
+        "categories": {
+          "Qualität": 9.5,
+          "Lieferleistung": 9.0,
+          "Kosten": 8.5,
+          "Zuverlässigkeit": 9.0,
+          "Innovation": 8.0,
+          "Kommunikation": 8.5,
+          "ESG-Compliance": 9.0
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Sehr zuverlässiger deutscher Mälzer mit exzellenter Qualität. Besonders stark im Craft-Beer-Segment. Gute Beratung und schnelle Lieferzeiten.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-10",
+    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
+  },
+  {
+    "name": "Ireks GmbH",
+    "description": "Internationaler Hersteller von Malz, Backzutaten und Braumalzen mit über 120 Jahren Tradition. Spezialist für innovative Malzlösungen und technische Beratung.",
+    "category": "Malz",
+    "contact": {
+      "email": "malz@ireks.com",
+      "phone": "+49 9221 706-0",
+      "website": "www.ireks.com",
+      "person": "Malzvertrieb",
+      "position": "Technische Beratung"
+    },
+    "location": {
+      "street": "Lichtenfelser Straße 20",
+      "city": "Kulmbach",
+      "postalCode": "95326",
+      "country": "Deutschland",
+      "region": "Bayern"
+    },
+    "locations": [
+      {
+        "street": "Lichtenfelser Straße 20",
+        "city": "Kulmbach",
+        "postalCode": "95326",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Hauptsitz"
+      },
+      {
+        "street": "Industriestraße",
+        "city": "Kulmbach",
+        "postalCode": "95326",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Produktion"
+      }
+    ],
+    "products": [
+      "Pilsner Malz",
+      "Münchner Malz",
+      "Wiener Malz",
+      "Pale Malt",
+      "Caramalt",
+      "Crystal Malt",
+      "Röstmalz",
+      "Weizenmalz",
+      "Gerstenmalz",
+      "Schwarzmalz",
+      "Sauermalz",
+      "Melanoidinmalz",
+      "Rauchmalz",
+      "Bio-Malze",
+      "Spezialmalze für Craft Beer",
+      "Enzymreiche Malze",
+      "Röstgerste",
+      "Farbmalze"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "ISO 14001",
+      "FSSC 22000",
+      "IFS",
+      "BRC",
+      "Kosher",
+      "Halal",
+      "Bio-Zertifizierung"
+    ],
+    "performance": {
+      "averageDeliveryTime": 3.5,
+      "onTimeDeliveryRate": 95.0,
+      "defectRate": 1.0,
+      "responseTime": 24,
+      "flexibilityScore": 8.5,
+      "innovationScore": 9.0
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Mittel",
+        "waterUsage": "Optimiert",
+        "wasteManagement": "Kreislaufwirtschaft",
+        "renewableEnergy": 60
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Sehr gut",
+        "employeeTraining": true,
+        "diversityScore": 8.5
+      },
+      "governance": {
+        "transparency": "Hoch",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-IREKS-001",
+        "date": "2025-11-10",
+        "overallScore": 9.0,
+        "categories": {
+          "Qualität": 9.5,
+          "Lieferleistung": 9.0,
+          "Kosten": 8.5,
+          "Zuverlässigkeit": 9.0,
+          "Innovation": 9.5,
+          "Kommunikation": 8.5,
+          "ESG-Compliance": 9.0
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Traditionsunternehmen mit exzellenter technischer Beratung und innovativen Malzlösungen. Sehr gute Produktqualität und umfassendes Sortiment. Stark in der internationalen Ausrichtung.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-10",
+    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
+  },
+  {
+    "name": "Avangard Malz AG",
+    "description": "Modernste Großmälzerei Europas mit Fokus auf hochwertige Basismalze für industrielle Brauereien. Teil der Mälzerei Gruppe Soufflet.",
+    "category": "Malz",
+    "contact": {
+      "email": "info@avangard-malz.com",
+      "phone": "+49 89 3889989-0",
+      "website": "www.avangard-malz.com",
+      "person": "Sales Team",
+      "position": "Kundenbetreuung"
+    },
+    "location": {
+      "street": "Münchener Straße 17",
+      "city": "München",
+      "postalCode": "80335",
+      "country": "Deutschland",
+      "region": "Bayern"
+    },
+    "locations": [
+      {
+        "street": "Münchener Straße 17",
+        "city": "München",
+        "postalCode": "80335",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Hauptsitz"
+      }
+    ],
+    "products": [
+      "Pilsner Malz",
+      "Münchner Malz",
+      "Pale Ale Malz",
+      "Lager Malz",
+      "Wiener Malz",
+      "Weizenmalz",
+      "Caramalt",
+      "Basismalze für Großbrauereien",
+      "Bio-Malze",
+      "Spezialmalze"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "FSSC 22000",
+      "Bio-Zertifizierung"
+    ],
+    "performance": {
+      "averageDeliveryTime": 2.0,
+      "onTimeDeliveryRate": 97.0,
+      "defectRate": 0.5,
+      "responseTime": 16,
+      "flexibilityScore": 8.0,
+      "innovationScore": 7.5
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Niedrig",
+        "waterUsage": "Optimiert",
+        "wasteManagement": "Kreislaufwirtschaft",
+        "renewableEnergy": 70
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Gut",
+        "employeeTraining": true,
+        "diversityScore": 7.0
+      },
+      "governance": {
+        "transparency": "Mittel",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-AVANGARD-001",
+        "date": "2025-11-10",
+        "overallScore": 8.5,
+        "categories": {
+          "Qualität": 9.0,
+          "Lieferleistung": 9.5,
+          "Kosten": 9.0,
+          "Zuverlässigkeit": 9.0,
+          "Innovation": 7.0,
+          "Kommunikation": 8.0,
+          "ESG-Compliance": 8.5
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Moderne Großmälzerei mit ausgezeichneter Lieferperformance und attraktiven Preisen für große Mengen. Fokus auf Effizienz und Nachhaltigkeit.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-10",
+    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
+  },
+  {
+    "name": "Bamberger Mälzerei GmbH",
+    "description": "Traditionsreiche deutsche Mälzerei mit mehreren Standorten in Deutschland. Spezialisiert auf hochwertige Basis- und Spezialmalze für Brauereien aller Größen.",
+    "category": "Malz",
+    "contact": {
+      "email": "info@bamberger-maelzerei.de",
+      "phone": "+49 (0) 951 91 232-0",
+      "website": "www.bamberger-maelzerei.de",
+      "person": "Unbekannt",
+      "position": "Ansprechpartner"
+    },
+    "location": {
+      "street": "Postfach 10 69",
+      "city": "Bamberg",
+      "postalCode": "96001",
+      "country": "Deutschland",
+      "region": "Bayern"
+    },
+    "locations": [
+      {
+        "street": "Postfach 10 69",
+        "city": "Bamberg",
+        "postalCode": "96001",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Hauptsitz"
+      },
+      {
+        "street": "Standort",
+        "city": "Mülheim an der Ruhr",
+        "postalCode": "45468",
+        "country": "Deutschland",
+        "region": "Nordrhein-Westfalen",
+        "type": "Produktionswerk"
+      },
+      {
+        "street": "Standort",
+        "city": "Worms",
+        "postalCode": "67547",
+        "country": "Deutschland",
+        "region": "Rheinland-Pfalz",
+        "type": "Produktionswerk"
+      },
+      {
+        "street": "Standort",
+        "city": "Neuburg an der Donau",
+        "postalCode": "86633",
+        "country": "Deutschland",
+        "region": "Bayern",
+        "type": "Produktionswerk"
+      }
+    ],
+    "products": [
+      "Standard Pils Malz",
+      "Pilsner Malz",
+      "Wiener Malz",
+      "Münchner Malz",
+      "Diastase Malz (Gerste)",
+      "Helles Weizenmalz",
+      "Dunkles Weizenmalz",
+      "Diastase Malz (Weizen)"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "HACCP",
+      "QS",
+      "GMP"
+    ],
+    "performance": {
+      "averageDeliveryTime": 2.5,
+      "onTimeDeliveryRate": 95.0,
+      "defectRate": 0.8,
+      "responseTime": 20,
+      "flexibilityScore": 8.0,
+      "innovationScore": 7.0
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Mittel",
+        "waterUsage": "Gut",
+        "wasteManagement": "Recycling",
+        "renewableEnergy": 45
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Gut",
+        "employeeTraining": true,
+        "diversityScore": 7.0
+      },
+      "governance": {
+        "transparency": "Mittel",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-BAMBERGER-001",
+        "date": "2025-11-10",
+        "overallScore": 8.3,
+        "categories": {
+          "Qualität": 8.5,
+          "Lieferleistung": 8.5,
+          "Kosten": 8.5,
+          "Zuverlässigkeit": 8.5,
+          "Innovation": 7.0,
+          "Kommunikation": 8.0,
+          "ESG-Compliance": 8.0
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Zuverlässiger deutscher Mälzer mit mehreren Produktionsstandorten. Gutes Preis-Leistungs-Verhältnis und solide Basismalze für alle Brauereigrößen.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-11",
+    "lastUpdated": "2025-11-11T12:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
+  }
+]

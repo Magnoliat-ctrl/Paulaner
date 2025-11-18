@@ -1,6 +1,7 @@
 {
   "name": "paulaner-supplier-portal",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "type": "module",
   "description": "Internal supplier management portal for Paulaner Brewery Group",
   "main": "index.js",
   "scripts": {
@@ -8,6 +9,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "serve": "http-server dist -p 8080"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "keywords": [
     "supplier-management",

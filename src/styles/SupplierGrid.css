@@ -29,7 +29,7 @@
 
 .empty-message {
   font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
+  color: #212529 !important;
   margin: 0;
 }
 
