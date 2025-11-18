@@ -1191,5 +1191,346 @@
         }
       ]
     }
+  },
+  "Ireks GmbH": {
+    "categories": {
+      "Basismalze": [
+        {
+          "id": 1,
+          "name": "Pilsner Malz",
+          "color": {
+            "ebc": "2,5–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "alle Biertypen",
+          "rating": "Universelles Basismalz"
+        },
+        {
+          "id": 2,
+          "name": "Pale Ale Malz",
+          "color": {
+            "ebc": "5,0–7,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig",
+          "beerTypes": "Ale, Kölsch, Pilsner",
+          "rating": "Basismalz für alle Biertypen"
+        },
+        {
+          "id": 3,
+          "name": "Wiener Malz",
+          "color": {
+            "ebc": "8,0–10,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "Export, Märzen, Ale, Porter",
+          "rating": "Basismalz für bernsteinfarbene Biere"
+        },
+        {
+          "id": 4,
+          "name": "Münchner Malz",
+          "color": {
+            "ebc": "12,0–20,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 60%",
+          "enzymes": "mittel",
+          "aroma": "malzig, brotig",
+          "beerTypes": "dunkle Biere, Festbiere, Starkbiere",
+          "rating": "Für dunkle Biere und Festbiere"
+        },
+        {
+          "id": 5,
+          "name": "Münchner Dunkel",
+          "color": {
+            "ebc": "40,0–50,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 50%",
+          "enzymes": "mittel",
+          "aroma": "intensiv malzig",
+          "beerTypes": "dunkle Biere, Festbiere, Starkbiere, Porter, Craftbiere",
+          "rating": "Für intensiv malzige dunkle Biere"
+        },
+        {
+          "id": 6,
+          "name": "Weizenbraumalz Hell",
+          "color": {
+            "ebc": "3,0–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "weizentypisch",
+          "beerTypes": "Weizenbiere, Ale, Stout, Porter, Kölsch, Alt, Mehrkornbiere",
+          "rating": "Basismalz für Weizenbiere"
+        },
+        {
+          "id": 7,
+          "name": "Weizenbraumalz Dunkel",
+          "color": {
+            "ebc": "10,0–18,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 50%",
+          "enzymes": "mittel",
+          "aroma": "weizentypisch, malzig",
+          "beerTypes": "Weizenbiere, Ale, Stout, Porter, Kölsch, Alt, Mehrkornbiere",
+          "rating": "Für dunkle Weizenbiere"
+        },
+        {
+          "id": 8,
+          "name": "Roggenbraumalz",
+          "color": {
+            "ebc": "4,0–10,0",
+            "category": "hell"
+          },
+          "usage": "bis 60%",
+          "enzymes": "hoch",
+          "aroma": "würzig, Roggen",
+          "beerTypes": "Roggenbiere, Mehrkornbiere, Spezialbiere",
+          "rating": "Für Roggenbiere"
+        }
+      ],
+      "Spezialmalze": [
+        {
+          "id": 9,
+          "name": "Blaue Buche",
+          "color": {
+            "ebc": "190,0–300,0",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "intensiv malzig",
+          "beerTypes": "dunkle Biere, Festbiere, Starkbiere, Porter, Craftbiere",
+          "rating": "Intensives Spezialmalz"
+        },
+        {
+          "id": 10,
+          "name": "Aromamalz",
+          "color": {
+            "ebc": "260,0–300,0",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 20%",
+          "enzymes": "keine",
+          "aroma": "aromatisch, malzig",
+          "beerTypes": "dunkle Biere, Festbiere, Starkbiere, Craftbiere",
+          "rating": "Für aromatische dunkle Biere"
+        },
+        {
+          "id": 11,
+          "name": "Biscuit Malz",
+          "color": {
+            "ebc": "45,0–55,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 50%",
+          "enzymes": "keine",
+          "aroma": "Brot, Biskuit",
+          "beerTypes": "helle und dunkle Biere, belgische und englische Biere, Porter, Stouts, Spezialbiere",
+          "rating": "Für Brotaromen"
+        }
+      ],
+      "Karamellmalze": [
+        {
+          "id": 12,
+          "name": "Caramell Arom",
+          "color": {
+            "ebc": "5,0–15,0",
+            "category": "hell"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "Karamell, süßlich",
+          "beerTypes": "Pilsner, Lager, helle Biere",
+          "rating": "Leichtes Karamellmalz"
+        },
+        {
+          "id": 13,
+          "name": "Caramell Ahorn",
+          "color": {
+            "ebc": "15,0–35,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "Karamell, Honig",
+          "beerTypes": "Pilsner, Lager, helle Biere",
+          "rating": "Mittleres Karamellmalz"
+        },
+        {
+          "id": 14,
+          "name": "Caramell Birke",
+          "color": {
+            "ebc": "15,0–30,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 15%",
+          "enzymes": "keine",
+          "aroma": "Karamell",
+          "beerTypes": "Pilsner, Lager, Bockbiere",
+          "rating": "Für helle bis mittlere Biere"
+        },
+        {
+          "id": 15,
+          "name": "Caramell Eiche",
+          "color": {
+            "ebc": "25,0–35,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 30%",
+          "enzymes": "keine",
+          "aroma": "Karamell, malzig",
+          "beerTypes": "helle Biere, Export, Festbiere, Ale",
+          "rating": "Für Exportbiere"
+        },
+        {
+          "id": 16,
+          "name": "Caramell Mahagoni",
+          "color": {
+            "ebc": "15,0–80,0",
+            "category": "rot"
+          },
+          "usage": "bis 50%",
+          "enzymes": "keine",
+          "aroma": "Karamell, röstig",
+          "beerTypes": "Ale, Stout, Festbier, Alt, dunkle Biere",
+          "rating": "Für rötliche Biere"
+        },
+        {
+          "id": 17,
+          "name": "Karamell Palisander",
+          "color": {
+            "ebc": "110,0–130,0",
+            "category": "rotbraun"
+          },
+          "usage": "bis 15%",
+          "enzymes": "keine",
+          "aroma": "intensiv Karamell",
+          "beerTypes": "Stout, Festbiere, Export, dunkle Biere, Schwarzbiere, Porter",
+          "rating": "Intensives Karamellmalz"
+        },
+        {
+          "id": 18,
+          "name": "Karamell Teak",
+          "color": {
+            "ebc": "300,0–400,0",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 15%",
+          "enzymes": "keine",
+          "aroma": "sehr intensiv Karamell",
+          "beerTypes": "Stout, Festbiere, Export, Porter, Märzen, Schwarzbiere",
+          "rating": "Sehr intensives Karamellmalz"
+        },
+        {
+          "id": 19,
+          "name": "Karamell Ebenholz",
+          "color": {
+            "ebc": "300,0–420,0",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "extrem intensiv Karamell",
+          "beerTypes": "Stout, Festbiere, Export, Märzen, Schwarzbiere",
+          "rating": "Stärkstes Karamellmalz"
+        }
+      ],
+      "Röstmalze": [
+        {
+          "id": 20,
+          "name": "Chocolate Malz",
+          "color": {
+            "ebc": "800,0–1000,0",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Schokolade, Kaffee",
+          "beerTypes": "Schwarzbiere, Porter, Stout, Craftbiere",
+          "rating": "Für Schokoladenaromen"
+        },
+        {
+          "id": 21,
+          "name": "Gersten-Röstmalz",
+          "color": {
+            "ebc": "1200,0–1300,0",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Kaffee, Röstaromen",
+          "beerTypes": "Schwarzbiere, Porter, Stout, Craftbiere",
+          "rating": "Intensives Röstmalz"
+        },
+        {
+          "id": 22,
+          "name": "Weizen-Röstmalz",
+          "color": {
+            "ebc": "1300,0–1500,0",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Kaffee, Röstaromen",
+          "beerTypes": "Weizenbiere, Ale, Stout, Porter, Kölsch, Alt, Mehrkornbiere",
+          "rating": "Röstmalz für Weizenbiere"
+        }
+      ],
+      "Rauchmalze": [
+        {
+          "id": 23,
+          "name": "Rauchmalz",
+          "color": {
+            "ebc": "3,0–8,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Rauch",
+          "beerTypes": "Rauchbiere, Weizenbiere",
+          "rating": "Basismalz für Rauchbiere"
+        }
+      ],
+      "Funktionale Malze": [
+        {
+          "id": 24,
+          "name": "Sauermalz",
+          "color": {
+            "ebc": "1,5–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "säuerlich",
+          "beerTypes": "alle Biertypen",
+          "rating": "Für pH-Regulierung"
+        },
+        {
+          "id": 25,
+          "name": "Spitzmalz",
+          "color": {
+            "ebc": "2,0–9,0",
+            "category": "hell"
+          },
+          "usage": "bis 10%",
+          "enzymes": "hoch",
+          "aroma": "neutral",
+          "beerTypes": "alle Biertypen",
+          "rating": "Für Schaumstabilisierung"
+        }
+      ]
+    }
   }
 }
