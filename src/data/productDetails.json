@@ -1,0 +1,724 @@
+{
+  "Weyermann Malzfabrik": {
+    "categories": {
+      "Basismalze": [
+        {
+          "id": 1,
+          "name": "WEYERMANN PREMIUM PILSNER MALZ EXTRA HELL",
+          "color": {
+            "ebc": "2,0–3,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "helle Lagerbiere",
+          "rating": "sehr helles Basismalz"
+        },
+        {
+          "id": 2,
+          "name": "WEYERMANN PALE ALE MALZ",
+          "color": {
+            "ebc": "5,5–7,5",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "feine Noten",
+          "beerTypes": "Pale Ales",
+          "rating": "Basismalz"
+        },
+        {
+          "id": 3,
+          "name": "WEYERMANN WIENER MALZ",
+          "color": {
+            "ebc": "6,0–9,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "goldfarbige Lager",
+          "rating": "Basismalz"
+        },
+        {
+          "id": 4,
+          "name": "WEYERMANN MÜNCHNER MALZ TYP 1",
+          "color": {
+            "ebc": "12,0–18,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "mittel",
+          "aroma": "malzig",
+          "beerTypes": "malzbetonte Biere",
+          "rating": "intensives Basismalz"
+        },
+        {
+          "id": 5,
+          "name": "WEYERMANN MÜNCHNER MALZ TYP 2",
+          "color": {
+            "ebc": "20,0–25,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "mittel",
+          "aroma": "ausgeprägt malzig",
+          "beerTypes": "kräftige, dunklere Lager",
+          "rating": "malzbetont"
+        },
+        {
+          "id": 6,
+          "name": "WEYERMANN WEIZENBRAUMALZ HELL",
+          "color": {
+            "ebc": "3,0–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "Brot, Nuss",
+          "beerTypes": "helle Weizenbiere",
+          "rating": "Weizenbasismalz"
+        },
+        {
+          "id": 7,
+          "name": "WEYERMANN WEIZENBRAUMALZ DUNKEL",
+          "color": {
+            "ebc": "5,0–8,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "mittel",
+          "aroma": "Brot, Nuss",
+          "beerTypes": "dunkle Weizenbiere",
+          "rating": "Basismalz"
+        },
+        {
+          "id": 32,
+          "name": "WEYERMANN ROGGENMALZ HELL",
+          "color": {
+            "ebc": "3,0–6,0",
+            "category": "hell"
+          },
+          "usage": "bis 60%",
+          "enzymes": "hoch",
+          "aroma": "typische Roggenwürze",
+          "beerTypes": "Roggenbiere",
+          "rating": "Basismalz"
+        },
+        {
+          "id": 33,
+          "name": "WEYERMANN DINKELMALZ",
+          "color": {
+            "ebc": "3,0–6,0",
+            "category": "hell"
+          },
+          "usage": "bis 50%",
+          "enzymes": "hoch",
+          "aroma": "mild, leicht nussig",
+          "beerTypes": "Dinkelbiere",
+          "rating": "helles Basismalz"
+        },
+        {
+          "id": 36,
+          "name": "WEYERMANN BOHEMIAN (BÖHMISCHES) PILSNER MALZ",
+          "color": {
+            "ebc": "2,5–4,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "böhmisches Pilsner",
+          "rating": "Traditionsbasismalz"
+        },
+        {
+          "id": 37,
+          "name": "WEYERMANN BÖHMISCHES TENNENMALZ PILSNER ART",
+          "color": {
+            "ebc": "2,5–4,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "böhmische Lager",
+          "rating": "traditionelles Basismalz"
+        },
+        {
+          "id": 38,
+          "name": "WEYERMANN DUNKLES BÖHMISCHES TENNENMALZ",
+          "color": {
+            "ebc": "10–18",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "mittel",
+          "aroma": "ausgeprägt malzig",
+          "beertypen": "dunkle Lager",
+          "rating": "traditionell"
+        },
+        {
+          "id": 39,
+          "name": "WEYERMANN ISARIA 1924",
+          "color": {
+            "ebc": "2,0–4,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "helle Lager",
+          "rating": "historisches Basismalz"
+        },
+        {
+          "id": 40,
+          "name": "WEYERMANN ERACLEA PILSNER MALZ",
+          "color": {
+            "ebc": "3,0–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "italienisches Pilsner",
+          "rating": "Basismalz"
+        },
+        {
+          "id": 41,
+          "name": "WEYERMANN BARKE PILSNER MALZ",
+          "color": {
+            "ebc": "2,5–4,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "Pilsner",
+          "rating": "Premium-Basismalz"
+        },
+        {
+          "id": 42,
+          "name": "WEYERMANN BARKE WIENER MALZ",
+          "color": {
+            "ebc": "6,0–9,0",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "Wiener Lager",
+          "rating": "Basismalz"
+        },
+        {
+          "id": 43,
+          "name": "WEYERMANN BARKE MÜNCHNER MALZ",
+          "color": {
+            "ebc": "12,0–18,0",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "mittel",
+          "aroma": "ausgeprägt malzig",
+          "beerTypes": "Münchner Lager",
+          "rating": "intensiv"
+        }
+      ],
+      "Spezialmalze": [
+        {
+          "id": 11,
+          "name": "WEYERMANN MELANOIDINMALZ",
+          "color": {
+            "ebc": "60–80",
+            "category": "rot"
+          },
+          "usage": "bis 20%",
+          "enzymes": "gering",
+          "aroma": "ausgeprägt malzig",
+          "beerTypes": "rötliche Biere",
+          "rating": "intensives Spezialmalz"
+        },
+        {
+          "id": 12,
+          "name": "WEYERMANN CARAWHEAT",
+          "color": {
+            "ebc": "40–60",
+            "category": "bernstein"
+          },
+          "usage": "bis 30%",
+          "enzymes": "gering",
+          "aroma": "weizenartige, süße Noten",
+          "beerTypes": "Weizen",
+          "rating": "Spezialmalz"
+        },
+        {
+          "id": 20,
+          "name": "WEYERMANN CARARAY",
+          "color": {
+            "ebc": "5–10",
+            "category": "hell"
+          },
+          "usage": "bis 30%",
+          "enzymes": "keine",
+          "aroma": "Roggen, würzig",
+          "beerTypes": "Roggenbiere",
+          "rating": "Spezialmalz"
+        },
+        {
+          "id": 34,
+          "name": "WEYERMANN ABBEY MALT (KLOSTERMALZ)",
+          "color": {
+            "ebc": "40–50",
+            "category": "bernstein"
+          },
+          "usage": "bis 50%",
+          "enzymes": "mittel",
+          "aroma": "Honig, Brot",
+          "beerTypes": "Belgische Spezialbiere",
+          "rating": "aromatisches Spezialmalz"
+        },
+        {
+          "id": 35,
+          "name": "WEYERMANN SPECIAL W",
+          "color": {
+            "ebc": "280–350",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 20%",
+          "enzymes": "keine",
+          "aroma": "intensive, belgische Karamellnoten",
+          "beerTypes": "dunkle belgische Spezialbiere",
+          "rating": "dunkles Spezialmalz"
+        }
+      ],
+      "Karamellmalze": [
+        {
+          "id": 13,
+          "name": "WEYERMANN CARAPILS",
+          "color": {
+            "ebc": "2,0–3,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 40%",
+          "enzymes": "keine",
+          "aroma": "leichte Süße",
+          "beerTypes": "alle Bierstile",
+          "rating": "Verbesserung der Vollmundigkeit"
+        },
+        {
+          "id": 14,
+          "name": "WEYERMANN CARAHELL",
+          "color": {
+            "ebc": "20–30",
+            "category": "bernstein"
+          },
+          "usage": "bis 30%",
+          "enzymes": "keine",
+          "aroma": "feine Karamellnoten",
+          "beerTypes": "Belgische, helle Lager",
+          "rating": "leichtes Karamellmalz"
+        },
+        {
+          "id": 15,
+          "name": "WEYERMANN CARAAMBER",
+          "color": {
+            "ebc": "30–40",
+            "category": "bernstein"
+          },
+          "usage": "bis 30%",
+          "enzymes": "keine",
+          "aroma": "karamellig",
+          "beerTypes": "rötliche Biere",
+          "rating": "mittleres Caramelmalz"
+        },
+        {
+          "id": 16,
+          "name": "WEYERMANN CARARED",
+          "color": {
+            "ebc": "40–60",
+            "category": "rot"
+          },
+          "usage": "bis 20%",
+          "enzymes": "keine",
+          "aroma": "rötliches, karamelliges Aroma",
+          "beerTypes": "Rotbiere",
+          "rating": "Spezialmalz"
+        },
+        {
+          "id": 17,
+          "name": "WEYERMANN CARAMÜNCH TYP 1",
+          "color": {
+            "ebc": "80–100",
+            "category": "rotbraun"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "süßlich",
+          "beerTypes": "Amber Lager",
+          "rating": "intensives Karamell"
+        },
+        {
+          "id": 18,
+          "name": "WEYERMANN CARAMÜNCH TYP 2",
+          "color": {
+            "ebc": "110–130",
+            "category": "rotbraun"
+          },
+          "usage": "bis 10%",
+          "enzymes": "keine",
+          "aroma": "süßlich",
+          "beerTypes": "Amber Lager",
+          "rating": "sehr intensives Karamell"
+        },
+        {
+          "id": 19,
+          "name": "WEYERMANN CARAMÜNCH TYP 3",
+          "color": {
+            "ebc": "130–150",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "süßlich, dunkelmalzig",
+          "beerTypes": "dunkle Lager",
+          "rating": "stärkstes Caramelmalz"
+        },
+        {
+          "id": 21,
+          "name": "WEYERMANN CARABOHEMIAN",
+          "color": {
+            "ebc": "160–200",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 20%",
+          "enzymes": "keine",
+          "aroma": "Karamell, mild röstig",
+          "beerTypes": "böhmische Lager, Spezialbiere",
+          "rating": "spezielles Caramelmalz"
+        },
+        {
+          "id": 22,
+          "name": "WEYERMANN CARAAROMA",
+          "color": {
+            "ebc": "350–450",
+            "category": "dunkelbraun"
+          },
+          "usage": "bis 15%",
+          "enzymes": "keine",
+          "aroma": "intensive Röst- und Aromakomponenten",
+          "beerTypes": "dunkle, aromatische Biere",
+          "rating": "sehr intensives Aromamalz"
+        }
+      ],
+      "Röstmalze": [
+        {
+          "id": 23,
+          "name": "WEYERMANN CARAFA TYP 1",
+          "color": {
+            "ebc": "800–1000",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Kaffee, Röstnoten",
+          "beerTypes": "dunkle Biere",
+          "rating": "klassisches Röstmalz"
+        },
+        {
+          "id": 24,
+          "name": "WEYERMANN CARAFA TYP 2",
+          "color": {
+            "ebc": "1000–1200",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "kräftigere Kaffeenoten",
+          "beerTypes": "dunkle Biere",
+          "rating": "intensives Röstmalz"
+        },
+        {
+          "id": 25,
+          "name": "WEYERMANN CARAFA TYP 3",
+          "color": {
+            "ebc": "1100–1300",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "sehr kräftige Röstnoten",
+          "beerTypes": "dunkle Biere",
+          "rating": "stärkstes klassisches Carafa"
+        },
+        {
+          "id": 26,
+          "name": "WEYERMANN CARAFA SPEZIAL TYP 1",
+          "color": {
+            "ebc": "800–1000",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "Kaffee, mild röstig",
+          "beerTypes": "dunkle Biere",
+          "rating": "entpelztes Röstmalz (weicher im Geschmack)"
+        },
+        {
+          "id": 27,
+          "name": "WEYERMANN CARAFA SPEZIAL TYP 2",
+          "color": {
+            "ebc": "1000–1200",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "kräftiges, aber weiches Röstprofil",
+          "beerTypes": "dunkle Biere",
+          "rating": "entpelzt, intensiver"
+        },
+        {
+          "id": 28,
+          "name": "WEYERMANN CARAFA SPEZIAL TYP 3",
+          "color": {
+            "ebc": "1300–1500",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "sehr kräftig, tiefe Röstnoten",
+          "beerTypes": "dunkle, aromatische Biere",
+          "rating": "entpelzt, sehr intensiv"
+        },
+        {
+          "id": 29,
+          "name": "WEYERMANN RÖSTGERSTE",
+          "color": {
+            "ebc": "1300–1500",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "typische Stout-/Porter-Röstaromen",
+          "beerTypes": "Porter, Stout",
+          "rating": "unvermälzte Röstgerste"
+        },
+        {
+          "id": 30,
+          "name": "WEYERMANN ROGGENRÖSTMALZ",
+          "color": {
+            "ebc": "5–10",
+            "category": "hell"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "intensive Röst- und Roggenwürze",
+          "beerTypes": "Roggenbiere",
+          "rating": "Spezial-Röstmalz"
+        },
+        {
+          "id": 54,
+          "name": "WEYERMANN WEIZENRÖSTMALZ",
+          "color": {
+            "ebc": "1300–1500",
+            "category": "schwarz"
+          },
+          "usage": "bis 5%",
+          "enzymes": "keine",
+          "aroma": "intensive Röstnoten",
+          "beerTypes": "dunkle Weizenbiere",
+          "rating": "Röstmalz"
+        }
+      ],
+      "Rauchmalze": [
+        {
+          "id": 8,
+          "name": "WEYERMANN EICHENRAUCH-WEIZENMALZ",
+          "color": {
+            "ebc": "4,0–6,0",
+            "category": "hell"
+          },
+          "usage": "bis 80%",
+          "enzymes": "hoch",
+          "aroma": "feine Rauch- und Holznoten",
+          "beerTypes": "Weizenbiere",
+          "rating": "einzigartig"
+        },
+        {
+          "id": 9,
+          "name": "WEYERMANN BUCHENRAUCH-GERSTENMALZ",
+          "color": {
+            "ebc": "3,0–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "hoch",
+          "aroma": "kräftige Rauchnoten",
+          "beerTypes": "Rauchbier",
+          "rating": "starkes Rauchmalz"
+        }
+      ],
+      "Funktionale Malze": [
+        {
+          "id": 10,
+          "name": "WEYERMANN SAUERMALZ",
+          "color": {
+            "ebc": "1,5–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "1–10%",
+          "enzymes": "erhöht",
+          "aroma": "fruchtig-säuerlich",
+          "beerTypes": "pH-Optimierung für alle Bierstile",
+          "rating": "funktionales Malz"
+        },
+        {
+          "id": 31,
+          "name": "WEYERMANN GERSTENDIASTASEMALZ",
+          "color": {
+            "ebc": "2,5–4,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 10%",
+          "enzymes": "sehr hoch",
+          "aroma": "malzig-süß",
+          "beerTypes": "Biere mit geringem Enzymgehalt",
+          "rating": "sehr enzymstark"
+        },
+        {
+          "id": 44,
+          "name": "WEYERMANN SINAMAR (Flüssig-Röstmalzbier)",
+          "color": {
+            "ebc": "1300–1500",
+            "category": "schwarz"
+          },
+          "usage": "nach Bedarf",
+          "enzymes": "keine",
+          "aroma": "farbgebend, röstig",
+          "beerTypes": "Farbkorrektur",
+          "rating": "flüssiges Röstmalz"
+        },
+        {
+          "id": 45,
+          "name": "WEYERMANN SAUERGUT",
+          "color": {
+            "ebc": "1,5–5,0",
+            "category": "sehr hell"
+          },
+          "usage": "nach Bedarf",
+          "enzymes": "keine",
+          "aroma": "fruchtig-säuerlich",
+          "beerTypes": "pH-Korrektur",
+          "rating": "funktionales Produkt"
+        }
+      ],
+      "Extrakte": [
+        {
+          "id": 46,
+          "name": "WEYERMANN BAVARIAN PILSNER MALZ (Extrakt)",
+          "color": {
+            "ebc": "2,5–4,5",
+            "category": "sehr hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "malzig-süß",
+          "beerTypes": "Pilsner",
+          "rating": "ungehopfter Extrakt"
+        },
+        {
+          "id": 47,
+          "name": "WEYERMANN BAVARIAN HEFEWEIZEN (Extrakt)",
+          "color": {
+            "ebc": "5–10",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "Weizen, Banane",
+          "beerTypes": "Hefeweizen",
+          "rating": "ungehopfter Extrakt"
+        },
+        {
+          "id": 48,
+          "name": "WEYERMANN BAVARIAN DUNKEL (Extrakt)",
+          "color": {
+            "ebc": "12–18",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "Malz, Karamell",
+          "beerTypes": "Dunkel",
+          "rating": "ungehopft"
+        },
+        {
+          "id": 49,
+          "name": "WEYERMANN BAVARIAN MAIBOCK (Extrakt)",
+          "color": {
+            "ebc": "30–40",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "malzig",
+          "beerTypes": "Maibock",
+          "rating": "ungehopft"
+        },
+        {
+          "id": 50,
+          "name": "WEYERMANN MUNICH AMBER (Extrakt)",
+          "color": {
+            "ebc": "30–40",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "Malz, Karamell",
+          "beerTypes": "Amber Lager",
+          "rating": "ungehopft"
+        },
+        {
+          "id": 51,
+          "name": "WEYERMANN MUNICH OCTOBER BEER (Extrakt)",
+          "color": {
+            "ebc": "20–30",
+            "category": "bernstein"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "Malz, Honig",
+          "beerTypes": "Oktoberfestbier",
+          "rating": "ungehopft"
+        },
+        {
+          "id": 52,
+          "name": "WEYERMANN BAMBERG RAUCH (Extrakt)",
+          "color": {
+            "ebc": "5–10",
+            "category": "hell"
+          },
+          "usage": "bis 100%",
+          "enzymes": "keine",
+          "aroma": "Rauch",
+          "beerTypes": "Rauchbier",
+          "rating": "ungehopfter Rauch-Extrakt"
+        }
+      ],
+      "Sonstiges": [
+        {
+          "id": 53,
+          "name": "WEYERMANN TROCKENHEFEN",
+          "color": {
+            "ebc": "N/A",
+            "category": "N/A"
+          },
+          "usage": "N/A",
+          "enzymes": "N/A",
+          "aroma": "N/A",
+          "beerTypes": "N/A",
+          "rating": "Hefeprodukt"
+        }
+      ]
+    }
+  }
+}

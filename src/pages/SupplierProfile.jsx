@@ -6,12 +6,15 @@
 import React, { useState, useEffect } from 'react'
 import { dataService } from '../services/dataService'
 import esgAnalysisData from '../data/esgAnalysis.json'
+import productDetailsData from '../data/productDetails.json'
 import '../styles/SupplierProfile.css'
 
 function SupplierProfile({ supplierId, navigateTo }) {
   const [loading, setLoading] = useState(true)
   const [supplier, setSupplier] = useState(null)
   const [error, setError] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false)
 
   useEffect(() => {
     if (supplierId) {
@@ -97,6 +100,47 @@ function SupplierProfile({ supplierId, navigateTo }) {
   const getESGAnalysis = () => {
     if (!supplier || !esgAnalysisData) return null
     return esgAnalysisData.suppliers[supplier.name] || null
+  }
+
+  /**
+   * Get product details for current supplier
+   */
+  const getProductDetails = () => {
+    if (!supplier || !productDetailsData) return null
+    return productDetailsData[supplier.name] || null
+  }
+
+  /**
+   * Handle product click
+   */
+  const handleProductClick = (product) => {
+    setSelectedProduct(product)
+    setIsProductModalOpen(true)
+  }
+
+  /**
+   * Close product modal
+   */
+  const closeProductModal = () => {
+    setIsProductModalOpen(false)
+    setTimeout(() => setSelectedProduct(null), 300) // Wait for animation
+  }
+
+  /**
+   * Get color badge class based on EBC value
+   */
+  const getColorBadgeClass = (category) => {
+    const colorMap = {
+      'sehr hell': 'color-badge-very-light',
+      'hell': 'color-badge-light',
+      'bernstein': 'color-badge-amber',
+      'rot': 'color-badge-red',
+      'rotbraun': 'color-badge-red-brown',
+      'dunkelbraun': 'color-badge-dark-brown',
+      'schwarz': 'color-badge-black',
+      'N/A': 'color-badge-na'
+    }
+    return colorMap[category] || 'color-badge-light'
   }
 
   if (loading) {
@@ -278,11 +322,68 @@ function SupplierProfile({ supplierId, navigateTo }) {
           <h2 className="card-title">Produkte & Dienstleistungen</h2>
         </div>
         <div className="card-body">
-          <div className="product-list">
-            {supplier.products.map((product, index) => (
-              <span key={index} className="product-tag">{product}</span>
-            ))}
-          </div>
+          {(() => {
+            const productDetails = getProductDetails()
+
+            if (!productDetails) {
+              // Fallback to simple product tags for suppliers without detailed products
+              return (
+                <div className="product-list">
+                  {supplier.products.map((product, index) => (
+                    <span key={index} className="product-tag">{product}</span>
+                  ))}
+                </div>
+              )
+            }
+
+            // Enhanced product display with categories for suppliers with detailed products
+            return (
+              <div className="products-enhanced">
+                <p className="products-intro">
+                  Klicken Sie auf ein Produkt, um detaillierte Informationen zu sehen.
+                </p>
+                {Object.entries(productDetails.categories).map(([categoryName, products]) => (
+                  <div key={categoryName} className="product-category-section">
+                    <h3 className="product-category-title">{categoryName}</h3>
+                    <div className="product-cards-grid">
+                      {products.map((product) => (
+                        <div
+                          key={product.id}
+                          className="product-card"
+                          onClick={() => handleProductClick(product)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyPress={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              handleProductClick(product)
+                            }
+                          }}
+                          aria-label={`Details zu ${product.name}`}
+                        >
+                          <div className="product-card-header">
+                            <span className={`product-color-badge ${getColorBadgeClass(product.color.category)}`}>
+                              {product.color.ebc} EBC
+                            </span>
+                          </div>
+                          <h4 className="product-card-name">{product.name}</h4>
+                          <div className="product-card-info">
+                            <span className="product-info-item">
+                              <span className="product-info-icon">🎨</span>
+                              {product.color.category}
+                            </span>
+                            <span className="product-info-item">
+                              <span className="product-info-icon">📊</span>
+                              {product.usage}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )
+          })()}
         </div>
       </div>
 
@@ -659,6 +760,114 @@ function SupplierProfile({ supplierId, navigateTo }) {
           )}
         </div>
       </div>
+
+      {/* Product Details Modal */}
+      {isProductModalOpen && selectedProduct && (
+        <div
+          className={`product-modal-overlay ${isProductModalOpen ? 'modal-open' : ''}`}
+          onClick={closeProductModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="product-modal-title"
+        >
+          <div
+            className="product-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="product-modal-close"
+              onClick={closeProductModal}
+              aria-label="Schließen"
+            >
+              ✕
+            </button>
+
+            <div className="product-modal-header">
+              <span className={`product-modal-color-badge ${getColorBadgeClass(selectedProduct.color.category)}`}>
+                {selectedProduct.color.ebc} EBC
+              </span>
+              <h2 id="product-modal-title" className="product-modal-title">
+                {selectedProduct.name}
+              </h2>
+              <p className="product-modal-subtitle">{selectedProduct.rating}</p>
+            </div>
+
+            <div className="product-modal-body">
+              <div className="product-modal-grid">
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">🎨</span>
+                    Farbe
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.color.ebc} EBC</div>
+                    <div className="product-modal-detail-secondary">{selectedProduct.color.category}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">📊</span>
+                    Einsatz
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.usage}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">⚗️</span>
+                    Enzyme
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.enzymes}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">👃</span>
+                    Aroma
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.aroma}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail product-modal-detail-full">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">🍺</span>
+                    Biertypen
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.beerTypes}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail product-modal-detail-full product-modal-rating">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">⭐</span>
+                    Bewertung
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.rating}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="product-modal-footer">
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={closeProductModal}
+              >
+                Schließen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
