@@ -184,9 +184,16 @@
         "userId": "VERIFIED-DATA"
       }
     ],
-    "documents": [],
+    "documents": [
+      {
+        "name": "Nachhaltigkeitsbericht 2021",
+        "type": "sustainability-report",
+        "url": "/documents/weyermann-nachhaltigkeitsbericht-2021.pdf",
+        "date": "2021-01-01"
+      }
+    ],
     "addedDate": "2025-11-10",
-    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "lastUpdated": "2025-11-18T13:00:00.000Z",
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
@@ -351,9 +358,16 @@
         "userId": "VERIFIED-DATA"
       }
     ],
-    "documents": [],
+    "documents": [
+      {
+        "name": "Nachhaltigkeit",
+        "type": "sustainability-page",
+        "url": "https://bestmalz.de/best-world/nachhaltigkeit/",
+        "date": "2025-11-18"
+      }
+    ],
     "addedDate": "2025-11-10",
-    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "lastUpdated": "2025-11-18T13:00:00.000Z",
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
@@ -486,9 +500,16 @@
         "userId": "VERIFIED-DATA"
       }
     ],
-    "documents": [],
+    "documents": [
+      {
+        "name": "Nachhaltigkeit",
+        "type": "sustainability-page",
+        "url": "https://www.ireks.de/ueber-uns/nachhaltigkeit",
+        "date": "2025-11-18"
+      }
+    ],
     "addedDate": "2025-11-10",
-    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "lastUpdated": "2025-11-18T13:00:00.000Z",
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
@@ -626,9 +647,16 @@
         "userId": "VERIFIED-DATA"
       }
     ],
-    "documents": [],
+    "documents": [
+      {
+        "name": "Sustainability",
+        "type": "sustainability-page",
+        "url": "https://www.avangard-malz.de/sustainability/",
+        "date": "2025-11-18"
+      }
+    ],
     "addedDate": "2025-11-10",
-    "lastUpdated": "2025-11-10T12:00:00.000Z",
+    "lastUpdated": "2025-11-18T13:00:00.000Z",
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
@@ -766,9 +794,16 @@
         "userId": "VERIFIED-DATA"
       }
     ],
-    "documents": [],
+    "documents": [
+      {
+        "name": "Nachhaltigkeit",
+        "type": "sustainability-page",
+        "url": "https://www.donau-malz.de/nachhaltigkeit.cfm",
+        "date": "2025-11-18"
+      }
+    ],
     "addedDate": "2025-11-11",
-    "lastUpdated": "2025-11-11T12:00:00.000Z",
+    "lastUpdated": "2025-11-18T13:00:00.000Z",
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
@@ -882,9 +917,16 @@
         "userId": "VERIFIED-DATA"
       }
     ],
-    "documents": [],
+    "documents": [
+      {
+        "name": "Unternehmen",
+        "type": "company-page",
+        "url": "https://www.erfurter-malzwerke.de/unternehmen/",
+        "date": "2025-11-18"
+      }
+    ],
     "addedDate": "2025-11-18",
-    "lastUpdated": "2025-11-18T12:00:00.000Z",
+    "lastUpdated": "2025-11-18T13:00:00.000Z",
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
