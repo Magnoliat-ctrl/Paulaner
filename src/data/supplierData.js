@@ -545,6 +545,182 @@ export const mockSuppliers = [
     ],
     addedDate: '2022-01-15',
     lastUpdated: '2024-10-18'
+  },
+  {
+    id: 'SUP-006',
+    name: 'Bestmalz GmbH',
+    description: 'Traditionsreiche Mälzerei mit drei Standorten in Deutschland - spezialisiert auf Premium-Braumalze',
+    category: 'Rohstoffe - Malz',
+    contact: {
+      email: 'info@bestmalz.de',
+      phone: '+49 (0)6221 6466-0',
+      website: 'www.bestmalz.de',
+      person: 'Unbekannt',
+      position: 'Kundenbetreuung'
+    },
+    location: {
+      street: 'Am Betriebswerk 5',
+      city: 'Heidelberg',
+      postalCode: '69115',
+      country: 'Deutschland',
+      region: 'Baden-Württemberg',
+      additionalLocations: [
+        {
+          name: 'Mälzerei Kreimbach',
+          street: 'Schmeißbacher Mühle',
+          city: 'Kreimbach-Kaulbach',
+          postalCode: '67757'
+        },
+        {
+          name: 'Mälzerei Wallertheim',
+          street: 'Industriestraße 1',
+          city: 'Wallertheim',
+          postalCode: '55578'
+        }
+      ]
+    },
+    certifications: [
+      'DE-ÖKO-005',
+      'HACCP',
+      'CCF',
+      'NDMA',
+      'EnMS',
+      'SGS',
+      'Kosher',
+      'QS',
+      'QM'
+    ],
+    performance: {
+      averageDeliveryTime: 3.2,
+      onTimeDeliveryRate: 95.5,
+      defectRate: 0.7,
+      responseTime: 5,
+      flexibilityScore: 8.8,
+      innovationScore: 9.3
+    },
+    compliance: {
+      status: 'compliant',
+      lastAudit: '2024-09-20',
+      violations: [],
+      humanRights: true,
+      environmentalStandards: true,
+      laborStandards: true
+    },
+    ratings: [
+      {
+        date: '2024-10-01',
+        overallScore: 8.9,
+        categories: {
+          quality: 9.2,
+          delivery: 8.8,
+          cost: 8.7,
+          reliability: 9.0,
+          innovation: 9.4,
+          communication: 8.5,
+          esg: 8.7
+        },
+        comment: 'Hervorragende Malzqualität mit innovativen Spezialsorten wie Red X®'
+      },
+      {
+        date: '2024-07-15',
+        overallScore: 8.7,
+        categories: {
+          quality: 9.0,
+          delivery: 8.5,
+          cost: 8.5,
+          reliability: 8.8,
+          innovation: 9.2,
+          communication: 8.3,
+          esg: 8.6
+        },
+        comment: 'Zuverlässiger Partner mit breitem Produktportfolio'
+      }
+    ],
+    products: [
+      'Heidelberger',
+      'Pilsener Malz',
+      'Pale Ale',
+      'Wiener',
+      'Münchner',
+      'Münchner Dunkel',
+      'Melanoidin',
+      'Melanoidin Light',
+      'Caramel® Pils',
+      'Caramel® Hell',
+      'Caramel® Aroma',
+      'Caramel® Amber',
+      'Caramel® Munich I',
+      'Caramel® Munich II',
+      'Caramel® Munich III',
+      'Caramel® Weizenmalz',
+      'Caramel® Roggenmalz',
+      'A-XL',
+      'Biscuit',
+      'Chocolate',
+      'Hafermalz',
+      'Dinkelmalz',
+      'Heidelberger Weizenmalz',
+      'Rauchmalz',
+      'Red X®',
+      'Roggenmalz',
+      'Röstgerste',
+      'Röstmalz',
+      'Röstmalz eXtra',
+      'Röstweizen Dunkel',
+      'Röstweizen Hell',
+      'Röstweizen Medium',
+      'Sauermalz',
+      'Special X®',
+      'Spitzmalz',
+      'Weizenmalz',
+      'Weizenmalz Dunkel',
+      'Diastase Malz',
+      'Diastase Weizenmalz',
+      'Cherry Ember Smoked',
+      'Beechwood Smoked'
+    ],
+    esg: {
+      environmental: {
+        carbonFootprint: 'Mittel',
+        waterUsage: 'Effizient',
+        wasteManagement: 'Gut',
+        renewableEnergy: 70
+      },
+      social: {
+        fairWages: true,
+        workingConditions: 'Sehr gut',
+        employeeTraining: true,
+        diversityScore: 8.2
+      },
+      governance: {
+        transparency: 'Hoch',
+        ethicalBusiness: true,
+        antiCorruption: true,
+        dataProtection: true
+      }
+    },
+    documents: [
+      {
+        name: 'Bio-Zertifikat DE-ÖKO-005',
+        type: 'certificate',
+        url: '/documents/bestmalz-bio-cert.pdf',
+        date: '2024-01-10'
+      },
+      {
+        name: 'HACCP-Zertifikat',
+        type: 'certificate',
+        url: '/documents/bestmalz-haccp.pdf',
+        date: '2024-03-15'
+      },
+      {
+        name: 'Qualitätsbericht 2024',
+        type: 'quality-report',
+        url: '/documents/bestmalz-quality-2024.pdf',
+        date: '2024-06-01'
+      }
+    ],
+    addedDate: '2019-08-10',
+    lastUpdated: '2024-10-28'
   }
 ]
 
