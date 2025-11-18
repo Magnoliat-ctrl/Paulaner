@@ -746,5 +746,121 @@
     "verificationNeeded": false,
     "dataSource": "Verified data",
     "isAIGenerated": false
+  },
+  {
+    "name": "Erfurter Malzwerke",
+    "description": "Traditionsreiche Mälzerei mit zwei Standorten in Deutschland - Erfurt und Hamburg. Spezialisiert auf hochwertige Basis- und Spezialmalze für Brauereien.",
+    "category": "Malz",
+    "contact": {
+      "email": "post@erfurter-malzwerke.de",
+      "phone": "+49 (0)3612 1034-0",
+      "website": "www.erfurter-malzwerke.de",
+      "person": "Oliver Matheis",
+      "position": "Ansprechpartner"
+    },
+    "location": {
+      "street": "Am Malzwerk 1",
+      "city": "Erfurt",
+      "postalCode": "99086",
+      "country": "Deutschland",
+      "region": "Thüringen"
+    },
+    "locations": [
+      {
+        "street": "Am Malzwerk 1",
+        "city": "Erfurt",
+        "postalCode": "99086",
+        "country": "Deutschland",
+        "region": "Thüringen",
+        "type": "Erfurter Malzwerke"
+      },
+      {
+        "street": "Eversween 11",
+        "city": "Hamburg",
+        "postalCode": "21107",
+        "country": "Deutschland",
+        "region": "Hamburg",
+        "type": "Hamburger Malzwerk"
+      }
+    ],
+    "products": [
+      "Pilsener Malz",
+      "Weizenmalz",
+      "Münchner Malz",
+      "Wiener Malz",
+      "Karamellmalz"
+    ],
+    "certifications": [
+      "ISO 22000",
+      "ISO 50001"
+    ],
+    "performance": {
+      "averageDeliveryTime": 3.0,
+      "onTimeDeliveryRate": 94.0,
+      "defectRate": 1.0,
+      "responseTime": 24,
+      "flexibilityScore": 8.0,
+      "innovationScore": 7.5
+    },
+    "compliance": {
+      "status": "compliant",
+      "humanRights": true,
+      "environmentalStandards": true,
+      "laborStandards": true,
+      "violations": []
+    },
+    "esg": {
+      "environmental": {
+        "carbonFootprint": "Mittel",
+        "waterUsage": "Gut",
+        "wasteManagement": "Recycling",
+        "renewableEnergy": 60
+      },
+      "social": {
+        "fairWages": true,
+        "workingConditions": "Gut",
+        "employeeTraining": true,
+        "diversityScore": 7.5
+      },
+      "governance": {
+        "transparency": "Mittel",
+        "ethicalBusiness": true,
+        "antiCorruption": true,
+        "dataProtection": true
+      }
+    },
+    "ratings": [
+      {
+        "id": "VERIFIED-ERFURTER-001",
+        "date": "2025-11-18",
+        "overallScore": 8.2,
+        "categories": {
+          "Qualität": 8.5,
+          "Lieferleistung": 8.0,
+          "Kosten": 8.5,
+          "Zuverlässigkeit": 8.0,
+          "Innovation": 7.5,
+          "Kommunikation": 8.0,
+          "ESG-Compliance": 8.5
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferleistung": 20,
+          "Kosten": 15,
+          "Zuverlässigkeit": 15,
+          "Innovation": 10,
+          "Kommunikation": 10,
+          "ESG-Compliance": 10
+        },
+        "comment": "Zuverlässiger Mälzer mit zwei strategisch guten Standorten in Erfurt und Hamburg. Solide Basismalze und gutes Preis-Leistungs-Verhältnis.",
+        "userId": "VERIFIED-DATA"
+      }
+    ],
+    "documents": [],
+    "addedDate": "2025-11-18",
+    "lastUpdated": "2025-11-18T12:00:00.000Z",
+    "verificationNeeded": false,
+    "dataSource": "Verified data",
+    "isAIGenerated": false
   }
 ]
