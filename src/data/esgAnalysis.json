@@ -18,44 +18,105 @@
     "Weyermann Malzfabrik GmbH & Co. KG": {
       "overallESGScore": 8.5,
       "rating": "Very Good",
-      "dataQuality": "Gut - Nachhaltigkeitsbericht vorhanden, umfangreiche Zertifizierungen",
+      "dataQuality": "Exzellent - Umfassender Nachhaltigkeitsbericht 2021 mit konkreten Kennzahlen",
       "environmental": {
         "score": 8.0,
         "rating": "Very Good",
         "carbonFootprint": {
-          "level": "Daten aus Nachhaltigkeitsbericht 2021",
-          "dataAvailability": "Bericht vorhanden, aber nicht digital einsehbar"
+          "level": "2.853 t CO₂ eingespart durch 100% Ökostrom",
+          "savings": "2.853 Tonnen CO₂-Äquivalente (2021)",
+          "verification": "Nachhaltigkeitsbericht 2021, Seite Energie"
         },
         "energyManagement": {
-          "dataAvailability": "Im Nachhaltigkeitsbericht 2021 enthalten",
-          "certifications": ["FSSC 22000 umfasst Umweltaspekte"]
+          "renewableEnergyPercentage": 100,
+          "details": "100% Ökostrom (Wasserkraft) + PV + Wasserstoff-BHKW",
+          "infrastructure": [
+            "100% Ökostrom aus Wasserkraft an drei Standorten",
+            "Eigene PV-Anlage",
+            "Blockheizkraftwerke in Haßfurt mit 10-15% erneuerbarem Wasserstoff"
+          ],
+          "certifications": ["ISO 50001 Energiemanagement"]
         },
         "waterManagement": {
-          "dataAvailability": "Begrenzt"
+          "efficiency": "Wasserautark, 4,76 m³/t, 4% Einsparung durch Prozessoptimierung",
+          "consumption": "4,76 m³ Wasser pro Tonne Produkt",
+          "reduction": "4% Wasserreduktion durch optimierte Weiche",
+          "infrastructure": "Wasserautark durch 4 eigene Tiefbrunnen",
+          "quality": "Biologisch unbedenkliche Abwasserfracht",
+          "innovation": "Prüfung zur Nutzung der Abwasserfracht als Energie"
         },
         "wasteManagement": {
-          "dataAvailability": "Begrenzt"
+          "level": "Recyclingoptimierung, Big Bags, FSC, Upcycling, Papieralternativen in Entwicklung",
+          "initiatives": [
+            "PP/PE-Säcke: Ziel höherer Recyclinganteil",
+            "Big Bags zur Reduktion von Verpackungsmaterial",
+            "Upcycling-Projekte (z.B. als Dämmmaterial)",
+            "FSC-zertifizierte Paletten",
+            "Forschung an einlagigen oder Papier-Alternativen"
+          ]
         },
         "keyAchievements": [
-          "Nachhaltigkeitsbericht 2021 veröffentlicht",
-          "Umfassende Bio-Zertifizierungen (Bioland, Demeter, Bio Suisse, Naturland)",
-          "FSSC 22000 - Lebensmittelsicherheit und Qualität"
+          "2.853 Tonnen CO₂ eingespart durch 100% Ökostrom (2021)",
+          "Big-Bag-Abfüllanlage zur Verpackungsreduktion",
+          "Eigene PV-Anlage und Wasserstoff-Blockheizkraftwerke",
+          "ISO 50001 Energiemanagement",
+          "Wasserautark durch 4 eigene Tiefbrunnen",
+          "4% Wasserreduktion durch Prozessoptimierung"
         ]
       },
       "social": {
         "score": 8.0,
         "rating": "Very Good",
-        "dataAvailability": "Begrenzt - Familienunternehmen-Status bekannt",
+        "dataAvailability": "Sehr gut - detaillierte Angaben im Nachhaltigkeitsbericht",
         "employeeWelfare": {
-          "dataAvailability": "Nicht öffentlich dokumentiert"
+          "workingConditions": "Übertariflich, Zusatzleistungen, Mobilarbeit, familienfreundlich, geringe Fluktuation",
+          "benefits": [
+            "Übertarifliche Bezahlung",
+            "Betriebliche Altersvorsorge",
+            "Zusatzkrankenversicherung (50% Zuschuss)",
+            "Mobilarbeit möglich",
+            "Kinderbetreuungsvorteile"
+          ],
+          "culture": "Viele interne Events, Wertschätzungskultur, Teamkleidung, kleine Geschenke",
+          "retention": "Sehr niedrige Fluktuation: 8,1%",
+          "health": [
+            "24/7-Krisenhotline",
+            "Meditation und Bachblütenberatung",
+            "Gesundheitsförderung in Kantine (keine Zusatzstoffe, Subventionierung)",
+            "Sicheres Corona-Arbeitskonzept"
+          ]
+        },
+        "trainingPrograms": true,
+        "trainingDetails": {
+          "participants": "107 Mitarbeitende geschult (trotz Corona)",
+          "programs": [
+            "Führungskräftetrainings",
+            "Fremdsprachenkurse & Zertifikate",
+            "Kommunikationsprogramm 'Lingva Eterna®'",
+            "Fachtrainings im Labor, Mälzerei, Logistik",
+            "Bibliothek & Fachmagazine"
+          ],
+          "diversity": "WOMENPOWER-Programm zur Förderung von Frauen"
         },
         "communityEngagement": {
-          "level": "Familienunternehmen mit über 140 Jahren Tradition",
-          "dataAvailability": "Begrenzt"
+          "level": "Starkes Engagement: Kundenbildung, Seminare, regionale Landwirtschaft",
+          "activities": [
+            "Gästezentrum für Besucher & Seminare",
+            "Öffentliche Führungen & Tastings",
+            "Malz Aroma Rad® als Bildungstool",
+            "Sehr starker Kundendialog (multilingual)",
+            "Unterstützung von Slow Food Deutschland",
+            "Förderung regionaler Landwirtschaft (Getreideanbau)"
+          ],
+          "heritage": "Familienunternehmen seit 1879, Weltmarktführer bei Spezialmalzen"
         },
         "keyAchievements": [
-          "Familienunternehmen seit 1879",
-          "Weltmarktführer bei Spezialmalzen"
+          "Nur 8,1% Fluktuation - sehr hohe Mitarbeiterbindung",
+          "107 Mitarbeitende geschult trotz Corona",
+          "WOMENPOWER-Programm für Geschlechtergerechtigkeit",
+          "24/7-Krisenhotline und umfassende Gesundheitsförderung",
+          "Gästezentrum mit öffentlichen Führungen und Seminaren",
+          "Malz Aroma Rad® als internationales Bildungstool"
         ]
       },
       "governance": {
@@ -63,8 +124,12 @@
         "rating": "Excellent",
         "transparency": {
           "level": "Sehr hoch",
-          "reporting": ["Nachhaltigkeitsbericht 2021 verfügbar"],
-          "communication": "Professionell"
+          "reporting": [
+            "Erstmaliger umfassender Nachhaltigkeitsbericht 2021",
+            "Detaillierte Zahlen zu Wasser, Energie, Lieferkette, Mitarbeitende",
+            "Klar formulierte Ziele bis 2035"
+          ],
+          "communication": "Professionell und transparent"
         },
         "certifications": [
           "ISO 9001 - Qualitätsmanagement",
@@ -81,25 +146,49 @@
         "compliance": {
           "status": "Vollständig konform",
           "certificationCount": 10,
-          "bioStandards": ["Bioland", "Demeter", "Bio Suisse", "Naturland"]
+          "bioStandards": ["Bioland", "Demeter", "Bio Suisse", "Naturland"],
+          "ethics": {
+            "codeOfConduct": "Strenger Code of Conduct",
+            "standards": ["ETI-konform", "ILO-konform"],
+            "membership": "SEDEX-Mitglied (Ethik + Lieferkette)",
+            "audits": "Regelmäßige Audits",
+            "antiCorruption": "Klare Anti-Korruptionsrichtlinien"
+          },
+          "ethicalPrinciples": [
+            "Keine Gentechnik",
+            "Keine Nanomaterialien",
+            "Keine Hormone",
+            "Keine Bestrahlung",
+            "Faire Arbeitsbedingungen",
+            "Nachhaltige Lieferkette"
+          ]
         },
         "keyAchievements": [
-          "10 verschiedene Zertifizierungen",
-          "Höchste Bio- und Qualitätsstandards",
-          "Transparente Berichterstattung mit Nachhaltigkeitsbericht"
+          "Erster umfassender Nachhaltigkeitsbericht mit konkreten Zielen bis 2035",
+          "10 verschiedene Zertifizierungen - höchste Anzahl",
+          "SEDEX-Mitglied für ethische Lieferketten",
+          "ETI- und ILO-konform",
+          "Slow Food Deutschland Mitglied",
+          "Klare ethische Grundsätze (keine Gentechnik, Hormone, etc.)"
         ]
       },
       "strengths": [
-        "Einziger Lieferant mit veröffentlichtem Nachhaltigkeitsbericht",
-        "Weltmarktführer bei Spezialmalzen",
+        "Einziger Lieferant mit umfassendem Nachhaltigkeitsbericht (konkrete Zahlen!)",
+        "100% Ökostrom + PV + Wasserstoff-BHKW - führend bei erneuerbaren Energien",
+        "2.853 Tonnen CO₂ eingespart (2021)",
+        "Wasserautark mit 4 eigenen Tiefbrunnen, 4% Wasserreduktion",
+        "Nur 8,1% Fluktuation - höchste Mitarbeiterzufriedenheit",
         "Umfangreichste Zertifizierungslandschaft (10 Zertifikate)",
-        "Vier verschiedene Bio-Zertifizierungen",
-        "Langfristige Familienunternehmen-Tradition (140+ Jahre)"
+        "WOMENPOWER-Programm und 24/7-Krisenhotline",
+        "Weltmarktführer bei Spezialmalzen seit 1879",
+        "SEDEX-Mitglied mit strengem Code of Conduct",
+        "Malz Aroma Rad® als internationales Bildungstool"
       ],
       "areasForImprovement": [
-        "Digitale Verfügbarkeit des Nachhaltigkeitsberichts",
-        "Quantifizierung von Umweltkennzahlen online",
-        "Veröffentlichung sozialer KPIs"
+        "Weitere Steigerung der CO₂-Einsparungen über 2.853 Tonnen hinaus",
+        "Digitalisierung des Nachhaltigkeitsberichts für bessere Verfügbarkeit",
+        "Quantifizierung der Ziele bis 2035 mit Zwischenzielen",
+        "Erhöhung des Recyclinganteils bei PP/PE-Säcken"
       ]
     },
     "Bestmalz GmbH": {
