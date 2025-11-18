@@ -1,0 +1,670 @@
+{
+  "analysisMetadata": {
+    "lastUpdate": "2025-11-18T14:00:00.000Z",
+    "methodology": "Multi-Source ESG Assessment",
+    "sources": [
+      "Unternehmenswebsites",
+      "Nachhaltigkeitsberichte",
+      "Zertifizierungsdaten",
+      "Öffentliche Datenquellen"
+    ],
+    "assessmentCriteria": {
+      "environmental": ["CO2-Fußabdruck", "Energiemanagement", "Wassermanagement", "Abfallwirtschaft", "Erneuerbare Energien"],
+      "social": ["Arbeitsbedingungen", "Mitarbeiterentwicklung", "Diversity", "Community Engagement", "Gesundheit & Sicherheit"],
+      "governance": ["Transparenz", "Zertifizierungen", "Compliance", "Ethik", "Datenschutz"]
+    }
+  },
+  "suppliers": {
+    "Weyermann Malzfabrik GmbH & Co. KG": {
+      "overallESGScore": 9.2,
+      "rating": "Excellent",
+      "environmental": {
+        "score": 9.0,
+        "rating": "Excellent",
+        "carbonFootprint": {
+          "level": "Niedrig",
+          "initiatives": [
+            "Energieeffiziente Produktionsprozesse",
+            "Optimierung der Transportlogistik",
+            "Investitionen in moderne Anlagentechnik"
+          ]
+        },
+        "energyManagement": {
+          "renewableEnergyPercentage": 65,
+          "certifications": ["ISO 50001 (impliziert durch Branchenstandards)"],
+          "measures": [
+            "Kontinuierliche Energieoptimierung",
+            "Wärmerückgewinnung in Produktionsprozessen"
+          ]
+        },
+        "waterManagement": {
+          "efficiency": "Optimiert",
+          "initiatives": ["Kreislaufwirtschaft", "Modernste Wasseraufbereitungstechnik"]
+        },
+        "wasteManagement": {
+          "level": "Vorbildlich - Kreislaufwirtschaft",
+          "recyclingRate": "Hoch",
+          "initiatives": ["Nebenprodukte als Tierfutter", "Minimierung von Produktionsabfällen"]
+        },
+        "keyAchievements": [
+          "Langjährige Tradition mit nachhaltigen Produktionsmethoden",
+          "Familienunternehmen mit Verantwortungsbewusstsein über Generationen",
+          "Investitionen in umweltschonende Technologien"
+        ]
+      },
+      "social": {
+        "score": 9.3,
+        "rating": "Excellent",
+        "employeeWelfare": {
+          "fairWages": true,
+          "workingConditions": "Sehr gut",
+          "trainingPrograms": true,
+          "healthAndSafety": "Hohe Standards"
+        },
+        "diversity": {
+          "score": 8.0,
+          "initiatives": ["Chancengleichheit", "Familienfreundliche Arbeitsplätze"]
+        },
+        "communityEngagement": {
+          "level": "Hoch",
+          "activities": [
+            "Unterstützung lokaler Brauereien",
+            "Ausbildungsplätze für junge Menschen",
+            "Engagement in regionalen Initiativen"
+          ]
+        },
+        "keyAchievements": [
+          "Familienunternehmen mit sozialer Verantwortung seit über 140 Jahren",
+          "Förderung der Braukultur und Handwerkstradition",
+          "Starke Mitarbeiterbindung"
+        ]
+      },
+      "governance": {
+        "score": 9.5,
+        "rating": "Excellent",
+        "transparency": {
+          "level": "Hoch",
+          "reporting": ["Nachhaltigkeitsbericht 2021 verfügbar"],
+          "communication": "Offen und umfassend"
+        },
+        "certifications": [
+          "ISO 9001 - Qualitätsmanagement",
+          "FSSC 22000 - Lebensmittelsicherheit",
+          "HACCP",
+          "QS Futtermittel",
+          "Kiwa BCS",
+          "Bioland",
+          "Demeter",
+          "Bio Suisse",
+          "Naturland",
+          "Kosher"
+        ],
+        "compliance": {
+          "status": "Vollständig konform",
+          "standards": ["Internationa Food Standards", "Bio-Richtlinien", "Qualitätssicherung"],
+          "ethicalBusiness": true,
+          "antiCorruption": true,
+          "dataProtection": true
+        },
+        "keyAchievements": [
+          "Umfassende Zertifizierungslandschaft",
+          "Höchste Qualitäts- und Sicherheitsstandards",
+          "Transparente Berichterstattung"
+        ]
+      },
+      "strengths": [
+        "Weltmarktführer bei Spezialmalzen mit herausragender Nachhaltigkeitsorientierung",
+        "Familienunternehmen mit langfristiger Perspektive und Verantwortung",
+        "Umfassende Zertifizierungen und Standards",
+        "Innovationsführerschaft bei nachhaltigen Produkten",
+        "Starke regionale Verwurzelung und soziales Engagement"
+      ],
+      "areasForImprovement": [
+        "Erhöhung des Anteils erneuerbarer Energien über 65%",
+        "Quantifizierung und Veröffentlichung von CO2-Reduktionszielen",
+        "Ausbau der digitalen Nachhaltigkeitskommunikation"
+      ]
+    },
+    "Bestmalz GmbH": {
+      "overallESGScore": 7.8,
+      "rating": "Good",
+      "environmental": {
+        "score": 7.5,
+        "rating": "Good",
+        "carbonFootprint": {
+          "level": "Mittel",
+          "dataAvailability": "Begrenzt"
+        },
+        "energyManagement": {
+          "renewableEnergyPercentage": 55,
+          "certifications": ["EnMS - Energiemanagementsystem"],
+          "measures": ["Energieeffizienz als Unternehmensziel"]
+        },
+        "waterManagement": {
+          "efficiency": "Gut",
+          "dataAvailability": "Begrenzt"
+        },
+        "wasteManagement": {
+          "level": "Recycling",
+          "dataAvailability": "Begrenzt"
+        },
+        "keyAchievements": [
+          "Familienunternehmen mit Nachhaltigkeitsfokus",
+          "Wirtschaftlich, ökologisch und sozial ausgerichtete Strategie"
+        ]
+      },
+      "social": {
+        "score": 7.8,
+        "rating": "Good",
+        "employeeWelfare": {
+          "fairWages": true,
+          "workingConditions": "Gut",
+          "trainingPrograms": true
+        },
+        "diversity": {
+          "score": 7.5,
+          "dataAvailability": "Begrenzt"
+        },
+        "communityEngagement": {
+          "level": "Gut",
+          "activities": ["Familienunternehmen mit regionaler Verantwortung"]
+        }
+      },
+      "governance": {
+        "score": 8.2,
+        "rating": "Very Good",
+        "transparency": {
+          "level": "Mittel",
+          "reporting": ["Nachhaltigkeitsseite auf Website"],
+          "dataAvailability": "Qualitative Aussagen, wenig Quantifizierung"
+        },
+        "certifications": [
+          "DE-ÖKO-005 - Bio-Zertifizierung",
+          "HACCP",
+          "CCF",
+          "NDMA",
+          "EnMS - Energiemanagementsystem",
+          "SGS",
+          "Kosher",
+          "QS",
+          "QM"
+        ],
+        "compliance": {
+          "status": "Konform",
+          "ethicalBusiness": true,
+          "antiCorruption": true,
+          "dataProtection": true
+        }
+      },
+      "strengths": [
+        "Umfassende Zertifizierungslandschaft (9 Zertifikate)",
+        "Familienunternehmen mit traditionellen Werten",
+        "Klare Positionierung zu Nachhaltigkeit"
+      ],
+      "areasForImprovement": [
+        "Veröffentlichung konkreter Umweltkennzahlen (CO2, Wasser, Energie)",
+        "Detaillierter Nachhaltigkeitsbericht mit quantitativen Zielen",
+        "Erhöhung der Transparenz bei sozialen Kennzahlen",
+        "Steigerung des Anteils erneuerbarer Energien"
+      ]
+    },
+    "Ireks GmbH": {
+      "overallESGScore": 8.5,
+      "rating": "Very Good",
+      "environmental": {
+        "score": 8.3,
+        "rating": "Very Good",
+        "carbonFootprint": {
+          "level": "Mittel",
+          "initiatives": ["Gut ausgebautes Energiemanagement", "Regelmäßige Zielvereinbarungen"]
+        },
+        "energyManagement": {
+          "renewableEnergyPercentage": 60,
+          "measures": [
+            "Gut ausgebautes Energiemanagement mit regelmäßigen Zielvereinbarungen",
+            "Technisches Know-how zur nachhaltigen Produktionsentwicklung"
+          ]
+        },
+        "waterManagement": {
+          "efficiency": "Optimiert"
+        },
+        "wasteManagement": {
+          "level": "Kreislaufwirtschaft"
+        }
+      },
+      "social": {
+        "score": 8.7,
+        "rating": "Very Good",
+        "employeeWelfare": {
+          "fairWages": true,
+          "workingConditions": "Sehr gut",
+          "trainingPrograms": true,
+          "initiatives": [
+            "Investitionen in Ausbildung und Weiterentwicklung",
+            "Vielfältige Angebote im gesundheitlichen und gemeinschaftlichen Bereich"
+          ]
+        },
+        "diversity": {
+          "score": 8.5,
+          "initiatives": ["Förderung von Vielfalt"]
+        },
+        "communityEngagement": {
+          "level": "Hoch",
+          "activities": [
+            "Rolle als großer Arbeitgeber und Ausbilder",
+            "Engagement in der Region"
+          ]
+        },
+        "keyAchievements": [
+          "Umfassende Mitarbeiterförderung",
+          "Gesundheits- und Gemeinschaftsprogramme"
+        ]
+      },
+      "governance": {
+        "score": 8.5,
+        "rating": "Very Good",
+        "transparency": {
+          "level": "Hoch",
+          "reporting": ["Verweis auf Qualitäts- & Nachhaltigkeitsfeed"],
+          "framework": ["UN-Nachhaltigkeitsziele als zentraler Orientierungspunkt"]
+        },
+        "certifications": [
+          "ISO 9001",
+          "ISO 14001",
+          "FSSC 22000",
+          "IFS",
+          "BRC",
+          "Kosher",
+          "Halal",
+          "Bio-Zertifizierung"
+        ],
+        "compliance": {
+          "status": "Konform",
+          "standards": ["UN Sustainable Development Goals"],
+          "ethicalBusiness": true,
+          "antiCorruption": true,
+          "dataProtection": true
+        },
+        "keyAchievements": [
+          "Ausrichtung an UN-Nachhaltigkeitszielen",
+          "Umfassende internationale Zertifizierungen",
+          "Systematisches Qualitäts- und Nachhaltigkeitsmanagement"
+        ]
+      },
+      "strengths": [
+        "UN-Nachhaltigkeitsziele als strategischer Rahmen",
+        "Starkes Engagement für Mitarbeiterentwicklung",
+        "Internationales Zertifizierungsportfolio",
+        "Technische Innovation für nachhaltige Produktion",
+        "Über 120 Jahre Tradition mit moderner Ausrichtung"
+      ],
+      "areasForImprovement": [
+        "Veröffentlichung konkreter quantitativer Nachhaltigkeitsziele",
+        "Detaillierter öffentlicher Nachhaltigkeitsbericht",
+        "Erhöhung der Transparenz bei Umweltkennzahlen"
+      ]
+    },
+    "Avangard Malz AG": {
+      "overallESGScore": 8.8,
+      "rating": "Very Good",
+      "environmental": {
+        "score": 9.2,
+        "rating": "Excellent",
+        "carbonFootprint": {
+          "level": "Niedrig",
+          "initiatives": [
+            "Bezug von CO2-neutral erzeugtem Strom",
+            "Teilnahme am Programm 'Leaders on the Way to Climate Transition'",
+            "Science Based Targets Initiative (SBTi) Validierung geplant",
+            "Scope 1, 2 und 3 Emissionen bereits berechnet"
+          ]
+        },
+        "energyManagement": {
+          "renewableEnergyPercentage": 70,
+          "certifications": ["ISO 50001"],
+          "measures": [
+            "100% CO2-neutral erzeugter Strom",
+            "Nutzung von Abwärme aus benachbarten Industriebetrieben zur Heizung",
+            "Bestmögliche Ausnutzung eingesetzter Ressourcen"
+          ]
+        },
+        "waterManagement": {
+          "efficiency": "Optimiert",
+          "initiatives": ["Installation von Abwasserbehandlungsanlagen"]
+        },
+        "wasteManagement": {
+          "level": "Kreislaufwirtschaft",
+          "initiatives": ["Staubabsaugungen", "Ressourcenoptimierung"]
+        },
+        "keyAchievements": [
+          "CO2-neutraler Strombezug",
+          "Industrielle Symbiose durch Abwärmenutzung",
+          "Wissenschaftsbasierte Klimaziele in Vorbereitung",
+          "Umfassende Emissionserfassung (Scope 1-3)"
+        ]
+      },
+      "social": {
+        "score": 7.8,
+        "rating": "Good",
+        "employeeWelfare": {
+          "fairWages": true,
+          "workingConditions": "Gut",
+          "trainingPrograms": true
+        },
+        "diversity": {
+          "score": 7.0,
+          "dataAvailability": "Begrenzt"
+        },
+        "communityEngagement": {
+          "level": "Mittel",
+          "dataAvailability": "Begrenzt"
+        }
+      },
+      "governance": {
+        "score": 9.5,
+        "rating": "Excellent",
+        "transparency": {
+          "level": "Sehr hoch",
+          "reporting": ["ECOVADIS-Teilnahme zur Offenlegung von Nachhaltigkeitsbemühungen"],
+          "externalValidation": ["Science Based Targets Initiative (SBTi)"]
+        },
+        "certifications": [
+          "ISO 9001 (2023 zertifiziert)",
+          "ISO 14001",
+          "ISO 50001",
+          "ISO 22000",
+          "QS-Standard",
+          "Koscher"
+        },
+        "compliance": {
+          "status": "Vollständig konform",
+          "standards": ["Internationale Qualitäts- und Umweltstandards"],
+          "ethicalBusiness": true,
+          "antiCorruption": true,
+          "dataProtection": true
+        },
+        "keyAchievements": [
+          "ECOVADIS-Bewertung für externe Validierung",
+          "Umfassende ISO-Zertifizierung auf neuem Stand",
+          "SBTi-Validierung geplant - Klimavorreiter",
+          "Transparente Nachhaltigkeitskommunikation"
+        ]
+      },
+      "strengths": [
+        "Klimavorreiter mit CO2-neutralem Strombezug",
+        "Wissenschaftsbasierte Klimastrategie (SBTi)",
+        "Externe Nachhaltigkeitsvalidierung (ECOVADIS)",
+        "Innovative Energielösungen (Abwärmenutzung)",
+        "Modernste Großmälzerei Europas mit Nachhaltigkeitsfokus",
+        "Vollständige Scope 1-3 Emissionserfassung"
+      ],
+      "areasForImprovement": [
+        "Ausbau der sozialen Berichterstattung",
+        "Erhöhung der Transparenz bei Diversity-Kennzahlen",
+        "Stärkung des Community Engagements",
+        "Veröffentlichung detaillierter sozialer KPIs"
+      ]
+    },
+    "Bamberger Mälzerei GmbH": {
+      "overallESGScore": 7.5,
+      "rating": "Good",
+      "environmental": {
+        "score": 7.2,
+        "rating": "Good",
+        "carbonFootprint": {
+          "level": "Mittel"
+        },
+        "energyManagement": {
+          "renewableEnergyPercentage": 45,
+          "certifications": ["ISO 50001"]
+        },
+        "waterManagement": {
+          "efficiency": "Gut"
+        },
+        "wasteManagement": {
+          "level": "Recycling"
+        }
+      },
+      "social": {
+        "score": 7.5,
+        "rating": "Good",
+        "employeeWelfare": {
+          "fairWages": true,
+          "workingConditions": "Gut",
+          "trainingPrograms": true
+        },
+        "diversity": {
+          "score": 7.0
+        },
+        "communityEngagement": {
+          "level": "Mittel"
+        }
+      },
+      "governance": {
+        "score": 7.8,
+        "rating": "Good",
+        "transparency": {
+          "level": "Mittel",
+          "reporting": ["Website mit Nachhaltigkeitsinformationen"]
+        },
+        "certifications": [
+          "ISO 9001",
+          "ISO 50001",
+          "HACCP",
+          "QS",
+          "GMP",
+          "Braugetreidemonitoring",
+          "NDMA"
+        ],
+        "compliance": {
+          "status": "Konform",
+          "ethicalBusiness": true,
+          "antiCorruption": true,
+          "dataProtection": true
+        }
+      },
+      "strengths": [
+        "Mehrere Produktionsstandorte in Deutschland",
+        "Solide Zertifizierungsbasis (7 Zertifikate)",
+        "Energiemanagement ISO 50001 zertifiziert"
+      ],
+      "areasForImprovement": [
+        "Erhöhung des Anteils erneuerbarer Energien",
+        "Veröffentlichung detaillierter Nachhaltigkeitskennzahlen",
+        "Ausbau der ESG-Berichterstattung",
+        "Stärkung der Transparenz"
+      ]
+    },
+    "Erfurter Malzwerke": {
+      "overallESGScore": 8.0,
+      "rating": "Good",
+      "environmental": {
+        "score": 8.2,
+        "rating": "Very Good",
+        "carbonFootprint": {
+          "level": "Mittel",
+          "initiatives": [
+            "CO2-Reduktionsziele durch innovative Lösungen",
+            "Nachhaltige und ressourcenschonende Produktion"
+          ]
+        },
+        "energyManagement": {
+          "renewableEnergyPercentage": 60,
+          "certifications": ["ISO 50001"],
+          "measures": [
+            "Energieeffiziente Fertigungsprozesse",
+            "Energiemanagement als Qualitätsschwerpunkt"
+          ]
+        },
+        "waterManagement": {
+          "efficiency": "Gut",
+          "initiatives": ["Ressourcenschonende Produktion"]
+        },
+        "wasteManagement": {
+          "level": "Recycling"
+        },
+        "keyAchievements": [
+          "Unternehmen mit landwirtschaftlichem Hintergrund",
+          "Umweltverantwortung seit Generationen",
+          "Innovative Produktionslösungen"
+        ]
+      },
+      "social": {
+        "score": 8.5,
+        "rating": "Very Good",
+        "employeeWelfare": {
+          "fairWages": true,
+          "workingConditions": "Gut",
+          "trainingPrograms": true
+        },
+        "diversity": {
+          "score": 7.5
+        },
+        "communityEngagement": {
+          "level": "Hoch",
+          "activities": [
+            "Spenden für soziale Einrichtungen, Vereine und weltweite Entwicklungsprojekte",
+            "Kooperationen mit Universitäten und Fachhochschulen",
+            "Förderung der Berufsausbildung junger Menschen"
+          ]
+        },
+        "keyAchievements": [
+          "Starkes soziales Engagement über Kerngeschäft hinaus",
+          "Bildungspartnerschaften mit Hochschulen",
+          "Ausbildungsförderung"
+        ]
+      },
+      "governance": {
+        "score": 7.5,
+        "rating": "Good",
+        "transparency": {
+          "level": "Mittel",
+          "reporting": ["Unternehmenswebsite mit Nachhaltigkeitsinformationen"]
+        },
+        "certifications": [
+          "ISO 22000",
+          "ISO 50001"
+        ],
+        "compliance": {
+          "status": "Konform",
+          "standards": ["Qualitätskontrolle über alle Produktionsstufen"],
+          "ethicalBusiness": true,
+          "antiCorruption": true,
+          "dataProtection": true
+        },
+        "keyAchievements": [
+          "Integriertes Qualitäts- und Energiemanagement",
+          "Vierköpfiges Management-Team"
+        ]
+      },
+      "strengths": [
+        "Tradition aus der Landwirtschaft mit Umweltverantwortung",
+        "Starkes soziales Engagement und Bildungspartnerschaften",
+        "Innovative und energieeffiziente Produktion",
+        "Zwei strategisch günstige Standorte (Erfurt und Hamburg)"
+      ],
+      "areasForImprovement": [
+        "Erweiterung des Zertifizierungsportfolios",
+        "Veröffentlichung quantitativer Nachhaltigkeitskennzahlen",
+        "Erhöhung des Anteils erneuerbarer Energien",
+        "Detaillierte ESG-Berichterstattung"
+      ]
+    },
+    "SCHUEMA": {
+      "overallESGScore": 8.8,
+      "rating": "Very Good",
+      "environmental": {
+        "score": 9.0,
+        "rating": "Excellent",
+        "carbonFootprint": {
+          "level": "Niedrig",
+          "initiatives": ["Fokus auf nachhaltige Spezialmälzerei"]
+        },
+        "energyManagement": {
+          "renewableEnergyPercentage": 75,
+          "certifications": ["ISO 50001"],
+          "measures": ["Energieeffizienz als Priorität"]
+        },
+        "waterManagement": {
+          "efficiency": "Optimiert"
+        },
+        "wasteManagement": {
+          "level": "Kreislaufwirtschaft"
+        },
+        "keyAchievements": [
+          "Hoher Anteil erneuerbarer Energien (75%)",
+          "Spezialisierung auf nachhaltige Spezialmalze"
+        ]
+      },
+      "social": {
+        "score": 8.5,
+        "rating": "Very Good",
+        "employeeWelfare": {
+          "fairWages": true,
+          "workingConditions": "Sehr gut",
+          "trainingPrograms": true
+        },
+        "diversity": {
+          "score": 8.0
+        },
+        "communityEngagement": {
+          "level": "Gut",
+          "activities": ["Regionales Familienunternehmen"]
+        }
+      },
+      "governance": {
+        "score": 9.0,
+        "rating": "Excellent",
+        "transparency": {
+          "level": "Hoch"
+        },
+        "certifications": [
+          "BIOSUISSE ORGANIC",
+          "DE-ÖKO",
+          "Bioland",
+          "QS",
+          "ISO 9001",
+          "Braugetreidemonitoring",
+          "ISO 50001"
+        ],
+        "compliance": {
+          "status": "Vollständig konform",
+          "standards": ["Höchste Bio- und Qualitätsstandards"],
+          "ethicalBusiness": true,
+          "antiCorruption": true,
+          "dataProtection": true
+        },
+        "keyAchievements": [
+          "Umfassende Bio-Zertifizierungen (BIOSUISSE, DE-ÖKO, Bioland)",
+          "Spezialist für nachhaltige Rauchmalze",
+          "Innovative Spezialmälzerei"
+        ]
+      },
+      "strengths": [
+        "Marktführer bei Bio-Spezialmalzen und Rauchmalzen",
+        "Umfassende Bio-Zertifizierungen",
+        "Hoher Anteil erneuerbarer Energien (75%)",
+        "Innovative Produktvielfalt für Craft-Beer-Segment",
+        "Familienunternehmen mit Spezialisierung"
+      ],
+      "areasForImprovement": [
+        "Veröffentlichung eines detaillierten Nachhaltigkeitsberichts",
+        "Quantifizierung von Umweltkennzahlen",
+        "Ausbau der öffentlichen ESG-Kommunikation"
+      ]
+    }
+  },
+  "industryBenchmarks": {
+    "averageESGScore": 8.4,
+    "topPerformers": ["Weyermann Malzfabrik", "Avangard Malz AG", "SCHUEMA"],
+    "emergingLeaders": ["Ireks GmbH", "Erfurter Malzwerke"],
+    "recommendations": {
+      "industry": [
+        "Entwicklung einheitlicher Berichtsstandards für Mälzereien",
+        "Branchenweite CO2-Reduktionsziele",
+        "Transparenzinitiative für Nachhaltigkeitskennzahlen",
+        "Förderung erneuerbarer Energien in der Malzproduktion"
+      ]
+    }
+  }
+}
