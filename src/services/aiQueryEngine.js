@@ -101,8 +101,16 @@ class AIQueryEngine {
     } else if (supplierNames.length >= 2) {
       return this.compareSuppliers(supplierNames)
     } else if (products.length === 1) {
-      // Find similar products for comparison
-      return this.suggestProductComparisons(products[0])
+      // Try to auto-expand to similar products across suppliers
+      const similarProducts = this.findSimilarProductsAcrossSuppliers(products[0])
+
+      if (similarProducts.length >= 2) {
+        // Auto-compare with similar products
+        return this.compareProducts(similarProducts.map(p => p.name))
+      } else {
+        // If no similar products found, show suggestions
+        return this.suggestProductComparisons(products[0])
+      }
     } else {
       return {
         type: 'clarification',
@@ -114,6 +122,47 @@ class AIQueryEngine {
         ]
       }
     }
+  }
+
+  /**
+   * Find similar products across suppliers (e.g., all "Pilsner" variants)
+   */
+  findSimilarProductsAcrossSuppliers(productName) {
+    const similar = []
+
+    // Extract the core product type (remove supplier names and common words)
+    const coreType = productName.toLowerCase()
+      .replace(/weyermann|bestmalz|ireks/gi, '')
+      .replace(/gmbh|malz|braumalz/gi, '')
+      .trim()
+      .split(/\s+/)[0] // Take first significant word
+
+    if (coreType.length < 4) return [] // Too short to be meaningful
+
+    // Find all products matching this core type across all suppliers
+    for (const [supplierName, supplierData] of Object.entries(this.products)) {
+      if (!supplierData.categories) continue
+
+      for (const [category, products] of Object.entries(supplierData.categories)) {
+        for (const product of products) {
+          const productNameLower = product.name.toLowerCase()
+
+          // Check if this product matches the core type
+          if (productNameLower.includes(coreType)) {
+            similar.push({
+              name: product.name,
+              supplier: supplierName
+            })
+            // Only take one product per supplier
+            break
+          }
+        }
+        // Break if we found a match for this supplier
+        if (similar.some(p => p.supplier === supplierName)) break
+      }
+    }
+
+    return similar
   }
 
   /**
@@ -580,28 +629,129 @@ class AIQueryEngine {
 
   /**
    * Helper: Extract product names from query
+   * Improved to handle "Supplier ProductType" patterns (e.g., "Weyermann Pilsner")
    */
   extractProductNames(query) {
-    const products = []
-    const words = query.split(/\s+/)
+    const foundProducts = []
+    const queryLower = query.toLowerCase()
 
-    // Look for product names in the query
-    for (const [, supplierData] of Object.entries(this.products)) {
-      if (!supplierData.categories) continue
+    // Extract supplier names from query
+    const mentionedSuppliers = []
+    for (const supplier of this.suppliers) {
+      const simpleName = supplier.name.toLowerCase()
+        .replace('gmbh', '')
+        .replace('& co. kg', '')
+        .trim()
 
-      for (const [, productList] of Object.entries(supplierData.categories)) {
-        for (const product of productList) {
-          const productNameLower = product.name.toLowerCase()
-          // Check if product name or significant part appears in query
-          if (query.includes(productNameLower) ||
-              words.some(word => productNameLower.includes(word) && word.length > 4)) {
-            products.push(product.name)
+      if (queryLower.includes(simpleName)) {
+        mentionedSuppliers.push(supplier.name)
+      }
+    }
+
+    // If suppliers are mentioned, look for product type keywords after them
+    if (mentionedSuppliers.length > 0) {
+      // Common product type keywords
+      const productTypes = [
+        'pilsner', 'pils', 'pale ale', 'wiener', 'münchner', 'munich',
+        'weizen', 'wheat', 'roggen', 'rye', 'dinkel', 'spelt',
+        'caramel', 'karamell', 'cara', 'chocolate', 'röst', 'roast',
+        'rauch', 'smoke', 'sauermalz', 'melanoidin', 'biscuit',
+        'amber', 'red', 'hell', 'dunkel', 'spezial', 'aromamalz'
+      ]
+
+      for (const supplierName of mentionedSuppliers) {
+        const supplierData = this.products[supplierName]
+        if (!supplierData || !supplierData.categories) continue
+
+        // Find product type keywords in the query
+        for (const productType of productTypes) {
+          if (queryLower.includes(productType)) {
+            // Search for products matching this type in this supplier's catalog
+            for (const [category, products] of Object.entries(supplierData.categories)) {
+              for (const product of products) {
+                const productNameLower = product.name.toLowerCase()
+
+                // Check if this product matches the type
+                if (productNameLower.includes(productType)) {
+                  foundProducts.push({
+                    name: product.name,
+                    supplier: supplierName,
+                    matchType: 'supplier+type'
+                  })
+                  // Only take the first match per supplier+type combination
+                  break
+                }
+              }
+              if (foundProducts.some(p => p.supplier === supplierName)) break
+            }
           }
         }
       }
     }
 
-    return [...new Set(products)] // Remove duplicates
+    // If no products found yet, try broader matching
+    if (foundProducts.length === 0) {
+      // Look for full product names or significant keywords
+      for (const [supplierName, supplierData] of Object.entries(this.products)) {
+        if (!supplierData.categories) continue
+
+        for (const [category, products] of Object.entries(supplierData.categories)) {
+          for (const product of products) {
+            const productNameLower = product.name.toLowerCase()
+
+            // Check for exact match or if query contains product name
+            if (queryLower.includes(productNameLower)) {
+              foundProducts.push({
+                name: product.name,
+                supplier: supplierName,
+                matchType: 'exact'
+              })
+            } else {
+              // Check for significant keyword matches (words > 4 chars)
+              const productWords = productNameLower.split(/\s+/).filter(w => w.length > 4)
+              const queryWords = queryLower.split(/\s+/)
+
+              const matchCount = productWords.filter(pw =>
+                queryWords.some(qw => qw.includes(pw) || pw.includes(qw))
+              ).length
+
+              // If more than half the significant words match, consider it a match
+              if (matchCount > 0 && matchCount >= productWords.length / 2) {
+                foundProducts.push({
+                  name: product.name,
+                  supplier: supplierName,
+                  matchType: 'keyword',
+                  matchCount
+                })
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Remove duplicates and sort by match quality
+    const uniqueProducts = []
+    const seenNames = new Set()
+
+    // Prioritize: exact > supplier+type > keyword matches
+    const sortedProducts = foundProducts.sort((a, b) => {
+      const typeOrder = { 'exact': 0, 'supplier+type': 1, 'keyword': 2 }
+      const orderA = typeOrder[a.matchType] || 3
+      const orderB = typeOrder[b.matchType] || 3
+      if (orderA !== orderB) return orderA - orderB
+      return (b.matchCount || 0) - (a.matchCount || 0)
+    })
+
+    for (const product of sortedProducts) {
+      const key = `${product.supplier}:${product.name}`
+      if (!seenNames.has(key)) {
+        seenNames.add(key)
+        uniqueProducts.push(product.name)
+      }
+    }
+
+    return uniqueProducts
   }
 
   /**
