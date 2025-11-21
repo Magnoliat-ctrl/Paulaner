@@ -9,6 +9,7 @@ import '../../styles/Header.css'
 function Header({ currentPage, onNavigate }) {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: '📊' },
+    { id: 'ai-assistant', label: 'AI Assistant', icon: '🤖' },
     { id: 'discovery', label: 'Lieferanten finden', icon: '🔍' },
     { id: 'rating', label: 'Bewertung', icon: '⭐' },
     { id: 'reports', label: 'Berichte', icon: '📈' },
