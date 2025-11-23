@@ -64,7 +64,8 @@ function AIAssistant({ navigateTo }) {
 
     // Simulate processing delay for better UX
     setTimeout(() => {
-      const response = aiQueryEngine.processQuery(inputValue)
+      // Pass conversation history to enable context-aware responses
+      const response = aiQueryEngine.processQuery(inputValue, messages)
 
       const assistantMessage = {
         type: 'assistant',
@@ -83,6 +84,9 @@ function AIAssistant({ navigateTo }) {
   }
 
   const handleClearChat = () => {
+    // Clear conversation context in the AI engine
+    aiQueryEngine.clearContext()
+
     setMessages([
       {
         type: 'assistant',

@@ -13,34 +13,246 @@ class AIQueryEngine {
     this.suppliers = maltSuppliersData
     this.products = productDetailsData
     this.esgData = esgAnalysisData
-    this.context = null // Store conversation context
+    // Enhanced conversation context with entity tracking
+    this.context = {
+      recentProducts: [],      // Last mentioned products
+      recentSuppliers: [],     // Last mentioned suppliers
+      lastQueryType: null,     // Type of last query
+      lastResults: null,       // Results from last query
+      lastEBCRange: null       // Last EBC range if applicable
+    }
   }
 
   /**
    * Main query processing function
+   * Now accepts conversation history for context-aware responses
    */
-  processQuery(query) {
+  processQuery(query, conversationHistory = []) {
     const normalizedQuery = query.toLowerCase().trim()
 
-    // Detect query type and route to appropriate handler
-    if (this.isComparisonQuery(normalizedQuery)) {
-      return this.handleComparison(normalizedQuery, query)
-    } else if (this.isESGQuery(normalizedQuery)) {
-      return this.handleESGQuery(normalizedQuery)
-    } else if (this.isProductSearchQuery(normalizedQuery)) {
-      return this.handleProductSearch(normalizedQuery)
-    } else if (this.isSupplierInfoQuery(normalizedQuery)) {
-      return this.handleSupplierInfo(normalizedQuery)
-    } else if (this.isRecommendationQuery(normalizedQuery)) {
-      return this.handleRecommendation(normalizedQuery)
-    } else if (this.isStatisticsQuery(normalizedQuery)) {
-      return this.handleStatistics(normalizedQuery)
-    } else if (this.isCertificationQuery(normalizedQuery)) {
-      return this.handleCertification(normalizedQuery)
-    } else if (this.isColorQuery(normalizedQuery)) {
-      return this.handleColorQuery(normalizedQuery)
+    // Step 1: Extract entities from conversation history
+    this.extractEntitiesFromHistory(conversationHistory)
+
+    // Step 2: Resolve references and pronouns in current query
+    const resolvedQuery = this.resolveReferences(normalizedQuery, query)
+    const resolvedNormalized = resolvedQuery.toLowerCase().trim()
+
+    // Step 3: Detect query type and route to appropriate handler
+    let response
+    if (this.isComparisonQuery(resolvedNormalized)) {
+      response = this.handleComparison(resolvedNormalized, resolvedQuery)
+    } else if (this.isESGQuery(resolvedNormalized)) {
+      response = this.handleESGQuery(resolvedNormalized)
+    } else if (this.isProductSearchQuery(resolvedNormalized)) {
+      response = this.handleProductSearch(resolvedNormalized)
+    } else if (this.isSupplierInfoQuery(resolvedNormalized)) {
+      response = this.handleSupplierInfo(resolvedNormalized)
+    } else if (this.isRecommendationQuery(resolvedNormalized)) {
+      response = this.handleRecommendation(resolvedNormalized)
+    } else if (this.isStatisticsQuery(resolvedNormalized)) {
+      response = this.handleStatistics(resolvedNormalized)
+    } else if (this.isCertificationQuery(resolvedNormalized)) {
+      response = this.handleCertification(resolvedNormalized)
+    } else if (this.isColorQuery(resolvedNormalized)) {
+      response = this.handleColorQuery(resolvedNormalized)
     } else {
-      return this.handleGeneralQuery(normalizedQuery)
+      response = this.handleGeneralQuery(resolvedNormalized)
+    }
+
+    // Step 4: Update context with results from this query
+    this.updateContext(response, resolvedNormalized)
+
+    return response
+  }
+
+  /**
+   * Extract entities (products, suppliers) from conversation history
+   */
+  extractEntitiesFromHistory(conversationHistory) {
+    if (!conversationHistory || conversationHistory.length === 0) return
+
+    // Look at last 5 messages for context
+    const recentMessages = conversationHistory.slice(-5)
+
+    for (const message of recentMessages) {
+      if (message.type === 'user') {
+        const query = message.content.toLowerCase()
+
+        // Extract product names
+        const products = this.extractProductNames(message.content)
+        for (const product of products) {
+          if (!this.context.recentProducts.includes(product)) {
+            this.context.recentProducts.unshift(product)
+          }
+        }
+
+        // Extract supplier names
+        const suppliers = this.extractSupplierNames(query)
+        for (const supplier of suppliers) {
+          if (!this.context.recentSuppliers.includes(supplier)) {
+            this.context.recentSuppliers.unshift(supplier)
+          }
+        }
+      } else if (message.type === 'assistant' && message.content) {
+        // Extract entities from assistant responses
+        const content = message.content
+
+        // From comparison responses
+        if (content.type === 'comparison' && content.products) {
+          for (const product of content.products) {
+            if (!this.context.recentProducts.includes(product.name)) {
+              this.context.recentProducts.unshift(product.name)
+            }
+            if (!this.context.recentSuppliers.includes(product.supplier)) {
+              this.context.recentSuppliers.unshift(product.supplier)
+            }
+          }
+        }
+
+        // From supplier comparison
+        if (content.type === 'supplier_comparison' && content.suppliers) {
+          for (const supplier of content.suppliers) {
+            if (!this.context.recentSuppliers.includes(supplier.name)) {
+              this.context.recentSuppliers.unshift(supplier.name)
+            }
+          }
+        }
+
+        // From product lists
+        if (content.type === 'product_list' && content.products) {
+          for (const product of content.products) {
+            if (!this.context.recentProducts.includes(product.name)) {
+              this.context.recentProducts.unshift(product.name)
+            }
+          }
+        }
+      }
+    }
+
+    // Keep only last 10 entities
+    this.context.recentProducts = this.context.recentProducts.slice(0, 10)
+    this.context.recentSuppliers = this.context.recentSuppliers.slice(0, 10)
+  }
+
+  /**
+   * Resolve references and pronouns in query using context
+   */
+  resolveReferences(normalizedQuery, originalQuery) {
+    let resolved = originalQuery
+
+    // Detect reference patterns
+    const patterns = {
+      // "das", "diese", "dieser", "dieses"
+      demonstrative: /\b(das|diese[rs]?|jene[rs]?)\b/gi,
+      // "beide", "alle"
+      quantifier: /\b(beide|alle|die)\b/gi,
+      // "welches", "welche", "welcher"
+      interrogative: /\b(welche[rs]?|was)\b/gi,
+      // "davon", "damit"
+      pronominal: /\b(davon|damit|dazu)\b/gi
+    }
+
+    // Check for demonstratives like "das", "dieser"
+    if (patterns.demonstrative.test(normalizedQuery)) {
+      if (this.context.recentProducts.length > 0) {
+        // Replace with last mentioned product
+        resolved = resolved.replace(patterns.demonstrative, this.context.recentProducts[0])
+      }
+    }
+
+    // Check for "beide" (both)
+    if (/\bbei(de|der)\b/i.test(normalizedQuery)) {
+      if (this.context.recentProducts.length >= 2) {
+        // Add both recent products to the query
+        const both = `${this.context.recentProducts[0]} und ${this.context.recentProducts[1]}`
+        resolved = `${resolved} ${both}`
+      } else if (this.context.recentSuppliers.length >= 2) {
+        // Or both suppliers
+        const both = `${this.context.recentSuppliers[0]} und ${this.context.recentSuppliers[1]}`
+        resolved = `${resolved} ${both}`
+      }
+    }
+
+    // Check for "davon" (of those)
+    if (/\bdavon\b/i.test(normalizedQuery) && this.context.recentProducts.length > 0) {
+      // Append recent products context
+      const productsContext = this.context.recentProducts.slice(0, 3).join(', ')
+      resolved = `${resolved} (aus: ${productsContext})`
+    }
+
+    // Check for incomplete comparison queries
+    if (/\bunterschied\b/i.test(normalizedQuery) || /\bvergleich\b/i.test(normalizedQuery)) {
+      // If query asks for "difference" but doesn't specify what
+      const hasSpecificEntity = this.extractProductNames(originalQuery).length > 0 ||
+                                this.extractSupplierNames(normalizedQuery).length > 0
+
+      if (!hasSpecificEntity && this.context.recentProducts.length >= 2) {
+        // Auto-inject recent products
+        resolved = `${resolved} zwischen ${this.context.recentProducts[0]} und ${this.context.recentProducts[1]}`
+      }
+    }
+
+    // Check for follow-up ESG queries
+    if (/\besg\b/i.test(normalizedQuery) || /\bnachhaltig/i.test(normalizedQuery)) {
+      const hasSpecificEntity = this.extractSupplierNames(normalizedQuery).length > 0
+
+      if (!hasSpecificEntity && this.context.recentSuppliers.length > 0) {
+        // Add recent suppliers context
+        const suppliersContext = this.context.recentSuppliers.join(', ')
+        resolved = `${resolved} für ${suppliersContext}`
+      }
+    }
+
+    return resolved
+  }
+
+  /**
+   * Update context after processing a query
+   */
+  updateContext(response, query) {
+    if (!response) return
+
+    // Update lastQueryType
+    this.context.lastQueryType = response.type
+
+    // Store last results
+    this.context.lastResults = response
+
+    // Update recent entities based on response type
+    if (response.type === 'comparison' && response.products) {
+      for (const product of response.products) {
+        if (!this.context.recentProducts.includes(product.name)) {
+          this.context.recentProducts.unshift(product.name)
+        }
+        if (!this.context.recentSuppliers.includes(product.supplier)) {
+          this.context.recentSuppliers.unshift(product.supplier)
+        }
+      }
+    }
+
+    if (response.type === 'product_list' && response.products) {
+      for (const product of response.products) {
+        if (!this.context.recentProducts.includes(product.name)) {
+          this.context.recentProducts.unshift(product.name)
+        }
+      }
+    }
+
+    // Keep context manageable
+    this.context.recentProducts = this.context.recentProducts.slice(0, 10)
+    this.context.recentSuppliers = this.context.recentSuppliers.slice(0, 10)
+  }
+
+  /**
+   * Clear conversation context (for chat reset)
+   */
+  clearContext() {
+    this.context = {
+      recentProducts: [],
+      recentSuppliers: [],
+      lastQueryType: null,
+      lastResults: null,
+      lastEBCRange: null
     }
   }
 
