@@ -536,6 +536,51 @@ function ResponseRenderer({ response, onSuggestionClick }) {
         </div>
       )
 
+    case 'analysis':
+      return (
+        <div className="ai-response-analysis">
+          <h3>📊 {response.title}</h3>
+
+          <div className="ai-analysis-content">
+            {response.analysis.split('\n').map((paragraph, idx) => (
+              <p key={idx}>{paragraph}</p>
+            ))}
+          </div>
+
+          {response.keyFindings && response.keyFindings.length > 0 && (
+            <div className="ai-key-findings">
+              <h4>🔍 Wichtigste Erkenntnisse:</h4>
+              <ul>
+                {response.keyFindings.map((finding, idx) => (
+                  <li key={idx}>{finding}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {response.dataPoints && Object.keys(response.dataPoints).length > 0 && (
+            <div className="ai-data-points">
+              <h4>📈 Datenpunkte:</h4>
+              <div className="ai-data-grid">
+                {Object.entries(response.dataPoints).map(([label, value], idx) => (
+                  <div key={idx} className="ai-data-item">
+                    <span className="ai-data-label">{label}:</span>
+                    <strong className="ai-data-value">{value}</strong>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {response.recommendation && (
+            <div className="ai-recommendation-box">
+              <h4>💡 Empfehlung:</h4>
+              <p>{response.recommendation}</p>
+            </div>
+          )}
+        </div>
+      )
+
     default:
       return <p>{JSON.stringify(response)}</p>
   }
