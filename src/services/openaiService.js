@@ -88,7 +88,7 @@ class OpenAIService {
 ## VERFÜGBARE DATEN:
 
 ### LIEFERANTEN:
-${suppliers.map(s => \`- \${s.name} (Standort: \${s.location.city}, \${s.location.country})\`).join('\\n')}
+${suppliers.map(s => `- ${s.name} (Standort: ${s.location.city}, ${s.location.country})`).join('\n')}
 
 ### PRODUKTE:
 ${this.summarizeProducts(products)}
@@ -183,7 +183,7 @@ Du MUSST deine Antwort in einem dieser JSON-Formate zurückgeben:
   "suggestions": ["Option 1", "Option 2"]
 }
 
-Analysiere die Anfrage des Users und wähle das passende Format. Nutze die verfügbaren Daten, um akkurate Antworten zu geben.\`
+Analysiere die Anfrage des Users und wähle das passende Format. Nutze die verfügbaren Daten, um akkurate Antworten zu geben.`
   }
 
   /**
@@ -200,16 +200,16 @@ Analysiere die Anfrage des Users und wähle das passende Format. Nutze die verf�
         (sum, prods) => sum + prods.length, 0
       )
 
-      summary.push(\`\${supplierName}: \${totalProducts} Produkte in \${categories.length} Kategorien (\${categories.join(', ')})\`)
+      summary.push(`${supplierName}: ${totalProducts} Produkte in ${categories.length} Kategorien (${categories.join(', ')})`)
 
       // Add sample products from each category
       for (const [category, prods] of Object.entries(supplierData.categories)) {
         const samples = prods.slice(0, 3).map(p => p.name).join(', ')
-        summary.push(\`  - \${category}: \${samples}\${prods.length > 3 ? \` (+ \${prods.length - 3} weitere)\` : ''}\`)
+        summary.push(`  - ${category}: ${samples}${prods.length > 3 ? ` (+ ${prods.length - 3} weitere)` : ''}`)
       }
     }
 
-    return summary.join('\\n')
+    return summary.join('\n')
   }
 
   /**
@@ -219,13 +219,13 @@ Analysiere die Anfrage des Users und wähle das passende Format. Nutze die verf�
     const summary = []
 
     for (const [name, data] of Object.entries(esgData.suppliers)) {
-      summary.push(\`\${name}: Gesamt \${data.overallESGScore}/10 (Rating: \${data.rating})\`)
-      summary.push(\`  - Umwelt: \${data.environmental.score}/10\`)
-      summary.push(\`  - Soziales: \${data.social.score}/10\`)
-      summary.push(\`  - Governance: \${data.governance.score}/10\`)
+      summary.push(`${name}: Gesamt ${data.overallESGScore}/10 (Rating: ${data.rating})`)
+      summary.push(`  - Umwelt: ${data.environmental.score}/10`)
+      summary.push(`  - Soziales: ${data.social.score}/10`)
+      summary.push(`  - Governance: ${data.governance.score}/10`)
     }
 
-    return summary.join('\\n')
+    return summary.join('\n')
   }
 
   /**
@@ -240,12 +240,12 @@ Analysiere die Anfrage des Users und wähle das passende Format. Nutze die verf�
     const recent = history.slice(-10)
     return recent.map(msg => {
       if (msg.type === 'user') {
-        return \`User: \${msg.content}\`
+        return `User: ${msg.content}`
       } else {
         // Simplified assistant response
-        return \`Assistant: [\${msg.content.type}] \${msg.content.title || msg.content.message || 'Response'}\`
+        return `Assistant: [${msg.content.type}] ${msg.content.title || msg.content.message || 'Response'}`
       }
-    }).join('\\n')
+    }).join('\n')
   }
 }
 
