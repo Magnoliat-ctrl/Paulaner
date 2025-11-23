@@ -62,20 +62,37 @@ function AIAssistant({ navigateTo }) {
     setInputValue('')
     setIsProcessing(true)
 
-    // Simulate processing delay for better UX
-    setTimeout(() => {
-      // Pass conversation history to enable context-aware responses
-      const response = aiQueryEngine.processQuery(inputValue, messages)
+    // Process query (async for OpenAI support)
+    ;(async () => {
+      try {
+        // Pass conversation history to enable context-aware responses
+        const response = await aiQueryEngine.processQuery(inputValue, messages)
 
-      const assistantMessage = {
-        type: 'assistant',
-        content: response,
-        timestamp: new Date()
+        const assistantMessage = {
+          type: 'assistant',
+          content: response,
+          timestamp: new Date()
+        }
+
+        setMessages(prev => [...prev, assistantMessage])
+      } catch (error) {
+        console.error('Query processing error:', error)
+
+        const errorMessage = {
+          type: 'assistant',
+          content: {
+            type: 'error',
+            message: 'Es gab einen Fehler bei der Verarbeitung Ihrer Anfrage. Bitte versuchen Sie es erneut.',
+            suggestions: ['Dashboard anzeigen', 'Produktvergleich starten', 'ESG-Analysen']
+          },
+          timestamp: new Date()
+        }
+
+        setMessages(prev => [...prev, errorMessage])
+      } finally {
+        setIsProcessing(false)
       }
-
-      setMessages(prev => [...prev, assistantMessage])
-      setIsProcessing(false)
-    }, 300)
+    })()
   }
 
   const handleSuggestionClick = (suggestion) => {

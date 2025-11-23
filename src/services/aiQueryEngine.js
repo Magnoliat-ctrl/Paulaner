@@ -1,12 +1,13 @@
 /**
  * AI Query Engine
  * Processes natural language queries about supplier and malt data
- * Uses ONLY local data - no external APIs
+ * Uses OpenAI when available, falls back to local pattern matching
  */
 
 import maltSuppliersData from '../data/maltSuppliers.json'
 import productDetailsData from '../data/productDetails.json'
 import esgAnalysisData from '../data/esgAnalysis.json'
+import { openaiService } from './openaiService.js'
 
 class AIQueryEngine {
   constructor() {
@@ -26,8 +27,9 @@ class AIQueryEngine {
   /**
    * Main query processing function
    * Now accepts conversation history for context-aware responses
+   * Uses OpenAI when available, falls back to local processing
    */
-  processQuery(query, conversationHistory = []) {
+  async processQuery(query, conversationHistory = []) {
     const normalizedQuery = query.toLowerCase().trim()
 
     // Step 1: Extract entities from conversation history
@@ -37,7 +39,29 @@ class AIQueryEngine {
     const resolvedQuery = this.resolveReferences(normalizedQuery, query)
     const resolvedNormalized = resolvedQuery.toLowerCase().trim()
 
-    // Step 3: Detect query type and route to appropriate handler
+    // Step 3: Try OpenAI first (if available)
+    if (openaiService.isEnabled()) {
+      try {
+        console.log('🤖 Using OpenAI for query:', resolvedQuery)
+        const response = await openaiService.processQuery(resolvedQuery, {
+          suppliers: this.suppliers,
+          products: this.products,
+          esgData: this.esgData,
+          conversationHistory: conversationHistory
+        })
+
+        // Update context with results
+        this.updateContext(response, resolvedNormalized)
+        return response
+
+      } catch (error) {
+        console.warn('⚠️ OpenAI failed, falling back to local processing:', error.message)
+        // Fall through to local processing
+      }
+    }
+
+    // Step 4: Fallback to local pattern matching
+    console.log('💻 Using local pattern matching')
     let response
     if (this.isComparisonQuery(resolvedNormalized)) {
       response = this.handleComparison(resolvedNormalized, resolvedQuery)
@@ -59,7 +83,7 @@ class AIQueryEngine {
       response = this.handleGeneralQuery(resolvedNormalized)
     }
 
-    // Step 4: Update context with results from this query
+    // Step 5: Update context with results from this query
     this.updateContext(response, resolvedNormalized)
 
     return response
