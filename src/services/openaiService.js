@@ -38,6 +38,34 @@ class OpenAIService {
   }
 
   /**
+   * Detect if query is about non-malt supplier search
+   */
+  isSupplierSearchQuery(query) {
+    const normalizedQuery = query.toLowerCase()
+
+    // Keywords that indicate general supplier search
+    const supplierSearchKeywords = [
+      'wellpappe', 'pappe', 'karton', 'verpackung',
+      'palette', 'paletten', 'europalette',
+      'kiste', 'kisten', 'behälter',
+      'flasche', 'flaschen', 'glas',
+      'etikett', 'etiketten', 'aufkleber',
+      'deckel', 'verschluss', 'kronkorken',
+      'lieferant', 'hersteller', 'produzent',
+      'suche lieferanten', 'finde lieferanten'
+    ]
+
+    // Check if it's NOT about malt
+    const maltKeywords = ['malz', 'gerste', 'weizen', 'röstmalz', 'pilsner', 'karamell']
+    const isMaltRelated = maltKeywords.some(kw => normalizedQuery.includes(kw))
+
+    // It's a supplier search if it contains supplier keywords AND is NOT about malt
+    const hasSupplierKeywords = supplierSearchKeywords.some(kw => normalizedQuery.includes(kw))
+
+    return hasSupplierKeywords && !isMaltRelated
+  }
+
+  /**
    * Process query using OpenAI with context data
    */
   async processQuery(userQuery, contextData) {
@@ -46,10 +74,15 @@ class OpenAIService {
     }
 
     try {
-      // Build system prompt with data context
-      const systemPrompt = this.buildSystemPrompt(contextData)
+      // Determine if this is a supplier search query
+      const isSupplierSearch = this.isSupplierSearchQuery(userQuery)
 
-      // Call OpenAI API
+      // Build appropriate system prompt
+      const systemPrompt = isSupplierSearch
+        ? this.buildSupplierSearchPrompt(userQuery)
+        : this.buildSystemPrompt(contextData)
+
+      // Call OpenAI API with adjusted parameters for supplier search
       const response = await this.client.chat.completions.create({
         model: this.model,
         messages: [
@@ -57,7 +90,7 @@ class OpenAIService {
           { role: 'user', content: userQuery }
         ],
         temperature: 0.7,
-        max_tokens: 1500,
+        max_tokens: isSupplierSearch ? 4000 : 1500, // More tokens for supplier search
         response_format: { type: 'json_object' }
       })
 
@@ -338,6 +371,151 @@ ${s.name}:
     }
 
     return output.join('\n')
+  }
+
+  /**
+   * Build supplier search prompt for non-malt products
+   */
+  buildSupplierSearchPrompt(userQuery) {
+    // Extract product from query
+    const product = this.extractProductFromQuery(userQuery)
+
+    return `Du bist ein erfahrener strategischer und technischer Einkäufer der Paulaner Brauerei Gruppe mit fundierter Marktkenntnis der europäischen Rohstoff- und Vorproduktmärkte.
+
+Deine Aufgabe besteht aus zwei Teilen:
+
+## Teil 1: Lieferantensuche
+
+**Produkt:** ${product}
+**Standort-Referenz:** München, Deutschland
+**Suchraum:** Deutschland + angrenzende Nachbarländer (Österreich, Schweiz, Tschechien, Polen, Niederlande, Belgien, Frankreich)
+
+### Aufgaben:
+
+1. Führe eine umfassende Online-Recherche durch, um alle potenziellen Hersteller, Produzenten, Weiterverarbeiter oder Händler des Produkts "${product}" im relevanten geografischen Suchraum zu identifizieren.
+
+2. Verwende ausschließlich seriöse, öffentliche Quellen (Unternehmenswebsites, Handelsregister, Branchenportale, Zertifikatsregister, Pressemitteilungen, öffentliche Firmenprofile).
+
+3. Für jeden identifizierten Lieferanten erhebe und dokumentiere exakt folgende Datenpunkte (falls eine Angabe öffentlich nicht auffindbar ist, markiere mit "k. A."):
+   - Firmenname
+   - Land
+   - Exakter Unternehmensstandort (vollständige Adresse, Hauptsitz / Werke)
+   - Unternehmensart (Hersteller, Händler, Weiterverarbeiter, etc.)
+   - Produktsortiment / Varianten von "${product}"
+   - Unternehmensgröße / Kategorie (Kleinst, KMU, Mid-Cap, Large Cap)
+   - Mitarbeiterzahl (falls verfügbar)
+   - Besitzstruktur / Unternehmensform (Privat, GmbH/AG, Tochtergesellschaft, etc.)
+   - Weitere Standorte / Produktionsstandorte
+
+4. Vermeide Duplikate; sortiere die Liste alphabetisch nach Firmennamen.
+
+## Teil 2: Lieferantenbewertungssystem
+
+6. Erstelle ein belastbares, nachvollziehbares Bewertungssystem für die recherchierten Lieferanten, ausschließlich basierend auf öffentlich verfügbaren Informationen.
+
+7. Automatisch relevante Bewertungsprioritäten für "${product}":
+   - Qualität & Produktspezifikationen
+   - Lieferfähigkeit & Supply-Chain-Stabilität
+   - Nachhaltigkeit & ESG-Konformität
+   - Zertifizierungen (produktspezifisch)
+   - Risikomanagement & Compliance
+
+8. Für jedes Kriterium liefere:
+   - Kriterium (Kurzform)
+   - Beschreibung / Messmethode
+   - Strategische Bedeutung für den Einkauf
+   - Datenquelle / Nachweis
+   - Beispielhafte öffentliche Referenz
+
+9. Standard-Gewichtung (anpassbar):
+   - Qualität / Produktspezifikation – 40%
+   - Lieferfähigkeit / Stabilität – 30%
+   - Nachhaltigkeit / ESG – 20%
+   - Risiko / Compliance – 10%
+
+10. Binde relevante Bewertungsframeworks ein: ISO 9001, ISO 14001, FSC/PEFC (falls relevant), EcoVadis, SEDEX, Deutsches LkSG, REACH/CLP.
+
+11. Gib die Bewertungslogik so aus, dass jede Prüfgröße in eine normalisierte Punkteskala (0–100) überführt werden kann.
+
+## Ausgabeformat (JSON):
+
+Du MUSST deine Antwort in folgendem JSON-Format zurückgeben:
+
+{
+  "type": "supplier_search",
+  "product": "${product}",
+  "searchRegion": "Deutschland + Nachbarländer",
+  "methodology": "Kurze Beschreibung der verwendeten Quellen und Suchkriterien",
+  "suppliers": [
+    {
+      "companyName": "Firmenname",
+      "country": "Land",
+      "location": "Vollständige Adresse",
+      "companyType": "Hersteller/Händler/etc.",
+      "productRange": "Produktsortiment",
+      "companySize": "KMU/Large Cap/etc.",
+      "employees": "Mitarbeiterzahl oder k. A.",
+      "ownership": "Besitzstruktur",
+      "additionalLocations": "Weitere Standorte oder k. A.",
+      "certifications": ["Liste von Zertifikaten"],
+      "website": "URL falls verfügbar",
+      "notes": "Zusätzliche relevante Informationen"
+    }
+  ],
+  "evaluationCriteria": [
+    {
+      "criterion": "Kriterium",
+      "description": "Beschreibung/Messmethode",
+      "strategicImportance": "Bedeutung für Einkauf",
+      "dataSource": "Datenquelle",
+      "reference": "Öffentliche Referenz",
+      "weight": 40
+    }
+  ],
+  "scoringSystem": {
+    "scale": "0-100",
+    "thresholds": {
+      "preferred": 80,
+      "approved": 60,
+      "watchlist": 40,
+      "disqualified": 40
+    }
+  },
+  "summary": "Zusammenfassung der Recherche-Ergebnisse"
+}
+
+**WICHTIG:**
+- Nutze AUSSCHLIESSLICH öffentlich verfügbare, verifizierbare Informationen
+- Wenn Daten nicht verfügbar sind, markiere mit "k. A."
+- Sei präzise und faktentreu
+- Sortiere Lieferanten nach Relevanz/Qualität`
+  }
+
+  /**
+   * Extract product name from user query
+   */
+  extractProductFromQuery(query) {
+    // Simple extraction - you can make this more sophisticated
+    const normalizedQuery = query.toLowerCase()
+
+    // Common product patterns
+    const productPatterns = [
+      /suche?\s+(?:lieferanten?\s+für\s+)?(.+?)(?:\s+in|\s+aus|$)/i,
+      /finde?\s+(?:lieferanten?\s+für\s+)?(.+?)(?:\s+in|\s+aus|$)/i,
+      /lieferanten?\s+für\s+(.+?)(?:\s+in|\s+aus|$)/i,
+      /hersteller?\s+(?:von|für)\s+(.+?)(?:\s+in|\s+aus|$)/i,
+      /(.+?)\s+lieferanten?/i
+    ]
+
+    for (const pattern of productPatterns) {
+      const match = query.match(pattern)
+      if (match && match[1]) {
+        return match[1].trim()
+      }
+    }
+
+    // Fallback: return the whole query
+    return query.replace(/suche|finde|lieferant|hersteller|produzent/gi, '').trim()
   }
 
   /**

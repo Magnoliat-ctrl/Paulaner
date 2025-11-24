@@ -581,6 +581,135 @@ function ResponseRenderer({ response, onSuggestionClick }) {
         </div>
       )
 
+    case 'supplier_search':
+      return (
+        <div className="ai-response-supplier-search">
+          <h3>🔍 Lieferantensuche: {response.product}</h3>
+
+          {response.summary && (
+            <div className="search-summary">
+              <p><strong>Zusammenfassung:</strong> {response.summary}</p>
+            </div>
+          )}
+
+          {response.methodology && (
+            <div className="search-methodology">
+              <p><strong>Methodik:</strong> {response.methodology}</p>
+              <p><strong>Suchgebiet:</strong> {response.searchRegion}</p>
+            </div>
+          )}
+
+          {/* Suppliers Table */}
+          {response.suppliers && response.suppliers.length > 0 && (
+            <div className="suppliers-section">
+              <h4>📋 Gefundene Lieferanten ({response.suppliers.length})</h4>
+              <div className="suppliers-table-wrapper">
+                <table className="suppliers-table">
+                  <thead>
+                    <tr>
+                      <th>Firma</th>
+                      <th>Land</th>
+                      <th>Standort</th>
+                      <th>Typ</th>
+                      <th>Größe</th>
+                      <th>Mitarbeiter</th>
+                      <th>Produktpalette</th>
+                      <th>Zertifikate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {response.suppliers.map((supplier, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <strong>{supplier.companyName}</strong>
+                          {supplier.website && (
+                            <div className="supplier-website">
+                              <a href={supplier.website} target="_blank" rel="noopener noreferrer">
+                                🔗 Website
+                              </a>
+                            </div>
+                          )}
+                        </td>
+                        <td>{supplier.country}</td>
+                        <td className="location-cell">{supplier.location}</td>
+                        <td>{supplier.companyType}</td>
+                        <td>{supplier.companySize}</td>
+                        <td>{supplier.employees}</td>
+                        <td className="product-range-cell">{supplier.productRange}</td>
+                        <td>
+                          {supplier.certifications && supplier.certifications.length > 0 ? (
+                            <ul className="cert-list">
+                              {supplier.certifications.map((cert, i) => (
+                                <li key={i}>{cert}</li>
+                              ))}
+                            </ul>
+                          ) : (
+                            'k. A.'
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Evaluation Criteria */}
+          {response.evaluationCriteria && response.evaluationCriteria.length > 0 && (
+            <div className="evaluation-section">
+              <h4>⚖️ Bewertungskriterien</h4>
+              <div className="criteria-grid">
+                {response.evaluationCriteria.map((criterion, idx) => (
+                  <div key={idx} className="criterion-card">
+                    <div className="criterion-header">
+                      <h5>{criterion.criterion}</h5>
+                      <span className="criterion-weight">{criterion.weight}%</span>
+                    </div>
+                    <p className="criterion-desc">{criterion.description}</p>
+                    <div className="criterion-meta">
+                      <p><strong>Bedeutung:</strong> {criterion.strategicImportance}</p>
+                      <p><strong>Quelle:</strong> {criterion.dataSource}</p>
+                      {criterion.reference && <p><strong>Referenz:</strong> {criterion.reference}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Scoring System */}
+          {response.scoringSystem && (
+            <div className="scoring-section">
+              <h4>📊 Bewertungssystem</h4>
+              <div className="scoring-info">
+                <p><strong>Skala:</strong> {response.scoringSystem.scale}</p>
+                {response.scoringSystem.thresholds && (
+                  <div className="thresholds">
+                    <div className="threshold preferred">
+                      <span className="threshold-label">Bevorzugt:</span>
+                      <span className="threshold-value">≥ {response.scoringSystem.thresholds.preferred}</span>
+                    </div>
+                    <div className="threshold approved">
+                      <span className="threshold-label">Genehmigt:</span>
+                      <span className="threshold-value">≥ {response.scoringSystem.thresholds.approved}</span>
+                    </div>
+                    <div className="threshold watchlist">
+                      <span className="threshold-label">Beobachtet:</span>
+                      <span className="threshold-value">≥ {response.scoringSystem.thresholds.watchlist}</span>
+                    </div>
+                    <div className="threshold disqualified">
+                      <span className="threshold-label">Disqualifiziert:</span>
+                      <span className="threshold-value">&lt; {response.scoringSystem.thresholds.disqualified}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )
+
     default:
       return <p>{JSON.stringify(response)}</p>
   }
