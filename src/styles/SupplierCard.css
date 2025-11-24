@@ -35,7 +35,7 @@
 
 .supplier-card-title {
   font-size: var(--font-size-xl);
-  color: var(--color-primary);
+  color: var(--color-primary) !important;
   margin: 0;
   flex: 1;
 }
@@ -45,10 +45,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  color: #212529 !important;
 }
 
 .supplier-card-description {
-  color: var(--color-text-secondary);
+  color: #212529 !important;
   margin: 0;
   font-size: var(--font-size-base);
   line-height: 1.5;
@@ -65,7 +66,7 @@
   align-items: center;
   gap: var(--spacing-xs);
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: #212529 !important;
 }
 
 .info-icon {
@@ -74,6 +75,7 @@
 
 .info-text {
   flex: 1;
+  color: #212529 !important;
 }
 
 .supplier-card-rating {
@@ -101,13 +103,13 @@
 
 .rating-score {
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-primary) !important;
   font-size: var(--font-size-lg);
 }
 
 .rating-count {
   font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+  color: #212529 !important;
   margin-left: auto;
 }
 
@@ -122,7 +124,7 @@
   background: var(--color-background);
   border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
-  color: var(--color-text-secondary);
+  color: #212529 !important;
   font-weight: 600;
 }
 

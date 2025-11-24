@@ -5,12 +5,16 @@
 
 import React, { useState, useEffect } from 'react'
 import { dataService } from '../services/dataService'
+import esgAnalysisData from '../data/esgAnalysis.json'
+import productDetailsData from '../data/productDetails.json'
 import '../styles/SupplierProfile.css'
 
 function SupplierProfile({ supplierId, navigateTo }) {
   const [loading, setLoading] = useState(true)
   const [supplier, setSupplier] = useState(null)
   const [error, setError] = useState(null)
+  const [selectedProduct, setSelectedProduct] = useState(null)
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false)
 
   useEffect(() => {
     if (supplierId) {
@@ -75,6 +79,68 @@ function SupplierProfile({ supplierId, navigateTo }) {
     if (!ratings || ratings.length === 0) return 0
     const sum = ratings.reduce((acc, r) => acc + r.overallScore, 0)
     return (sum / ratings.length).toFixed(1)
+  }
+
+  /**
+   * Get ESG rating class and color
+   */
+  const getESGRatingClass = (rating) => {
+    const ratingMap = {
+      'Excellent': 'esg-rating-excellent',
+      'Very Good': 'esg-rating-very-good',
+      'Good': 'esg-rating-good',
+      'Needs Improvement': 'esg-rating-needs-improvement'
+    }
+    return ratingMap[rating] || 'esg-rating-good'
+  }
+
+  /**
+   * Get ESG analysis for current supplier
+   */
+  const getESGAnalysis = () => {
+    if (!supplier || !esgAnalysisData) return null
+    return esgAnalysisData.suppliers[supplier.name] || null
+  }
+
+  /**
+   * Get product details for current supplier
+   */
+  const getProductDetails = () => {
+    if (!supplier || !productDetailsData) return null
+    return productDetailsData[supplier.name] || null
+  }
+
+  /**
+   * Handle product click
+   */
+  const handleProductClick = (product) => {
+    setSelectedProduct(product)
+    setIsProductModalOpen(true)
+  }
+
+  /**
+   * Close product modal
+   */
+  const closeProductModal = () => {
+    setIsProductModalOpen(false)
+    setTimeout(() => setSelectedProduct(null), 300) // Wait for animation
+  }
+
+  /**
+   * Get color badge class based on EBC value
+   */
+  const getColorBadgeClass = (category) => {
+    const colorMap = {
+      'sehr hell': 'color-badge-very-light',
+      'hell': 'color-badge-light',
+      'bernstein': 'color-badge-amber',
+      'rot': 'color-badge-red',
+      'rotbraun': 'color-badge-red-brown',
+      'dunkelbraun': 'color-badge-dark-brown',
+      'schwarz': 'color-badge-black',
+      'N/A': 'color-badge-na'
+    }
+    return colorMap[category] || 'color-badge-light'
   }
 
   if (loading) {
@@ -209,12 +275,44 @@ function SupplierProfile({ supplierId, navigateTo }) {
               {supplier.contact.website}
             </a>
           </div>
-          <div className="contact-item">
-            <span className="contact-label">Adresse:</span>
-            <span className="contact-value">
-              {supplier.location.street}, {supplier.location.postalCode} {supplier.location.city}, {supplier.location.country}
-            </span>
-          </div>
+        </div>
+      </div>
+
+      {/* All Locations */}
+      <div className="card">
+        <div className="card-header">
+          <h2 className="card-title">Standorte</h2>
+        </div>
+        <div className="card-body">
+          {supplier.locations && supplier.locations.length > 0 ? (
+            <div className="locations-list">
+              {supplier.locations.map((location, index) => (
+                <div key={index} className="location-item">
+                  <div className="location-header">
+                    <span className="location-icon">📍</span>
+                    <span className="location-type">{location.type || 'Standort'}</span>
+                  </div>
+                  <div className="location-address">
+                    <div>{location.street}</div>
+                    <div>{location.postalCode} {location.city}</div>
+                    <div>{location.region}, {location.country}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="location-item">
+              <div className="location-header">
+                <span className="location-icon">📍</span>
+                <span className="location-type">Hauptstandort</span>
+              </div>
+              <div className="location-address">
+                <div>{supplier.location.street}</div>
+                <div>{supplier.location.postalCode} {supplier.location.city}</div>
+                <div>{supplier.location.region}, {supplier.location.country}</div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -224,11 +322,68 @@ function SupplierProfile({ supplierId, navigateTo }) {
           <h2 className="card-title">Produkte & Dienstleistungen</h2>
         </div>
         <div className="card-body">
-          <div className="product-list">
-            {supplier.products.map((product, index) => (
-              <span key={index} className="product-tag">{product}</span>
-            ))}
-          </div>
+          {(() => {
+            const productDetails = getProductDetails()
+
+            if (!productDetails) {
+              // Fallback to simple product tags for suppliers without detailed products
+              return (
+                <div className="product-list">
+                  {supplier.products.map((product, index) => (
+                    <span key={index} className="product-tag">{product}</span>
+                  ))}
+                </div>
+              )
+            }
+
+            // Enhanced product display with categories for suppliers with detailed products
+            return (
+              <div className="products-enhanced">
+                <p className="products-intro">
+                  Klicken Sie auf ein Produkt, um detaillierte Informationen zu sehen.
+                </p>
+                {Object.entries(productDetails.categories).map(([categoryName, products]) => (
+                  <div key={categoryName} className="product-category-section">
+                    <h3 className="product-category-title">{categoryName}</h3>
+                    <div className="product-cards-grid">
+                      {products.map((product) => (
+                        <div
+                          key={product.id}
+                          className="product-card"
+                          onClick={() => handleProductClick(product)}
+                          role="button"
+                          tabIndex={0}
+                          onKeyPress={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              handleProductClick(product)
+                            }
+                          }}
+                          aria-label={`Details zu ${product.name}`}
+                        >
+                          <div className="product-card-header">
+                            <span className={`product-color-badge ${getColorBadgeClass(product.color.category)}`}>
+                              {product.color.ebc} EBC
+                            </span>
+                          </div>
+                          <h4 className="product-card-name">{product.name}</h4>
+                          <div className="product-card-info">
+                            <span className="product-info-item">
+                              <span className="product-info-icon">🎨</span>
+                              {product.color.category}
+                            </span>
+                            <span className="product-info-item">
+                              <span className="product-info-icon">📊</span>
+                              {product.usage}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )
+          })()}
         </div>
       </div>
 
@@ -252,74 +407,300 @@ function SupplierProfile({ supplierId, navigateTo }) {
       {/* ESG Information */}
       <div className="card">
         <div className="card-header">
-          <h2 className="card-title">ESG-Daten (Environmental, Social, Governance)</h2>
+          <h2 className="card-title">ESG-Bewertung (Environmental, Social, Governance)</h2>
         </div>
         <div className="card-body esg-section">
-          <div className="esg-category">
-            <h3 className="esg-title">🌍 Umwelt (Environmental)</h3>
-            <div className="esg-data">
-              <div className="esg-item">
-                <span>CO₂-Fußabdruck:</span>
-                <strong>{supplier.esg.environmental.carbonFootprint}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Wassernutzung:</span>
-                <strong>{supplier.esg.environmental.waterUsage}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Abfallmanagement:</span>
-                <strong>{supplier.esg.environmental.wasteManagement}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Erneuerbare Energie:</span>
-                <strong>{supplier.esg.environmental.renewableEnergy}%</strong>
-              </div>
-            </div>
-          </div>
+          {(() => {
+            const esgAnalysis = getESGAnalysis()
 
-          <div className="esg-category">
-            <h3 className="esg-title">👥 Soziales (Social)</h3>
-            <div className="esg-data">
-              <div className="esg-item">
-                <span>Faire Löhne:</span>
-                <strong>{supplier.esg.social.fairWages ? 'Ja' : 'Nein'}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Arbeitsbedingungen:</span>
-                <strong>{supplier.esg.social.workingConditions}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Mitarbeiterfortbildung:</span>
-                <strong>{supplier.esg.social.employeeTraining ? 'Ja' : 'Nein'}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Diversity-Score:</span>
-                <strong>{supplier.esg.social.diversityScore}/10</strong>
-              </div>
-            </div>
-          </div>
+            if (!esgAnalysis) {
+              // Fallback to basic ESG display if no analysis available
+              return (
+                <>
+                  <div className="esg-category">
+                    <h3 className="esg-title">🌍 Umwelt (Environmental)</h3>
+                    <div className="esg-data">
+                      <div className="esg-item">
+                        <span>CO₂-Fußabdruck:</span>
+                        <strong>{supplier.esg.environmental.carbonFootprint}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Wassernutzung:</span>
+                        <strong>{supplier.esg.environmental.waterUsage}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Abfallmanagement:</span>
+                        <strong>{supplier.esg.environmental.wasteManagement}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Erneuerbare Energie:</span>
+                        <strong>{supplier.esg.environmental.renewableEnergy}%</strong>
+                      </div>
+                    </div>
+                  </div>
 
-          <div className="esg-category">
-            <h3 className="esg-title">⚖️ Unternehmensführung (Governance)</h3>
-            <div className="esg-data">
-              <div className="esg-item">
-                <span>Transparenz:</span>
-                <strong>{supplier.esg.governance.transparency}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Ethisches Geschäftsgebaren:</span>
-                <strong>{supplier.esg.governance.ethicalBusiness ? 'Ja' : 'Nein'}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Anti-Korruption:</span>
-                <strong>{supplier.esg.governance.antiCorruption ? 'Ja' : 'Nein'}</strong>
-              </div>
-              <div className="esg-item">
-                <span>Datenschutz:</span>
-                <strong>{supplier.esg.governance.dataProtection ? 'Ja' : 'Nein'}</strong>
-              </div>
-            </div>
-          </div>
+                  <div className="esg-category">
+                    <h3 className="esg-title">👥 Soziales (Social)</h3>
+                    <div className="esg-data">
+                      <div className="esg-item">
+                        <span>Faire Löhne:</span>
+                        <strong>{supplier.esg.social.fairWages ? 'Ja' : 'Nein'}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Arbeitsbedingungen:</span>
+                        <strong>{supplier.esg.social.workingConditions}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Mitarbeiterfortbildung:</span>
+                        <strong>{supplier.esg.social.employeeTraining ? 'Ja' : 'Nein'}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Diversity-Score:</span>
+                        <strong>{supplier.esg.social.diversityScore}/10</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="esg-category">
+                    <h3 className="esg-title">⚖️ Unternehmensführung (Governance)</h3>
+                    <div className="esg-data">
+                      <div className="esg-item">
+                        <span>Transparenz:</span>
+                        <strong>{supplier.esg.governance.transparency}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Ethisches Geschäftsgebaren:</span>
+                        <strong>{supplier.esg.governance.ethicalBusiness ? 'Ja' : 'Nein'}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Anti-Korruption:</span>
+                        <strong>{supplier.esg.governance.antiCorruption ? 'Ja' : 'Nein'}</strong>
+                      </div>
+                      <div className="esg-item">
+                        <span>Datenschutz:</span>
+                        <strong>{supplier.esg.governance.dataProtection ? 'Ja' : 'Nein'}</strong>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )
+            }
+
+            // Enhanced ESG display with comprehensive analysis
+            return (
+              <>
+                {/* Overall ESG Score */}
+                <div className="esg-overall-score">
+                  <div className="esg-score-container">
+                    <div className="esg-score-value">{esgAnalysis.overallESGScore}</div>
+                    <div className="esg-score-max">/10</div>
+                  </div>
+                  <div className="esg-rating-info">
+                    <span className={`esg-rating-badge ${getESGRatingClass(esgAnalysis.rating)}`}>
+                      {esgAnalysis.rating}
+                    </span>
+                    <p className="esg-benchmark">
+                      Branchendurchschnitt: {esgAnalysisData.industryBenchmarks.averageESGScore}/10
+                    </p>
+                  </div>
+                </div>
+
+                {/* Category Scores */}
+                <div className="esg-categories-grid">
+                  {/* Environmental */}
+                  <div className="esg-category-card">
+                    <div className="esg-category-header">
+                      <h3 className="esg-category-title">🌍 Umwelt</h3>
+                      <span className={`esg-category-score ${getESGRatingClass(esgAnalysis.environmental.rating)}`}>
+                        {esgAnalysis.environmental.score}/10
+                      </span>
+                    </div>
+                    <div className="esg-progress-bar">
+                      <div
+                        className="esg-progress-fill esg-environmental"
+                        style={{ width: `${esgAnalysis.environmental.score * 10}%` }}
+                      ></div>
+                    </div>
+
+                    <div className="esg-details">
+                      <div className="esg-detail-item">
+                        <strong>CO₂-Fußabdruck:</strong>
+                        <span>{esgAnalysis.environmental.carbonFootprint.level}</span>
+                      </div>
+                      {esgAnalysis.environmental.energyManagement && (
+                        <div className="esg-detail-item">
+                          <strong>Erneuerbare Energien:</strong>
+                          <span>{esgAnalysis.environmental.energyManagement.renewableEnergyPercentage}%</span>
+                        </div>
+                      )}
+                      {esgAnalysis.environmental.waterManagement && (
+                        <div className="esg-detail-item">
+                          <strong>Wassermanagement:</strong>
+                          <span>{esgAnalysis.environmental.waterManagement.efficiency}</span>
+                        </div>
+                      )}
+                      {esgAnalysis.environmental.wasteManagement && (
+                        <div className="esg-detail-item">
+                          <strong>Abfallmanagement:</strong>
+                          <span>{esgAnalysis.environmental.wasteManagement.level}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {esgAnalysis.environmental.keyAchievements && esgAnalysis.environmental.keyAchievements.length > 0 && (
+                      <div className="esg-achievements">
+                        <strong>Wichtige Maßnahmen:</strong>
+                        <ul>
+                          {esgAnalysis.environmental.keyAchievements.slice(0, 3).map((achievement, idx) => (
+                            <li key={idx}>{achievement}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Social */}
+                  <div className="esg-category-card">
+                    <div className="esg-category-header">
+                      <h3 className="esg-category-title">👥 Soziales</h3>
+                      <span className={`esg-category-score ${getESGRatingClass(esgAnalysis.social.rating)}`}>
+                        {esgAnalysis.social.score}/10
+                      </span>
+                    </div>
+                    <div className="esg-progress-bar">
+                      <div
+                        className="esg-progress-fill esg-social"
+                        style={{ width: `${esgAnalysis.social.score * 10}%` }}
+                      ></div>
+                    </div>
+
+                    <div className="esg-details">
+                      {esgAnalysis.social.employeeWelfare && (
+                        <>
+                          <div className="esg-detail-item">
+                            <strong>Arbeitsbedingungen:</strong>
+                            <span>{esgAnalysis.social.employeeWelfare.workingConditions}</span>
+                          </div>
+                          <div className="esg-detail-item">
+                            <strong>Weiterbildung:</strong>
+                            <span>{esgAnalysis.social.employeeWelfare.trainingPrograms ? 'Ja' : 'Nein'}</span>
+                          </div>
+                        </>
+                      )}
+                      {esgAnalysis.social.diversity && (
+                        <div className="esg-detail-item">
+                          <strong>Diversity-Score:</strong>
+                          <span>{esgAnalysis.social.diversity.score}/10</span>
+                        </div>
+                      )}
+                      {esgAnalysis.social.communityEngagement && (
+                        <div className="esg-detail-item">
+                          <strong>Community Engagement:</strong>
+                          <span>{esgAnalysis.social.communityEngagement.level}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {esgAnalysis.social.keyAchievements && esgAnalysis.social.keyAchievements.length > 0 && (
+                      <div className="esg-achievements">
+                        <strong>Wichtige Maßnahmen:</strong>
+                        <ul>
+                          {esgAnalysis.social.keyAchievements.slice(0, 3).map((achievement, idx) => (
+                            <li key={idx}>{achievement}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Governance */}
+                  <div className="esg-category-card">
+                    <div className="esg-category-header">
+                      <h3 className="esg-category-title">⚖️ Governance</h3>
+                      <span className={`esg-category-score ${getESGRatingClass(esgAnalysis.governance.rating)}`}>
+                        {esgAnalysis.governance.score}/10
+                      </span>
+                    </div>
+                    <div className="esg-progress-bar">
+                      <div
+                        className="esg-progress-fill esg-governance"
+                        style={{ width: `${esgAnalysis.governance.score * 10}%` }}
+                      ></div>
+                    </div>
+
+                    <div className="esg-details">
+                      {esgAnalysis.governance.transparency && (
+                        <div className="esg-detail-item">
+                          <strong>Transparenz:</strong>
+                          <span>{esgAnalysis.governance.transparency.level}</span>
+                        </div>
+                      )}
+                      {esgAnalysis.governance.compliance && (
+                        <>
+                          <div className="esg-detail-item">
+                            <strong>Compliance-Status:</strong>
+                            <span>{esgAnalysis.governance.compliance.status}</span>
+                          </div>
+                          <div className="esg-detail-item">
+                            <strong>Ethisches Geschäft:</strong>
+                            <span>{esgAnalysis.governance.compliance.ethicalBusiness ? 'Ja' : 'Nein'}</span>
+                          </div>
+                        </>
+                      )}
+                      {esgAnalysis.governance.certifications && (
+                        <div className="esg-detail-item">
+                          <strong>Zertifizierungen:</strong>
+                          <span>{esgAnalysis.governance.certifications.length} aktiv</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {esgAnalysis.governance.keyAchievements && esgAnalysis.governance.keyAchievements.length > 0 && (
+                      <div className="esg-achievements">
+                        <strong>Wichtige Maßnahmen:</strong>
+                        <ul>
+                          {esgAnalysis.governance.keyAchievements.slice(0, 3).map((achievement, idx) => (
+                            <li key={idx}>{achievement}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Strengths and Areas for Improvement */}
+                <div className="esg-insights-grid">
+                  <div className="esg-insights-card esg-strengths">
+                    <h3 className="esg-insights-title">✅ Stärken</h3>
+                    <ul className="esg-insights-list">
+                      {esgAnalysis.strengths.map((strength, idx) => (
+                        <li key={idx}>{strength}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="esg-insights-card esg-improvements">
+                    <h3 className="esg-insights-title">📈 Verbesserungspotenzial</h3>
+                    <ul className="esg-insights-list">
+                      {esgAnalysis.areasForImprovement.map((area, idx) => (
+                        <li key={idx}>{area}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Methodology */}
+                <div className="esg-methodology">
+                  <h3 className="esg-methodology-title">📊 Bewertungsmethodik</h3>
+                  <div className="esg-methodology-content">
+                    <p><strong>Methode:</strong> {esgAnalysisData.analysisMetadata.methodology}</p>
+                    <p><strong>Datenquellen:</strong> {esgAnalysisData.analysisMetadata.sources.join(', ')}</p>
+                    <p><strong>Letzte Aktualisierung:</strong> {new Date(esgAnalysisData.analysisMetadata.lastUpdate).toLocaleDateString('de-DE')}</p>
+                  </div>
+                </div>
+              </>
+            )
+          })()}
         </div>
       </div>
 
@@ -379,6 +760,114 @@ function SupplierProfile({ supplierId, navigateTo }) {
           )}
         </div>
       </div>
+
+      {/* Product Details Modal */}
+      {isProductModalOpen && selectedProduct && (
+        <div
+          className={`product-modal-overlay ${isProductModalOpen ? 'modal-open' : ''}`}
+          onClick={closeProductModal}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="product-modal-title"
+        >
+          <div
+            className="product-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="product-modal-close"
+              onClick={closeProductModal}
+              aria-label="Schließen"
+            >
+              ✕
+            </button>
+
+            <div className="product-modal-header">
+              <span className={`product-modal-color-badge ${getColorBadgeClass(selectedProduct.color.category)}`}>
+                {selectedProduct.color.ebc} EBC
+              </span>
+              <h2 id="product-modal-title" className="product-modal-title">
+                {selectedProduct.name}
+              </h2>
+              <p className="product-modal-subtitle">{selectedProduct.rating}</p>
+            </div>
+
+            <div className="product-modal-body">
+              <div className="product-modal-grid">
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">🎨</span>
+                    Farbe
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.color.ebc} EBC</div>
+                    <div className="product-modal-detail-secondary">{selectedProduct.color.category}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">📊</span>
+                    Einsatz
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.usage}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">⚗️</span>
+                    Enzyme
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.enzymes}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">👃</span>
+                    Aroma
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.aroma}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail product-modal-detail-full">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">🍺</span>
+                    Biertypen
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.beerTypes}</div>
+                  </div>
+                </div>
+
+                <div className="product-modal-detail product-modal-detail-full product-modal-rating">
+                  <div className="product-modal-detail-label">
+                    <span className="product-modal-icon">⭐</span>
+                    Bewertung
+                  </div>
+                  <div className="product-modal-detail-value">
+                    <div className="product-modal-detail-primary">{selectedProduct.rating}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="product-modal-footer">
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={closeProductModal}
+              >
+                Schließen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

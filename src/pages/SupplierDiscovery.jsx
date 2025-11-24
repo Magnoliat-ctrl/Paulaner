@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { dataService } from '../services/dataService'
-import { aiService } from '../services/aiService'
+import { openaiService } from '../services/openaiService'
 import { memoryService } from '../services/memoryService'
 import SearchBar from '../components/suppliers/SearchBar'
 import FilterPanel from '../components/suppliers/FilterPanel'
@@ -28,14 +28,19 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
   const [regions, setRegions] = useState([])
   const [showFilters, setShowFilters] = useState(false)
   const [aiSuggestions, setAiSuggestions] = useState(null)
+  const [searchProgress, setSearchProgress] = useState(null)
 
   useEffect(() => {
     loadInitialData()
   }, [])
 
+  // Removed automatic search on query change - now only searches on Enter
   useEffect(() => {
-    performSearch()
-  }, [searchQuery, filters])
+    // Only apply filters, not full search
+    if (!searchQuery) {
+      performSearch()
+    }
+  }, [filters])
 
   /**
    * Load initial data and user preferences
@@ -71,10 +76,14 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
    */
   const performSearch = async () => {
     try {
-      // Search with dataService
+      setSearchProgress('Starte Suche...')
+
+      // Search with dataService and progress callback
       const results = await dataService.searchSuppliers({
         query: searchQuery,
         ...filters
+      }, (progress) => {
+        setSearchProgress(progress)
       })
 
       setFilteredSuppliers(results)
@@ -87,7 +96,8 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
       // Get AI suggestions if query is not empty
       // AI INTEGRATION POINT: This calls the AI service to enhance search results
       if (searchQuery) {
-        const suggestions = await aiService.analyzeQuery(searchQuery, userMemory)
+        setSearchProgress('Lade KI-Vorschläge...')
+        const suggestions = await openaiService.analyzeQuery(searchQuery, userMemory)
         setAiSuggestions(suggestions)
 
         // Optionally apply AI-suggested filters
@@ -97,17 +107,27 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
           // setFilters(prev => ({ ...prev, ...suggestions.suggestedFilters }))
         }
       }
+
+      setSearchProgress(null)
     } catch (error) {
       console.error('Error performing search:', error)
+      setSearchProgress(null)
     }
   }
 
   /**
-   * Handle search query change
+   * Handle search query change (just update state, don't search yet)
    * @param {string} query - Search query
    */
   const handleSearchChange = (query) => {
     setSearchQuery(query)
+  }
+
+  /**
+   * Handle search execution (on Enter press)
+   */
+  const handleSearch = () => {
+    performSearch()
   }
 
   /**
@@ -172,9 +192,19 @@ function SupplierDiscovery({ navigateTo, userMemory }) {
       <SearchBar
         query={searchQuery}
         onQueryChange={handleSearchChange}
-        onSearch={performSearch}
-        placeholder="Suche nach Lieferanten, Produkten, Standorten..."
+        onSearch={handleSearch}
+        placeholder="Suche nach Lieferanten, Produkten, Standorten... (Enter zum Suchen)"
       />
+
+      {/* Search Progress Indicator */}
+      {searchProgress && (
+        <div className="search-progress" role="status" aria-live="polite">
+          <div className="progress-content">
+            <div className="spinner-small" aria-hidden="true"></div>
+            <span className="progress-text">{searchProgress}</span>
+          </div>
+        </div>
+      )}
 
       {/* AI Suggestions */}
       {aiSuggestions && !aiSuggestions.isAIGenerated && aiSuggestions.suggestedFilters && (
