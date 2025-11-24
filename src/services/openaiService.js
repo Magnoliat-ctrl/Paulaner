@@ -66,6 +66,51 @@ class OpenAIService {
   }
 
   /**
+   * Validate response for hallucinated supplier names
+   */
+  validateResponse(response, validSupplierNames) {
+    const validNamesLower = validSupplierNames.map(n => n.toLowerCase())
+    const responseStr = JSON.stringify(response).toLowerCase()
+
+    // List of common hallucinated company names to check for
+    const forbiddenNames = [
+      'data art', 'sap se', 'sap ag', 'techcorp', 'basf', 'siemens',
+      'microsoft', 'google', 'amazon', 'ibm', 'oracle', 'accenture',
+      'capgemini', 'tata', 'infosys', 'wipro', 'cognizant'
+    ]
+
+    // Check for forbidden names
+    for (const forbidden of forbiddenNames) {
+      if (responseStr.includes(forbidden)) {
+        console.error(`🚨 HALLUCINATION DETECTED: Response contains forbidden name "${forbidden}"`)
+        return {
+          valid: false,
+          error: `Halluzinierter Lieferant erkannt: "${forbidden}"`
+        }
+      }
+    }
+
+    // Extract potential supplier names from response (look for capitalized words)
+    const words = JSON.stringify(response).match(/[A-ZÄÖÜ][a-zäöüß]+(?: [A-ZÄÖÜ][a-zäöüß]+)*/g) || []
+
+    for (const word of words) {
+      // Skip common words
+      if (['Dashboard', 'Lieferant', 'Daten', 'Kennzahl', 'Score', 'Rating'].includes(word)) {
+        continue
+      }
+
+      // Check if it looks like a company name and is NOT in valid suppliers
+      if (word.length > 3 && !validNamesLower.some(valid =>
+        word.toLowerCase().includes(valid) || valid.includes(word.toLowerCase())
+      )) {
+        console.warn(`⚠️ Potential hallucination: "${word}"`)
+      }
+    }
+
+    return { valid: true }
+  }
+
+  /**
    * Process query using OpenAI with context data
    */
   async processQuery(userQuery, contextData) {
@@ -89,13 +134,35 @@ class OpenAIService {
           { role: 'system', content: systemPrompt },
           { role: 'user', content: userQuery }
         ],
-        temperature: 0.7,
-        max_tokens: isSupplierSearch ? 4000 : 1500, // More tokens for supplier search
+        temperature: 0.2, // Lower temperature for more deterministic responses
+        max_tokens: isSupplierSearch ? 4000 : 1500,
         response_format: { type: 'json_object' }
       })
 
       const content = response.choices[0].message.content
-      return JSON.parse(content)
+      const parsedResponse = JSON.parse(content)
+
+      // Validate response for hallucinations
+      if (!isSupplierSearch && contextData.suppliers) {
+        const validSupplierNames = contextData.suppliers.map(s => s.name)
+        const validation = this.validateResponse(parsedResponse, validSupplierNames)
+
+        if (!validation.valid) {
+          console.error('🚨 VALIDATION FAILED:', validation.error)
+          // Return error response instead of hallucinated data
+          return {
+            type: 'clarification',
+            message: `Fehler: Die KI hat versucht, nicht existierende Lieferanten zu erwähnen. Bitte stelle deine Frage neu oder spezifischer. Verfügbare Lieferanten: ${validSupplierNames.join(', ')}`,
+            suggestions: [
+              'Welcher Lieferant im Dashboard hat die vollständigsten Daten?',
+              'Zeige mir alle verfügbaren Lieferanten',
+              'Vergleiche die ESG-Scores der vorhandenen Lieferanten'
+            ]
+          }
+        }
+      }
+
+      return parsedResponse
 
     } catch (error) {
       console.error('OpenAI API Error:', error)
@@ -169,6 +236,20 @@ Du darfst ausschließlich die Daten verwenden, die dir in diesem Kontext überge
 ### 6. Bei externen Anfragen
 - Wenn der Nutzer nach etwas fragt, was externes Wissen erfordern würde (z.B. allgemeine Marktpreise, Geopolitik, Länderrisiken), antworte:
 - **"Diese Information ist in den übergebenen internen Daten nicht enthalten. Da ich nur mit diesen arbeiten darf, kann ich dazu keine verlässliche Aussage treffen."**
+
+## ⚠️ KONKRETE BEISPIELE:
+
+**BEISPIEL 1 - Frage: "Welcher Lieferant hat die fundiertesten Daten?"**
+❌ FALSCH: "DATA ART und SAP SE haben die umfassendsten Daten..."
+✓ RICHTIG: "Basierend auf den vorliegenden Daten hat Weyermann® die vollständigsten Informationen mit 10 Datenfeldern, gefolgt von..."
+
+**BEISPIEL 2 - Frage: "Für was verwendet man 1000 EBC Malze?"**
+❌ FALSCH: "Dazu liegen keine Daten vor"
+✓ RICHTIG: "In den Produktdaten finde ich Farbmalze mit 1000 EBC von SCHUEMA (Fa 1000, Fa verano 1000). Diese werden verwendet für..."
+
+**BEISPIEL 3 - Frage: "Welche Tech-Unternehmen sind gute Lieferanten?"**
+❌ FALSCH: "Microsoft, Google und IBM sind führende Tech-Lieferanten..."
+✓ RICHTIG: "In den Dashboard-Daten sind keine Tech-Unternehmen enthalten. Die verfügbaren Lieferanten sind Malzproduzenten: ${validSupplierNames.slice(0, 3).join(', ')}, ..."
 
 ## VOLLSTÄNDIGE DATENBASIS (NUR DIESE DATEN VERWENDEN):
 
@@ -385,13 +466,38 @@ ${s.name}:
       for (const [category, prods] of Object.entries(supplierData.categories)) {
         output.push(`  ${category} (${prods.length} Produkte):`)
 
-        // Show first 5 products with details
-        prods.slice(0, 5).forEach(p => {
-          output.push(`    - ${p.name}: EBC ${p.color.ebc}, ${p.usage || 'Vielseitig einsetzbar'}`)
+        // Sort products by EBC value to show interesting range
+        const sortedProds = [...prods].sort((a, b) => {
+          const ebcA = parseInt(String(a.color?.ebc || '0').split(/[-–]/)[0]) || 0
+          const ebcB = parseInt(String(b.color?.ebc || '0').split(/[-–]/)[0]) || 0
+          return ebcA - ebcB
         })
 
-        if (prods.length > 5) {
-          output.push(`    ... und ${prods.length - 5} weitere`)
+        // Show first 3, then some high-EBC ones (like 1000 EBC)
+        const samplesToShow = []
+        samplesToShow.push(...sortedProds.slice(0, 3)) // First 3 (lightest)
+
+        // Add high-EBC products (> 500)
+        const highEBC = sortedProds.filter(p => {
+          const ebc = parseInt(String(p.color?.ebc || '0').split(/[-–]/)[0]) || 0
+          return ebc >= 500
+        })
+
+        if (highEBC.length > 0) {
+          samplesToShow.push(...highEBC.slice(0, 3))
+        }
+
+        // Remove duplicates
+        const uniqueSamples = [...new Map(samplesToShow.map(p => [p.name, p])).values()]
+
+        uniqueSamples.forEach(p => {
+          const ebc = p.color?.ebc || 'k.A.'
+          const usage = p.usage || 'Vielseitig einsetzbar'
+          output.push(`    - ${p.name}: EBC ${ebc}, ${usage}`)
+        })
+
+        if (prods.length > uniqueSamples.length) {
+          output.push(`    ... und ${prods.length - uniqueSamples.length} weitere`)
         }
       }
     }
