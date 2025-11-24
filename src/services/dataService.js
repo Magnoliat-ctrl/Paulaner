@@ -357,12 +357,94 @@ class DataService {
         if (onProgress) onProgress('Erstelle detaillierte Profile...')
         await this.delay(1400)
 
-        // Add IDs to verified suppliers if they don't have them
-        const verifiedWithIds = sourceData.map((supplier, index) => ({
-          ...supplier,
-          id: supplier.id || `VERIFIED-${categoryKey.toUpperCase()}-${index + 1}`,
-          category: categoryName
-        }))
+        // Transform and normalize supplier data to match expected format
+        const verifiedWithIds = sourceData.map((supplier, index) => {
+          // For Malz, data is already in correct format
+          if (isMaltSearch) {
+            return {
+              ...supplier,
+              id: supplier.id || `VERIFIED-MALT-${index + 1}`,
+              category: categoryName
+            }
+          }
+
+          // For other categories, transform from additionalSuppliers format
+          // Extract primary location from locations array
+          const primaryLocation = supplier.locations?.[0] || {}
+          const location = {
+            street: primaryLocation.address || 'Nicht angegeben',
+            city: primaryLocation.city || 'Unbekannt',
+            postalCode: primaryLocation.postalCode || '',
+            country: primaryLocation.country || supplier.country || 'Deutschland',
+            region: primaryLocation.region || ''
+          }
+
+          // Transform rating object to ratings array
+          const ratings = supplier.rating ? [{
+            id: `RATING-${categoryKey.toUpperCase()}-${index + 1}`,
+            date: new Date().toISOString().split('T')[0],
+            overallScore: supplier.rating.overall || 0,
+            categories: {
+              quality: supplier.rating.quality || 0,
+              deliveryCapability: supplier.rating.deliveryCapability || 0,
+              sustainability: supplier.rating.sustainability || supplier.rating.esg || 0,
+              risk: supplier.rating.risk || 0
+            },
+            comment: `Bewertung: ${supplier.rating.category || 'N/A'}`
+          }] : []
+
+          // Build compliance object
+          const compliance = {
+            status: supplier.rating?.overall >= 85 ? 'compliant' :
+                    supplier.rating?.overall >= 70 ? 'minor-violation' :
+                    supplier.rating?.overall >= 50 ? 'under-review' : 'major-violation',
+            lastAudit: new Date().toISOString().split('T')[0],
+            violations: []
+          }
+
+          // Transform to expected format
+          return {
+            id: supplier.id || `VERIFIED-${categoryKey.toUpperCase()}-${index + 1}`,
+            name: supplier.name,
+            description: `${supplier.companyType}. ${supplier.productRange}`,
+            category: categoryName,
+            contact: {
+              email: 'info@example.com',
+              phone: 'Nicht angegeben',
+              website: supplier.website || '',
+              person: 'Ansprechpartner',
+              position: 'Kontakt'
+            },
+            location: location,
+            locations: supplier.locations?.map(loc => ({
+              street: loc.address || '',
+              city: loc.city || '',
+              postalCode: loc.postalCode || '',
+              country: loc.country || supplier.country || 'Deutschland',
+              region: loc.region || '',
+              type: loc.type || 'Standort'
+            })) || [location],
+            products: supplier.productRange ? [supplier.productRange] : [],
+            certifications: supplier.certifications || [],
+            deliveryRegions: supplier.additionalLocations ? [supplier.additionalLocations] : ['Deutschland', 'Europa'],
+            performance: {
+              onTimeDeliveryRate: supplier.rating?.deliveryCapability || 0,
+              qualityRating: supplier.rating?.quality || 0,
+              defectRate: 100 - (supplier.rating?.quality || 0),
+              responseTime: '24h',
+              leadTime: '2-3 Wochen'
+            },
+            ratings: ratings,
+            compliance: compliance,
+            lastUpdated: new Date().toISOString(),
+            // Additional fields from original data
+            companySize: supplier.companySize,
+            employees: supplier.employees,
+            ownership: supplier.ownership,
+            strengths: supplier.strengths || [],
+            weaknesses: supplier.weaknesses || []
+          }
+        })
 
         aiSuppliers = verifiedWithIds
         console.log(`✅ ${verifiedWithIds.length} verifizierte ${categoryName}-Lieferanten recherchiert`)
