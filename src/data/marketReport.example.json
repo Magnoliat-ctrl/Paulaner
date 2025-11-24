@@ -1,0 +1,130 @@
+{
+  "reportMetadata": {
+    "weekNumber": 47,
+    "year": 2024,
+    "dateRange": {
+      "from": "2024-11-18",
+      "to": "2024-11-24"
+    },
+    "createdAt": "2024-11-24T10:00:00Z",
+    "author": "Marktanalyse Team"
+  },
+  "marketOverview": {
+    "summary": "Der Malzmarkt zeigt diese Woche stabile Preise mit leichtem Aufwärtstrend bei Premium-Malzen. Die Nachfrage nach Bio-Malz steigt weiterhin.",
+    "keyTrends": [
+      "Bio-Malz Nachfrage +12% gegenüber Vorwoche",
+      "Pilsner Malz Preis stabil bei durchschnittlich €450/Tonne",
+      "Lieferengpässe bei Röstmalzen aufgrund Produktionsausfälle"
+    ],
+    "marketSentiment": "positiv"
+  },
+  "priceChanges": [
+    {
+      "productType": "Pilsner Malz",
+      "currentPrice": 450,
+      "previousPrice": 448,
+      "change": 0.4,
+      "unit": "EUR/Tonne",
+      "trend": "stabil"
+    },
+    {
+      "productType": "Bio Pilsner Malz",
+      "currentPrice": 680,
+      "previousPrice": 665,
+      "change": 2.3,
+      "unit": "EUR/Tonne",
+      "trend": "steigend"
+    },
+    {
+      "productType": "Röstmalz",
+      "currentPrice": 520,
+      "previousPrice": 515,
+      "change": 1.0,
+      "unit": "EUR/Tonne",
+      "trend": "steigend"
+    },
+    {
+      "productType": "Weizenmalz",
+      "currentPrice": 465,
+      "previousPrice": 470,
+      "change": -1.1,
+      "unit": "EUR/Tonne",
+      "trend": "fallend"
+    }
+  ],
+  "supplierHighlights": [
+    {
+      "supplier": "Weyermann",
+      "highlight": "Neue Bio-Pilsner Variante ab Dezember verfügbar",
+      "impact": "positiv"
+    },
+    {
+      "supplier": "Bestmalz",
+      "highlight": "Produktionserweiterung abgeschlossen, Lieferzeiten verkürzt",
+      "impact": "positiv"
+    },
+    {
+      "supplier": "Ireks",
+      "highlight": "Wartungsarbeiten KW 48, temporär reduzierte Verfügbarkeit",
+      "impact": "neutral"
+    }
+  ],
+  "demandAnalysis": {
+    "topProducts": [
+      {
+        "name": "Pilsner Malz",
+        "demand": "hoch",
+        "changePercent": 5.2
+      },
+      {
+        "name": "Bio-Malz (alle Typen)",
+        "demand": "sehr hoch",
+        "changePercent": 12.1
+      },
+      {
+        "name": "Karamellmalz",
+        "demand": "mittel",
+        "changePercent": -2.3
+      }
+    ],
+    "seasonalFactors": "Vorbereitung auf Weihnachtsproduktion erhöht Nachfrage bei Spezialmalzen"
+  },
+  "sustainability": {
+    "esgTrends": [
+      "3 weitere Lieferanten erhalten ISO 14001 Zertifizierung",
+      "CO2-Emissionen in der Malzproduktion im Branchendurchschnitt um 8% gesunken"
+    ],
+    "upcomingRegulations": [
+      "EU-Taxonomie für nachhaltige Investments tritt Q1 2025 in Kraft",
+      "Neue Energieeffizienz-Standards für Mälzereien ab 2025"
+    ]
+  },
+  "outlook": {
+    "nextWeek": "Stabile Preise erwartet, mögliche Lieferengpässe bei Röstmalz durch Wartungsarbeiten",
+    "risks": [
+      "Energiepreisschwankungen könnten Produktionskosten beeinflussen",
+      "Wetterbedingungen in Anbaugebieten beobachten"
+    ],
+    "opportunities": [
+      "Bio-Segment weiter expandieren",
+      "Frühzeitige Verträge für Q1 2025 sichern Preisstabilität"
+    ]
+  },
+  "recommendations": [
+    {
+      "priority": "hoch",
+      "action": "Bio-Malz Bestand aufstocken aufgrund steigender Nachfrage",
+      "deadline": "2024-11-30"
+    },
+    {
+      "priority": "mittel",
+      "action": "Alternative Lieferanten für Röstmalz kontaktieren",
+      "deadline": "2024-11-27"
+    },
+    {
+      "priority": "niedrig",
+      "action": "Q1 2025 Verträge bis Jahresende abschließen",
+      "deadline": "2024-12-20"
+    }
+  ]
+}

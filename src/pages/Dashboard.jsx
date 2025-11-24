@@ -72,6 +72,45 @@ function Dashboard({ navigateTo, userMemory }) {
         <ChartsSection analytics={analytics} />
       )}
 
+      {/* Quick Actions */}
+      <div className="dashboard-section">
+        <h2 className="section-title">Schnellzugriff</h2>
+        <div className="quick-actions-grid">
+          <div
+            className="quick-action-card"
+            onClick={() => navigateTo('market-report')}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="quick-action-icon">📊</div>
+            <h3>Wöchentlicher Marktreport</h3>
+            <p>Aktueller Marktbericht mit Preisen, Trends und Empfehlungen</p>
+          </div>
+
+          <div
+            className="quick-action-card"
+            onClick={() => navigateTo('ai-assistant')}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="quick-action-icon">🤖</div>
+            <h3>AI Assistant</h3>
+            <p>Intelligente Datenanalyse und persönliche Beratung</p>
+          </div>
+
+          <div
+            className="quick-action-card"
+            onClick={() => navigateTo('reports')}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="quick-action-icon">📈</div>
+            <h3>Berichte & Analysen</h3>
+            <p>Umfassende Reports und ESG-Auswertungen</p>
+          </div>
+        </div>
+      </div>
+
       {/* Activity Feed */}
       <div className="dashboard-section">
         <div className="card">

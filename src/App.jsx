@@ -13,6 +13,7 @@ import Rating from './pages/Rating'
 import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 import AIAssistant from './pages/AIAssistant'
+import MarketReport from './pages/MarketReport'
 import { memoryService } from './services/memoryService'
 import './styles/App.css'
 
@@ -113,6 +114,9 @@ function App() {
 
       case 'ai-assistant':
         return <AIAssistant navigateTo={navigateTo} />
+
+      case 'market-report':
+        return <MarketReport navigateTo={navigateTo} />
 
       default:
         return <Dashboard navigateTo={navigateTo} userMemory={userMemory} />
