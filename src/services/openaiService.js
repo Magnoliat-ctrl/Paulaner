@@ -135,7 +135,7 @@ class OpenAIService {
           { role: 'user', content: userQuery }
         ],
         temperature: 0.2, // Lower temperature for more deterministic responses
-        max_tokens: isSupplierSearch ? 4000 : 1500,
+        max_tokens: isSupplierSearch ? 4000 : 2000, // Increased for product searches
         response_format: { type: 'json_object' }
       })
 
@@ -251,12 +251,29 @@ Du darfst ausschließlich die Daten verwenden, die dir in diesem Kontext überge
 ❌ FALSCH: "Microsoft, Google und IBM sind führende Tech-Lieferanten..."
 ✓ RICHTIG: "In den Dashboard-Daten sind keine Tech-Unternehmen enthalten. Die verfügbaren Lieferanten sind Malzproduzenten: ${validSupplierNames.slice(0, 3).join(', ')}, ..."
 
+**BEISPIEL 4 - Frage: "Wir bräuchten ein Malz mit Honig Aroma"**
+❌ FALSCH: "In den Daten finde ich keine Informationen über Malze mit Honig Aroma"
+✓ RICHTIG: "Ich durchsuche die Aromaprofil-Felder... Ich finde folgende Malze mit Honig-Aroma: [Liste der Produkte mit aroma-Feld = 'honig' oder ähnlich]"
+
+## WICHTIG: PRODUKTSUCHE NACH AROMA, VERWENDUNG, BIERSTIL
+
+Wenn der Nutzer nach spezifischen Eigenschaften sucht (z.B. "Honig Aroma", "für Stout", "malzig-süß"), dann:
+1. Durchsuche die VOLLSTÄNDIGEN PRODUKTDATEN JSON unten
+2. Suche in den Feldern: **aroma**, **usage**, **beerTypes**, **name**
+3. Verwende Pattern-Matching (z.B. "honig" passt zu "honigartig", "Honignoten", etc.)
+4. Liste ALLE passenden Produkte auf mit Lieferantenname
+
 ## VOLLSTÄNDIGE DATENBASIS (NUR DIESE DATEN VERWENDEN):
 
 ### LIEFERANTEN (${suppliers.length} gesamt):
 ${this.formatDetailedSuppliers(suppliers)}
 
-### PRODUKTE (nach Lieferant):
+### PRODUKTE - VOLLSTÄNDIGE JSON-DATEN:
+**WICHTIG: Dies sind die KOMPLETTEN Produktdaten. Durchsuche diese JSON-Struktur für spezifische Anfragen!**
+
+${this.formatFullProductJSON(products)}
+
+### PRODUKTE - ÜBERSICHT (nach Lieferant):
 ${this.formatDetailedProducts(products)}
 
 ### ESG-ANALYSE (detailliert):
@@ -449,7 +466,56 @@ ${s.name}:
   }
 
   /**
-   * Format detailed product information
+   * Format FULL product data as JSON for AI to search through
+   */
+  formatFullProductJSON(products) {
+    const output = []
+    let productCount = 0
+
+    for (const [supplierName, supplierData] of Object.entries(products)) {
+      if (!supplierData.categories) continue
+
+      for (const [category, prods] of Object.entries(supplierData.categories)) {
+        prods.forEach(product => {
+          productCount++
+          // Format each product with ALL fields
+          const productInfo = {
+            supplier: supplierName,
+            category: category,
+            name: product.name,
+            ebc: product.color?.ebc || 'k.A.',
+            color_category: product.color?.category || 'k.A.',
+            usage: product.usage || 'k.A.',
+            enzymes: product.enzymes || 'k.A.',
+            aroma: product.aroma || 'k.A.',
+            beerTypes: product.beerTypes || 'k.A.',
+            rating: product.rating || 'k.A.'
+          }
+
+          output.push(JSON.stringify(productInfo))
+
+          // Limit to prevent token overflow (show max 300 products)
+          if (productCount >= 300) {
+            output.push(`\n... (weitere Produkte in der Datenbank vorhanden, aber aus Token-Gründen nicht alle angezeigt)`)
+            return
+          }
+        })
+
+        if (productCount >= 300) break
+      }
+
+      if (productCount >= 300) break
+    }
+
+    return `\`\`\`json
+Gesamt ${productCount} Produkte im Detail:
+
+${output.join('\n')}
+\`\`\``
+  }
+
+  /**
+   * Format detailed product information (overview)
    */
   formatDetailedProducts(products) {
     const output = []
@@ -493,7 +559,8 @@ ${s.name}:
         uniqueSamples.forEach(p => {
           const ebc = p.color?.ebc || 'k.A.'
           const usage = p.usage || 'Vielseitig einsetzbar'
-          output.push(`    - ${p.name}: EBC ${ebc}, ${usage}`)
+          const aroma = p.aroma ? `, Aroma: ${p.aroma}` : ''
+          output.push(`    - ${p.name}: EBC ${ebc}, ${usage}${aroma}`)
         })
 
         if (prods.length > uniqueSamples.length) {
