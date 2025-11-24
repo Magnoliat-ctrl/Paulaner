@@ -14,6 +14,7 @@ import Reports from './pages/Reports'
 import Settings from './pages/Settings'
 import AIAssistant from './pages/AIAssistant'
 import MarketReport from './pages/MarketReport'
+import DiscoveredSuppliers from './pages/DiscoveredSuppliers'
 import { memoryService } from './services/memoryService'
 import './styles/App.css'
 
@@ -117,6 +118,9 @@ function App() {
 
       case 'market-report':
         return <MarketReport navigateTo={navigateTo} />
+
+      case 'discovered-suppliers':
+        return <DiscoveredSuppliers navigateTo={navigateTo} />
 
       default:
         return <Dashboard navigateTo={navigateTo} userMemory={userMemory} />

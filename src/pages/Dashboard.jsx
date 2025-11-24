@@ -100,6 +100,17 @@ function Dashboard({ navigateTo, userMemory }) {
 
           <div
             className="quick-action-card"
+            onClick={() => navigateTo('discovered-suppliers')}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="quick-action-icon">📚</div>
+            <h3>Gefundene Lieferanten</h3>
+            <p>Verwaltung der über AI Assistant gefundenen Lieferanten</p>
+          </div>
+
+          <div
+            className="quick-action-card"
             onClick={() => navigateTo('reports')}
             role="button"
             tabIndex={0}

@@ -5,6 +5,7 @@
 
 import React, { useState, useRef, useEffect } from 'react'
 import { aiQueryEngine } from '../services/aiQueryEngine'
+import { discoveredSuppliersService } from '../services/discoveredSuppliersService'
 import '../styles/AIAssistant.css'
 
 function AIAssistant({ navigateTo }) {
@@ -122,6 +123,54 @@ function AIAssistant({ navigateTo }) {
     ])
   }
 
+  /**
+   * Save a single supplier to discovered suppliers
+   */
+  const handleSaveSupplier = (supplier, searchQuery) => {
+    try {
+      const success = discoveredSuppliersService.addSupplier(supplier, searchQuery)
+      if (success) {
+        // Show success feedback
+        const feedbackMessage = {
+          type: 'assistant',
+          content: {
+            type: 'info',
+            message: `✅ Lieferant "${supplier.firma}" wurde gespeichert!`
+          },
+          timestamp: new Date()
+        }
+        setMessages(prev => [...prev, feedbackMessage])
+      }
+      return success
+    } catch (error) {
+      console.error('Error saving supplier:', error)
+      return false
+    }
+  }
+
+  /**
+   * Save all suppliers from a search result
+   */
+  const handleSaveAllSuppliers = (suppliers, searchQuery) => {
+    try {
+      const count = discoveredSuppliersService.addMultipleSuppliers(suppliers, searchQuery)
+      // Show success feedback
+      const feedbackMessage = {
+        type: 'assistant',
+        content: {
+          type: 'info',
+          message: `✅ ${count} Lieferanten wurden gespeichert!`
+        },
+        timestamp: new Date()
+      }
+      setMessages(prev => [...prev, feedbackMessage])
+      return count
+    } catch (error) {
+      console.error('Error saving suppliers:', error)
+      return 0
+    }
+  }
+
   return (
     <div className="page ai-assistant-page">
       <div className="ai-assistant-header">
@@ -157,6 +206,8 @@ function AIAssistant({ navigateTo }) {
                   <ResponseRenderer
                     response={message.content}
                     onSuggestionClick={handleSuggestionClick}
+                    onSaveSupplier={handleSaveSupplier}
+                    onSaveAllSuppliers={handleSaveAllSuppliers}
                   />
                 )}
               </div>
@@ -210,7 +261,7 @@ function AIAssistant({ navigateTo }) {
 /**
  * Component to render different response types
  */
-function ResponseRenderer({ response, onSuggestionClick }) {
+function ResponseRenderer({ response, onSuggestionClick, onSaveSupplier, onSaveAllSuppliers }) {
   switch (response.type) {
     case 'welcome':
       return (
@@ -536,6 +587,13 @@ function ResponseRenderer({ response, onSuggestionClick }) {
         </div>
       )
 
+    case 'info':
+      return (
+        <div className="ai-response-info">
+          <p>{response.message}</p>
+        </div>
+      )
+
     case 'analysis':
       return (
         <div className="ai-response-analysis">
@@ -602,7 +660,31 @@ function ResponseRenderer({ response, onSuggestionClick }) {
           {/* Suppliers Table */}
           {response.suppliers && response.suppliers.length > 0 && (
             <div className="suppliers-section">
-              <h4>📋 Gefundene Lieferanten ({response.suppliers.length})</h4>
+              <div className="suppliers-header">
+                <h4>📋 Gefundene Lieferanten ({response.suppliers.length})</h4>
+                {onSaveAllSuppliers && (
+                  <button
+                    className="btn btn-primary btn-sm save-all-btn"
+                    onClick={() => {
+                      // Convert suppliers to the expected format
+                      const suppliersToSave = response.suppliers.map(s => ({
+                        firma: s.companyName,
+                        land: s.country,
+                        standort: s.location,
+                        typ: s.companyType,
+                        größe: s.companySize,
+                        mitarbeiter: s.employees,
+                        produktpalette: [s.productRange],
+                        zertifikate: s.certifications || [],
+                        website: s.website
+                      }))
+                      onSaveAllSuppliers(suppliersToSave, response.product)
+                    }}
+                  >
+                    💾 Alle {response.suppliers.length} Lieferanten speichern
+                  </button>
+                )}
+              </div>
               <div className="suppliers-table-wrapper">
                 <table className="suppliers-table">
                   <thead>
@@ -615,6 +697,7 @@ function ResponseRenderer({ response, onSuggestionClick }) {
                       <th>Mitarbeiter</th>
                       <th>Produktpalette</th>
                       <th>Zertifikate</th>
+                      {onSaveSupplier && <th>Aktion</th>}
                     </tr>
                   </thead>
                   <tbody>
@@ -647,6 +730,29 @@ function ResponseRenderer({ response, onSuggestionClick }) {
                             'k. A.'
                           )}
                         </td>
+                        {onSaveSupplier && (
+                          <td>
+                            <button
+                              className="btn btn-sm btn-secondary"
+                              onClick={() => {
+                                const supplierToSave = {
+                                  firma: supplier.companyName,
+                                  land: supplier.country,
+                                  standort: supplier.location,
+                                  typ: supplier.companyType,
+                                  größe: supplier.companySize,
+                                  mitarbeiter: supplier.employees,
+                                  produktpalette: [supplier.productRange],
+                                  zertifikate: supplier.certifications || [],
+                                  website: supplier.website
+                                }
+                                onSaveSupplier(supplierToSave, response.product)
+                              }}
+                            >
+                              💾 Speichern
+                            </button>
+                          </td>
+                        )}
                       </tr>
                     ))}
                   </tbody>
