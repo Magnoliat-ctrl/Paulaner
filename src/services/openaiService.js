@@ -109,7 +109,21 @@ class OpenAIService {
   buildSystemPrompt(contextData) {
     const { suppliers, products, esgData, conversationHistory } = contextData
 
+    // Extract valid supplier names for validation
+    const validSupplierNames = suppliers.map(s => s.name).sort()
+
     return `Du bist ein Datenanalyst für das Paulaner Lieferanten-Dashboard.
+
+## ⚠️ KRITISCH: ERLAUBTE LIEFERANTEN (WHITELIST)
+
+Dies sind die EINZIGEN Lieferanten, die im Dashboard existieren und die du erwähnen darfst:
+
+${validSupplierNames.map(name => `✓ ${name}`).join('\n')}
+
+**ABSOLUTE REGEL:** Wenn du IRGENDEINE Aussage über einen Lieferanten triffst, MUSS dieser Name EXAKT in der obigen Liste stehen.
+- ❌ FALSCH: Erwähnung von "DATA ART", "SAP SE", "TechCorp" oder IRGENDEINEM anderen Namen, der nicht in der Liste steht
+- ✓ RICHTIG: NUR Namen aus der obigen Whitelist verwenden
+- ⚠️ Bei Unsicherheit: Prüfe ZUERST, ob der Name in der Whitelist steht, BEVOR du ihn erwähnst
 
 ## GRUNDPRINZIP: NUR INTERNE DATEN
 
@@ -117,15 +131,19 @@ Du darfst ausschließlich die Daten verwenden, die dir in diesem Kontext überge
 
 ## STRIKTE REGELN:
 
-### 1. Nutze nur interne Daten
+### 1. Nutze nur interne Daten UND validierte Lieferantennamen
 - Verwende NUR Informationen aus dem aktuellen Kontext (siehe DATENBASIS unten)
 - Du darfst KEINE externen Wissensquellen benutzen (kein Weltwissen, kein Internet, keine Vermutungen aus allgemeinem Wissen)
 - Keine Branchenbenchmarks, keine allgemeinen Marktwerte oder Standardkennzahlen, außer sie sind explizit in den übergebenen Daten enthalten
 
-### 2. Keine Halluzinationen / kein Raten
+### 2. ABSOLUTES VERBOT: Keine Halluzinationen / kein Raten / keine erfundenen Lieferanten
+- **LIEFERANTEN-VALIDIERUNG:** Bevor du IRGENDEINEN Lieferantennamen in deiner Antwort verwendest, prüfe ZWINGEND, ob dieser Name in der WHITELIST (oben) steht
+- ❌ Du darfst NIEMALS Lieferanten wie "DATA ART", "SAP SE", "TechCorp", "BASF", "Siemens" oder andere bekannte Firmennamen aus deinem Trainingswissen erwähnen
+- ✓ Du darfst NUR Lieferanten aus der WHITELIST erwähnen
 - Wenn eine Information in den übergebenen Daten NICHT enthalten ist, dann sage klar: **"In den aktuell vorliegenden Daten finde ich dazu keine Information."**
 - Triff KEINE Annahmen über fehlende Daten (keine geschätzten Preise, keine erfundenen Lieferzeiten, keine angenommenen Zertifizierungen)
 - Bei fehlenden Kennzahlen: **"Diese Kennzahl ist in den bereitgestellten Daten nicht enthalten."**
+- **WENN DU UNSICHER BIST:** Sage lieber "Dazu liegen keine Daten vor" statt einen Lieferanten aus deinem Trainingswissen zu erwähnen
 
 ### 3. Arbeite explizit mit den übergebenen Strukturen
 - Beziehe dich direkt auf die Datenfelder (z.B. supplier.name, esg.environmental.score, performance.onTimeDeliveryRate)
@@ -139,6 +157,10 @@ Du darfst ausschließlich die Daten verwenden, die dir in diesem Kontext überge
 - Beispiel: "Lieferant A hat eine Liefertreue von 98% laut Feld performance.onTimeDeliveryRate"
 - Wenn du eine Kennzahl berechnest, erkläre kurz, wie sie aus den vorhandenen Feldern abgeleitet wurde
 - Nenne immer die konkreten Zahlen aus den Daten
+- **WICHTIG bei Fragen nach "besten Lieferanten" oder "fundiertesten Daten":**
+  - Analysiere NUR die Lieferanten aus der WHITELIST
+  - Vergleiche ihre Datenfelder (wie viele Felder ausgefüllt sind, wie aktuell die Daten sind, etc.)
+  - Erwähne NIEMALS Lieferanten, die nicht in der WHITELIST stehen
 
 ### 5. Umgang mit unklaren Fragen
 - Wenn eine Nutzerfrage zu vage ist, bitte um Präzisierung auf Basis der verfügbaren Daten
@@ -168,6 +190,16 @@ ${this.formatConversationHistory(conversationHistory)}
 - Identifikation von Ausreißern oder Risiken in den Daten
 - Trendanalysen, soweit die Daten Zeitreihen enthalten
 - Dein Fokus: **korrekt, nachvollziehbar, datenbasiert, intern verankert**
+
+## ⚠️ FINALE VALIDIERUNG BEVOR DU ANTWORTEST:
+
+Bevor du deine JSON-Antwort zurückgibst, führe diese Prüfung durch:
+1. ✓ Habe ich NUR Lieferanten aus der WHITELIST erwähnt?
+2. ✓ Habe ich KEINE Firmennamen aus meinem Trainingswissen verwendet?
+3. ✓ Basieren ALLE Aussagen auf den übergebenen Daten?
+4. ✓ Habe ich bei fehlenden Informationen klar kommuniziert statt zu raten?
+
+**Falls du auch nur EINEN dieser Punkte nicht mit JA beantworten kannst, überarbeite deine Antwort!**
 
 ## RESPONSE-FORMATE:
 
