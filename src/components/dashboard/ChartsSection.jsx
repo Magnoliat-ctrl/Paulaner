@@ -4,81 +4,32 @@
  * Uses Chart.js for rendering charts
  */
 
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
   BarElement,
   ArcElement,
   Title,
   Tooltip,
-  Legend,
-  Filler
+  Legend
 } from 'chart.js'
-import { Line, Bar, Pie } from 'react-chartjs-2'
+import { Bar, Pie } from 'react-chartjs-2'
 import '../../styles/ChartsSection.css'
 
 // Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
   BarElement,
   ArcElement,
   Title,
   Tooltip,
-  Legend,
-  Filler
+  Legend
 )
 
 function ChartsSection({ analytics }) {
-  /**
-   * Rating Trends Chart Data
-   */
-  const ratingTrendsData = {
-    labels: analytics.ratingTrends.map(t => {
-      const [year, month] = t.month.split('-')
-      return `${month}/${year.slice(2)}`
-    }),
-    datasets: [
-      {
-        label: 'Durchschnittsbewertung',
-        data: analytics.ratingTrends.map(t => parseFloat(t.averageRating)),
-        borderColor: '#D4AF37',
-        backgroundColor: 'rgba(212, 175, 55, 0.1)',
-        tension: 0.4,
-        fill: true
-      }
-    ]
-  }
-
-  const ratingTrendsOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top'
-      },
-      title: {
-        display: false
-      }
-    },
-    scales: {
-      y: {
-        beginAtZero: true,
-        max: 10,
-        ticks: {
-          stepSize: 2
-        }
-      }
-    }
-  }
-
   /**
    * Category Distribution Chart Data
    */
@@ -186,21 +137,6 @@ function ChartsSection({ analytics }) {
 
   return (
     <div className="charts-section">
-      {/* Rating Trends */}
-      <div className="chart-container chart-full-width">
-        <div className="card">
-          <div className="card-header">
-            <h2 className="card-title">Bewertungstrends</h2>
-            <p className="card-subtitle">Entwicklung der Durchschnittsbewertungen über Zeit</p>
-          </div>
-          <div className="card-body">
-            <div className="chart-wrapper" style={{ height: '300px' }}>
-              <Line data={ratingTrendsData} options={ratingTrendsOptions} />
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Category Distribution and Compliance */}
       <div className="chart-row">
         <div className="chart-container chart-half-width">

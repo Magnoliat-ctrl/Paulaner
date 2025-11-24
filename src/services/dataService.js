@@ -331,32 +331,26 @@ class DataService {
       if (isPredefinedCategory) {
         // For predefined categories, use verified data with simulated AI research
         let categoryName = ''
-        let categoryKey = ''
-        let sourceData = null
+        let sourceData = []
 
         if (isMaltSearch) {
           categoryName = 'Malz'
           sourceData = verifiedMaltSuppliers
         } else if (isAluminiumSearch) {
           categoryName = 'Aluminiumdosen'
-          categoryKey = 'aluminiumdosen'
-          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+          sourceData = additionalSuppliers.filter(s => s.category === 'Aluminiumdosen')
         } else if (isWellpappeSearch) {
           categoryName = 'Wellpappe'
-          categoryKey = 'wellpappe'
-          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+          sourceData = additionalSuppliers.filter(s => s.category === 'Wellpappe')
         } else if (isArbeitskleidungSearch) {
           categoryName = 'Arbeitskleidung'
-          categoryKey = 'arbeitskleidung'
-          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+          sourceData = additionalSuppliers.filter(s => s.category === 'Arbeitskleidung')
         } else if (isFrachtenSearch) {
           categoryName = 'Frachten & Logistik'
-          categoryKey = 'frachten'
-          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+          sourceData = additionalSuppliers.filter(s => s.category === 'Frachten & Logistik')
         } else if (isPalettenSearch) {
-          categoryName = 'Paletten'
-          categoryKey = 'paletten'
-          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+          categoryName = 'Euro-Paletten'
+          sourceData = additionalSuppliers.filter(s => s.category === 'Euro-Paletten')
         }
 
         console.log(`🔍 ${categoryName}-Suche erkannt - starte simulierte KI-Recherche...`)
@@ -383,120 +377,14 @@ class DataService {
         if (onProgress) onProgress('Erstelle detaillierte Profile...')
         await this.delay(1400)
 
-        // Transform and normalize supplier data to match expected format
-        const verifiedWithIds = sourceData.map((supplier, index) => {
-          // For Malz, data is already in correct format
-          if (isMaltSearch) {
-            return {
-              ...supplier,
-              id: supplier.id || `VERIFIED-MALT-${index + 1}`,
-              category: categoryName
-            }
-          }
-
-          // For other categories, transform from additionalSuppliers format
-          // IMPORTANT: ALL fields must be defined to prevent UI crashes
-
-          // Extract primary location from locations array
-          const primaryLocation = supplier.locations?.[0] || {}
-          const location = {
-            street: primaryLocation.address || 'Nicht angegeben',
-            city: primaryLocation.city || 'Unbekannt',
-            postalCode: primaryLocation.postalCode || '',
-            country: primaryLocation.country || supplier.country || 'Deutschland',
-            region: primaryLocation.region || 'N/A'
-          }
-
-          // Transform rating object to ratings array (REQUIRED - cannot be empty!)
-          const overallScore = supplier.rating?.overall || 75
-          const ratings = [{
-            id: `RATING-${categoryKey.toUpperCase()}-${index + 1}`,
-            date: new Date().toISOString().split('T')[0],
-            overallScore: overallScore,
-            categories: {
-              quality: supplier.rating?.quality || 80,
-              deliveryCapability: supplier.rating?.deliveryCapability || 85,
-              sustainability: supplier.rating?.sustainability || supplier.rating?.esg || 75,
-              risk: supplier.rating?.risk || 90
-            },
-            weights: {
-              quality: 0.3,
-              deliveryCapability: 0.3,
-              sustainability: 0.2,
-              risk: 0.2
-            },
-            comment: `${supplier.rating?.category || 'Standard'} - ${supplier.companyType}`,
-            userId: 'system',
-            timestamp: new Date().toISOString()
-          }]
-
-          // Build compliance object (REQUIRED)
-          const compliance = {
-            status: overallScore >= 85 ? 'compliant' :
-                    overallScore >= 70 ? 'minor-violation' :
-                    overallScore >= 50 ? 'under-review' : 'major-violation',
-            lastAudit: new Date().toISOString().split('T')[0],
-            nextAudit: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-            violations: [],
-            certifications: supplier.certifications || []
-          }
-
-          // Ensure locations array is always valid
-          const transformedLocations = (supplier.locations || []).map(loc => ({
-            street: loc.address || 'Nicht angegeben',
-            city: loc.city || 'Unbekannt',
-            postalCode: loc.postalCode || '',
-            country: loc.country || supplier.country || 'Deutschland',
-            region: loc.region || '',
-            type: loc.type || 'Standort'
-          }))
-
-          // If no locations, use the primary location
-          if (transformedLocations.length === 0) {
-            transformedLocations.push(location)
-          }
-
-          // Transform to expected format - ALL FIELDS REQUIRED
-          return {
-            id: supplier.id || `VERIFIED-${categoryKey.toUpperCase()}-${index + 1}`,
-            name: supplier.name || 'Unbekannt',
-            description: `${supplier.companyType || 'Lieferant'}. ${supplier.productRange || 'Produktlieferant'}`,
-            category: categoryName,
-            contact: {
-              email: 'info@example.com',
-              phone: 'Nicht angegeben',
-              website: supplier.website || '',
-              person: 'Ansprechpartner',
-              position: 'Kontakt'
-            },
-            location: location,
-            locations: transformedLocations,
-            products: supplier.productRange ? [supplier.productRange] : ['Diverse Produkte'],
-            certifications: Array.isArray(supplier.certifications) ? supplier.certifications : [],
-            deliveryRegions: supplier.additionalLocations ? [supplier.additionalLocations] : ['Deutschland', 'Europa'],
-            performance: {
-              onTimeDeliveryRate: supplier.rating?.deliveryCapability || 85,
-              qualityRating: supplier.rating?.quality || 80,
-              defectRate: Math.max(0, 100 - (supplier.rating?.quality || 80)),
-              responseTime: '24h',
-              leadTime: '2-3 Wochen',
-              innovationScore: supplier.rating?.quality || 75
-            },
-            ratings: ratings,
-            compliance: compliance,
-            lastUpdated: new Date().toISOString(),
-            // Additional fields from original data (with safe fallbacks)
-            companySize: supplier.companySize || 'Unbekannt',
-            employees: supplier.employees || 'k.A.',
-            ownership: supplier.ownership || 'Privat',
-            strengths: Array.isArray(supplier.strengths) ? supplier.strengths : [],
-            weaknesses: Array.isArray(supplier.weaknesses) ? supplier.weaknesses : []
-          }
-        })
+        // Data is already in the correct format - no transformation needed!
+        const verifiedWithIds = sourceData.map((supplier, index) => ({
+          ...supplier,
+          id: supplier.id || `VERIFIED-${categoryName.toUpperCase()}-${index + 1}`
+        }))
 
         aiSuppliers = verifiedWithIds
         console.log(`✅ ${verifiedWithIds.length} verifizierte ${categoryName}-Lieferanten recherchiert`)
-        console.log('🔍 DEBUG - Transformed suppliers:', JSON.stringify(verifiedWithIds, null, 2))
         if (onProgress) onProgress(`${verifiedWithIds.length} Lieferanten gefunden und verifiziert!`)
         await this.delay(800)
       } else {
