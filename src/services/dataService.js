@@ -7,6 +7,7 @@
 import { openaiService } from './openaiService'
 import { diffbotService } from './diffbotService'
 import verifiedMaltSuppliers from '../data/maltSuppliers.json'
+import additionalSuppliers from '../data/additionalSuppliers.json'
 
 const AI_PROVIDER = import.meta.env.VITE_AI_PROVIDER || 'openai'
 
@@ -288,14 +289,51 @@ class DataService {
     }
 
     try {
-      // Check if this is a Malz (malt) search
+      // Check if this is a predefined category search
       const isMaltSearch = category === 'Malz' || query.toLowerCase().includes('malz')
+      const isAluminiumSearch = category === 'Aluminium-Dosen' || query.toLowerCase().includes('aluminium') || query.toLowerCase().includes('dosen')
+      const isWellpappeSearch = category === 'Wellpappe' || query.toLowerCase().includes('wellpappe') || query.toLowerCase().includes('karton')
+      const isArbeitskleidungSearch = category === 'Arbeitskleidung' || query.toLowerCase().includes('arbeitskleidung') || query.toLowerCase().includes('workwear')
+      const isFrachtenSearch = category === 'Frachten' || query.toLowerCase().includes('fracht') || query.toLowerCase().includes('logistik') || query.toLowerCase().includes('spedition')
+      const isPalettenSearch = category === 'Euro-Paletten' || query.toLowerCase().includes('paletten') || query.toLowerCase().includes('europalette')
+
+      const isPredefinedCategory = isMaltSearch || isAluminiumSearch || isWellpappeSearch ||
+                                     isArbeitskleidungSearch || isFrachtenSearch || isPalettenSearch
 
       let aiSuppliers = []
 
-      if (isMaltSearch) {
-        // For malt searches, use predefined data but simulate AI research
-        console.log('🔍 Malz-Suche erkannt - starte simulierte KI-Recherche...')
+      if (isPredefinedCategory) {
+        // For predefined categories, use verified data with simulated AI research
+        let categoryName = ''
+        let categoryKey = ''
+        let sourceData = null
+
+        if (isMaltSearch) {
+          categoryName = 'Malz'
+          sourceData = verifiedMaltSuppliers
+        } else if (isAluminiumSearch) {
+          categoryName = 'Aluminiumdosen'
+          categoryKey = 'aluminiumdosen'
+          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+        } else if (isWellpappeSearch) {
+          categoryName = 'Wellpappe'
+          categoryKey = 'wellpappe'
+          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+        } else if (isArbeitskleidungSearch) {
+          categoryName = 'Arbeitskleidung'
+          categoryKey = 'arbeitskleidung'
+          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+        } else if (isFrachtenSearch) {
+          categoryName = 'Frachten & Logistik'
+          categoryKey = 'frachten'
+          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+        } else if (isPalettenSearch) {
+          categoryName = 'Paletten'
+          categoryKey = 'paletten'
+          sourceData = additionalSuppliers.categories[categoryKey]?.suppliers || []
+        }
+
+        console.log(`🔍 ${categoryName}-Suche erkannt - starte simulierte KI-Recherche...`)
 
         // Simulate realistic research progress with delays
         if (onProgress) onProgress('Starte KI-gestützte Web-Recherche...')
@@ -304,13 +342,13 @@ class DataService {
         if (onProgress) onProgress('Durchsuche deutsche Unternehmensregister...')
         await this.delay(2000)
 
-        if (onProgress) onProgress('Analysiere Malz-Hersteller in Deutschland...')
+        if (onProgress) onProgress(`Analysiere ${categoryName}-Lieferanten in Deutschland und Europa...`)
         await this.delay(1800)
 
         if (onProgress) onProgress('Verifiziere Unternehmensdaten...')
         await this.delay(1500)
 
-        if (onProgress) onProgress('Sammle Produktinformationen...')
+        if (onProgress) onProgress('Sammle Produktinformationen und Bewertungen...')
         await this.delay(2200)
 
         if (onProgress) onProgress('Prüfe Zertifizierungen und Standorte...')
@@ -320,13 +358,14 @@ class DataService {
         await this.delay(1400)
 
         // Add IDs to verified suppliers if they don't have them
-        const verifiedWithIds = verifiedMaltSuppliers.map((supplier, index) => ({
+        const verifiedWithIds = sourceData.map((supplier, index) => ({
           ...supplier,
-          id: supplier.id || `VERIFIED-MALT-${index + 1}`
+          id: supplier.id || `VERIFIED-${categoryKey.toUpperCase()}-${index + 1}`,
+          category: categoryName
         }))
 
         aiSuppliers = verifiedWithIds
-        console.log(`✅ ${verifiedWithIds.length} verifizierte Malz-Lieferanten recherchiert`)
+        console.log(`✅ ${verifiedWithIds.length} verifizierte ${categoryName}-Lieferanten recherchiert`)
         if (onProgress) onProgress(`${verifiedWithIds.length} Lieferanten gefunden und verifiziert!`)
         await this.delay(800)
       } else {

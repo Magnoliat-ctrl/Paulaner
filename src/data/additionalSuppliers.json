@@ -1,0 +1,304 @@
+{
+  "categories": {
+    "aluminiumdosen": {
+      "name": "Aluminiumdosen",
+      "description": "Getränke- und Aerosoldosen aus Aluminium",
+      "suppliers": [
+        {
+          "name": "Ball Corporation (Ball Beverage Packaging Europe)",
+          "country": "USA / Europa-Tochter",
+          "locations": [
+            { "city": "Ludesach", "country": "Österreich" },
+            { "city": "Widnau", "country": "Schweiz" },
+            { "city": "Gelsenkirchen", "country": "Deutschland" },
+            { "city": "Recklinghausen", "country": "Deutschland" },
+            { "city": "Velim", "country": "Tschechien" }
+          ],
+          "companyType": "Hersteller (Beverage & Aerosol Cans, Slugs)",
+          "productRange": "Beverage cans (standard/slim/special), aerosol cans, slugs",
+          "companySize": "Large (globaler Marktführer)",
+          "employees": "ca. 21.000 global",
+          "ownership": "Börsennotiert, lokale GmbHs",
+          "additionalLocations": "Europaweit (AT, CH, DE, CZ etc.)",
+          "rating": {
+            "quality": 94,
+            "deliveryCapability": 92,
+            "esg": 90,
+            "risk": 95,
+            "overall": 92.7,
+            "category": "Preferred"
+          }
+        },
+        {
+          "name": "CANPACK Group",
+          "country": "Polen",
+          "locations": [
+            { "city": "Brzesko", "country": "Polen" },
+            { "city": "Bydgoszcz", "country": "Polen" }
+          ],
+          "companyType": "Hersteller (beverage cans, closures, glass)",
+          "productRange": "Aluminium beverage cans (330/500ml), sleek/slim cans, closures",
+          "companySize": "Large (regional starker Player)",
+          "employees": "ca. 8.000",
+          "ownership": "Privat, Giorgi Global Holdings",
+          "additionalLocations": "Polen und weitere EU-Länder, Ausbau 2025/26 in PL/CZ/RO",
+          "rating": {
+            "quality": 86,
+            "deliveryCapability": 85,
+            "esg": 78,
+            "risk": 88,
+            "overall": 84.3,
+            "category": "Approved"
+          }
+        }
+      ]
+    },
+    "wellpappe": {
+      "name": "Wellpappe",
+      "description": "Wellpappe und Transportverpackungen",
+      "suppliers": [
+        {
+          "name": "Klingele Paper & Packaging",
+          "country": "Deutschland",
+          "locations": [
+            { "city": "Hilpoltstein", "country": "Deutschland", "address": "Industriestraße 23–31, 91161" },
+            { "city": "Grunbach", "country": "Deutschland" },
+            { "city": "Remshalden", "country": "Deutschland" }
+          ],
+          "companyType": "Hersteller (Wellpappe, Verarbeitungswerk)",
+          "productRange": "Standard-Transportverpackungen, kundenspezifische Wellpappe",
+          "companySize": "KMU / Mittelstand, ca. 3.100 MA, Umsatz ~1 Mrd €",
+          "employees": "ca. 3.100",
+          "ownership": "Privat / SE & Co. KG",
+          "additionalLocations": "13 Werke u. a. in Grunbach, Remshalden",
+          "rating": {
+            "quality": 88,
+            "deliveryCapability": 82,
+            "sustainability": 78,
+            "risk": 90,
+            "overall": 84.2,
+            "category": "Approved / nahe Preferred"
+          }
+        },
+        {
+          "name": "Mayr-Melnhof Group (MM Packaging)",
+          "country": "Österreich",
+          "locations": [
+            { "city": "Wien", "country": "Österreich" },
+            { "city": "Frohnleiten", "country": "Österreich" }
+          ],
+          "companyType": "Hersteller (Karton, Faltschachteln, laminierte Verpackungen)",
+          "productRange": "Karton, Faltschachteln, laminierte Verpackungen, Wellpappe",
+          "companySize": "Large Cap (MM Group)",
+          "employees": "ca. 9.900",
+          "ownership": "Aktiengesellschaft, familiendominierte Anteilseigner",
+          "additionalLocations": "Werke in AT, DE, PL, CZ u.a.",
+          "rating": {
+            "quality": 85,
+            "deliveryCapability": 83,
+            "sustainability": 88,
+            "risk": 88,
+            "overall": 85.8,
+            "category": "Preferred"
+          }
+        }
+      ]
+    },
+    "arbeitskleidung": {
+      "name": "Arbeitskleidung",
+      "description": "Arbeitskleidung und persönliche Schutzausrüstung (PSA)",
+      "suppliers": [
+        {
+          "name": "CWS Workwear Deutschland GmbH & Co. KG",
+          "country": "Deutschland",
+          "locations": [
+            { "city": "Dreieich", "country": "Deutschland", "address": "Dreieich Plaza 1A, 63303" }
+          ],
+          "companyType": "Serviceanbieter / Hersteller",
+          "productRange": "Leasing, PSA, Reinigung, Reparatur, Wäsche",
+          "companySize": "Groß (Teil der CWS/Boco-Gruppe)",
+          "employees": "5.300",
+          "ownership": "Teil der CWS/Boco-Gruppe",
+          "additionalLocations": ">100 Standorte in Europa",
+          "rating": {
+            "quality": 90,
+            "deliveryCapability": 100,
+            "sustainability": 95,
+            "risk": 90,
+            "overall": 94,
+            "category": "Preferred"
+          },
+          "strengths": [
+            "Komplettes Miet-/Leasing-/Wasch-/Reparaturmodell",
+            "OEKOTEX, Fairtrade-Anteile, hoher ESG-Standard",
+            "Großes europäisches Logistiknetz (>100 Standorte)",
+            "Hohe Versorgungssicherheit"
+          ],
+          "weaknesses": [
+            "Serviceanbieter, weniger eigene Produktion"
+          ]
+        },
+        {
+          "name": "Engelbert Strauss GmbH & Co. KG",
+          "country": "Deutschland",
+          "locations": [
+            { "city": "Biebergemünd", "region": "Hessen", "country": "Deutschland" }
+          ],
+          "companyType": "Hersteller / Großhändler",
+          "productRange": "Workwear, PSA, Sicherheitsschuhe",
+          "companySize": "Groß",
+          "employees": "1.700",
+          "ownership": "Familienunternehmen",
+          "additionalLocations": "EU-weit Vertrieb & Fertigung",
+          "rating": {
+            "quality": 85,
+            "deliveryCapability": 80,
+            "sustainability": 70,
+            "risk": 85,
+            "overall": 81.5,
+            "category": "Approved"
+          },
+          "strengths": [
+            "Große Produktbreite",
+            "Hohe Fertigungstiefe, teils europäische Produktion",
+            "Starke Marke",
+            "Stabile Unternehmensstruktur"
+          ],
+          "weaknesses": [
+            "Weniger ESG-Transparenz als CWS oder Alsico",
+            "Begrenztes Servicemodell"
+          ]
+        }
+      ]
+    },
+    "frachten": {
+      "name": "Frachten & Logistik",
+      "description": "Logistik- und Speditionsdienstleistungen",
+      "suppliers": [
+        {
+          "name": "Dachser SE & Co. KG",
+          "country": "Deutschland",
+          "locations": [
+            { "city": "Kempten (Allgäu)", "country": "Deutschland" }
+          ],
+          "companyType": "Logistik / Freight Forwarding",
+          "productRange": "Road, Air & Sea, Food Logistik",
+          "companySize": "Large",
+          "employees": "37.300",
+          "ownership": "Familienunternehmen",
+          "additionalLocations": "433 Standorte weltweit",
+          "rating": {
+            "quality": 70,
+            "deliveryCapability": 80,
+            "sustainability": 90,
+            "risk": 90,
+            "overall": 89,
+            "category": "Preferred"
+          }
+        },
+        {
+          "name": "Rhenus Group",
+          "country": "Deutschland",
+          "locations": [
+            { "city": "Holzwickede", "country": "Deutschland" }
+          ],
+          "companyType": "Logistik / Spedition",
+          "productRange": "Landverkehr, Luftfracht, Seefracht, Kontraktlogistik",
+          "companySize": "Large",
+          "employees": "33.500",
+          "ownership": "Familienunternehmen (Rethmann-Gruppe)",
+          "additionalLocations": "1.000+ Standorte weltweit",
+          "rating": {
+            "quality": 90,
+            "deliveryCapability": 100,
+            "sustainability": 80,
+            "risk": 90,
+            "overall": 81,
+            "category": "Approved"
+          }
+        },
+        {
+          "name": "Hellmann Worldwide Logistics",
+          "country": "Deutschland",
+          "locations": [
+            { "city": "Osnabrück", "country": "Deutschland" }
+          ],
+          "companyType": "Logistik / Spedition",
+          "productRange": "Land, Luft, See, Kontraktlogistik",
+          "companySize": "Large",
+          "employees": "12.800",
+          "ownership": "Familienunternehmen",
+          "additionalLocations": "490 Standorte in 173 Ländern",
+          "rating": {
+            "quality": 100,
+            "deliveryCapability": 80,
+            "sustainability": 90,
+            "risk": 90,
+            "overall": 89,
+            "category": "Preferred"
+          }
+        }
+      ]
+    },
+    "paletten": {
+      "name": "Paletten",
+      "description": "Euro-Paletten und Palettenreparatur",
+      "suppliers": [
+        {
+          "name": "HTR Paletten-Service GmbH",
+          "country": "Deutschland",
+          "locations": [
+            { "city": "Hammersbach", "country": "Deutschland", "address": "Gewerbegebiet Limes, Am Klosterkopf 1–3, 63546" }
+          ],
+          "companyType": "Hersteller / Reparatur",
+          "productRange": "EPAL/Europaletten, Reparaturservice",
+          "companySize": "KMU",
+          "employees": "k.A.",
+          "ownership": "GmbH, familiengeführt",
+          "additionalLocations": "keine Angabe",
+          "rating": {
+            "quality": 85,
+            "deliveryCapability": 60,
+            "sustainability": 50,
+            "risk": 70,
+            "overall": 69,
+            "category": "Watchlist"
+          }
+        },
+        {
+          "name": "SAS Group (SAS Pallets)",
+          "country": "Polen",
+          "locations": [
+            { "city": "Wola", "country": "Polen", "address": "ul. Przemysłowa 15, 43–225" }
+          ],
+          "companyType": "Hersteller",
+          "productRange": "EPAL Euro-Paletten",
+          "companySize": "Mid-Cap",
+          "employees": "k.A.",
+          "ownership": "Privat (Sp. z o.o. sp. k.)",
+          "additionalLocations": "Polen, Mittel- und Osteuropa",
+          "rating": {
+            "quality": 95,
+            "deliveryCapability": 100,
+            "sustainability": 70,
+            "risk": 80,
+            "overall": 90,
+            "category": "Preferred"
+          }
+        }
+      ]
+    }
+  },
+  "ratingCategories": {
+    "preferred": { "threshold": 85, "description": "Bevorzugte Lieferanten mit hervorragender Gesamtleistung" },
+    "approved": { "threshold": 70, "description": "Zugelassene Lieferanten mit guter Leistung" },
+    "watchlist": { "threshold": 50, "description": "Lieferanten unter Beobachtung, Verbesserung erforderlich" },
+    "disqualified": { "threshold": 0, "description": "Nicht qualifizierte Lieferanten" }
+  },
+  "metadata": {
+    "totalSuppliers": 11,
+    "totalCategories": 5,
+    "lastUpdated": "2025-11-24",
+    "version": "1.0"
+  }
+}

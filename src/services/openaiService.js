@@ -38,15 +38,44 @@ class OpenAIService {
   }
 
   /**
-   * Detect if query is about non-malt supplier search
+   * Detect if query is about internal product categories (we have data for)
+   */
+  isInternalProductQuery(query) {
+    const normalizedQuery = query.toLowerCase()
+
+    // Keywords for internal product categories (we have verified data for these)
+    const internalCategories = {
+      malz: ['malz', 'gerste', 'weizen', 'röstmalz', 'pilsner', 'karamell', 'bier', 'brau'],
+      aluminium: ['aluminium', 'dosen', 'getränkedosen', 'beverage cans'],
+      wellpappe: ['wellpappe', 'karton', 'verpackung', 'transportverpackung'],
+      arbeitskleidung: ['arbeitskleidung', 'workwear', 'psa', 'schutzausrüstung', 'berufskleidung'],
+      frachten: ['fracht', 'logistik', 'spedition', 'transport', 'lieferung'],
+      paletten: ['paletten', 'europalette', 'epal']
+    }
+
+    // Check if query matches any internal category
+    for (const [category, keywords] of Object.entries(internalCategories)) {
+      if (keywords.some(kw => normalizedQuery.includes(kw))) {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  /**
+   * Detect if query is about external supplier search (we DON'T have data for)
    */
   isSupplierSearchQuery(query) {
     const normalizedQuery = query.toLowerCase()
 
-    // Keywords that indicate general supplier search
+    // If it's an internal product category, it's NOT an external search
+    if (this.isInternalProductQuery(query)) {
+      return false
+    }
+
+    // Keywords that indicate general supplier search for OTHER products
     const supplierSearchKeywords = [
-      'wellpappe', 'pappe', 'karton', 'verpackung',
-      'palette', 'paletten', 'europalette',
       'kiste', 'kisten', 'behälter',
       'flasche', 'flaschen', 'glas',
       'etikett', 'etiketten', 'aufkleber',
@@ -55,14 +84,9 @@ class OpenAIService {
       'suche lieferanten', 'finde lieferanten'
     ]
 
-    // Check if it's NOT about malt
-    const maltKeywords = ['malz', 'gerste', 'weizen', 'röstmalz', 'pilsner', 'karamell']
-    const isMaltRelated = maltKeywords.some(kw => normalizedQuery.includes(kw))
-
-    // It's a supplier search if it contains supplier keywords AND is NOT about malt
     const hasSupplierKeywords = supplierSearchKeywords.some(kw => normalizedQuery.includes(kw))
 
-    return hasSupplierKeywords && !isMaltRelated
+    return hasSupplierKeywords
   }
 
   /**
