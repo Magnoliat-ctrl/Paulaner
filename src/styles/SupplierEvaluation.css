@@ -1,0 +1,465 @@
+/**
+ * Supplier Evaluation Panel Styles
+ * Styling for LLM-based supplier assessment component
+ */
+
+/* Main Panel */
+.supplier-evaluation-panel {
+  margin-top: 2rem;
+}
+
+/* Search Section */
+.evaluation-search {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.evaluation-input {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #E0E0E0;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.evaluation-input:focus {
+  outline: none;
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.evaluation-input:disabled {
+  background-color: #F5F5F5;
+  cursor: not-allowed;
+}
+
+.evaluation-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.evaluation-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.evaluation-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.spinner-small {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Error Message */
+.evaluation-error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  border-radius: 8px;
+  color: #991B1B;
+}
+
+.error-icon {
+  font-size: 1.25rem;
+}
+
+/* Loading State */
+.evaluation-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.loading-content {
+  text-align: center;
+}
+
+.loading-content p {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #003366;
+}
+
+.loading-subtext {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #6B7280;
+}
+
+/* Results Container */
+.evaluation-results {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Summary Card */
+.evaluation-summary {
+  padding: 2rem;
+  background: linear-gradient(135deg, #F8F9FA 0%, #FFFFFF 100%);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid #E0E0E0;
+}
+
+.summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.summary-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #003366;
+  margin: 0;
+}
+
+.classification-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.badge-icon {
+  font-size: 1rem;
+}
+
+.summary-profile {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4B5563;
+  margin: 1rem 0 1.5rem 0;
+}
+
+.summary-score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.score-circle {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+  border-radius: 50%;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.score-value {
+  font-size: 2.5rem;
+}
+
+.score-max {
+  font-size: 1.25rem;
+  opacity: 0.9;
+  margin-left: 0.25rem;
+}
+
+.score-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6B7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Scores Section */
+.scores-section {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title-icon {
+  font-size: 1.5rem;
+}
+
+.scores-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 968px) {
+  .scores-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.radar-chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #F9FAFB;
+  border-radius: 12px;
+}
+
+/* Scores Table */
+.scores-table {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.score-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.score-row .score-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.score-bar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  background-color: #F3F4F6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.score-bar {
+  height: 100%;
+  transition: width 0.5s ease-out;
+  border-radius: 6px;
+}
+
+.score-bar-container .score-value {
+  position: absolute;
+  right: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1F2937;
+}
+
+/* Justifications */
+.justifications-section {
+  margin-bottom: 2rem;
+}
+
+.justifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.justification-card {
+  padding: 1.25rem;
+  background-color: #F9FAFB;
+  border-radius: 8px;
+  border-left: 4px solid #D4AF37;
+}
+
+.justification-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.justification-text {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #4B5563;
+  margin: 0;
+}
+
+/* Strengths & Risks */
+.strengths-risks-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .strengths-risks-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.strengths-column,
+.risks-column {
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.strengths-column {
+  background-color: #F0FDF4;
+  border: 1px solid #BBF7D0;
+}
+
+.risks-column {
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.item-bullet {
+  font-size: 1.25rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.strength-item .item-bullet {
+  color: #16A34A;
+}
+
+.risk-item .item-bullet {
+  color: #DC2626;
+}
+
+.item-text {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: #374151;
+}
+
+/* Footer */
+.evaluation-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #E5E7EB;
+}
+
+.btn-secondary,
+.btn-primary {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary {
+  color: #374151;
+  background-color: #F3F4F6;
+}
+
+.btn-secondary:hover {
+  background-color: #E5E7EB;
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(135deg, #003366 0%, #002347 100%);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .evaluation-search {
+    flex-direction: column;
+  }
+
+  .evaluation-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .summary-header {
+    flex-direction: column;
+  }
+
+  .classification-badge {
+    align-self: flex-start;
+  }
+
+  .evaluation-footer {
+    flex-direction: column;
+  }
+
+  .btn-secondary,
+  .btn-primary {
+    width: 100%;
+  }
+}
