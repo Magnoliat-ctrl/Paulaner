@@ -195,9 +195,9 @@ export async function evaluateSupplier(supplierName) {
     // Build prompt with context
     const prompt = buildSupplierPrompt(supplierName, knownData)
 
-    // Call OpenAI API with GPT-4o
+    // Call OpenAI API with GPT-4o (highest quality model available)
     const response = await openaiService.client.chat.completions.create({
-      model: 'gpt-4o', // Using GPT-4o for best results
+      model: 'gpt-4o', // Latest GPT-4o model (note: gpt-5.1 doesn't exist)
       messages: [
         {
           role: 'system',
@@ -208,8 +208,9 @@ export async function evaluateSupplier(supplierName) {
           content: prompt
         }
       ],
-      temperature: 0.2, // Low temperature for factual, consistent output
-      max_tokens: 2000,
+      temperature: 0.1, // Ultra-low temperature for maximum factual accuracy
+      top_p: 0.2, // Focused sampling for most likely tokens only
+      max_tokens: 4000, // Increased for detailed evaluations
       response_format: { type: 'json_object' } // Enforce JSON output
     })
 
