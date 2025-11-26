@@ -1,9 +1,9 @@
 /**
  * Supplier Evaluator Service
- * Handles LLM-based supplier assessment using OpenAI GPT-4o
+ * Handles LLM-based supplier assessment using Grok (xAI)
  */
 
-import { openaiService } from './openaiService'
+import { grokService } from './grokService'
 import { dataService } from './dataService'
 import maltSuppliers from '../data/maltSuppliers.json'
 import additionalSuppliers from '../data/additionalSuppliers.json'
@@ -176,13 +176,13 @@ export async function evaluateSupplier(supplierName) {
   }
 
   try {
-    // Check if OpenAI service is available
-    if (!openaiService.isEnabled()) {
-      console.warn('⚠️ OpenAI API not configured, using mock data')
+    // Check if Grok service is available
+    if (!grokService.isEnabled()) {
+      console.warn('⚠️ Grok API not configured, using mock data')
       return await generateMockEvaluation(supplierName)
     }
 
-    console.log('🤖 Evaluating supplier with GPT-4o:', supplierName)
+    console.log('🤖 Evaluating supplier with Grok:', supplierName)
 
     // Check if we have verified data for this supplier
     const knownData = getKnownSupplierData(supplierName)
@@ -195,9 +195,9 @@ export async function evaluateSupplier(supplierName) {
     // Build prompt with context
     const prompt = buildSupplierPrompt(supplierName, knownData)
 
-    // Call OpenAI API with GPT-4o (highest quality model available)
-    const response = await openaiService.client.chat.completions.create({
-      model: 'gpt-4o', // Latest GPT-4o model (note: gpt-5.1 doesn't exist)
+    // Call Grok API (xAI) with optimized parameters for factual accuracy
+    const response = await grokService.getClient().chat.completions.create({
+      model: grokService.getModel(), // grok-beta or configured model
       messages: [
         {
           role: 'system',
@@ -221,7 +221,7 @@ export async function evaluateSupplier(supplierName) {
 
     // Validate the response structure
     if (!evaluation.lieferant || !evaluation.scores || !evaluation.gesamt_score) {
-      throw new Error('Invalid evaluation format received from GPT-4o')
+      throw new Error('Invalid evaluation format received from Grok')
     }
 
     // Ensure all required fields exist
@@ -260,9 +260,9 @@ export async function evaluateSupplier(supplierName) {
     console.error('❌ Error evaluating supplier:', error)
 
     // If API fails, try to provide helpful error
-    if (error.message.includes('API key')) {
-      throw new Error('OpenAI API Key nicht konfiguriert. Bitte .env Datei prüfen.')
-    } else if (error.message.includes('rate limit')) {
+    if (error.message.includes('API key') || error.message.includes('401')) {
+      throw new Error('Grok API Key nicht konfiguriert oder ungültig. Bitte .env Datei prüfen.')
+    } else if (error.message.includes('rate limit') || error.message.includes('429')) {
       throw new Error('API Rate Limit erreicht. Bitte später erneut versuchen.')
     } else if (error.message.includes('Invalid')) {
       throw new Error('Ungültige Antwort vom LLM. Bitte erneut versuchen.')
