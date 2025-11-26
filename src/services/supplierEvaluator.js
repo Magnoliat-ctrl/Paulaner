@@ -1,25 +1,78 @@
 /**
  * Supplier Evaluator Service
- * Handles LLM-based supplier assessment using Claude API
+ * Handles LLM-based supplier assessment using OpenAI GPT-4o
  */
 
 import { openaiService } from './openaiService'
+import { dataService } from './dataService'
+import maltSuppliers from '../data/maltSuppliers.json'
+import additionalSuppliers from '../data/additionalSuppliers.json'
+
+/**
+ * Get known supplier data if available
+ * @param {string} supplierName - Name of the supplier
+ * @returns {Object|null} Supplier data or null
+ */
+function getKnownSupplierData(supplierName) {
+  const allSuppliers = [...maltSuppliers, ...additionalSuppliers]
+  const normalized = supplierName.toLowerCase().trim()
+
+  return allSuppliers.find(s =>
+    s.name.toLowerCase().includes(normalized) ||
+    normalized.includes(s.name.toLowerCase())
+  )
+}
+
+/**
+ * Build context from known supplier data
+ * @param {Object} supplier - Supplier object
+ * @returns {string} Formatted context
+ */
+function buildSupplierContext(supplier) {
+  if (!supplier) return ''
+
+  return `
+VERFÜGBARE DATEN FÜR ${supplier.name}:
+- Beschreibung: ${supplier.description}
+- Kategorie: ${supplier.category}
+- Standorte: ${supplier.locations?.map(l => `${l.city}, ${l.country}`).join('; ')}
+- Produkte: ${supplier.products?.slice(0, 5).join(', ')}...
+- Zertifizierungen: ${supplier.certifications?.join(', ')}
+- Performance: Liefertreue ${supplier.performance?.onTimeDeliveryRate}%, Qualität ${supplier.performance?.qualityRating || 'k.A.'}/10
+- Compliance-Status: ${supplier.compliance?.status}
+- ESG: Erneuerbare Energie ${supplier.esg?.environmental?.renewableEnergy}%
+- Bewertungen: Durchschnitt ${supplier.ratings?.[0]?.overallScore || 'k.A.'}/10
+
+NUTZE NUR DIESE VERIFIZIERTEN DATEN. Erfinde NICHTS hinzu.`
+}
 
 /**
  * Build the standardized evaluation prompt
  * @param {string} supplierName - Name of the supplier to evaluate
+ * @param {Object|null} knownData - Known supplier data if available
  * @returns {string} Complete prompt for LLM
  */
-export function buildSupplierPrompt(supplierName) {
+export function buildSupplierPrompt(supplierName, knownData = null) {
+  const contextSection = knownData ? buildSupplierContext(knownData) : ''
+
   return `Du bist ein Assistent zur standardisierten Bewertung von Lieferanten in der Lebensmittel- und Getränkeindustrie (z. B. für eine Brauerei wie Paulaner).
 
 Aufgabe:
-Analysiere den Lieferanten **${supplierName}** auf Basis öffentlich verfügbarer Informationen (Unternehmenswebsite, Presse, Register, Bewertungsportale etc.) und erstelle ein kompaktes, vergleichbares Profil.
+Analysiere den Lieferanten **${supplierName}** und erstelle ein kompaktes, vergleichbares Profil.
+
+${contextSection}
+
+KRITISCHE REGELN GEGEN HALLUZINATIONEN:
+1. Nutze AUSSCHLIESSLICH die oben bereitgestellten verifizierten Daten
+2. Erfinde KEINE Informationen, die nicht in den Daten stehen
+3. Wenn Daten fehlen: Bewerte vorsichtig und erwähne die Unsicherheit
+4. KEINE erfundenen Finanzdaten, Mitarbeiterzahlen oder Details
+5. Sei ehrlich über Datenlücken
 
 WICHTIG:
-- Antworte AUSSCHLIESSLICH im folgenden JSON-Format.
-- Schreibe kurz und prägnant, keine Fließtexte außerhalb der JSON-Struktur.
-- Falls Informationen in einem Bereich kaum verfügbar sind, gib trotzdem eine vorsichtige Einschätzung ab und erwähne die Unsicherheit kurz in der Begründung.
+- Antworte AUSSCHLIESSLICH im folgenden JSON-Format
+- Schreibe kurz und prägnant, keine Fließtexte außerhalb der JSON-Struktur
+- Bei fehlenden Informationen: Gib 5-7/10 und erwähne "Begrenzte Daten verfügbar"
 
 Zwingendes Ausgabeformat (EXAKT so, nur mit gefüllten Werten):
 
@@ -113,7 +166,7 @@ async function generateMockEvaluation(supplierName) {
 }
 
 /**
- * Evaluate a supplier using Claude API
+ * Evaluate a supplier using OpenAI GPT-4o
  * @param {string} supplierName - Name of the supplier to evaluate
  * @returns {Promise<Object>} Supplier evaluation profile
  */
@@ -123,46 +176,97 @@ export async function evaluateSupplier(supplierName) {
   }
 
   try {
-    // TODO: Replace with real Claude API call when ready
-    // For now, use mock data for development/testing
-
-    const USE_MOCK = true // Set to false when Claude API is configured
-
-    if (USE_MOCK) {
-      console.log('🔧 Using mock evaluation for:', supplierName)
+    // Check if OpenAI service is available
+    if (!openaiService.isEnabled()) {
+      console.warn('⚠️ OpenAI API not configured, using mock data')
       return await generateMockEvaluation(supplierName)
     }
 
-    // Real implementation (currently disabled):
-    /*
-    const prompt = buildSupplierPrompt(supplierName)
+    console.log('🤖 Evaluating supplier with GPT-4o:', supplierName)
 
+    // Check if we have verified data for this supplier
+    const knownData = getKnownSupplierData(supplierName)
+    if (knownData) {
+      console.log('✅ Found verified data for:', knownData.name)
+    } else {
+      console.warn('⚠️ No verified data found for:', supplierName)
+    }
+
+    // Build prompt with context
+    const prompt = buildSupplierPrompt(supplierName, knownData)
+
+    // Call OpenAI API with GPT-4o
     const response = await openaiService.client.chat.completions.create({
-      model: 'claude-3-5-sonnet-20241022', // or your preferred model
+      model: 'gpt-4o', // Using GPT-4o for best results
       messages: [
-        { role: 'user', content: prompt }
+        {
+          role: 'system',
+          content: 'Du bist ein präziser Analyst. Antworte NUR mit validem JSON. Erfinde KEINE Daten.'
+        },
+        {
+          role: 'user',
+          content: prompt
+        }
       ],
-      temperature: 0.3,
+      temperature: 0.2, // Low temperature for factual, consistent output
       max_tokens: 2000,
-      response_format: { type: 'json_object' }
+      response_format: { type: 'json_object' } // Enforce JSON output
     })
 
     const evaluationText = response.choices[0].message.content
+    console.log('📊 Received evaluation:', evaluationText.substring(0, 100) + '...')
+
     const evaluation = JSON.parse(evaluationText)
 
     // Validate the response structure
     if (!evaluation.lieferant || !evaluation.scores || !evaluation.gesamt_score) {
-      throw new Error('Invalid evaluation format received from LLM')
+      throw new Error('Invalid evaluation format received from GPT-4o')
     }
 
-    return evaluation
-    */
+    // Ensure all required fields exist
+    const requiredScoreFields = [
+      'unternehmensbasis_seriositaet',
+      'finanzielle_stabilitaet',
+      'zuverlaessigkeit_lieferant',
+      'produktqualitaet_zertifizierungen',
+      'mitarbeiterzufriedenheit_struktur',
+      'nachhaltigkeit_esg_compliance',
+      'reputation_medienlage',
+      'marktposition_zukunftsfaehigkeit'
+    ]
 
-    // For now, return mock
-    return await generateMockEvaluation(supplierName)
+    for (const field of requiredScoreFields) {
+      if (!(field in evaluation.scores)) {
+        throw new Error(`Missing required score field: ${field}`)
+      }
+    }
+
+    // Validate classification
+    const validClassifications = [
+      'nicht_geeignet',
+      'eingeschraenkt_geeignet',
+      'gut_geeignet',
+      'sehr_gut_geeignet'
+    ]
+    if (!validClassifications.includes(evaluation.einstufung)) {
+      throw new Error(`Invalid classification: ${evaluation.einstufung}`)
+    }
+
+    console.log('✅ Evaluation validated successfully')
+    return evaluation
 
   } catch (error) {
-    console.error('Error evaluating supplier:', error)
+    console.error('❌ Error evaluating supplier:', error)
+
+    // If API fails, try to provide helpful error
+    if (error.message.includes('API key')) {
+      throw new Error('OpenAI API Key nicht konfiguriert. Bitte .env Datei prüfen.')
+    } else if (error.message.includes('rate limit')) {
+      throw new Error('API Rate Limit erreicht. Bitte später erneut versuchen.')
+    } else if (error.message.includes('Invalid')) {
+      throw new Error('Ungültige Antwort vom LLM. Bitte erneut versuchen.')
+    }
+
     throw new Error(`Fehler bei der Bewertung: ${error.message}`)
   }
 }
