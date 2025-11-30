@@ -54,30 +54,84 @@ NUTZE NUR DIESE VERIFIZIERTEN DATEN. Erfinde NICHTS hinzu.`
 export function buildSupplierPrompt(supplierName, knownData = null) {
   const contextSection = knownData ? buildSupplierContext(knownData) : ''
 
-  return `Du bist ein Assistent zur standardisierten Bewertung von Lieferanten in der Lebensmittel- und Getränkeindustrie (z. B. für eine Brauerei wie Paulaner).
+  return `Du bist ein erfahrener strategischer und technischer Einkäufer der Paulaner Brauerei Gruppe München mit fundierter Marktkenntnis der europäischen Rohstoff- und Vorproduktmärkte.
 
-Aufgabe:
-Analysiere den Lieferanten **${supplierName}** und erstelle ein kompaktes, vergleichbares Profil.
+Deine Aufgabe: Umfassende Lieferantenbewertung für den Tender-Prozess
+
+Zu bewertender Lieferant: **${supplierName}**
 
 ${contextSection}
 
+BEWERTUNGSSYSTEM - 8 Kernkriterien (Gewichtung nach Tender-Relevanz):
+
+1. **Unternehmensbasis & Seriosität** (15%)
+   - Rechtsform, Handelsregistereintrag, Firmenhistorie
+   - Unternehmensstruktur, Besitzverhältnisse
+   - Öffentliche Reputation, Geschäftsführung
+   Messung: Verfügbarkeit öffentlicher Firmendaten, Transparenz, Historie
+
+2. **Finanzielle Stabilität** (15%)
+   - Unternehmensgröße (Mitarbeiterzahl, geschätzter Umsatz)
+   - Kapitalstruktur (wenn öffentlich verfügbar)
+   - Finanzielle Risikoindikatoren
+   Messung: Größenklasse (Kleinst/KMU/Mid-Cap/Large), öffentliche Bonitätsinformationen
+
+3. **Zuverlässigkeit als Lieferant** (20%)
+   - Geografische Nähe zu München (Deutschland + Nachbarländer bevorzugt)
+   - Anzahl und Verteilung der Produktionsstandorte
+   - Lieferkettenstruktur, Logistiknetz
+   Messung: Standortanalyse, Lieferfähigkeit, Supply-Chain-Stabilität
+
+4. **Produktqualität & Zertifizierungen** (20%)
+   - Relevante Qualitätszertifikate (ISO 9001, branchenspezifisch)
+   - Produktsortiment, Produktvarianten
+   - Qualitätsnachweise, Normenkonformität
+   Messung: Anzahl/Art der Zertifikate, Produktportfolio-Breite
+
+5. **Mitarbeiterzufriedenheit & Struktur** (10%)
+   - Mitarbeiterzahl, Personalstruktur
+   - Öffentliche Arbeitgeberbewertungen (Kununu, Glassdoor)
+   - Unternehmenskultur-Indikatoren
+   Messung: Mitarbeiteranzahl, Bewertungsplattformen, Sozialstandards
+
+6. **Nachhaltigkeit & ESG / Compliance** (10%)
+   - Umweltzertifikate (ISO 14001, FSC/PEFC, etc.)
+   - CO₂-Reporting, Nachhaltigkeitsberichte
+   - LkSG-Konformität, Compliance-Vorfälle
+   Messung: ESG-Zertifikate, öffentliche Nachhaltigkeitsdaten
+
+7. **Reputation & Medienlage** (5%)
+   - Pressemitteilungen, Medienberichte
+   - Branchenrankings, Auszeichnungen
+   - Negative Vorfälle (Skandale, Rechtsstreitigkeiten)
+   Messung: Medienanalyse, öffentliche Wahrnehmung
+
+8. **Marktposition & Zukunftsfähigkeit** (5%)
+   - Marktstellung im Segment
+   - Innovationskraft, Produktentwicklung
+   - Wachstumstrends, Expansionspläne
+   Messung: Marktanteil (geschätzt), Innovationsindikatoren
+
 KRITISCHE REGELN GEGEN HALLUZINATIONEN:
-1. Nutze AUSSCHLIESSLICH die oben bereitgestellten verifizierten Daten
-2. Erfinde KEINE Informationen, die nicht in den Daten stehen
-3. Wenn Daten fehlen: Bewerte vorsichtig und erwähne die Unsicherheit
-4. KEINE erfundenen Finanzdaten, Mitarbeiterzahlen oder Details
-5. Sei ehrlich über Datenlücken
+1. Nutze AUSSCHLIESSLICH öffentlich verfügbare, verifizierbare Informationen
+2. Bei verifizierten Daten (siehe oben): Nutze EXAKT diese Werte
+3. Bei fehlenden Informationen: Gib realistische Mittelwerte (5-7/10) und kennzeichne Unsicherheit
+4. KEINE erfundenen Finanzdaten, Mitarbeiterzahlen oder Zertifikate
+5. Sei transparent über Datenlücken - erwähne diese in den Begründungen
 
-WICHTIG:
-- Antworte AUSSCHLIESSLICH im folgenden JSON-Format
-- Schreibe kurz und prägnant, keine Fließtexte außerhalb der JSON-Struktur
-- Bei fehlenden Informationen: Gib 5-7/10 und erwähne "Begrenzte Daten verfügbar"
+DATENQUELLEN (nur verwenden, wenn öffentlich):
+- Unternehmenswebsite, Impressum
+- Handelsregister, Firmendatenbanken
+- Zertifikatsregister (ISO, FSC, EPAL, etc.)
+- Bewertungsplattformen (Kununu, Glassdoor)
+- Pressemitteilungen, Nachrichtenportale
+- Branchenportale, Lieferantenverzeichnisse
 
-Zwingendes Ausgabeformat (EXAKT so, nur mit gefüllten Werten):
+Ausgabeformat (EXAKT einhalten):
 
 {
   "lieferant": "${supplierName}",
-  "kurzprofil": "1–2 Sätze, wer der Lieferant ist und wie er grob einzuschätzen ist.",
+  "kurzprofil": "2-3 Sätze: Unternehmensart, Standort, Kerngeschäft, Größenordnung, Gesamteinschätzung für Tender",
   "scores": {
     "unternehmensbasis_seriositaet": ZAHL_0_BIS_10,
     "finanzielle_stabilitaet": ZAHL_0_BIS_10,
@@ -91,32 +145,28 @@ Zwingendes Ausgabeformat (EXAKT so, nur mit gefüllten Werten):
   "gesamt_score": ZAHL_0_BIS_100,
   "einstufung": "nicht_geeignet | eingeschraenkt_geeignet | gut_geeignet | sehr_gut_geeignet",
   "kuerze_begruendungen": {
-    "finanzielle_stabilitaet": "Max. 1 Satz, warum dieser Score.",
-    "produktqualitaet_zertifizierungen": "Max. 1 Satz, warum dieser Score.",
-    "mitarbeiterzufriedenheit_struktur": "Max. 1 Satz, warum dieser Score."
+    "finanzielle_stabilitaet": "1 Satz: Begründung mit konkreten Fakten oder Hinweis auf fehlende Daten",
+    "produktqualitaet_zertifizierungen": "1 Satz: Zertifikate/Normen oder Datenlage",
+    "mitarbeiterzufriedenheit_struktur": "1 Satz: Mitarbeiterzahl/Bewertungen oder k.A."
   },
   "staerken": [
-    "Stärke 1 (max. 1 Satz)",
-    "Stärke 2 (max. 1 Satz)",
-    "Stärke 3 (max. 1 Satz)"
+    "Stärke 1 mit konkretem Bezug",
+    "Stärke 2 mit konkretem Bezug",
+    "Stärke 3 mit konkretem Bezug"
   ],
   "risiken": [
-    "Risiko 1 (max. 1 Satz)",
-    "Risiko 2 (max. 1 Satz)",
-    "Risiko 3 (max. 1 Satz)"
+    "Risiko 1 (faktisch oder 'Begrenzte Datenlage zu X')",
+    "Risiko 2 (faktisch oder 'Keine öffentlichen Infos zu Y')",
+    "Risiko 3 (faktisch oder potenzielle Schwachstelle)"
   ]
 }
 
-Regeln zur Bewertung:
-- Nutze eine 0–10-Skala je Kategorie (10 = exzellent, 0 = sehr schlecht / starkes Risiko).
-- Berechne gesamt_score als Durchschnitt aller 8 Scores × 10 und mathematisch korrekt runden.
-- Mapping für "einstufung":
-  - 80–100 → "sehr_gut_geeignet"
-  - 60–79 → "gut_geeignet"
-  - 40–59 → "eingeschraenkt_geeignet"
-  - 0–39 → "nicht_geeignet"
+Bewertungslogik:
+- Skala: 0-10 pro Kategorie (10 = exzellent, 0 = disqualifizierend)
+- Gesamt-Score: Durchschnitt aller 8 Scores × 10, mathematisch gerundet
+- Einstufung: 80-100 = sehr_gut_geeignet, 60-79 = gut_geeignet, 40-59 = eingeschraenkt_geeignet, 0-39 = nicht_geeignet
 
-Antworte NUR mit dem JSON, ohne zusätzlichen Text davor oder danach.`
+Antworte NUR mit dem JSON-Objekt, ohne Markdown-Codeblocks oder zusätzlichen Text.`
 }
 
 /**
@@ -194,22 +244,21 @@ export async function evaluateSupplier(supplierName) {
     // Build prompt with context
     const prompt = buildSupplierPrompt(supplierName, knownData)
 
-    // Call Grok API (xAI) with optimized parameters for factual accuracy
+    // Call Grok API (xAI) with optimized parameters for comprehensive tender evaluation
     const response = await grokService.getClient().chat.completions.create({
-      model: grokService.getModel(), // grok-beta or configured model
+      model: grokService.getModel(), // grok-beta (Note: gpt-5.1 doesn't exist)
       messages: [
         {
           role: 'system',
-          content: 'Du bist ein präziser Analyst. Antworte NUR mit validem JSON. Erfinde KEINE Daten.'
+          content: 'Du bist ein hochintelligenter, detailorientierter Assistent für strategischen Einkauf. Antworte NUR mit validem JSON. Erfinde KEINE Daten - nutze ausschließlich öffentlich verfügbare Informationen.'
         },
         {
           role: 'user',
           content: prompt
         }
       ],
-      temperature: 0.1, // Ultra-low temperature for maximum factual accuracy
-      top_p: 0.2, // Focused sampling for most likely tokens only
-      max_tokens: 4000, // Increased for detailed evaluations
+      temperature: 0.1, // Ultra-low for maximum factual accuracy
+      max_tokens: 6000, // Increased for comprehensive tender evaluations
       response_format: { type: 'json_object' } // Enforce JSON output
     })
 
