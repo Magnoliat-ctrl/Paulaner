@@ -1,1293 +1,967 @@
 [
   {
-    "name": "Ball Corporation (Ball Beverage Packaging Europe)",
-    "description": "Weltweiter Marktführer für Getränke- und Aerosoldosen aus Aluminium mit über 21.000 Mitarbeitern. Produziert Standard- und Spezialdosen für die Getränkeindustrie mit höchsten Qualitätsstandards.",
+    "id": "VERIFIED-ARBEITSSCHUTZ-001",
+    "name": "Engelbert Strauss GmbH & Co. KG",
+    "description": "Führender Hersteller von Arbeitsschutzkleidung mit globaler Präsenz. Familienunternehmen mit breitem Produktportfolio.",
+    "category": "Arbeitsschutzkleidung",
+    "contact": {
+      "email": "info@engelbert-strauss.de",
+      "phone": "+49 6051 8011 8770",
+      "website": "https://www.engelbert-strauss.de"
+    },
+    "location": {
+      "street": "Frankfurter Strasse 98-102",
+      "city": "Biebergemünd",
+      "postalCode": "63599",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Biebergemünd",
+        "country": "Deutschland",
+        "type": "Firmensitz",
+        "coordinates": { "lat": 50.1667, "lng": 9.2667 }
+      },
+      {
+        "city": "Schlüchtern",
+        "country": "Deutschland",
+        "type": "Produktionsstandort",
+        "coordinates": { "lat": 50.3500, "lng": 9.5167 }
+      },
+      {
+        "city": "Dhaka",
+        "country": "Bangladesch",
+        "type": "Produktionsstandort",
+        "coordinates": { "lat": 23.8103, "lng": 90.4125 }
+      }
+    ],
+    "products": ["Arbeitsschuhe", "Handschuhe", "Schutzbrillen", "Arbeitsjacken", "Arbeitshosen", "PSA-Komplettausstattung"],
+    "certifications": ["CE", "EN ISO 20345", "EN 388"],
+    "employeeCount": 1200,
+    "revenue": "1,4 Mrd. EUR",
+    "ownership": "Familienunternehmen",
+    "productionSites": "Schlüchtern, Bangladesch, 25 Länder weltweit",
+    "esg": {
+      "environmental": {
+        "score": 3.0,
+        "details": "ESG-Transparenz ausbaufähig"
+      },
+      "social": {
+        "score": 3.0
+      },
+      "governance": {
+        "score": 4.0
+      }
+    },
+    "ratings": [{
+      "id": "VERIFIED-STRAUSS-001",
+      "overallScore": 4.0,
+      "date": "2025-11-30",
+      "categories": {
+        "Qualität": 4.0,
+        "Lieferfähigkeit": 4.0,
+        "ESG": 3.0,
+        "Produktvielfalt": 5.0,
+        "Service": 4.0
+      },
+      "weights": {
+        "Qualität": 30,
+        "Lieferfähigkeit": 25,
+        "ESG": 15,
+        "Produktvielfalt": 15,
+        "Service": 15
+      },
+      "criteria": "Einhaltung von Europäischen Normen, HACCP-Konformität, Lebensmitteltauglichkeit, Schnelle Lieferung, Produktionsvolumen, Soziale Verantwortung, Umweltstandards, Abdeckung aller PSA-Bereiche, Außendienst, Beratung vor Ort"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-ARBEITSSCHUTZ-002",
+    "name": "Franz Mensch GmbH",
+    "description": "Familienunternehmen/Stiftung für Arbeitsschutz- und Hygieneprodukte. Exzellente Lieferfähigkeit und Service.",
+    "category": "Arbeitsschutzkleidung",
+    "contact": {
+      "email": "info@franz-mensch.de",
+      "phone": "+49 8241 9681 0",
+      "website": "https://www.franz-mensch.de"
+    },
+    "location": {
+      "street": "Werner-von-Siemens-Straße 2",
+      "city": "Buchloe",
+      "postalCode": "86807",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Buchloe",
+        "country": "Deutschland",
+        "type": "Firmensitz & Produktionsstandort",
+        "coordinates": { "lat": 48.0333, "lng": 10.7167 }
+      }
+    ],
+    "products": ["Arbeitshandschuhe", "Hygienebekleidung", "Einwegprodukte", "PSA", "Lebensmittelkontakt-geeignete Kleidung"],
+    "certifications": ["HACCP", "ISO 9001", "Lebensmitteltauglichkeit"],
+    "employeeCount": 150,
+    "revenue": "100 Mio. EUR",
+    "ownership": "Familienunternehmen/Stiftung",
+    "productionSites": "Buchloe",
+    "esg": {
+      "environmental": {
+        "score": 3.0,
+        "details": "Fokus auf Lebensmittelsicherheit"
+      },
+      "social": {
+        "score": 4.0
+      },
+      "governance": {
+        "score": 5.0
+      }
+    },
+    "ratings": [{
+      "id": "VERIFIED-MENSCH-001",
+      "overallScore": 4.25,
+      "date": "2025-11-30",
+      "categories": {
+        "Qualität": 4.0,
+        "Lieferfähigkeit": 5.0,
+        "ESG": 3.0,
+        "Produktvielfalt": 4.0,
+        "Service": 5.0
+      },
+      "weights": {
+        "Qualität": 30,
+        "Lieferfähigkeit": 25,
+        "ESG": 15,
+        "Produktvielfalt": 15,
+        "Service": 15
+      }
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-ARBEITSSCHUTZ-003",
+    "name": "Uvex Arbeitsschutz GmbH",
+    "description": "Premium-Hersteller für Arbeitsschutz mit höchsten Qualitätsstandards. Familienunternehmen mit europäischer Produktion.",
+    "category": "Arbeitsschutzkleidung",
+    "contact": {
+      "email": "info@uvex.de",
+      "phone": "+49 911 9736 0",
+      "website": "https://www.uvex-safety.com"
+    },
+    "location": {
+      "street": "Würzburger Strasse 181-189",
+      "city": "Fürth",
+      "postalCode": "90766",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Fürth",
+        "country": "Deutschland",
+        "type": "Firmensitz",
+        "coordinates": { "lat": 49.4778, "lng": 10.9897 }
+      },
+      {
+        "city": "Lüneburg",
+        "country": "Deutschland",
+        "type": "Produktionsstandort"
+      },
+      {
+        "city": "Ellefeld",
+        "country": "Deutschland",
+        "type": "Produktionsstandort"
+      }
+    ],
+    "products": ["Schutzbrillen", "Schutzhelme", "Gehörschutz", "Arbeitsschuhe", "Handschuhe", "Atemschutz"],
+    "certifications": ["CE", "EN 166", "EN ISO 20345", "ISO 9001"],
+    "employeeCount": 3000,
+    "revenue": "660 Mio. EUR",
+    "ownership": "Familienunternehmen",
+    "productionSites": "Lüneburg, Ellefeld, Italien, Schweden, Frankreich",
+    "esg": {
+      "environmental": {
+        "score": 4.0,
+        "details": "Umweltbewusste Produktion in Europa"
+      },
+      "social": {
+        "score": 4.0
+      },
+      "governance": {
+        "score": 5.0
+      }
+    },
+    "ratings": [{
+      "id": "VERIFIED-UVEX-001",
+      "overallScore": 4.3,
+      "date": "2025-11-30",
+      "categories": {
+        "Qualität": 5.0,
+        "Lieferfähigkeit": 4.0,
+        "ESG": 4.0,
+        "Produktvielfalt": 4.0,
+        "Service": 4.0
+      },
+      "weights": {
+        "Qualität": 30,
+        "Lieferfähigkeit": 25,
+        "ESG": 15,
+        "Produktvielfalt": 15,
+        "Service": 15
+      }
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-ALUMINIUM-001",
+    "name": "Ball Corporation",
+    "description": "Globaler Marktführer für Aluminiumgetränkedosen mit höchsten Qualitäts- und ESG-Standards.",
     "category": "Aluminiumdosen",
     "contact": {
       "email": "info@ball.com",
-      "phone": "+43 5574 6883",
-      "website": "www.ball.com",
-      "person": "Ansprechpartner",
-      "position": "Vertrieb"
+      "website": "https://www.ball.com"
     },
     "location": {
-      "street": "Industriestraße",
-      "city": "Ludesach",
-      "postalCode": "6824",
-      "country": "Österreich",
-      "region": "Vorarlberg"
+      "street": "9200 W 108th Circle",
+      "city": "Westminster",
+      "postalCode": "CO 80021",
+      "country": "USA"
     },
     "locations": [
       {
-        "street": "Industriestraße",
-        "city": "Ludesach",
-        "postalCode": "6824",
-        "country": "Österreich",
-        "region": "Vorarlberg",
-        "type": "Produktionswerk"
+        "city": "Westminster, Colorado",
+        "country": "USA",
+        "type": "Hauptsitz"
       },
       {
-        "street": "Widnau",
-        "city": "Widnau",
-        "postalCode": "9443",
-        "country": "Schweiz",
-        "region": "St. Gallen",
-        "type": "Produktionswerk"
-      },
-      {
-        "street": "Hafenstraße",
-        "city": "Gelsenkirchen",
-        "postalCode": "45881",
+        "city": "Verschiedene Standorte",
         "country": "Deutschland",
-        "region": "Nordrhein-Westfalen",
-        "type": "Produktionswerk"
-      },
-      {
-        "street": "Industriestraße",
-        "city": "Recklinghausen",
-        "postalCode": "45665",
-        "country": "Deutschland",
-        "region": "Nordrhein-Westfalen",
-        "type": "Produktionswerk"
-      },
-      {
-        "street": "Průmyslová",
-        "city": "Velim",
-        "postalCode": "28101",
-        "country": "Tschechien",
-        "region": "Středočeský kraj",
-        "type": "Produktionswerk"
+        "type": "Produktionswerke"
       }
     ],
-    "products": [
-      "Beverage cans (330ml, 500ml)",
-      "Slim cans",
-      "Sleek cans",
-      "Special format cans",
-      "Aerosol cans",
-      "Aluminium slugs"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "ISO 14001",
-      "FSSC 22000",
-      "HACCP",
-      "Aluminium Stewardship Initiative (ASI)"
-    ],
-    "performance": {
-      "averageDeliveryTime": 2.0,
-      "onTimeDeliveryRate": 92.0,
-      "defectRate": 0.5,
-      "responseTime": 24,
-      "flexibilityScore": 9.0,
-      "innovationScore": 9.5
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
+    "products": ["Aluminiumgetränkedosen", "Nachhaltige Verpackungslösungen", "Infinitely Recyclable Cans"],
+    "certifications": ["ISO 9001", "ISO 14001", "ISO 45001", "FSSC 22000"],
+    "employeeCount": 16000,
+    "revenue": "11,80 Mrd. USD (2024)",
+    "ownership": "Große Investmentfonds",
+    "productionSites": "Globales Werknetz inkl. Deutschland",
     "esg": {
       "environmental": {
-        "carbonFootprint": "Niedrig",
-        "waterUsage": "Optimiert",
-        "wasteManagement": "Kreislaufwirtschaft",
-        "renewableEnergy": 85
+        "score": 5.0,
+        "details": "Leader in Nachhaltigkeit, 100% recycelbar"
       },
       "social": {
-        "fairWages": true,
-        "workingConditions": "Sehr gut",
-        "employeeTraining": true,
-        "diversityScore": 9.0
+        "score": 5.0
       },
       "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
+        "score": 5.0
       }
     },
-    "ratings": [
-      {
-        "id": "VERIFIED-BALL-001",
-        "date": "2025-11-24",
-        "overallScore": 9.3,
-        "categories": {
-          "Qualität": 9.4,
-          "Lieferleistung": 9.2,
-          "Kosten": 8.5,
-          "Zuverlässigkeit": 9.5,
-          "Innovation": 9.5,
-          "Kommunikation": 9.0,
-          "ESG-Compliance": 9.0
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Globaler Marktführer mit herausragender Qualität und Lieferfähigkeit. Hoher ESG-Standard und exzellente Innovationskraft. Bevorzugter Lieferant für Aluminiumdosen.",
-        "userId": "VERIFIED-DATA"
+    "ratings": [{
+      "id": "VERIFIED-BALL-001",
+      "overallScore": 4.4,
+      "date": "2025-11-30",
+      "categories": {
+        "Qualität": 5.0,
+        "Logistik": 4.0,
+        "Kapazität": 5.0,
+        "ESG": 5.0,
+        "Flexibilität": 4.0,
+        "Risiko": 5.0,
+        "Kosten": 3.0
       }
-    ],
+    }],
     "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
   },
   {
-    "name": "CANPACK Group",
-    "description": "Großer regionaler Hersteller von Aluminiumdosen und Verschlüssen mit ca. 8.000 Mitarbeitern. Spezialisiert auf Getränkedosen und expandiert stark in Mittel- und Osteuropa.",
+    "id": "VERIFIED-ALUMINIUM-002",
+    "name": "Crown Holdings, Inc.",
+    "description": "Weltweit führender Hersteller von Getränkedosen mit umfangreichem globalem Produktionsnetzwerk.",
+    "category": "Aluminiumdosen",
+    "contact": {
+      "email": "info@crowncork.com",
+      "website": "https://www.crowncork.com"
+    },
+    "location": {
+      "street": "One Crown Way",
+      "city": "Yardley",
+      "postalCode": "PA 19067",
+      "country": "USA"
+    },
+    "locations": [
+      {
+        "city": "Yardley, Pennsylvania",
+        "country": "USA",
+        "type": "Hauptsitz"
+      }
+    ],
+    "products": ["Aluminiumgetränkedosen", "Beverage Packaging", "Food Cans"],
+    "certifications": ["ISO 9001", "ISO 14001", "FSSC 22000"],
+    "employeeCount": 23000,
+    "revenue": "11,8 Mrd. USD (72% aus Beverage Cans) (2024)",
+    "ownership": "Große Investmentfonds",
+    "productionSites": "189 Produktions-/Service-Standorte in 39 Ländern inkl. Deutschland",
+    "esg": {
+      "environmental": {
+        "score": 4.0,
+        "details": "Starke Nachhaltigkeitsprogramme"
+      },
+      "social": {
+        "score": 4.0
+      },
+      "governance": {
+        "score": 4.0
+      }
+    },
+    "ratings": [{
+      "id": "VERIFIED-CROWN-001",
+      "overallScore": 4.1,
+      "date": "2025-11-30",
+      "categories": {
+        "Qualität": 4.0,
+        "Logistik": 4.0,
+        "Kapazität": 5.0,
+        "ESG": 4.0,
+        "Flexibilität": 4.0,
+        "Risiko": 4.0,
+        "Kosten": 3.0
+      }
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-ALUMINIUM-003",
+    "name": "CANPACK",
+    "description": "Familiengeführter Verpackungshersteller mit starkem Fokus auf ESG und Flexibilität. Kosteneffizienter Partner.",
     "category": "Aluminiumdosen",
     "contact": {
       "email": "info@canpack.com",
-      "phone": "+48 14 686 2000",
-      "website": "www.canpack.com",
-      "person": "Ansprechpartner",
-      "position": "Vertrieb"
+      "website": "https://www.canpack.com"
     },
     "location": {
-      "street": "ul. Zbigniewa Żółkiewskiego 20",
-      "city": "Brzesko",
-      "postalCode": "32-800",
-      "country": "Polen",
-      "region": "Kleinpolen"
+      "street": "ul. Krakow Business Park",
+      "city": "Krakow",
+      "postalCode": "30-394",
+      "country": "Polen"
     },
     "locations": [
       {
-        "street": "ul. Zbigniewa Żółkiewskiego 20",
-        "city": "Brzesko",
-        "postalCode": "32-800",
+        "city": "Krakow",
         "country": "Polen",
-        "region": "Kleinpolen",
-        "type": "Hauptsitz & Produktion"
-      },
-      {
-        "street": "ul. Fordońska",
-        "city": "Bydgoszcz",
-        "postalCode": "85-790",
-        "country": "Polen",
-        "region": "Kujawien-Pommern",
-        "type": "Produktionswerk"
+        "type": "Hauptsitz"
       }
     ],
-    "products": [
-      "Aluminium beverage cans 330ml",
-      "Aluminium beverage cans 500ml",
-      "Sleek cans",
-      "Slim cans",
-      "Closures and ends"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "ISO 14001",
-      "FSSC 22000",
-      "HACCP"
-    ],
-    "performance": {
-      "averageDeliveryTime": 3.0,
-      "onTimeDeliveryRate": 85.0,
-      "defectRate": 1.0,
-      "responseTime": 36,
-      "flexibilityScore": 8.5,
-      "innovationScore": 8.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
+    "products": ["Aluminiumgetränkedosen", "Metallverpackungen", "Flexible Packaging"],
+    "certifications": ["ISO 9001", "ISO 14001", "FSSC 22000", "BRC"],
+    "employeeCount": 8500,
+    "revenue": "4,19 Mrd. USD",
+    "ownership": "Familie/Privateigentümer",
+    "productionSites": "27 Werke in 16 Ländern",
     "esg": {
       "environmental": {
-        "carbonFootprint": "Mittel",
-        "waterUsage": "Gut",
-        "wasteManagement": "Recycling",
-        "renewableEnergy": 60
+        "score": 5.0,
+        "details": "Exzellente ESG-Performance"
       },
       "social": {
-        "fairWages": true,
-        "workingConditions": "Gut",
-        "employeeTraining": true,
-        "diversityScore": 7.5
+        "score": 5.0
       },
       "governance": {
-        "transparency": "Mittel",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
+        "score": 4.0
       }
     },
-    "ratings": [
-      {
-        "id": "VERIFIED-CANPACK-001",
-        "date": "2025-11-24",
-        "overallScore": 8.4,
-        "categories": {
-          "Qualität": 8.6,
-          "Lieferleistung": 8.5,
-          "Kosten": 9.0,
-          "Zuverlässigkeit": 8.8,
-          "Innovation": 8.0,
-          "Kommunikation": 8.0,
-          "ESG-Compliance": 7.8
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Starker regionaler Player mit guter Qualität und attraktiven Preisen. Zuverlässiger Lieferant mit Expansionspotenzial in Osteuropa.",
-        "userId": "VERIFIED-DATA"
+    "ratings": [{
+      "id": "VERIFIED-CANPACK-001",
+      "overallScore": 4.3,
+      "date": "2025-11-30",
+      "categories": {
+        "Qualität": 4.0,
+        "Logistik": 4.0,
+        "Kapazität": 4.0,
+        "ESG": 5.0,
+        "Flexibilität": 5.0,
+        "Risiko": 4.0,
+        "Kosten": 4.0
       }
-    ],
+    }],
     "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
   },
   {
-    "name": "Klingele Paper & Packaging",
-    "description": "Mittelständischer Hersteller von Wellpappe und Transportverpackungen mit ca. 3.100 Mitarbeitern und 1 Mrd € Umsatz. Spezialisiert auf kundenspezifische Lösungen.",
-    "category": "Wellpappe",
+    "id": "VERIFIED-PALETTEN-001",
+    "name": "BTL Paletten Express GmbH",
+    "description": "Palettenhandel mit Kreislaufprogrammen zur Lebensdauerverlängerung. Standort nahe München.",
+    "category": "Paletten",
     "contact": {
-      "email": "info@klingele.de",
-      "phone": "+49 9174 4902-0",
-      "website": "www.klingele.com",
-      "person": "Ansprechpartner",
-      "position": "Vertrieb"
+      "email": "info@btl-paletten.de",
+      "website": "https://www.btl-paletten.de"
     },
     "location": {
-      "street": "Industriestraße 23-31",
-      "city": "Hilpoltstein",
-      "postalCode": "91161",
-      "country": "Deutschland",
-      "region": "Bayern"
+      "city": "Eching",
+      "postalCode": "85386",
+      "country": "Deutschland"
     },
     "locations": [
       {
-        "street": "Industriestraße 23-31",
-        "city": "Hilpoltstein",
-        "postalCode": "91161",
+        "city": "Eching",
         "country": "Deutschland",
-        "region": "Bayern",
-        "type": "Hauptsitz & Werk"
-      },
-      {
-        "street": "Gewerbegebiet",
-        "city": "Grunbach",
-        "postalCode": "73614",
-        "country": "Deutschland",
-        "region": "Baden-Württemberg",
-        "type": "Werk"
-      },
-      {
-        "street": "Industriestraße",
-        "city": "Remshalden",
-        "postalCode": "73630",
-        "country": "Deutschland",
-        "region": "Baden-Württemberg",
-        "type": "Werk"
+        "type": "Hauptsitz",
+        "coordinates": { "lat": 48.2950, "lng": 11.6258 }
       }
     ],
-    "products": [
-      "Standard-Transportverpackungen",
-      "Kundenspezifische Wellpappe",
-      "Faltkartons",
-      "Industrieverpackungen",
-      "Displayverpackungen"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "ISO 14001",
-      "ISO 50001",
-      "FSC",
-      "PEFC"
-    ],
-    "performance": {
-      "averageDeliveryTime": 4.0,
-      "onTimeDeliveryRate": 82.0,
-      "defectRate": 1.5,
-      "responseTime": 48,
-      "flexibilityScore": 8.5,
-      "innovationScore": 8.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
+    "products": ["Euro-Paletten", "Einweg-Paletten", "Paletten-Umtausch", "Reparaturservices"],
+    "certifications": [],
     "esg": {
       "environmental": {
-        "carbonFootprint": "Mittel",
-        "waterUsage": "Gut",
-        "wasteManagement": "Kreislaufwirtschaft",
-        "renewableEnergy": 55
+        "score": 3.5,
+        "co2": "Angaben begrenzt",
+        "water": "k.A.",
+        "sourcing": "Gut: eigene Kreislaufprogramme",
+        "recycling": "Sehr gut: Paletten-Umtausch und Reparaturprogramme",
+        "flag": "Green Flag",
+        "comment": "Klarer Kreislaufansatz, aber Transparenz fehlt; auch Einweg-Paletten im Handel"
       },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Gut",
-        "employeeTraining": true,
-        "diversityScore": 7.5
-      },
-      "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
+      "social": { "score": 3.0 },
+      "governance": { "score": 3.0 }
     },
-    "ratings": [
-      {
-        "id": "VERIFIED-KLINGELE-001",
-        "date": "2025-11-24",
-        "overallScore": 8.4,
-        "categories": {
-          "Qualität": 8.8,
-          "Lieferleistung": 8.2,
-          "Kosten": 8.5,
-          "Zuverlässigkeit": 9.0,
-          "Innovation": 8.0,
-          "Kommunikation": 8.5,
-          "ESG-Compliance": 7.8
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Zuverlässiger Mittelständler mit guter Qualität und kundenspezifischen Lösungen. Familienunternehmen mit solider Nachhaltigkeitsorientierung.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
+    "ratings": [{
+      "id": "VERIFIED-BTL-001",
+      "overallScore": 3.5,
+      "date": "2025-11-30"
+    }],
     "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
   },
   {
-    "name": "Mayr-Melnhof Group (MM Packaging)",
-    "description": "Großer europäischer Hersteller von Karton und Verpackungen mit ca. 9.900 Mitarbeitern. Spezialisiert auf Faltschachteln, laminierte Verpackungen und Wellpappe.",
-    "category": "Wellpappe",
+    "id": "VERIFIED-PALETTEN-002",
+    "name": "Kaml GmbH Verpackung",
+    "description": "Verpackungsanbieter mit begrenzten Nachhaltigkeitsnachweisen.",
+    "category": "Paletten",
     "contact": {
-      "email": "office@mm-packaging.com",
-      "phone": "+43 1 50 136-0",
-      "website": "www.mm.group",
-      "person": "Ansprechpartner",
-      "position": "Vertrieb"
+      "website": "https://www.kaml-verpackung.de"
     },
     "location": {
-      "street": "Brahmsplatz 6",
+      "city": "Haar",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Haar",
+        "country": "Deutschland",
+        "type": "Hauptsitz",
+        "coordinates": { "lat": 48.1067, "lng": 11.7289 }
+      }
+    ],
+    "products": ["Holzverpackungen", "Paletten"],
+    "certifications": [],
+    "esg": {
+      "environmental": {
+        "score": 2.0,
+        "co2": "k.A.",
+        "water": "k.A.",
+        "sourcing": "k.A.",
+        "recycling": "Wenig Recycling",
+        "flag": "Red Flag",
+        "comment": "Stark begrenzte Nachhaltigkeitsnachweise"
+      },
+      "social": { "score": 2.0 },
+      "governance": { "score": 2.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-KAML-001",
+      "overallScore": 2.0,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": true
+  },
+  {
+    "id": "VERIFIED-PALETTEN-003",
+    "name": "Kurz Paletten GmbH",
+    "description": "Energieautarke, CO₂-neutrale Palettenherstellung mit regionalem Holzbezug. Exzellente Umweltleistung.",
+    "category": "Paletten",
+    "contact": {
+      "website": "https://www.kurz-paletten.de"
+    },
+    "location": {
+      "city": "Kuhbach",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Kuhbach",
+        "country": "Deutschland",
+        "type": "Produktionsstandort",
+        "coordinates": { "lat": 48.5333, "lng": 11.0500 }
+      }
+    ],
+    "products": ["Holzpaletten", "Nachhaltige Paletten", "Biomasse-Nutzung"],
+    "certifications": [],
+    "esg": {
+      "environmental": {
+        "score": 5.0,
+        "co2": "Sehr gut: energieautarke, CO₂-neutrale Herstellung",
+        "water": "k.A.",
+        "sourcing": "Sehr gut: regionaler Holzbezug, nachhaltiger Forst",
+        "recycling": "Gut: Recycling von Restholz, Nutzung von Biomasse",
+        "flag": "Green Flag",
+        "comment": "Starke Umweltleistung, aber soziale Daten fehlen"
+      },
+      "social": { "score": 3.0 },
+      "governance": { "score": 4.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-KURZ-001",
+      "overallScore": 4.5,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-PALETTEN-004",
+    "name": "INKA Paletten GmbH",
+    "description": "Nachhaltige Paletten aus recyceltem Holzwerkstoff. PEFC-zertifiziert und biologisch abbaubar.",
+    "category": "Paletten",
+    "contact": {
+      "website": "https://www.inka-paletten.de"
+    },
+    "location": {
+      "city": "Hohenkirchen-Siegertsbrunn",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Hohenkirchen-Siegertsbrunn",
+        "country": "Deutschland",
+        "type": "Produktionsstandort",
+        "coordinates": { "lat": 47.9833, "lng": 11.7167 }
+      }
+    ],
+    "products": ["Recycling-Paletten", "Biologisch abbaubare Paletten", "PEFC-zertifizierte Paletten"],
+    "certifications": ["PEFC"],
+    "esg": {
+      "environmental": {
+        "score": 5.0,
+        "co2": "Gut: aus recyceltem Holzwerkstoff, weniger Primarrohstoffbedarf",
+        "water": "k.A.",
+        "sourcing": "Sehr gut: recycelte Holzspäne, biologisch abbaubar",
+        "recycling": "Sehr gut: Recyclingmaterial vorhanden",
+        "flag": "Green Flag",
+        "comment": "Nachhaltig konstruiert, soziale/gesellschaftliche Aspekte fehlen"
+      },
+      "social": { "score": 3.0 },
+      "governance": { "score": 4.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-INKA-001",
+      "overallScore": 4.5,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-PALETTEN-005",
+    "name": "R&K Hochfranken Holz GmbH",
+    "description": "Ankauf und Reparatur von gebrauchten Paletten. Fokus auf Ressourcenschonung.",
+    "category": "Paletten",
+    "contact": {
+      "website": "https://www.hochfranken-holz.de"
+    },
+    "location": {
+      "city": "Koditz",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Koditz",
+        "country": "Deutschland",
+        "type": "Hauptsitz"
+      }
+    ],
+    "products": ["Gebrauchte Paletten", "Paletten-Reparatur", "Recycling-Paletten"],
+    "certifications": [],
+    "esg": {
+      "environmental": {
+        "score": 3.5,
+        "co2": "k.A.",
+        "water": "k.A.",
+        "sourcing": "Gut: Ankauf & Reparatur von gebrauchten Paletten",
+        "recycling": "Positiv im Recycling",
+        "flag": "Amber Flag",
+        "comment": "Fokus auf Ressourcenschonung, aber wenig ESG-Infos"
+      },
+      "social": { "score": 3.0 },
+      "governance": { "score": 3.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-RK-001",
+      "overallScore": 3.5,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-PALETTEN-006",
+    "name": "Paletten-Recycling Dunder GmbH & Co. KG",
+    "description": "Paletten-Recycling mit sehr dünner Datenlage zu Nachhaltigkeitsaspekten.",
+    "category": "Paletten",
+    "contact": {
+      "website": "https://www.dunder-paletten.de"
+    },
+    "location": {
+      "city": "Memmingen",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Memmingen",
+        "country": "Deutschland",
+        "type": "Hauptsitz",
+        "coordinates": { "lat": 47.9833, "lng": 10.1833 }
+      }
+    ],
+    "products": ["Paletten-Recycling", "Gebrauchte Paletten"],
+    "certifications": [],
+    "esg": {
+      "environmental": {
+        "score": 2.0,
+        "co2": "k.A.",
+        "water": "k.A.",
+        "sourcing": "k.A.",
+        "recycling": "k.A.",
+        "flag": "Red Flag",
+        "comment": "Datenlage sehr dünn"
+      },
+      "social": { "score": 2.0 },
+      "governance": { "score": 2.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-DUNDER-001",
+      "overallScore": 2.0,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": true
+  },
+  {
+    "id": "VERIFIED-WELLPAPPE-001",
+    "name": "Smurfit Kappa",
+    "description": "ESG-Leader in Wellpappe mit exzellentem Recyclingkreislauf (Paper-to-Box). Starke Kreislaufwirtschaft.",
+    "category": "Wellpappe",
+    "contact": {
+      "website": "https://www.smurfitkappa.com"
+    },
+    "location": {
+      "city": "Dublin",
+      "country": "Irland"
+    },
+    "locations": [
+      {
+        "city": "Dublin",
+        "country": "Irland",
+        "type": "Hauptsitz"
+      }
+    ],
+    "products": ["Wellpappverpackungen", "Kartonagen", "Nachhaltige Verpackungslösungen"],
+    "certifications": ["FSC", "PEFC", "ISO 9001", "ISO 14001", "ISO 45001"],
+    "esg": {
+      "environmental": {
+        "score": 5.0,
+        "co2": "Sehr gut: klare Dekarbonisierungsprogramme, erneuerbare Energien",
+        "water": "Gut: konzernweite Effizienzprogramme",
+        "sourcing": "Sehr gut: zertifizierte Frischfaser- und Recyclingmaterialien",
+        "recycling": "Exzellent: integrierter Recyclingkreislauf (Paper-to-Box)",
+        "flag": "Green Flag",
+        "comment": "ESG-Leader, stark in Kreislaufwirtschaft"
+      },
+      "social": { "score": 5.0 },
+      "governance": { "score": 5.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-SMURFIT-001",
+      "overallScore": 5.0,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-WELLPAPPE-002",
+    "name": "DS Smith",
+    "description": "Circular Economy Fokus mit starker Nachhaltigkeitsstrategie. Exzellente Circular Design Metrics.",
+    "category": "Wellpappe",
+    "contact": {
+      "website": "https://www.dssmith.com"
+    },
+    "location": {
+      "city": "London",
+      "country": "UK"
+    },
+    "locations": [
+      {
+        "city": "London",
+        "country": "UK",
+        "type": "Hauptsitz"
+      }
+    ],
+    "products": ["Wellpappverpackungen", "Circular Design Solutions", "Recycling-basierte Verpackungen"],
+    "certifications": ["FSC", "PEFC", "ISO 9001", "ISO 14001"],
+    "esg": {
+      "environmental": {
+        "score": 5.0,
+        "co2": "Sehr gut: ambitionierte CO₂-Programme",
+        "water": "Gut: Ressourcenmonitoring",
+        "sourcing": "Sehr gut: hoher Recyclingfaseranteil",
+        "recycling": "Exzellent: Circular Design Metrics",
+        "flag": "Green Flag",
+        "comment": "Starke Nachhaltigkeitsstrategie, Circular Economy Fokus"
+      },
+      "social": { "score": 5.0 },
+      "governance": { "score": 5.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-DSSMITH-001",
+      "overallScore": 5.0,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-WELLPAPPE-003",
+    "name": "Mondi",
+    "description": "Hohe ESG-Reife mit SBTi-Zielen und Dekarbonisierungspfad. Gut für Food-Grade Anwendungen.",
+    "category": "Wellpappe",
+    "contact": {
+      "website": "https://www.mondigroup.com"
+    },
+    "location": {
       "city": "Wien",
-      "postalCode": "1040",
-      "country": "Österreich",
-      "region": "Wien"
+      "country": "Österreich"
     },
     "locations": [
       {
-        "street": "Brahmsplatz 6",
         "city": "Wien",
-        "postalCode": "1040",
         "country": "Österreich",
-        "region": "Wien",
-        "type": "Hauptsitz"
-      },
-      {
-        "street": "Industriestraße",
-        "city": "Frohnleiten",
-        "postalCode": "8130",
-        "country": "Österreich",
-        "region": "Steiermark",
-        "type": "Produktionswerk"
-      }
-    ],
-    "products": [
-      "Karton",
-      "Faltschachteln",
-      "Laminierte Verpackungen",
-      "Wellpappe",
-      "Displayverpackungen",
-      "Pharmaverpackungen"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "ISO 14001",
-      "ISO 50001",
-      "FSC",
-      "PEFC",
-      "FSSC 22000"
-    ],
-    "performance": {
-      "averageDeliveryTime": 3.5,
-      "onTimeDeliveryRate": 83.0,
-      "defectRate": 1.2,
-      "responseTime": 36,
-      "flexibilityScore": 8.5,
-      "innovationScore": 9.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
-    "esg": {
-      "environmental": {
-        "carbonFootprint": "Niedrig",
-        "waterUsage": "Optimiert",
-        "wasteManagement": "Kreislaufwirtschaft",
-        "renewableEnergy": 70
-      },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Sehr gut",
-        "employeeTraining": true,
-        "diversityScore": 8.5
-      },
-      "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
-    },
-    "ratings": [
-      {
-        "id": "VERIFIED-MM-001",
-        "date": "2025-11-24",
-        "overallScore": 8.6,
-        "categories": {
-          "Qualität": 8.5,
-          "Lieferleistung": 8.3,
-          "Kosten": 8.5,
-          "Zuverlässigkeit": 8.8,
-          "Innovation": 9.0,
-          "Kommunikation": 8.5,
-          "ESG-Compliance": 8.8
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Großer europäischer Player mit starker Nachhaltigkeitsorientierung. Breites Produktportfolio und hohe Innovationskraft. Bevorzugter Lieferant.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
-    "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
-  },
-  {
-    "name": "CWS Workwear Deutschland GmbH & Co. KG",
-    "description": "Führender Serviceanbieter für Arbeitskleidung mit kompletten Miet-, Leasing-, Wasch- und Reparaturmodellen. Teil der CWS/Boco-Gruppe mit 5.300 Mitarbeitern und über 100 Standorten in Europa.",
-    "category": "Arbeitskleidung",
-    "contact": {
-      "email": "info@cws.com",
-      "phone": "+49 6103 309-0",
-      "website": "www.cws.com",
-      "person": "Ansprechpartner",
-      "position": "Kundenbetreuung"
-    },
-    "location": {
-      "street": "Dreieich Plaza 1A",
-      "city": "Dreieich",
-      "postalCode": "63303",
-      "country": "Deutschland",
-      "region": "Hessen"
-    },
-    "locations": [
-      {
-        "street": "Dreieich Plaza 1A",
-        "city": "Dreieich",
-        "postalCode": "63303",
-        "country": "Deutschland",
-        "region": "Hessen",
         "type": "Hauptsitz"
       }
     ],
-    "products": [
-      "Arbeitskleidung Leasing",
-      "PSA (Persönliche Schutzausrüstung)",
-      "Wäscheservice",
-      "Reparaturservice",
-      "Hygieneprodukte",
-      "Fußmatten"
-    ],
-    "certifications": [
-      "OEKO-TEX",
-      "Fairtrade",
-      "ISO 9001",
-      "ISO 14001"
-    ],
-    "performance": {
-      "averageDeliveryTime": 1.0,
-      "onTimeDeliveryRate": 100.0,
-      "defectRate": 0.3,
-      "responseTime": 12,
-      "flexibilityScore": 10.0,
-      "innovationScore": 9.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
+    "products": ["Wellpappe", "Flexible Verpackungen", "Food-Grade Packaging"],
+    "certifications": ["FSC", "PEFC", "ISO 9001", "ISO 14001"],
     "esg": {
       "environmental": {
-        "carbonFootprint": "Niedrig",
-        "waterUsage": "Optimiert",
-        "wasteManagement": "Kreislaufwirtschaft",
-        "renewableEnergy": 80
+        "score": 5.0,
+        "co2": "Sehr gut: SBTi-Ziele, Dekarbonisierungspfad",
+        "water": "Gut: datenbasierte Steuerung",
+        "sourcing": "Gut: nachhaltige Forstwirtschaft, geschlossene Materialkreisläufe",
+        "recycling": "Sehr gut: zertifizierte Recyclingkreisläufe",
+        "flag": "Green Flag",
+        "comment": "Hohe ESG-Reife, gut für Food-Grade"
       },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Sehr gut",
-        "employeeTraining": true,
-        "diversityScore": 9.0
-      },
-      "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
+      "social": { "score": 5.0 },
+      "governance": { "score": 5.0 }
     },
-    "ratings": [
-      {
-        "id": "VERIFIED-CWS-001",
-        "date": "2025-11-24",
-        "overallScore": 9.4,
-        "categories": {
-          "Qualität": 9.0,
-          "Lieferleistung": 10.0,
-          "Kosten": 8.5,
-          "Zuverlässigkeit": 9.0,
-          "Innovation": 9.0,
-          "Kommunikation": 9.5,
-          "ESG-Compliance": 9.5
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Exzellenter Serviceanbieter mit vollständigem Miet-/Leasing-/Wasch-/Reparaturmodell. Sehr hohe Versorgungssicherheit und hervorragender ESG-Standard. Bevorzugter Partner.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
+    "ratings": [{
+      "id": "VERIFIED-MONDI-001",
+      "overallScore": 5.0,
+      "date": "2025-11-30"
+    }],
     "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
   },
   {
-    "name": "Engelbert Strauss GmbH & Co. KG",
-    "description": "Großer deutscher Hersteller und Großhändler von Arbeitskleidung mit 1.700 Mitarbeitern. Familienunternehmen mit starker Marke und breitem Produktportfolio.",
-    "category": "Arbeitskleidung",
+    "id": "VERIFIED-WELLPAPPE-004",
+    "name": "THIMM Gruppe",
+    "description": "Operativ starker Mittelständler mit ausbaufähigem ESG-Reporting. Zertifizierte Holzquellen.",
+    "category": "Wellpappe",
     "contact": {
-      "email": "kundenservice@engelbert-strauss.de",
-      "phone": "+49 6050 97110",
-      "website": "www.engelbert-strauss.de",
-      "person": "Kundenservice",
-      "position": "Vertrieb"
+      "website": "https://www.thimm.de"
     },
     "location": {
-      "street": "Frankfurter Straße 98-108",
-      "city": "Biebergemünd",
-      "postalCode": "63599",
-      "country": "Deutschland",
-      "region": "Hessen"
+      "city": "Northeim",
+      "country": "Deutschland"
     },
     "locations": [
       {
-        "street": "Frankfurter Straße 98-108",
-        "city": "Biebergemünd",
-        "postalCode": "63599",
+        "city": "Northeim",
         "country": "Deutschland",
-        "region": "Hessen",
-        "type": "Hauptsitz & Logistikzentrum"
+        "type": "Hauptsitz"
       }
     ],
-    "products": [
-      "Workwear",
-      "PSA (Persönliche Schutzausrüstung)",
-      "Sicherheitsschuhe",
-      "Arbeitshandschuhe",
-      "Wetterschutzkleidung",
-      "Berufsbekleidung"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "OEKO-TEX"
-    ],
-    "performance": {
-      "averageDeliveryTime": 2.0,
-      "onTimeDeliveryRate": 80.0,
-      "defectRate": 1.5,
-      "responseTime": 24,
-      "flexibilityScore": 8.5,
-      "innovationScore": 8.5
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
+    "products": ["Wellpappverpackungen", "Display-Lösungen", "Verpackungsdruck"],
+    "certifications": ["FSC", "PEFC", "ISO 9001"],
     "esg": {
       "environmental": {
-        "carbonFootprint": "Mittel",
-        "waterUsage": "Gut",
-        "wasteManagement": "Recycling",
-        "renewableEnergy": 50
+        "score": 3.5,
+        "co2": "Mittel: Effizienzprogramme, aber wenig Transparenz",
+        "water": "Gut (teilweise)",
+        "sourcing": "Gut: zertifizierte Holzquellen",
+        "recycling": "Gut: Recyclingorientierung & lokaler Energieeinsatz",
+        "flag": "Amber Flag",
+        "comment": "Operativ stark, Reporting ausbaufähig"
       },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Gut",
-        "employeeTraining": true,
-        "diversityScore": 7.5
-      },
-      "governance": {
-        "transparency": "Mittel",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
+      "social": { "score": 4.0 },
+      "governance": { "score": 4.0 }
     },
-    "ratings": [
-      {
-        "id": "VERIFIED-ENGELBERT-001",
-        "date": "2025-11-24",
-        "overallScore": 8.2,
-        "categories": {
-          "Qualität": 8.5,
-          "Lieferleistung": 8.0,
-          "Kosten": 8.5,
-          "Zuverlässigkeit": 8.5,
-          "Innovation": 8.5,
-          "Kommunikation": 8.0,
-          "ESG-Compliance": 7.0
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Starke Marke mit großer Produktbreite und hoher Fertigungstiefe. Stabile Unternehmensstruktur. ESG-Transparenz ausbaufähig.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
+    "ratings": [{
+      "id": "VERIFIED-THIMM-001",
+      "overallScore": 3.8,
+      "date": "2025-11-30"
+    }],
     "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
   },
   {
+    "id": "VERIFIED-WELLPAPPE-005",
+    "name": "Schumacher Packaging",
+    "description": "Mittelständisch stark mit modernen Produktionswerken. ESG-Daten begrenzt, aber gute Recyclingfähigkeit.",
+    "category": "Wellpappe",
+    "contact": {
+      "website": "https://www.schumacher-packaging.com"
+    },
+    "location": {
+      "city": "Ebersdorf",
+      "country": "Deutschland"
+    },
+    "locations": [
+      {
+        "city": "Ebersdorf",
+        "country": "Deutschland",
+        "type": "Hauptsitz"
+      }
+    ],
+    "products": ["Wellpappverpackungen", "Displays", "Spezialverpackungen"],
+    "certifications": ["FSC", "PEFC"],
+    "esg": {
+      "environmental": {
+        "score": 3.5,
+        "co2": "Gut: moderne Produktionswerke, Energieeffizienz",
+        "water": "Gut",
+        "sourcing": "Gut: nachhaltige Holzbeschaffung",
+        "recycling": "Gut: hohe Recyclingfähigkeit (werksabhängig)",
+        "flag": "Amber Flag",
+        "comment": "Mittelständisch stark, aber ESG-Daten begrenzt"
+      },
+      "social": { "score": 4.0 },
+      "governance": { "score": 4.0 }
+    },
+    "ratings": [{
+      "id": "VERIFIED-SCHUMACHER-001",
+      "overallScore": 3.8,
+      "date": "2025-11-30"
+    }],
+    "documents": [],
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
+  },
+  {
+    "id": "VERIFIED-LOGISTIK-001",
     "name": "Dachser SE & Co. KG",
-    "description": "Großes Familienunternehmen mit 37.300 Mitarbeitern und 433 Standorten weltweit. Spezialisiert auf Logistik und Spedition mit Fokus auf Road, Air & Sea, Food Logistik.",
-    "category": "Frachten & Logistik",
+    "description": "Hohe ESG-Transparenz mit klaren Governance-Strukturen. E-Lkw und alternative Kraftstoffe.",
+    "category": "Logistik",
     "contact": {
       "email": "info@dachser.com",
-      "phone": "+49 831 5916-0",
-      "website": "www.dachser.com",
-      "person": "Ansprechpartner",
-      "position": "Kundenservice"
+      "website": "https://www.dachser.de"
     },
     "location": {
-      "street": "Thomas-Dachser-Straße 2",
-      "city": "Kempten (Allgäu)",
-      "postalCode": "87439",
-      "country": "Deutschland",
-      "region": "Bayern"
+      "city": "Kempten",
+      "country": "Deutschland"
     },
     "locations": [
       {
-        "street": "Thomas-Dachser-Straße 2",
-        "city": "Kempten (Allgäu)",
-        "postalCode": "87439",
+        "city": "Kempten",
         "country": "Deutschland",
-        "region": "Bayern",
         "type": "Hauptsitz"
       }
     ],
-    "products": [
-      "Road Logistik",
-      "Air & Sea Freight",
-      "Food Logistik",
-      "Kontraktlogistik",
-      "Lagerlogistik",
-      "Zollabwicklung"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "ISO 14001",
-      "ISO 50001",
-      "SQAS",
-      "AEO"
-    ],
-    "deliveryRegions": [
-      "Europa",
-      "Weltweit"
-    ],
-    "performance": {
-      "averageDeliveryTime": 2.5,
-      "onTimeDeliveryRate": 80.0,
-      "defectRate": 0.8,
-      "responseTime": 24,
-      "flexibilityScore": 9.0,
-      "innovationScore": 8.5
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
+    "products": ["Kontraktlogistik", "Landverkehr", "Luftfracht", "Seefracht"],
+    "certifications": ["ISO 9001", "ISO 14001", "ISO 27001", "IFS"],
     "esg": {
       "environmental": {
-        "carbonFootprint": "Niedrig",
-        "waterUsage": "Gut",
-        "wasteManagement": "Optimiert",
-        "renewableEnergy": 75
+        "score": 5.0,
+        "co2": "Sehr gut: E-Lkw, Routenoptimierung, alternative Kraftstoffe",
+        "water": "Nicht relevant",
+        "sourcing": "Nicht relevant",
+        "recycling": "Verpackungsreduktion",
+        "flag": "Green Flag",
+        "comment": "Hohe Transparenz, klare Governance-Strukturen"
       },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Sehr gut",
-        "employeeTraining": true,
-        "diversityScore": 8.5
-      },
-      "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
+      "social": { "score": 5.0 },
+      "governance": { "score": 5.0 }
     },
-    "ratings": [
-      {
-        "id": "VERIFIED-DACHSER-001",
-        "date": "2025-11-24",
-        "overallScore": 8.9,
-        "categories": {
-          "Qualität": 7.0,
-          "Lieferleistung": 8.0,
-          "Kosten": 8.5,
-          "Zuverlässigkeit": 9.0,
-          "Innovation": 8.5,
-          "Kommunikation": 9.0,
-          "ESG-Compliance": 9.0
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Globales Familienunternehmen mit sehr guter Nachhaltigkeitsstrategie. Hohe Zuverlässigkeit und weltweite Präsenz. Bevorzugter Logistikpartner.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
+    "ratings": [{
+      "id": "VERIFIED-DACHSER-001",
+      "overallScore": 5.0,
+      "date": "2025-11-30"
+    }],
     "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
   },
   {
-    "name": "Rhenus Group",
-    "description": "Großes Familienunternehmen der Rethmann-Gruppe mit 33.500 Mitarbeitern und über 1.000 Standorten weltweit. Spezialisiert auf Landverkehr, Luftfracht, Seefracht und Kontraktlogistik.",
-    "category": "Frachten & Logistik",
+    "id": "VERIFIED-LOGISTIK-002",
+    "name": "DB Schenker (DSV)",
+    "description": "ESG-Vorreiter in Klimaneutralität 2040. CO₂-optimierte Logistik und Eco-Solutions.",
+    "category": "Logistik",
     "contact": {
-      "email": "info@de.rhenus.com",
-      "phone": "+49 2301 29-0",
-      "website": "www.rhenus.com",
-      "person": "Ansprechpartner",
-      "position": "Kundenservice"
+      "email": "info@dbschenker.com",
+      "website": "https://www.dbschenker.com"
     },
     "location": {
-      "street": "Rhenus-Platz 1",
-      "city": "Holzwickede",
-      "postalCode": "59439",
-      "country": "Deutschland",
-      "region": "Nordrhein-Westfalen"
+      "city": "Essen",
+      "country": "Deutschland"
     },
     "locations": [
       {
-        "street": "Rhenus-Platz 1",
-        "city": "Holzwickede",
-        "postalCode": "59439",
+        "city": "Essen",
         "country": "Deutschland",
-        "region": "Nordrhein-Westfalen",
         "type": "Hauptsitz"
       }
     ],
-    "products": [
-      "Landverkehr",
-      "Luftfracht",
-      "Seefracht",
-      "Kontraktlogistik",
-      "Warehousing",
-      "Value-Added Services"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "ISO 14001",
-      "AEO",
-      "SQAS"
-    ],
-    "deliveryRegions": [
-      "Europa",
-      "Weltweit"
-    ],
-    "performance": {
-      "averageDeliveryTime": 2.0,
-      "onTimeDeliveryRate": 100.0,
-      "defectRate": 0.5,
-      "responseTime": 18,
-      "flexibilityScore": 9.5,
-      "innovationScore": 8.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
+    "products": ["Kontraktlogistik", "Landverkehr", "Luftfracht", "Seefracht", "Supply Chain Management"],
+    "certifications": ["ISO 9001", "ISO 14001", "ISO 45001", "IFS"],
     "esg": {
       "environmental": {
-        "carbonFootprint": "Mittel",
-        "waterUsage": "Gut",
-        "wasteManagement": "Recycling",
-        "renewableEnergy": 65
+        "score": 5.0,
+        "co2": "Sehr gut: CO₂-optimierte Logistik, Eco-Solutions",
+        "water": "Nicht relevant",
+        "sourcing": "Nicht relevant",
+        "recycling": "Nachhaltige Transportkonzepte",
+        "flag": "Green Flag",
+        "comment": "ESG-Reife sehr hoch, Vorreiter in Klimaneutralität 2040"
       },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Gut",
-        "employeeTraining": true,
-        "diversityScore": 8.0
-      },
-      "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
+      "social": { "score": 5.0 },
+      "governance": { "score": 5.0 }
     },
-    "ratings": [
-      {
-        "id": "VERIFIED-RHENUS-001",
-        "date": "2025-11-24",
-        "overallScore": 8.1,
-        "categories": {
-          "Qualität": 9.0,
-          "Lieferleistung": 10.0,
-          "Kosten": 8.0,
-          "Zuverlässigkeit": 9.0,
-          "Innovation": 8.0,
-          "Kommunikation": 8.5,
-          "ESG-Compliance": 8.0
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Sehr zuverlässiger Logistikpartner mit exzellenter Lieferperformance. Weltweites Netzwerk und hohe Flexibilität. Zugelassener Lieferant.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
+    "ratings": [{
+      "id": "VERIFIED-SCHENKER-001",
+      "overallScore": 5.0,
+      "date": "2025-11-30"
+    }],
     "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
-  },
-  {
-    "name": "Hellmann Worldwide Logistics",
-    "description": "Familienunternehmen mit 12.800 Mitarbeitern und 490 Standorten in 173 Ländern. Spezialisiert auf Land-, Luft-, Seefracht und Kontraktlogistik.",
-    "category": "Frachten & Logistik",
-    "contact": {
-      "email": "info@hellmann.com",
-      "phone": "+49 541 605-0",
-      "website": "www.hellmann.com",
-      "person": "Ansprechpartner",
-      "position": "Kundenservice"
-    },
-    "location": {
-      "street": "Elbestraße 1",
-      "city": "Osnabrück",
-      "postalCode": "49090",
-      "country": "Deutschland",
-      "region": "Niedersachsen"
-    },
-    "locations": [
-      {
-        "street": "Elbestraße 1",
-        "city": "Osnabrück",
-        "postalCode": "49090",
-        "country": "Deutschland",
-        "region": "Niedersachsen",
-        "type": "Hauptsitz"
-      }
-    ],
-    "products": [
-      "Landverkehr",
-      "Luftfracht",
-      "Seefracht",
-      "Kontraktlogistik",
-      "Fashion Logistik",
-      "Automotive Logistik"
-    ],
-    "certifications": [
-      "ISO 9001",
-      "ISO 14001",
-      "ISO 45001",
-      "AEO",
-      "TAPA"
-    ],
-    "deliveryRegions": [
-      "Europa",
-      "Weltweit"
-    ],
-    "performance": {
-      "averageDeliveryTime": 2.5,
-      "onTimeDeliveryRate": 80.0,
-      "defectRate": 0.7,
-      "responseTime": 20,
-      "flexibilityScore": 9.0,
-      "innovationScore": 9.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
-    "esg": {
-      "environmental": {
-        "carbonFootprint": "Niedrig",
-        "waterUsage": "Gut",
-        "wasteManagement": "Optimiert",
-        "renewableEnergy": 70
-      },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Sehr gut",
-        "employeeTraining": true,
-        "diversityScore": 8.5
-      },
-      "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
-    },
-    "ratings": [
-      {
-        "id": "VERIFIED-HELLMANN-001",
-        "date": "2025-11-24",
-        "overallScore": 8.9,
-        "categories": {
-          "Qualität": 10.0,
-          "Lieferleistung": 8.0,
-          "Kosten": 8.5,
-          "Zuverlässigkeit": 9.0,
-          "Innovation": 9.0,
-          "Kommunikation": 9.0,
-          "ESG-Compliance": 9.0
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Exzellente Servicequalität mit weltweitem Netzwerk. Hohe Innovationskraft und starker Nachhaltigkeitsfokus. Bevorzugter Logistikpartner.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
-    "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
-  },
-  {
-    "name": "HTR Paletten-Service GmbH",
-    "description": "Familiengeführtes KMU spezialisiert auf EPAL/Europaletten und Reparaturservice. Regionaler Anbieter mit Fokus auf Qualität.",
-    "category": "Euro-Paletten",
-    "contact": {
-      "email": "info@htr-paletten.de",
-      "phone": "+49 6185 8999-0",
-      "website": "www.htr-paletten.de",
-      "person": "Ansprechpartner",
-      "position": "Vertrieb"
-    },
-    "location": {
-      "street": "Am Klosterkopf 1-3",
-      "city": "Hammersbach",
-      "postalCode": "63546",
-      "country": "Deutschland",
-      "region": "Hessen"
-    },
-    "locations": [
-      {
-        "street": "Am Klosterkopf 1-3",
-        "city": "Hammersbach",
-        "postalCode": "63546",
-        "country": "Deutschland",
-        "region": "Hessen",
-        "type": "Hauptsitz & Werk"
-      }
-    ],
-    "products": [
-      "EPAL Europaletten",
-      "Palettenreparatur",
-      "Sonderpaletten",
-      "Industriepaletten"
-    ],
-    "certifications": [
-      "EPAL Lizenz"
-    ],
-    "performance": {
-      "averageDeliveryTime": 5.0,
-      "onTimeDeliveryRate": 60.0,
-      "defectRate": 2.5,
-      "responseTime": 48,
-      "flexibilityScore": 7.0,
-      "innovationScore": 6.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
-    "esg": {
-      "environmental": {
-        "carbonFootprint": "Mittel",
-        "waterUsage": "Gut",
-        "wasteManagement": "Recycling",
-        "renewableEnergy": 30
-      },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Gut",
-        "employeeTraining": false,
-        "diversityScore": 6.0
-      },
-      "governance": {
-        "transparency": "Mittel",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
-    },
-    "ratings": [
-      {
-        "id": "VERIFIED-HTR-001",
-        "date": "2025-11-24",
-        "overallScore": 6.9,
-        "categories": {
-          "Qualität": 8.5,
-          "Lieferleistung": 6.0,
-          "Kosten": 7.5,
-          "Zuverlässigkeit": 7.0,
-          "Innovation": 6.0,
-          "Kommunikation": 7.0,
-          "ESG-Compliance": 5.0
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Regionaler KMU-Anbieter mit solider Qualität. Lieferperformance und ESG-Standards ausbaufähig. Auf Watchlist zur Überwachung.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
-    "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
-  },
-  {
-    "name": "SAS Group (SAS Pallets)",
-    "description": "Mid-Cap Hersteller aus Polen spezialisiert auf EPAL Euro-Paletten. Starke Präsenz in Mittel- und Osteuropa mit exzellenter Lieferperformance.",
-    "category": "Euro-Paletten",
-    "contact": {
-      "email": "info@sas-pallets.pl",
-      "phone": "+48 32 446 20 00",
-      "website": "www.sas-pallets.pl",
-      "person": "Ansprechpartner",
-      "position": "Vertrieb"
-    },
-    "location": {
-      "street": "ul. Przemysłowa 15",
-      "city": "Wola",
-      "postalCode": "43-225",
-      "country": "Polen",
-      "region": "Schlesien"
-    },
-    "locations": [
-      {
-        "street": "ul. Przemysłowa 15",
-        "city": "Wola",
-        "postalCode": "43-225",
-        "country": "Polen",
-        "region": "Schlesien",
-        "type": "Hauptsitz & Produktion"
-      }
-    ],
-    "products": [
-      "EPAL Euro-Paletten",
-      "Industriepaletten",
-      "Sonderpaletten",
-      "Holzverpackungen"
-    ],
-    "certifications": [
-      "EPAL Lizenz",
-      "ISPM 15",
-      "FSC"
-    ],
-    "performance": {
-      "averageDeliveryTime": 2.0,
-      "onTimeDeliveryRate": 100.0,
-      "defectRate": 0.5,
-      "responseTime": 24,
-      "flexibilityScore": 9.0,
-      "innovationScore": 8.0
-    },
-    "compliance": {
-      "status": "compliant",
-      "humanRights": true,
-      "environmentalStandards": true,
-      "laborStandards": true,
-      "violations": []
-    },
-    "esg": {
-      "environmental": {
-        "carbonFootprint": "Mittel",
-        "waterUsage": "Gut",
-        "wasteManagement": "Recycling",
-        "renewableEnergy": 55
-      },
-      "social": {
-        "fairWages": true,
-        "workingConditions": "Gut",
-        "employeeTraining": true,
-        "diversityScore": 7.5
-      },
-      "governance": {
-        "transparency": "Hoch",
-        "ethicalBusiness": true,
-        "antiCorruption": true,
-        "dataProtection": true
-      }
-    },
-    "ratings": [
-      {
-        "id": "VERIFIED-SAS-001",
-        "date": "2025-11-24",
-        "overallScore": 9.0,
-        "categories": {
-          "Qualität": 9.5,
-          "Lieferleistung": 10.0,
-          "Kosten": 9.0,
-          "Zuverlässigkeit": 8.0,
-          "Innovation": 8.0,
-          "Kommunikation": 8.5,
-          "ESG-Compliance": 7.0
-        },
-        "weights": {
-          "Qualität": 20,
-          "Lieferleistung": 20,
-          "Kosten": 15,
-          "Zuverlässigkeit": 15,
-          "Innovation": 10,
-          "Kommunikation": 10,
-          "ESG-Compliance": 10
-        },
-        "comment": "Exzellenter Lieferant mit hervorragender Qualität und perfekter Lieferperformance. Attraktive Preise für Mittel- und Osteuropa. Bevorzugter Palettenlieferant.",
-        "userId": "VERIFIED-DATA"
-      }
-    ],
-    "documents": [],
-    "addedDate": "2025-11-24",
-    "lastUpdated": "2025-11-24T10:00:00.000Z",
-    "verificationNeeded": false,
-    "dataSource": "Verified data",
-    "isAIGenerated": false
+    "addedDate": "2025-11-30",
+    "verificationNeeded": false
   }
 ]
