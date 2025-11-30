@@ -173,19 +173,22 @@ class DataService {
           }
 
           // Merge certifications
+          existing.certifications = existing.certifications || []
           if (newSupplier.certifications && newSupplier.certifications.length > 0) {
-            const existingCerts = existing.certifications || []
-            const certSet = new Set([...existingCerts, ...newSupplier.certifications])
+            const certSet = new Set([...existing.certifications, ...newSupplier.certifications])
             existing.certifications = Array.from(certSet)
           }
 
           // Merge ratings (avoid duplicates)
+          existing.ratings = existing.ratings || []
           if (newSupplier.ratings && newSupplier.ratings.length > 0) {
-            const existingRatings = existing.ratings || []
-            const existingRatingIds = new Set(existingRatings.map(r => r.id))
+            const existingRatingIds = new Set(existing.ratings.map(r => r.id))
             const newRatings = newSupplier.ratings.filter(r => !existingRatingIds.has(r.id))
-            existing.ratings = [...existingRatings, ...newRatings]
+            existing.ratings = [...existing.ratings, ...newRatings]
           }
+
+          // Ensure products array exists
+          existing.products = existing.products || []
 
           existing.lastUpdated = new Date().toISOString()
         } else {

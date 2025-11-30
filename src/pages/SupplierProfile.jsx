@@ -378,14 +378,18 @@ function SupplierProfile({ supplierId, navigateTo }) {
           <h2 className="card-title">Zertifizierungen</h2>
         </div>
         <div className="card-body">
-          <div className="cert-list">
-            {supplier.certifications.map((cert, index) => (
-              <div key={index} className="cert-item">
-                <span className="cert-icon">🏅</span>
-                <span className="cert-name">{cert}</span>
-              </div>
-            ))}
-          </div>
+          {supplier.certifications && supplier.certifications.length > 0 ? (
+            <div className="cert-list">
+              {supplier.certifications.map((cert, index) => (
+                <div key={index} className="cert-item">
+                  <span className="cert-icon">🏅</span>
+                  <span className="cert-name">{cert}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-muted">Keine Zertifizierungen verfügbar</p>
+          )}
         </div>
       </div>
 
