@@ -188,7 +188,7 @@ function SupplierProfile({ supplierId, navigateTo }) {
           <div className="metric-box">
             <span className="metric-label">Bewertung</span>
             <span className="metric-value">{avgRating}/10</span>
-            <span className="metric-count">{supplier.ratings.length} Bewertungen</span>
+            <span className="metric-count">{supplier.ratings?.length || 0} Bewertungen</span>
           </div>
           <div className="metric-box">
             <span className="metric-label">Standorte</span>
@@ -211,24 +211,38 @@ function SupplierProfile({ supplierId, navigateTo }) {
           <h2 className="card-title">Kontaktinformationen</h2>
         </div>
         <div className="card-body contact-grid">
-          <div className="contact-item">
-            <span className="contact-label">Ansprechpartner:</span>
-            <span className="contact-value">{supplier.contact.person} ({supplier.contact.position})</span>
-          </div>
-          <div className="contact-item">
-            <span className="contact-label">E-Mail:</span>
-            <a href={`mailto:${supplier.contact.email}`} className="contact-value">{supplier.contact.email}</a>
-          </div>
-          <div className="contact-item">
-            <span className="contact-label">Telefon:</span>
-            <a href={`tel:${supplier.contact.phone}`} className="contact-value">{supplier.contact.phone}</a>
-          </div>
-          <div className="contact-item">
-            <span className="contact-label">Website:</span>
-            <a href={`https://${supplier.contact.website}`} target="_blank" rel="noopener noreferrer" className="contact-value">
-              {supplier.contact.website}
-            </a>
-          </div>
+          {supplier.contact?.person && (
+            <div className="contact-item">
+              <span className="contact-label">Ansprechpartner:</span>
+              <span className="contact-value">
+                {supplier.contact.person}
+                {supplier.contact.position && ` (${supplier.contact.position})`}
+              </span>
+            </div>
+          )}
+          {supplier.contact?.email && (
+            <div className="contact-item">
+              <span className="contact-label">E-Mail:</span>
+              <a href={`mailto:${supplier.contact.email}`} className="contact-value">{supplier.contact.email}</a>
+            </div>
+          )}
+          {supplier.contact?.phone && (
+            <div className="contact-item">
+              <span className="contact-label">Telefon:</span>
+              <a href={`tel:${supplier.contact.phone}`} className="contact-value">{supplier.contact.phone}</a>
+            </div>
+          )}
+          {supplier.contact?.website && (
+            <div className="contact-item">
+              <span className="contact-label">Website:</span>
+              <a href={supplier.contact.website.startsWith('http') ? supplier.contact.website : `https://${supplier.contact.website}`} target="_blank" rel="noopener noreferrer" className="contact-value">
+                {supplier.contact.website.replace(/^https?:\/\//, '')}
+              </a>
+            </div>
+          )}
+          {!supplier.contact?.person && !supplier.contact?.email && !supplier.contact?.phone && !supplier.contact?.website && (
+            <p className="text-muted">Keine Kontaktinformationen verfügbar</p>
+          )}
         </div>
       </div>
 
@@ -247,25 +261,39 @@ function SupplierProfile({ supplierId, navigateTo }) {
                     <span className="location-type">{location.type || 'Standort'}</span>
                   </div>
                   <div className="location-address">
-                    <div>{location.street}</div>
-                    <div>{location.postalCode} {location.city}</div>
-                    <div>{location.region}, {location.country}</div>
+                    {location.street && <div>{location.street}</div>}
+                    <div>
+                      {location.postalCode && `${location.postalCode} `}
+                      {location.city}
+                    </div>
+                    <div>
+                      {location.region && `${location.region}, `}
+                      {location.country}
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
-          ) : (
+          ) : supplier.location ? (
             <div className="location-item">
               <div className="location-header">
                 <span className="location-icon">📍</span>
                 <span className="location-type">Hauptstandort</span>
               </div>
               <div className="location-address">
-                <div>{supplier.location.street}</div>
-                <div>{supplier.location.postalCode} {supplier.location.city}</div>
-                <div>{supplier.location.region}, {supplier.location.country}</div>
+                {supplier.location.street && <div>{supplier.location.street}</div>}
+                <div>
+                  {supplier.location.postalCode && `${supplier.location.postalCode} `}
+                  {supplier.location.city}
+                </div>
+                <div>
+                  {supplier.location.region && `${supplier.location.region}, `}
+                  {supplier.location.country}
+                </div>
               </div>
             </div>
+          ) : (
+            <p className="text-muted">Keine Standortinformationen verfügbar</p>
           )}
         </div>
       </div>
@@ -281,6 +309,9 @@ function SupplierProfile({ supplierId, navigateTo }) {
 
             if (!productDetails) {
               // Fallback to simple product tags for suppliers without detailed products
+              if (!supplier.products || supplier.products.length === 0) {
+                return <p className="text-muted">Keine Produktinformationen verfügbar</p>
+              }
               return (
                 <div className="product-list">
                   {supplier.products.map((product, index) => (
