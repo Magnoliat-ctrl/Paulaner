@@ -175,6 +175,8 @@ Antworte NUR mit dem JSON-Objekt, ohne Markdown-Codeblocks oder zusätzlichen Te
  * @returns {Promise<Object>} Mock supplier profile
  */
 async function generateMockEvaluation(supplierName) {
+  console.warn('⚠️⚠️⚠️ GENERATING MOCK DATA (NOT REAL AI) ⚠️⚠️⚠️')
+  console.warn('This is placeholder data - configure Grok API for real evaluations')
   // Simulate API delay
   await new Promise(resolve => setTimeout(resolve, 2000))
 
@@ -227,11 +229,14 @@ export async function evaluateSupplier(supplierName) {
   try {
     // Check if Grok service is available
     if (!grokService.isEnabled()) {
-      console.warn('⚠️ Grok API not configured, using mock data')
+      console.error('❌❌❌ GROK API NOT CONFIGURED - USING MOCK DATA! ❌❌❌')
+      console.error('Check .env file for VITE_GROK_API_KEY')
+      console.error('Restart dev server after adding API key: npm run dev')
       return await generateMockEvaluation(supplierName)
     }
 
-    console.log('🤖 Evaluating supplier with Grok:', supplierName)
+    console.log('🚀🚀🚀 CALLING REAL GROK API for:', supplierName)
+    console.log('⏱️ This may take 10-30 seconds for comprehensive analysis...')
 
     // Check if we have verified data for this supplier
     const knownData = getKnownSupplierData(supplierName)
@@ -263,7 +268,9 @@ export async function evaluateSupplier(supplierName) {
     })
 
     const evaluationText = response.choices[0].message.content
-    console.log('📊 Received evaluation:', evaluationText.substring(0, 100) + '...')
+    console.log('✅✅✅ REAL API RESPONSE RECEIVED FROM GROK ✅✅✅')
+    console.log('📊 Response length:', evaluationText.length, 'characters')
+    console.log('📊 Preview:', evaluationText.substring(0, 150) + '...')
 
     const evaluation = JSON.parse(evaluationText)
 
