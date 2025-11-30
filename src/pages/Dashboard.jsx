@@ -8,7 +8,6 @@ import { dataService } from '../services/dataService'
 import MetricsCards from '../components/dashboard/MetricsCards'
 import ChartsSection from '../components/dashboard/ChartsSection'
 import ActivityFeed from '../components/dashboard/ActivityFeed'
-import SupplierEvaluationPanel from '../components/dashboard/SupplierEvaluationPanel'
 import '../styles/Dashboard.css'
 
 function Dashboard({ navigateTo, userMemory }) {
@@ -72,9 +71,6 @@ function Dashboard({ navigateTo, userMemory }) {
       {analytics && (
         <ChartsSection analytics={analytics} />
       )}
-
-      {/* Supplier Evaluation Panel */}
-      <SupplierEvaluationPanel />
 
       {/* Quick Actions */}
       <div className="dashboard-section">
