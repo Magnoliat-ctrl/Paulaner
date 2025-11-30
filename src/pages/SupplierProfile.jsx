@@ -399,74 +399,108 @@ function SupplierProfile({ supplierId, navigateTo }) {
             const esgAnalysis = getESGAnalysis()
 
             if (!esgAnalysis) {
-              // Fallback to basic ESG display if no analysis available
+              // Tender-focused ESG display with new data structure
+              if (!supplier.esg) {
+                return <p className="text-muted">Keine ESG-Informationen verfügbar</p>
+              }
+
               return (
                 <>
-                  <div className="esg-category">
-                    <h3 className="esg-title">🌍 Umwelt (Environmental)</h3>
-                    <div className="esg-data">
-                      <div className="esg-item">
-                        <span>CO₂-Fußabdruck:</span>
-                        <strong>{supplier.esg.environmental.carbonFootprint}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Wassernutzung:</span>
-                        <strong>{supplier.esg.environmental.waterUsage}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Abfallmanagement:</span>
-                        <strong>{supplier.esg.environmental.wasteManagement}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Erneuerbare Energie:</span>
-                        <strong>{supplier.esg.environmental.renewableEnergy}%</strong>
+                  {/* Environmental */}
+                  {supplier.esg.environmental && (
+                    <div className="esg-category">
+                      <h3 className="esg-title">
+                        🌍 Umwelt (Environmental)
+                        {supplier.esg.environmental.score && (
+                          <span className="esg-score-badge"> {supplier.esg.environmental.score}/5</span>
+                        )}
+                      </h3>
+                      <div className="esg-data">
+                        {supplier.esg.environmental.flag && (
+                          <div className="esg-item esg-flag-item">
+                            <span className={`esg-flag ${supplier.esg.environmental.flag === 'Green Flag' ? 'flag-green' : supplier.esg.environmental.flag === 'Amber Flag' ? 'flag-amber' : 'flag-red'}`}>
+                              {supplier.esg.environmental.flag}
+                            </span>
+                          </div>
+                        )}
+                        {supplier.esg.environmental.co2 && (
+                          <div className="esg-item">
+                            <span>CO₂:</span>
+                            <strong>{supplier.esg.environmental.co2}</strong>
+                          </div>
+                        )}
+                        {supplier.esg.environmental.water && (
+                          <div className="esg-item">
+                            <span>Wasser:</span>
+                            <strong>{supplier.esg.environmental.water}</strong>
+                          </div>
+                        )}
+                        {supplier.esg.environmental.sourcing && (
+                          <div className="esg-item">
+                            <span>Beschaffung:</span>
+                            <strong>{supplier.esg.environmental.sourcing}</strong>
+                          </div>
+                        )}
+                        {supplier.esg.environmental.recycling && (
+                          <div className="esg-item">
+                            <span>Recycling:</span>
+                            <strong>{supplier.esg.environmental.recycling}</strong>
+                          </div>
+                        )}
+                        {supplier.esg.environmental.comment && (
+                          <div className="esg-item esg-comment">
+                            <em>{supplier.esg.environmental.comment}</em>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
+                  )}
 
-                  <div className="esg-category">
-                    <h3 className="esg-title">👥 Soziales (Social)</h3>
-                    <div className="esg-data">
-                      <div className="esg-item">
-                        <span>Faire Löhne:</span>
-                        <strong>{supplier.esg.social.fairWages ? 'Ja' : 'Nein'}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Arbeitsbedingungen:</span>
-                        <strong>{supplier.esg.social.workingConditions}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Mitarbeiterfortbildung:</span>
-                        <strong>{supplier.esg.social.employeeTraining ? 'Ja' : 'Nein'}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Diversity-Score:</span>
-                        <strong>{supplier.esg.social.diversityScore}/10</strong>
+                  {/* Social */}
+                  {supplier.esg.social && (
+                    <div className="esg-category">
+                      <h3 className="esg-title">
+                        👥 Soziales (Social)
+                        {supplier.esg.social.score && (
+                          <span className="esg-score-badge"> {supplier.esg.social.score}/5</span>
+                        )}
+                      </h3>
+                      <div className="esg-data">
+                        {supplier.esg.social.details ? (
+                          <div className="esg-item">
+                            <span>{supplier.esg.social.details}</span>
+                          </div>
+                        ) : (
+                          <div className="esg-item">
+                            <span className="text-muted">Score: {supplier.esg.social.score}/5</span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
+                  )}
 
-                  <div className="esg-category">
-                    <h3 className="esg-title">⚖️ Unternehmensführung (Governance)</h3>
-                    <div className="esg-data">
-                      <div className="esg-item">
-                        <span>Transparenz:</span>
-                        <strong>{supplier.esg.governance.transparency}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Ethisches Geschäftsgebaren:</span>
-                        <strong>{supplier.esg.governance.ethicalBusiness ? 'Ja' : 'Nein'}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Anti-Korruption:</span>
-                        <strong>{supplier.esg.governance.antiCorruption ? 'Ja' : 'Nein'}</strong>
-                      </div>
-                      <div className="esg-item">
-                        <span>Datenschutz:</span>
-                        <strong>{supplier.esg.governance.dataProtection ? 'Ja' : 'Nein'}</strong>
+                  {/* Governance */}
+                  {supplier.esg.governance && (
+                    <div className="esg-category">
+                      <h3 className="esg-title">
+                        ⚖️ Unternehmensführung (Governance)
+                        {supplier.esg.governance.score && (
+                          <span className="esg-score-badge"> {supplier.esg.governance.score}/5</span>
+                        )}
+                      </h3>
+                      <div className="esg-data">
+                        {supplier.esg.governance.details ? (
+                          <div className="esg-item">
+                            <span>{supplier.esg.governance.details}</span>
+                          </div>
+                        ) : (
+                          <div className="esg-item">
+                            <span className="text-muted">Score: {supplier.esg.governance.score}/5</span>
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
+                  )}
                 </>
               )
             }
