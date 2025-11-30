@@ -14,21 +14,6 @@ function SupplierCard({ supplier, onClick }) {
     ? (supplier.ratings.reduce((sum, r) => sum + r.overallScore, 0) / supplier.ratings.length).toFixed(1)
     : 'N/A'
 
-  /**
-   * Get compliance badge
-   */
-  const getComplianceBadge = (status) => {
-    const badges = {
-      'compliant': { label: 'Konform', class: 'badge-success', icon: '✓' },
-      'minor-violation': { label: 'Geringf. Verstoß', class: 'badge-warning', icon: '⚠' },
-      'under-review': { label: 'In Prüfung', class: 'badge-info', icon: '🔍' },
-      'major-violation': { label: 'Schwerer Verstoß', class: 'badge-danger', icon: '✕' }
-    }
-    return badges[status] || badges['under-review']
-  }
-
-  const complianceBadge = getComplianceBadge(supplier.compliance.status)
-
   return (
     <div
       className="supplier-card"
@@ -46,10 +31,7 @@ function SupplierCard({ supplier, onClick }) {
       {/* Card Header */}
       <div className="supplier-card-header">
         <h3 className="supplier-card-title">{supplier.name}</h3>
-        <span className={`badge ${complianceBadge.class}`}>
-          <span aria-hidden="true">{complianceBadge.icon}</span>
-          {complianceBadge.label}
-        </span>
+        {/* Compliance badge removed - not available during tender process */}
       </div>
 
       {/* Card Body */}
@@ -62,7 +44,9 @@ function SupplierCard({ supplier, onClick }) {
             <span className="info-text">
               {supplier.locations && supplier.locations.length > 0
                 ? `${supplier.locations.length} Standort${supplier.locations.length > 1 ? 'e' : ''}: ${supplier.locations.map(loc => loc.city).filter((v, i, a) => a.indexOf(v) === i).join(', ')}`
-                : `${supplier.location.city}, ${supplier.location.region}`
+                : supplier.location
+                  ? `${supplier.location.city}${supplier.location.region ? ', ' + supplier.location.region : ''}`
+                  : 'Keine Standorte angegeben'
               }
             </span>
           </div>
