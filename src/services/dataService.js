@@ -122,37 +122,44 @@ class DataService {
           console.log(`🔄 Merging locations for: ${newSupplier.name}`)
 
           // Merge locations arrays, avoiding duplicates
-          const existingLocations = existing.locations || [existing.location]
-          const newLocations = newSupplier.locations || [newSupplier.location]
+          const existingLocations = existing.locations || (existing.location ? [existing.location] : [])
+          const newLocations = newSupplier.locations || (newSupplier.location ? [newSupplier.location] : [])
 
-          // Create set of location keys (city+postalCode) to check for duplicates
+          // Filter out any undefined/null locations
+          const validExistingLocs = existingLocations.filter(loc => loc && loc.city)
+          const validNewLocs = newLocations.filter(loc => loc && loc.city)
+
+          // Create set of location keys (city) to check for duplicates
           const locationKeys = new Set(
-            existingLocations.map(loc => `${loc.city}-${loc.postalCode}`.toLowerCase())
+            validExistingLocs.map(loc => `${loc.city}-${loc.postalCode || 'none'}`.toLowerCase())
           )
 
           // Add only new locations
-          newLocations.forEach(newLoc => {
-            const locKey = `${newLoc.city}-${newLoc.postalCode}`.toLowerCase()
+          validNewLocs.forEach(newLoc => {
+            const locKey = `${newLoc.city}-${newLoc.postalCode || 'none'}`.toLowerCase()
             if (!locationKeys.has(locKey)) {
-              existingLocations.push(newLoc)
+              validExistingLocs.push(newLoc)
               locationKeys.add(locKey)
             }
           })
 
           // Update existing supplier with merged data
-          existing.locations = existingLocations
+          existing.locations = validExistingLocs
 
           // Update other fields if new data is better (has more info)
-          if (newSupplier.contact.website && !existing.contact.website) {
+          if (newSupplier.contact?.website && !existing.contact?.website) {
+            existing.contact = existing.contact || {}
             existing.contact.website = newSupplier.contact.website
           }
-          if (newSupplier.contact.email && !existing.contact.email.includes('example')) {
+          if (newSupplier.contact?.email && !existing.contact?.email?.includes('example')) {
+            existing.contact = existing.contact || {}
             existing.contact.email = newSupplier.contact.email
           }
-          if (newSupplier.contact.phone && !existing.contact.phone.includes('XXX')) {
+          if (newSupplier.contact?.phone && !existing.contact?.phone?.includes('XXX')) {
+            existing.contact = existing.contact || {}
             existing.contact.phone = newSupplier.contact.phone
           }
-          if (newSupplier.description && newSupplier.description.length > existing.description.length) {
+          if (newSupplier.description && existing.description && newSupplier.description.length > existing.description.length) {
             existing.description = newSupplier.description
           }
 
@@ -167,15 +174,17 @@ class DataService {
 
           // Merge certifications
           if (newSupplier.certifications && newSupplier.certifications.length > 0) {
-            const certSet = new Set([...existing.certifications, ...newSupplier.certifications])
+            const existingCerts = existing.certifications || []
+            const certSet = new Set([...existingCerts, ...newSupplier.certifications])
             existing.certifications = Array.from(certSet)
           }
 
           // Merge ratings (avoid duplicates)
           if (newSupplier.ratings && newSupplier.ratings.length > 0) {
-            const existingRatingIds = new Set(existing.ratings.map(r => r.id))
+            const existingRatings = existing.ratings || []
+            const existingRatingIds = new Set(existingRatings.map(r => r.id))
             const newRatings = newSupplier.ratings.filter(r => !existingRatingIds.has(r.id))
-            existing.ratings = [...existing.ratings, ...newRatings]
+            existing.ratings = [...existingRatings, ...newRatings]
           }
 
           existing.lastUpdated = new Date().toISOString()
@@ -183,10 +192,16 @@ class DataService {
           // New company - add to cache
           console.log(`✨ Adding new supplier: ${newSupplier.name}`)
 
-          // Ensure locations array exists
+          // Ensure locations array exists and filter out undefined
           if (!newSupplier.locations) {
-            newSupplier.locations = [newSupplier.location]
+            newSupplier.locations = newSupplier.location ? [newSupplier.location] : []
           }
+          newSupplier.locations = newSupplier.locations.filter(loc => loc && loc.city)
+
+          // Ensure required fields exist with defaults
+          newSupplier.ratings = newSupplier.ratings || []
+          newSupplier.certifications = newSupplier.certifications || []
+          newSupplier.products = newSupplier.products || []
 
           this.cachedSuppliers.push(newSupplier)
           existingMap.set(normalizedName, newSupplier)
