@@ -758,14 +758,16 @@ function SupplierProfile({ supplierId, navigateTo }) {
                     <span className="rating-date">{rating.date}</span>
                     <span className="rating-score-badge">{rating.overallScore}/10</span>
                   </div>
-                  <div className="rating-categories">
-                    {Object.entries(rating.categories).map(([key, value]) => (
-                      <div key={key} className="rating-category-item">
-                        <span className="category-name">{key}:</span>
-                        <span className="category-value">{value}/10</span>
-                      </div>
-                    ))}
-                  </div>
+                  {rating.categories && Object.keys(rating.categories).length > 0 && (
+                    <div className="rating-categories">
+                      {Object.entries(rating.categories).map(([key, value]) => (
+                        <div key={key} className="rating-category-item">
+                          <span className="category-name">{key}:</span>
+                          <span className="category-value">{value}/10</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   {rating.comment && (
                     <p className="rating-comment">"{rating.comment}"</p>
                   )}

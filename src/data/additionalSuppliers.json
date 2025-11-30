@@ -32,8 +32,19 @@
         "type": "Produktionsstandort"
       }
     ],
-    "products": ["Arbeitsschuhe", "Handschuhe", "Schutzbrillen", "Arbeitsjacken", "Arbeitshosen", "PSA-Komplettausstattung"],
-    "certifications": ["CE", "EN ISO 20345", "EN 388"],
+    "products": [
+      "Arbeitsschuhe",
+      "Handschuhe",
+      "Schutzbrillen",
+      "Arbeitsjacken",
+      "Arbeitshosen",
+      "PSA-Komplettausstattung"
+    ],
+    "certifications": [
+      "CE",
+      "EN ISO 20345",
+      "EN 388"
+    ],
     "employeeCount": 1200,
     "revenue": "1,4 Mrd. EUR",
     "ownership": "Familienunternehmen",
@@ -98,8 +109,17 @@
         "type": "Firmensitz & Produktionsstandort"
       }
     ],
-    "products": ["Hygienebekleidung", "Arbeitshandschuhe", "Schutzausrüstung", "Lebensmittelkonforme PSA"],
-    "certifications": ["CE", "EN 455", "ISO 9001"],
+    "products": [
+      "Hygienebekleidung",
+      "Arbeitshandschuhe",
+      "Schutzausrüstung",
+      "Lebensmittelkonforme PSA"
+    ],
+    "certifications": [
+      "CE",
+      "EN 455",
+      "ISO 9001"
+    ],
     "employeeCount": 150,
     "revenue": "100 Mio. EUR",
     "ownership": "Familienunternehmen/Stiftung",
@@ -174,8 +194,21 @@
         "type": "Produktionsstandort"
       }
     ],
-    "products": ["Sicherheitsschuhe", "Schutzbrillen", "Gehörschutz", "Schutzhelme", "Handschuhe", "Atemschutz"],
-    "certifications": ["CE", "EN ISO 20345", "EN 166", "ISO 9001", "ISO 14001"],
+    "products": [
+      "Sicherheitsschuhe",
+      "Schutzbrillen",
+      "Gehörschutz",
+      "Schutzhelme",
+      "Handschuhe",
+      "Atemschutz"
+    ],
+    "certifications": [
+      "CE",
+      "EN ISO 20345",
+      "EN 166",
+      "ISO 9001",
+      "ISO 14001"
+    ],
     "employeeCount": 3000,
     "revenue": "660 Mio. EUR",
     "ownership": "Familienunternehmen",
@@ -243,8 +276,17 @@
         "type": "Produktionsstandorte"
       }
     ],
-    "products": ["Aluminium-Getränkedosen", "Specialty Cans", "Aerosol-Dosen"],
-    "certifications": ["ISO 9001", "ISO 14001", "ISO 45001", "FSSC 22000"],
+    "products": [
+      "Aluminium-Getränkedosen",
+      "Specialty Cans",
+      "Aerosol-Dosen"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "ISO 14001",
+      "ISO 45001",
+      "FSSC 22000"
+    ],
     "employeeCount": 16000,
     "revenue": "11,80 Mrd. USD (2024)",
     "ownership": "Große Investmentfonds",
@@ -316,8 +358,17 @@
         "type": "Produktions-/Service-Standorte"
       }
     ],
-    "products": ["Aluminium-Getränkedosen", "Lebensmitteldosen", "Aerosol-Verpackungen"],
-    "certifications": ["ISO 9001", "ISO 14001", "BRC", "FSSC 22000"],
+    "products": [
+      "Aluminium-Getränkedosen",
+      "Lebensmitteldosen",
+      "Aerosol-Verpackungen"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "ISO 14001",
+      "BRC",
+      "FSSC 22000"
+    ],
     "employeeCount": 23000,
     "revenue": "11,8 Mrd. USD (72% Beverage-Can) (2024)",
     "ownership": "Große Investmentfonds",
@@ -389,8 +440,17 @@
         "type": "Produktionsstandorte"
       }
     ],
-    "products": ["Aluminium-Getränkedosen", "Specialty Cans", "Ends & Components"],
-    "certifications": ["ISO 9001", "ISO 14001", "FSSC 22000", "BRC"],
+    "products": [
+      "Aluminium-Getränkedosen",
+      "Specialty Cans",
+      "Ends & Components"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "ISO 14001",
+      "FSSC 22000",
+      "BRC"
+    ],
     "employeeCount": 8500,
     "revenue": "4,19 Mrd. USD",
     "ownership": "Familie/Privateigentümer",
@@ -457,7 +517,12 @@
         "type": "Hauptstandort"
       }
     ],
-    "products": ["Europaletten", "Einwegpaletten", "Paletten-Umtausch", "Reparaturservice"],
+    "products": [
+      "Europaletten",
+      "Einwegpaletten",
+      "Paletten-Umtausch",
+      "Reparaturservice"
+    ],
     "certifications": [],
     "employeeCount": null,
     "revenue": null,
@@ -511,7 +576,10 @@
         "type": "Hauptstandort"
       }
     ],
-    "products": ["Holzpaletten", "Verpackungslösungen"],
+    "products": [
+      "Holzpaletten",
+      "Verpackungslösungen"
+    ],
     "certifications": [],
     "employeeCount": null,
     "revenue": null,
@@ -564,7 +632,11 @@
         "type": "Produktionsstandort"
       }
     ],
-    "products": ["Holzpaletten", "Nachhaltige Paletten", "Biomasse-Nutzung"],
+    "products": [
+      "Holzpaletten",
+      "Nachhaltige Paletten",
+      "Biomasse-Nutzung"
+    ],
     "certifications": [],
     "employeeCount": null,
     "revenue": null,
@@ -617,8 +689,14 @@
         "type": "Produktionsstandort"
       }
     ],
-    "products": ["Recycling-Paletten", "Biologisch abbaubare Paletten", "PEFC-zertifizierte Paletten"],
-    "certifications": ["PEFC"],
+    "products": [
+      "Recycling-Paletten",
+      "Biologisch abbaubare Paletten",
+      "PEFC-zertifizierte Paletten"
+    ],
+    "certifications": [
+      "PEFC"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": null,
@@ -670,7 +748,11 @@
         "type": "Hauptstandort"
       }
     ],
-    "products": ["Gebrauchte Paletten", "Reparierte Paletten", "Recycling-Service"],
+    "products": [
+      "Gebrauchte Paletten",
+      "Reparierte Paletten",
+      "Recycling-Service"
+    ],
     "certifications": [],
     "employeeCount": null,
     "revenue": null,
@@ -723,7 +805,10 @@
         "type": "Hauptstandort"
       }
     ],
-    "products": ["Palettenrecycling", "Gebrauchte Paletten"],
+    "products": [
+      "Palettenrecycling",
+      "Gebrauchte Paletten"
+    ],
     "certifications": [],
     "employeeCount": null,
     "revenue": null,
@@ -776,8 +861,18 @@
         "type": "Hauptsitz"
       }
     ],
-    "products": ["Wellpappverpackungen", "Kartonagen", "Nachhaltige Verpackungslösungen"],
-    "certifications": ["FSC", "PEFC", "ISO 9001", "ISO 14001", "ISO 45001"],
+    "products": [
+      "Wellpappverpackungen",
+      "Kartonagen",
+      "Nachhaltige Verpackungslösungen"
+    ],
+    "certifications": [
+      "FSC",
+      "PEFC",
+      "ISO 9001",
+      "ISO 14001",
+      "ISO 45001"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": null,
@@ -829,8 +924,17 @@
         "type": "Hauptsitz"
       }
     ],
-    "products": ["Wellpappverpackungen", "Circular Design Solutions", "Recycling-basierte Verpackungen"],
-    "certifications": ["FSC", "PEFC", "ISO 9001", "ISO 14001"],
+    "products": [
+      "Wellpappverpackungen",
+      "Circular Design Solutions",
+      "Recycling-basierte Verpackungen"
+    ],
+    "certifications": [
+      "FSC",
+      "PEFC",
+      "ISO 9001",
+      "ISO 14001"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": null,
@@ -882,8 +986,17 @@
         "type": "Hauptsitz"
       }
     ],
-    "products": ["Wellpappverpackungen", "Food-Grade Verpackungen", "Nachhaltige Papierprodukte"],
-    "certifications": ["FSC", "PEFC", "ISO 9001", "ISO 14001"],
+    "products": [
+      "Wellpappverpackungen",
+      "Food-Grade Verpackungen",
+      "Nachhaltige Papierprodukte"
+    ],
+    "certifications": [
+      "FSC",
+      "PEFC",
+      "ISO 9001",
+      "ISO 14001"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": null,
@@ -935,8 +1048,17 @@
         "type": "Hauptsitz"
       }
     ],
-    "products": ["Wellpappverpackungen", "Display-Lösungen", "Kartonverpackungen"],
-    "certifications": ["FSC", "PEFC", "ISO 9001", "ISO 14001"],
+    "products": [
+      "Wellpappverpackungen",
+      "Display-Lösungen",
+      "Kartonverpackungen"
+    ],
+    "certifications": [
+      "FSC",
+      "PEFC",
+      "ISO 9001",
+      "ISO 14001"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": null,
@@ -988,8 +1110,15 @@
         "type": "Hauptsitz"
       }
     ],
-    "products": ["Wellpappverpackungen", "Individuallösungen", "Displayverpackungen"],
-    "certifications": ["FSC", "PEFC"],
+    "products": [
+      "Wellpappverpackungen",
+      "Individuallösungen",
+      "Displayverpackungen"
+    ],
+    "certifications": [
+      "FSC",
+      "PEFC"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": null,
@@ -1043,8 +1172,18 @@
         "type": "Hauptsitz"
       }
     ],
-    "products": ["Logistikdienstleistungen", "Transport", "Warehousing", "Supply Chain Management"],
-    "certifications": ["ISO 9001", "ISO 14001", "ISO 27001", "IFS Logistics"],
+    "products": [
+      "Logistikdienstleistungen",
+      "Transport",
+      "Warehousing",
+      "Supply Chain Management"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "ISO 14001",
+      "ISO 27001",
+      "IFS Logistics"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": "Familienunternehmen",
@@ -1098,8 +1237,19 @@
         "type": "Hauptsitz"
       }
     ],
-    "products": ["Logistikdienstleistungen", "Landverkehr", "Luftfracht", "Seefracht", "Contract Logistics"],
-    "certifications": ["ISO 9001", "ISO 14001", "ISO 45001", "IFS Logistics"],
+    "products": [
+      "Logistikdienstleistungen",
+      "Landverkehr",
+      "Luftfracht",
+      "Seefracht",
+      "Contract Logistics"
+    ],
+    "certifications": [
+      "ISO 9001",
+      "ISO 14001",
+      "ISO 45001",
+      "IFS Logistics"
+    ],
     "employeeCount": null,
     "revenue": null,
     "ownership": "Deutsche Bahn AG",
