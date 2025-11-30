@@ -118,33 +118,11 @@ function Reports({ navigateTo }) {
                       </tr>
                     </thead>
                     <tbody>
+                      {/* Performance and compliance metrics removed - not available during tender process */}
                       <tr>
-                        <td>Liefertreue</td>
-                        {selectedSuppliers.map(id => {
-                          const supplier = suppliers.find(s => s.id === id)
-                          return <td key={id}>{supplier.performance.onTimeDeliveryRate}%</td>
-                        })}
-                      </tr>
-                      <tr>
-                        <td>Fehlerrate</td>
-                        {selectedSuppliers.map(id => {
-                          const supplier = suppliers.find(s => s.id === id)
-                          return <td key={id}>{supplier.performance.defectRate}%</td>
-                        })}
-                      </tr>
-                      <tr>
-                        <td>Innovation</td>
-                        {selectedSuppliers.map(id => {
-                          const supplier = suppliers.find(s => s.id === id)
-                          return <td key={id}>{supplier.performance.innovationScore}/10</td>
-                        })}
-                      </tr>
-                      <tr>
-                        <td>Compliance</td>
-                        {selectedSuppliers.map(id => {
-                          const supplier = suppliers.find(s => s.id === id)
-                          return <td key={id}>{supplier.compliance.status}</td>
-                        })}
+                        <td colSpan={selectedSuppliers.length + 1} className="text-center">
+                          <em>Performance- und Compliance-Daten sind während des Tender-Prozesses nicht verfügbar.</em>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
