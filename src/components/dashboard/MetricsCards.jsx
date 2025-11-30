@@ -26,20 +26,20 @@ function MetricsCards({ metrics, navigateTo }) {
       action: null
     },
     {
+      id: 'categories',
+      title: 'Produktkategorien',
+      value: metrics.totalCategories || 6,
+      icon: '📦',
+      color: 'info',
+      action: () => navigateTo('discovery')
+    },
+    {
       id: 'pending',
       title: 'Offene Bewertungen',
       value: metrics.pendingRatings,
       icon: '📝',
       color: 'warning',
       action: () => navigateTo('rating')
-    },
-    {
-      id: 'violations',
-      title: 'Compliance-Verstöße',
-      value: metrics.complianceViolations,
-      icon: '⚠️',
-      color: metrics.complianceViolations > 0 ? 'danger' : 'success',
-      action: metrics.complianceViolations > 0 ? () => navigateTo('reports') : null
     }
   ]
 

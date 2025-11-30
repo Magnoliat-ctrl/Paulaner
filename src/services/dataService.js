@@ -619,10 +619,9 @@ class DataService {
 
     const averageRating = totalRatings > 0 ? (sumRatings / totalRatings).toFixed(1) : 0
 
-    // Count compliance violations
-    const complianceViolations = suppliers.filter(s =>
-      s.compliance.status !== 'compliant'
-    ).length
+    // Count total categories
+    const categories = new Set(suppliers.map(s => s.category))
+    const totalCategories = categories.size
 
     // Count pending ratings (suppliers without recent ratings)
     const thirtyDaysAgo = new Date()
@@ -638,7 +637,7 @@ class DataService {
       totalSuppliers,
       averageRating,
       totalRatings,
-      complianceViolations,
+      totalCategories,
       pendingRatings
     }
   }
@@ -671,23 +670,6 @@ class DataService {
       }
     })
 
-    // Add compliance warnings
-    const violations = this.cachedSuppliers.filter(s =>
-      s.compliance.violations && s.compliance.violations.length > 0
-    )
-
-    violations.forEach(supplier => {
-      supplier.compliance.violations.forEach(violation => {
-        activities.push({
-          type: 'warning',
-          timestamp: violation.date,
-          description: `${violation.type} bei ${supplier.name}`,
-          severity: violation.severity,
-          supplierId: supplier.id
-        })
-      })
-    })
-
     // Sort by timestamp and limit
     return activities
       .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
@@ -710,8 +692,8 @@ class DataService {
     // Category distribution
     const categoryDistribution = this.calculateCategoryDistribution(suppliers)
 
-    // Compliance overview
-    const complianceOverview = this.calculateComplianceOverview(suppliers)
+    // Certifications distribution
+    const certifications = this.calculateCertificationsDistribution(suppliers)
 
     // Top performers
     const topPerformers = this.getTopPerformers(suppliers, 5)
@@ -719,7 +701,7 @@ class DataService {
     return {
       ratingTrends,
       categoryDistribution,
-      complianceOverview,
+      certifications,
       topPerformers
     }
   }
@@ -787,26 +769,30 @@ class DataService {
   }
 
   /**
-   * Calculate compliance overview
+   * Calculate certifications distribution
    * @param {Array} suppliers - Array of suppliers
-   * @returns {Object} Compliance data
+   * @returns {Array} Certifications data
    */
-  calculateComplianceOverview(suppliers) {
-    const overview = {
-      compliant: 0,
-      'minor-violation': 0,
-      'under-review': 0,
-      'major-violation': 0
-    }
+  calculateCertificationsDistribution(suppliers) {
+    const certMap = {}
 
     suppliers.forEach(supplier => {
-      const status = supplier.compliance.status
-      if (overview.hasOwnProperty(status)) {
-        overview[status] += 1
-      }
+      const certs = supplier.certifications || []
+      certs.forEach(cert => {
+        // Extract main certification name (e.g., "ISO 9001:2015" -> "ISO 9001")
+        const mainCert = cert.split(':')[0].trim()
+        if (!certMap[mainCert]) {
+          certMap[mainCert] = 0
+        }
+        certMap[mainCert] += 1
+      })
     })
 
-    return overview
+    // Convert to array and sort by count
+    return Object.keys(certMap)
+      .map(name => ({ name, count: certMap[name] }))
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 5) // Top 5 certifications
   }
 
   /**

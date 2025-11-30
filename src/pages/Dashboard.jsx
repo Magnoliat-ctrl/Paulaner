@@ -59,7 +59,7 @@ function Dashboard({ navigateTo, userMemory }) {
       <header className="page-header">
         <h1 className="page-title">Dashboard</h1>
         <p className="page-description">
-          Übersicht über Lieferanten, Bewertungen und Compliance-Status
+          Übersicht über Lieferanten, Bewertungen und Kategorien für den Tender-Prozess
         </p>
       </header>
 

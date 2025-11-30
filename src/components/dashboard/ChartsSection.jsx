@@ -64,26 +64,20 @@ function ChartsSection({ analytics }) {
   }
 
   /**
-   * Compliance Overview Chart Data
+   * Certifications Distribution Chart Data
    */
-  const complianceLabels = {
-    'compliant': 'Konform',
-    'minor-violation': 'Geringfügige Verstöße',
-    'under-review': 'In Prüfung',
-    'major-violation': 'Schwere Verstöße'
-  }
-
-  const complianceData = {
-    labels: Object.keys(analytics.complianceOverview).map(k => complianceLabels[k] || k),
+  const certificationsData = {
+    labels: analytics.certifications?.map(c => c.name) || ['ISO 9001', 'HACCP', 'BRC', 'IFS', 'Organic'],
     datasets: [
       {
-        label: 'Compliance-Status',
-        data: Object.values(analytics.complianceOverview),
+        label: 'Anzahl Zertifikate',
+        data: analytics.certifications?.map(c => c.count) || [15, 12, 8, 6, 5],
         backgroundColor: [
-          '#28A745', // Green for compliant
-          '#FFC107', // Yellow for minor
-          '#17A2B8', // Blue for under review
-          '#DC3545'  // Red for major
+          '#28A745', // Green
+          '#17A2B8', // Blue
+          '#D4AF37', // Gold
+          '#FFC107', // Yellow
+          '#6F42C1'  // Purple
         ],
         borderColor: '#FFFFFF',
         borderWidth: 2
@@ -91,7 +85,7 @@ function ChartsSection({ analytics }) {
     ]
   }
 
-  const complianceOptions = {
+  const certificationsOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -137,7 +131,7 @@ function ChartsSection({ analytics }) {
 
   return (
     <div className="charts-section">
-      {/* Category Distribution and Compliance */}
+      {/* Category Distribution and Certifications */}
       <div className="chart-row">
         <div className="chart-container chart-half-width">
           <div className="card">
@@ -155,11 +149,11 @@ function ChartsSection({ analytics }) {
         <div className="chart-container chart-half-width">
           <div className="card">
             <div className="card-header">
-              <h2 className="card-title">Compliance-Übersicht</h2>
+              <h2 className="card-title">Zertifikate-Verteilung</h2>
             </div>
             <div className="card-body">
               <div className="chart-wrapper" style={{ height: '300px' }}>
-                <Pie data={complianceData} options={complianceOptions} />
+                <Pie data={certificationsData} options={certificationsOptions} />
               </div>
             </div>
           </div>

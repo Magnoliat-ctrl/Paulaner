@@ -36,11 +36,10 @@ VERFÜGBARE DATEN FÜR ${supplier.name}:
 - Beschreibung: ${supplier.description}
 - Kategorie: ${supplier.category}
 - Standorte: ${supplier.locations?.map(l => `${l.city}, ${l.country}`).join('; ')}
-- Produkte: ${supplier.products?.slice(0, 5).join(', ')}...
+- Anzahl Standorte: ${supplier.locations?.length || 1}
+- Produkte: ${supplier.products?.slice(0, 5).join(', ')}... (${supplier.products?.length || 0} gesamt)
 - Zertifizierungen: ${supplier.certifications?.join(', ')}
-- Performance: Liefertreue ${supplier.performance?.onTimeDeliveryRate}%, Qualität ${supplier.performance?.qualityRating || 'k.A.'}/10
-- Compliance-Status: ${supplier.compliance?.status}
-- ESG: Erneuerbare Energie ${supplier.esg?.environmental?.renewableEnergy}%
+- ESG-Scores: Environmental ${supplier.esg?.environmental?.score}/10, Social ${supplier.esg?.social?.score}/10, Governance ${supplier.esg?.governance?.score}/10
 - Bewertungen: Durchschnitt ${supplier.ratings?.[0]?.overallScore || 'k.A.'}/10
 
 NUTZE NUR DIESE VERIFIZIERTEN DATEN. Erfinde NICHTS hinzu.`

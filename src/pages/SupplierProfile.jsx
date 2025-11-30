@@ -43,34 +43,6 @@ function SupplierProfile({ supplierId, navigateTo }) {
     }
   }
 
-  /**
-   * Get compliance status badge
-   */
-  const getComplianceStatus = (status) => {
-    const statuses = {
-      'compliant': {
-        label: 'Vollständig konform',
-        class: 'badge-success',
-        icon: '✓'
-      },
-      'minor-violation': {
-        label: 'Geringfügige Verstöße',
-        class: 'badge-warning',
-        icon: '⚠'
-      },
-      'under-review': {
-        label: 'In Prüfung',
-        class: 'badge-info',
-        icon: '🔍'
-      },
-      'major-violation': {
-        label: 'Schwere Verstöße',
-        class: 'badge-danger',
-        icon: '✕'
-      }
-    }
-    return statuses[status] || statuses['under-review']
-  }
 
   /**
    * Calculate average rating
@@ -166,7 +138,6 @@ function SupplierProfile({ supplierId, navigateTo }) {
     )
   }
 
-  const complianceStatus = getComplianceStatus(supplier.compliance.status)
   const avgRating = calculateAverage(supplier.ratings)
 
   return (
@@ -205,9 +176,8 @@ function SupplierProfile({ supplierId, navigateTo }) {
             <h1 className="profile-title">{supplier.name}</h1>
             <p className="profile-subtitle">{supplier.category}</p>
           </div>
-          <span className={`badge ${complianceStatus.class} badge-large`}>
-            <span aria-hidden="true">{complianceStatus.icon}</span>
-            {complianceStatus.label}
+          <span className="badge badge-info badge-large">
+            📋 Tender-Kandidat
           </span>
         </div>
 
@@ -221,35 +191,19 @@ function SupplierProfile({ supplierId, navigateTo }) {
             <span className="metric-count">{supplier.ratings.length} Bewertungen</span>
           </div>
           <div className="metric-box">
-            <span className="metric-label">Liefertreue</span>
-            <span className="metric-value">{supplier.performance.onTimeDeliveryRate}%</span>
+            <span className="metric-label">Standorte</span>
+            <span className="metric-value">{supplier.locations?.length || 1}</span>
           </div>
           <div className="metric-box">
-            <span className="metric-label">Fehlerrate</span>
-            <span className="metric-value">{supplier.performance.defectRate}%</span>
+            <span className="metric-label">Produkte</span>
+            <span className="metric-value">{supplier.products?.length || 0}</span>
           </div>
           <div className="metric-box">
-            <span className="metric-label">Reaktionszeit</span>
-            <span className="metric-value">{supplier.performance.responseTime}h</span>
+            <span className="metric-label">Zertifikate</span>
+            <span className="metric-value">{supplier.certifications?.length || 0}</span>
           </div>
         </div>
       </div>
-
-      {/* Compliance Warnings */}
-      {supplier.compliance.violations && supplier.compliance.violations.length > 0 && (
-        <div className="alert alert-danger">
-          <h3>⚠️ Compliance-Verstöße</h3>
-          {supplier.compliance.violations.map((violation, index) => (
-            <div key={index} className="violation-item">
-              <strong>{violation.type}</strong> ({violation.date})
-              <p>{violation.description}</p>
-              {violation.resolved && (
-                <span className="badge badge-success">Behoben</span>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
 
       {/* Contact Information */}
       <div className="card">
@@ -635,17 +589,11 @@ function SupplierProfile({ supplierId, navigateTo }) {
                           <span>{esgAnalysis.governance.transparency.level}</span>
                         </div>
                       )}
-                      {esgAnalysis.governance.compliance && (
-                        <>
-                          <div className="esg-detail-item">
-                            <strong>Compliance-Status:</strong>
-                            <span>{esgAnalysis.governance.compliance.status}</span>
-                          </div>
-                          <div className="esg-detail-item">
-                            <strong>Ethisches Geschäft:</strong>
-                            <span>{esgAnalysis.governance.compliance.ethicalBusiness ? 'Ja' : 'Nein'}</span>
-                          </div>
-                        </>
+                      {esgAnalysis.governance.ethicalBusiness !== undefined && (
+                        <div className="esg-detail-item">
+                          <strong>Ethisches Geschäft:</strong>
+                          <span>{esgAnalysis.governance.ethicalBusiness ? 'Ja' : 'Nein'}</span>
+                        </div>
                       )}
                       {esgAnalysis.governance.certifications && (
                         <div className="esg-detail-item">
