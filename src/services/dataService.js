@@ -36,9 +36,9 @@ class DataService {
       const stored = localStorage.getItem(SUPPLIERS_KEY)
       if (stored) {
         const suppliers = JSON.parse(stored)
-        // Check if any supplier is missing critical fields
+        // Check if any supplier is missing critical fields for tender process
         const hasCorruptedData = suppliers.some(s =>
-          !s.location || !s.ratings || !s.compliance || !s.performance
+          !s.id || !s.name || !s.category || !Array.isArray(s.ratings)
         )
         if (hasCorruptedData) {
           console.warn('⚠️ Detected corrupted cache data - clearing...')
@@ -249,7 +249,6 @@ class DataService {
       totalSuppliers: this.cachedSuppliers.length,
       totalRatings: 0,
       averageRating: 0,
-      complianceViolations: 0,
       lastUpdated: new Date().toISOString()
     }
   }
@@ -343,14 +342,14 @@ class DataService {
           categoryName = 'Wellpappe'
           sourceData = additionalSuppliers.filter(s => s.category === 'Wellpappe')
         } else if (isArbeitskleidungSearch) {
-          categoryName = 'Arbeitskleidung'
-          sourceData = additionalSuppliers.filter(s => s.category === 'Arbeitskleidung')
+          categoryName = 'Arbeitsschutzkleidung'
+          sourceData = additionalSuppliers.filter(s => s.category === 'Arbeitsschutzkleidung')
         } else if (isFrachtenSearch) {
-          categoryName = 'Frachten & Logistik'
-          sourceData = additionalSuppliers.filter(s => s.category === 'Frachten & Logistik')
+          categoryName = 'Logistik'
+          sourceData = additionalSuppliers.filter(s => s.category === 'Logistik')
         } else if (isPalettenSearch) {
-          categoryName = 'Euro-Paletten'
-          sourceData = additionalSuppliers.filter(s => s.category === 'Euro-Paletten')
+          categoryName = 'Paletten'
+          sourceData = additionalSuppliers.filter(s => s.category === 'Paletten')
         }
 
         console.log(`🔍 ${categoryName}-Suche erkannt - starte simulierte KI-Recherche...`)
@@ -425,10 +424,7 @@ class DataService {
         })
       }
 
-      // Filter by compliance status
-      if (complianceStatus !== 'all') {
-        results = results.filter(s => s.compliance.status === complianceStatus)
-      }
+      // Note: Compliance filtering removed - not available during tender process
 
       // Deduplicate final results by normalized company name
       const uniqueResults = Array.from(
@@ -483,10 +479,24 @@ class DataService {
 
     // Filter by location
     if (location) {
-      results = results.filter(s =>
-        s.location.city.toLowerCase().includes(location.toLowerCase()) ||
-        s.location.region.toLowerCase().includes(location.toLowerCase())
-      )
+      results = results.filter(s => {
+        const lowerLocation = location.toLowerCase()
+        // Check main location object
+        if (s.location) {
+          const cityMatch = s.location.city?.toLowerCase().includes(lowerLocation)
+          const regionMatch = s.location.region?.toLowerCase().includes(lowerLocation)
+          const countryMatch = s.location.country?.toLowerCase().includes(lowerLocation)
+          if (cityMatch || regionMatch || countryMatch) return true
+        }
+        // Check locations array
+        if (s.locations && Array.isArray(s.locations)) {
+          return s.locations.some(loc =>
+            loc.city?.toLowerCase().includes(lowerLocation) ||
+            loc.country?.toLowerCase().includes(lowerLocation)
+          )
+        }
+        return false
+      })
     }
 
     // Filter by minimum rating
@@ -506,10 +516,7 @@ class DataService {
       )
     }
 
-    // Filter by compliance status
-    if (complianceStatus !== 'all') {
-      results = results.filter(s => s.compliance.status === complianceStatus)
-    }
+    // Note: Compliance filtering removed - not available during tender process
 
     return results
   }
