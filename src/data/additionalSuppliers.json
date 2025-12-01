@@ -844,8 +844,8 @@
   },
   {
     "id": "SUPPLIER-WELLPAPPE-001",
-    "name": "Smurfit Kappa",
-    "description": "ESG-Leader in Wellpappe mit exzellentem Recyclingkreislauf (Paper-to-Box) und starker Kreislaufwirtschaft.",
+    "name": "Smurfit WestRock plc",
+    "description": "Weltmarktführer für Wellpappe und nachhaltige Verpackungslösungen. Fusioniert 2024 mit WestRock. Spezialist für Getränkeverpackungen mit 90 Jahren Branchenerfahrung.",
     "category": "Wellpappe",
     "contact": {
       "website": "https://www.smurfitkappa.com"
@@ -862,19 +862,40 @@
       }
     ],
     "products": [
-      "Wellpappverpackungen",
-      "Kartonagen",
-      "Nachhaltige Verpackungslösungen"
+      {
+        "name": "TopClip",
+        "description": "Plastikfreier Kartondeckel für Dosenmultipacks",
+        "category": "Getränkeverpackung"
+      },
+      {
+        "name": "GreenClip",
+        "description": "Papierbasierte Sixpack-Ringe",
+        "category": "Getränkeverpackung"
+      },
+      {
+        "name": "Bag-in-Box",
+        "description": "Für Fassbier und Großgebinde",
+        "category": "Getränkeverpackung"
+      },
+      {
+        "name": "Beer Packaging",
+        "description": "Kästen, Sixpacks, Trays, Displays",
+        "category": "Getränkeverpackung"
+      }
     ],
     "certifications": [
-      "FSC",
-      "PEFC",
       "ISO 9001",
       "ISO 14001",
-      "ISO 45001"
+      "ISO 45001",
+      "ISO 50001",
+      "FSC (95.5%)",
+      "PEFC",
+      "BRC Packaging",
+      "FSSC 22000",
+      "EN 15593"
     ],
-    "employeeCount": null,
-    "revenue": null,
+    "employeeCount": 100000,
+    "revenue": "32 Mrd. EUR",
     "ownership": null,
     "productionSites": "International",
     "esg": {
@@ -897,13 +918,77 @@
     "ratings": [
       {
         "id": "RATING-SMURFIT-001",
-        "overallScore": 5.0,
-        "date": "2025-11-30"
+        "overallScore": 9.0,
+        "date": "2025-11-30",
+        "categories": {
+          "Qualität": 9,
+          "Lieferfähigkeit": 9,
+          "Nachhaltigkeit": 10,
+          "Risiko": 8,
+          "Innovation": 9,
+          "Preis-Leistung": 7
+        },
+        "weights": {
+          "Qualität": 20,
+          "Lieferfähigkeit": 20,
+          "Nachhaltigkeit": 20,
+          "Risiko": 15,
+          "Innovation": 15,
+          "Preis-Leistung": 10
+        }
       }
     ],
     "documents": [],
     "addedDate": "2025-11-30",
-    "verificationNeeded": false
+    "verificationNeeded": false,
+    "founded": 1934,
+    "headquarters": "Dublin, Irland",
+    "germanHQ": "Hamburg, Deutschland",
+    "ceo": "Tony Smurfit",
+    "marketShare": "14.2%",
+    "sites": 500,
+    "countries": 40,
+    "germanSites": 40,
+    "ebitda": "2.080 Mio. EUR",
+    "ebitdaMargin": "18.5%",
+    "recommendation": "Stark empfohlen",
+    "awards2024": 106,
+    "worldStarAwards": 12,
+    "deliveryTimes": {
+      "bavaria": "1-3 Werktage",
+      "germany": "2-5 Werktage",
+      "europe": "5-10 Werktage"
+    },
+    "esgRatings": {
+      "sustainalytics": {
+        "score": 10.7,
+        "risk": "Low Risk",
+        "rank": "#1 in Paper Packaging"
+      },
+      "cdp": {
+        "climate": "A-",
+        "water": "A-",
+        "forest": "A-"
+      },
+      "msci": "AA",
+      "ecovadis": {
+        "rating": "Gold",
+        "percentile": "Top 1%"
+      },
+      "overall": 5
+    },
+    "strengths": [
+      "Weltmarktführer mit 14,2% Marktanteil",
+      "Brauerei-Expertise (Grolsch, Vanhonsebrouck)",
+      "Integriertes Modell (eigene Papiermühlen)",
+      "ESG-Leadership (#1 Sustainalytics)",
+      "106 Awards 2024 inkl. 12 WorldStar Awards"
+    ],
+    "weaknesses": [
+      "WestRock-Integrationsrisiko",
+      "Premium-Preise (oberes Segment)",
+      "Rohstoffvolatilität"
+    ]
   },
   {
     "id": "SUPPLIER-WELLPAPPE-002",

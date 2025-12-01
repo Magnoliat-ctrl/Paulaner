@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react'
 import { dataService } from '../services/dataService'
 import esgAnalysisData from '../data/esgAnalysis.json'
 import productDetailsData from '../data/productDetails.json'
+import SmurfitEnhancedProfile from '../components/SmurfitEnhancedProfile'
 import '../styles/SupplierProfile.css'
 
 function SupplierProfile({ supplierId, navigateTo }) {
@@ -136,6 +137,11 @@ function SupplierProfile({ supplierId, navigateTo }) {
         </button>
       </div>
     )
+  }
+
+  // Use enhanced profile for Smurfit WestRock
+  if (supplier.name?.includes('Smurfit') || supplier.id === 'SUPPLIER-WELLPAPPE-001') {
+    return <SmurfitEnhancedProfile supplier={supplier} navigateTo={navigateTo} />
   }
 
   const avgRating = calculateAverage(supplier.ratings)
